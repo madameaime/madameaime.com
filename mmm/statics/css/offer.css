@@ -1,0 +1,264 @@
+#offer {
+    margin-bottom: 15px;
+    border: 1px solid #dddddd;
+}
+
+#offer .products {
+    height: 578px;
+    background-color: #ffffff;
+    position: relative;
+}
+
+#offer .description {
+    font-family: 'bebas';
+    font-style: normal;
+    font-weight: normal;
+    position: absolute;
+    top: 110px;
+    left: 30px;
+    width: 207px;
+}
+
+#offer .description p {
+    margin: 0;
+    padding: 0;
+}
+
+#offer .description p.l1 { font-size: 34px; line-height: 30px; }
+#offer .description p.l2 { font-size: 33px; line-height: 28px; color: #e2507f; }
+#offer .description p.l3 { font-size: 36px; line-height: 34px; }
+#offer .description p.l4 { font-size: 42px; line-height: 36px; color: #e2507f; }
+#offer .description p.l5 { font-size: 24px; line-height: 24px; }
+
+#offer .lady {
+    background: url('../img/offer/lady.png') bottom left no-repeat;
+    position: absolute;
+    width: 959px;
+    height: 333px;
+    bottom: 17px;
+    left: 0;
+}
+
+#offer .products > h1 {
+    position: absolute;
+    background: url('../img/offer/grey_overlay.png') 0 0 no-repeat;
+    width: 279px;
+    height: 76px;
+
+    top: 25px;
+    left: -14px;
+    color: #eeeeee;
+    font-weight: normal;
+    font-size: 28px;
+    margin: 0;
+    padding: 11px 0 0 40px;
+}
+
+#offer .products > .happy {
+    position: absolute;
+    right: 50px;
+    top: 20px;
+    text-align: center;
+    font-size: 28px;
+    line-height: 40px;
+    color: #e2507f;
+    letter-spacing: -0.06em;
+}
+
+#offer .products > ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    position: absolute;
+    background: url('../img/offer/background.png') 0 0 no-repeat;
+    width: 688px;
+    height: 393px;
+
+    top: 90px;
+    right: 20px;
+}
+
+#offer .products > ul > li {
+    list-style-type: none;
+    position: absolute;
+    text-align: center;
+}
+
+#offer .products > ul > li.one {
+    top: 55px;
+    left: 30px;
+    width: 187px;
+}
+
+#offer .products > ul > li.three {
+    top: 30px;
+    left: 225px;
+    width: 226px;
+
+    color: #ffffff;
+}
+
+#offer .products > ul > li.six {
+    top: 25px;
+    left: 460px;
+    width: 203px;
+}
+
+#offer .products > ul > li > h2 {
+    font-family: 'bebas';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+}
+
+#offer .products > ul > li.one > h2 {
+    margin: 0 0 40px 15px;
+}
+
+#offer .products > ul > li.three > h2 {
+    font-size: 32px;
+    margin: 0 0 0 24px;
+}
+
+#offer .products > ul > li.six > h2 {
+    margin: 15px 0 10px 20px;
+}
+
+#offer .products > ul > li.three > h3 {
+    font-family: 'bebas';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    margin: 0 0 20px 18px;
+}
+
+#offer .products > ul > li .button {
+    width: 153px;
+    height: 57px;
+    background: url('../img/offer/yellow_overlay.png') 0 0 no-repeat;
+    position: relative;
+}
+
+#offer .products > ul > li.one .button {
+    top: 5px;
+}
+
+#offer .products > ul > li.three .button {
+    left: 20px;
+    top: 5px;
+}
+
+#offer .products > ul > li.six .button {
+    left: 15px;
+}
+
+#offer .products > ul > li .button button {
+    line-height: 42px;
+    margin-right: 16px;
+}
+
+#offer .products > ul > li .button button:hover {
+    text-decoration: none;
+}
+
+#offer .products > ul > li > ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    font-size: 12px;
+}
+
+#offer .products > ul > li.one > ul > li > em {
+    font-size: 16px;
+}
+
+#offer .products > ul > li.three > ul > li > em {
+    font-size: 16px;
+    line-height: 35px;
+}
+
+#offer .products > ul > li > ul > li {
+    list-style-type: none;
+    line-height: 24px;
+}
+
+#offer .products > ul > li > p.price {
+    font-size: 36px;
+    color: #e2507f;
+    position: relative;
+    left: -5px;
+}
+
+#offer .products > ul > li.one > p.price {
+    margin-top: 45px;
+}
+
+#offer .products > ul > li.three > p.price {
+    color: #ffffff;
+    margin-top: 20px;
+}
+
+#offer .products > ul > li.six > p.price {
+    margin-top: 10px;
+}
+
+#offer .products > ul > li > p.delivery {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #e2507f;
+    position: relative;
+    left: -15px;
+}
+
+#offer .products > ul > li.three > p.delivery {
+    color: #ffffff;
+}
+
+#offer .products > ul > li.six > .badge {
+    height: 62px;
+    width: 62px;
+    background: url('../img/offer/badge.png') 0 0 no-repeat;
+    position: absolute;
+    z-index: 1;
+    right: -50px;
+}
+
+#offer .products .hurry {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 24px;
+    line-height: 40px;
+    color: #e2507f;
+    letter-spacing: -0.02em;
+}
+
+#offer .howto {
+    height: 56px;
+    background-color: #4b4b4b;
+}
+
+#offer .howto p {
+    font-size: 30px;
+    font-weight: lighter;
+    line-height: 56px;
+    text-align: center;
+    color: #eeeeee;
+    letter-spacing: -0.06em;
+}
+
+#offer .breakdown {
+    height: 90px;
+    background: #ffffff url('../img/offer/howto.png') 0 0 no-repeat;
+}
+
+#offer .breakdown div {
+    padding-top: 35px;
+    text-align: center;
+    padding-right: 70px;
+    letter-spacing: -0.05em;
+}

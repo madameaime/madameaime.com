@@ -16,6 +16,11 @@ urlpatterns = patterns('',
         name='how-does-it-work'
     ),
 
+    url(r'^offrir$',
+        TemplateView.as_view(template_name='offer.html'),
+        name='offer'
+    ),
+
     # Examples:
     # url(r'^$', 'mmm.views.home', name='home'),
     # url(r'^mmm/', include('mmm.foo.urls')),

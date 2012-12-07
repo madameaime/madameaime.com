@@ -21,6 +21,7 @@
 		<link href="{{STATIC_URL}}css/style.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="{{STATIC_URL}}css/index.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="{{STATIC_URL}}css/how_does_it_work.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="{{STATIC_URL}}css/offer.css" rel="stylesheet" type="text/css" media="all" />
 
 		<script src="{{STATIC_URL}}js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 	</head>
@@ -56,7 +57,7 @@
 					<div id="header-nav">
 						<a href="{% url homepage %}">Accueil</a>
 						<a href="{% url how-does-it-work %}">Comment ça marche ?</a>
-						<a href="">Offrir</a>
+						<a href="{% url offer %}">Offrir</a>
 						<a href="">Marques</a>
 						<a href="">Coffret</a>
 						<a href="#">Blog</a>
@@ -97,7 +98,7 @@
 						<h3>Madame Aime</h3>
 						<ul>
 							<li><a href="{% url how-does-it-work %}">Comment ça marche ?</a></li>
-							<li><a href="">Offrir</a></li>
+							<li><a href="{% url offer %}">Offrir</a></li>
 							<li><a href="">Marques</a></li>
 							<li><a href="">Coffret</a></li>
 							<li><a href="http://blog.madameaime.com">Le Blog</a></li>
