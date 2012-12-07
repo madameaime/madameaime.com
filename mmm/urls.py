@@ -11,6 +11,11 @@ urlpatterns = patterns('',
         name='homepage'
     ),
 
+    url(r'^comment-ca-marche$',
+        TemplateView.as_view(template_name='how-does-it-work.html'),
+        name='how-does-it-work'
+    ),
+
     # Examples:
     # url(r'^$', 'mmm.views.home', name='home'),
     # url(r'^mmm/', include('mmm.foo.urls')),

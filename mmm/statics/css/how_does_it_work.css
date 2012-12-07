@@ -1,0 +1,144 @@
+#how-does-it-work {
+    height: 576px;
+
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+
+    margin-bottom: 15px;
+    position: relative;
+}
+
+#how-does-it-work .onetwothree {
+    background: url('../img/how_does_it_work/123.png') 0 0 no-repeat;
+    width: 744px;
+    height: 252px;
+    position: absolute;
+    z-index: 0;
+
+    top: 83px;
+    left: 43px;
+}
+
+#how-does-it-work .lady {
+    width: 100%;
+    height: 100%;
+    background: url('../img/how_does_it_work/lady.png') 0 0 no-repeat;
+    background-position: bottom right;
+    z-index: 1;
+    position: relative;
+}
+
+#how-does-it-work h1 {
+    position: absolute;
+    z-index: 2;
+    background: url('../img/how_does_it_work/grey_overlay.png') 0 0 no-repeat;
+    width: 376px;
+    height: 76px;
+
+    top: 25px;
+    left: -13px;
+    color: #eeeeee;
+    font-weight: normal;
+    font-size: 26px;
+    margin: 0;
+    padding: 11px 0 0 40px;
+}
+
+#how-does-it-work .box {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    z-index: 2;
+
+    top: 120px;
+}
+
+#how-does-it-work .box > h3 {
+    font-family: bebas;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    text-align: center;
+    color: #e2507f;
+    padding-top: 5px;
+}
+
+#how-does-it-work .box > p {
+    text-align: center;
+    margin-top: 125px;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+#how-does-it-work .box.one {
+    left: 58px;
+}
+
+#how-does-it-work .box.two {
+    left: 290px;
+}
+
+#how-does-it-work .box.three {
+    left: 515px;
+}
+
+#how-does-it-work .info {
+    position: absolute;
+    z-index: 2;
+
+    bottom: 55px;
+    left: 25px;
+}
+
+#how-does-it-work .info > h2 {
+    font-family: bebas;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    text-align: center;
+    padding-top: 5px;
+}
+
+#how-does-it-work .info > ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 0 5px;
+}
+
+#how-does-it-work .info > ul li {
+    list-style-type: none;
+    background: url('../img/how_does_it_work/arrow.png') 0 50% no-repeat;
+    padding-left: 35px;
+    margin-bottom: 10px;
+}
+
+#how-does-it-work .info > ul li:last-child {
+    color: #e2507f;
+}
+
+#how-does-it-work .info > ul li h4 {
+    margin: 0;
+    font-size: 15px;
+}
+
+#how-does-it-work .info > ul li p {
+    font-size: 15px;
+    margin: 0;
+}
+
+#how-does-it-work .profit {
+    position: absolute;
+    background: url('../img/how_does_it_work/yellow_overlay.png') 0 0 no-repeat;
+    width: 193px;
+    height: 63px;
+    z-index: 2;
+
+    left: 450px;
+    bottom: 72px;
+}
+
+#how-does-it-work .profit a {
+    font-size: 24px;
+    line-height: 55px;
+    margin-left: 40px;
+}
