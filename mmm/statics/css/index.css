@@ -1,0 +1,298 @@
+/*************/
+/* Slideshow */
+/*************/
+
+#index-slideshow {
+    height: 535px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+
+    margin-bottom: 15px;
+    padding-right: 1px;
+
+    position: relative;
+}
+#index-slideshow .carousel {
+    width: 100%;
+    height: 100%;
+
+    border: 10px solid #ffffff;
+
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+}
+#index-slideshow .carousel-inner { width: 100%; height: 100%; }
+#index-slideshow .carousel-nav { position: absolute; bottom: 15px; right: 25px; z-index: 2; }
+#index-slideshow .carousel-nav span {
+    position: static;
+    display: inline;
+    width: 13px;
+    height: 13px;
+    display: inline-block;
+    background: url("../img/home/bullet.png") 0 0 no-repeat;
+    margin: 0 8px 0 0;
+    cursor: pointer;
+}
+#index-slideshow .carousel-nav span.active,#index-slideshow .carousel-nav span:hover {
+    background: url("../img/home/bullet_active.png") 0 0 no-repeat;
+}
+#index-slideshow .item { width: 100%; height: 100%; background-position: right; }
+#index-slideshow .item.one { background: url('../img/home/slideshow_1.png') no-repeat; }
+#index-slideshow .item.two { background: url('../img/home/slideshow_2.png') no-repeat; }
+#index-slideshow .item.two > p {
+    color: #000000;
+    position: absolute;
+    top: 60px;
+    right: 40px;
+    font-size: 24px;
+}
+#index-slideshow .item.two > p .pink { font-size: 29px; }
+
+#index-slideshow .fade {
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    top: 0;
+
+    background-color: #ffffff;
+    background: url('../img/home/slideshow_fade.png') 0 0 no-repeat;
+    opacity: 0.5;
+}
+
+#index-slideshow-overlay {
+    position: absolute;
+    bottom: 30px;
+    left: -13px;
+    background: url('../img/home/slideshow_overlay.png') 0 0 no-repeat;
+    width: 386px;
+    height: 472px;
+}
+#index-slideshow-overlay .inner { width: 100%; height: 460px; margin-left: 20px; }
+#index-slideshow-overlay .inner .recipe { color: #ffffff; margin: 30px 0 0 95px; line-height: 20px; }
+#index-slideshow-overlay .inner .gift {
+    color: #e2507f;
+    font-size: 57px;
+    line-height: 30px;
+    letter-spacing: -0.05em;
+    margin: 0 0 35px 0;
+}
+#index-slideshow-overlay .inner .box {
+    font-family: 'bebas';
+    font-style: normal;
+    font-size: 19px;
+    color: #bbbbbb;
+    margin: 0;
+}
+#index-slideshow-overlay .inner .selection {
+    font-family: 'bebas';
+    font-style: normal;
+    font-size: 30px;
+    line-height: 32px;
+    color: #bbbbbb;
+    margin: 0 0 10px 0;
+}
+#index-slideshow-overlay .inner .types {
+    font-family: 'bebas';
+    font-style: normal;
+    color: #ffffff;
+    list-style-type: none;
+    margin: 0 0 0 50px;
+    font-size: 23px;
+}
+#index-slideshow-overlay .inner .types li {
+    list-style-type: none;
+    line-height: 30px;
+}
+#index-slideshow-overlay .inner .equals {
+    font-style: normal;
+    font-size: 36px;
+    color: #b5b5b5;
+    margin: 30px 0 0 0;
+}
+
+#index-slideshow-overlay .inner .ml {
+    position: relative;
+    top: -20px;
+    left: 40px;
+}
+
+#index-slideshow-overlay .inner .madam {
+    font-size: 42px;
+    color: #ffffff;
+    letter-spacing: -0.08em;
+}
+
+#index-slideshow-overlay .inner .loves {
+    color: #e2507f;
+    letter-spacing: -0.1em;
+    font-size: 49px;
+    position: relative;
+    line-height: 0px;
+    left: 142px;
+}
+
+#index-slideshow-overlay .inner .price {
+    font-size: 34px;
+    line-height: 34px;
+    color: #e4b451;
+    margin: 10px 0 0 0;
+}
+
+#index-slideshow-overlay .inner .shipping {
+    font-size: 15px;
+    color: #e4b451;
+}
+
+#index-slideshow-overlay .more {
+    position: absolute;
+    bottom: 54px;
+    right: 100px;
+}
+
+/********/
+/* Gage */
+/********/
+
+#index-gage {
+    font-family: 'bebas';
+    font-style: normal;
+    font-size: 20px;
+    color: #777777;
+
+    height: 88px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+
+    margin-bottom: 15px;
+}
+
+#index-gage .span4 {
+    margin: 18px 0 0 5px;
+    text-align: center;
+    line-height: 55px;
+    position: relative;
+}
+
+#index-gage .gage-sep {
+    position: absolute;
+    top: -18px;
+    right: -40px;
+    background: url('../img/home/gage_sep.png') 0 0 no-repeat;
+    width: 37px;
+    height: 88px;
+}
+
+#index-gage i.icon-heart {
+    margin: 0 10px 0 0;
+    vertical-align: top;
+    background: url('../img/home/heart.png') 0 0 no-repeat;
+    width: 54px;
+    height: 50px;
+}
+
+#index-gage i.icon-smile {
+    margin: 0 10px 0 0;
+    vertical-align: top;
+    background: url('../img/home/smile.png') 0 0 no-repeat;
+    width: 54px;
+    height: 50px;
+}
+
+#index-gage i.icon-gift {
+    margin: 0 10px 0 0;
+    vertical-align: top;
+    background: url('../img/home/gift.png') 0 0 no-repeat;
+    width: 54px;
+    height: 50px;
+}
+
+
+/***********/
+/* Inserts */
+/***********/
+
+#index-inserts {
+    margin: 0 0 15px 0;
+}
+
+#index-inserts > div {
+    margin: 0;
+
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+
+    width: 286px;
+    height: 186px;
+
+    position: relative;
+}
+
+#index-inserts > div .inner {
+    width: 100%;
+    height: 100%;
+
+    border: 10px solid #ffffff;
+    background: transparent;
+
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#index-inserts > div .overlay {
+    width: 307px;
+    height: 57px;
+    position: absolute;
+    bottom: -7px;
+    right: -31px;
+
+
+    background: url('../img/home/insert_yellow.png') no-repeat;
+}
+
+#index-inserts > div .overlay .span7 {
+    font-size: 16px;
+    color: #dddddd;
+    padding: 14px 0 0 10px;
+    letter-spacing: -0.06em;
+}
+
+#index-inserts > .how-does-it-work .overlay .span7 {
+    font-size: 15px;
+}
+
+#index-inserts > div .overlay .span5 {
+    padding: 14px 0 0 5px;
+}
+
+#index-inserts > div .overlay .span5 a {
+}
+
+#index-inserts .story, #index-inserts .how-does-it-work {
+    margin-right: 45px;
+}
+
+#index-inserts .story .inner {
+    background: url('../img/home/inserts_story.png') no-repeat;
+    background-color: #dddddd;
+}
+
+#index-inserts .how-does-it-work .inner {
+    background: url('../img/home/inserts_how_does_it_work.png') no-repeat;
+    background-color: #dddddd;
+}
+
+#index-inserts .gift .inner {
+    background: url('../img/home/inserts_gift.png') 0 -2px no-repeat;
+    background-color: #dddddd;
+}
+
+#index-inserts .gift .overlay .span5 {
+    padding-left: 18px;
+}
+
