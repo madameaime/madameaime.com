@@ -52,6 +52,11 @@ urlpatterns = patterns('',
         name='brands'
     ),
 
+    url(r'^coffret$',
+        TemplateView.as_view(template_name='box.html'),
+        name='box'
+    ),
+
     # Examples:
     # url(r'^$', 'mmm.views.home', name='home'),
     # url(r'^mmm/', include('mmm.foo.urls')),
