@@ -1,0 +1,283 @@
+{% extends "mmm/skeleton.html" %}
+{% block head_title %}Foire aux questions de Madame Aime{% endblock %}
+{% block meta_description %}Trouvez toutes les réponses à vos questions sur Madame Aime{% endblock %}
+{% block mmm_content %}
+<div class="boring">
+  <h1>Foire aux questions</h1>
+
+  <hr />
+
+  <h2>Le coffret Madame Aime</h2>
+
+  <dl>
+    <dt>A qui s'adresse Madame Aime&nbsp;?</dt>
+    <dd>
+      <p>
+        Madame Aime c’est peut être vous, votre maman, votre femme, votre sœur, votre tante&nbsp;!
+      </p>
+      <p>
+        Des femmes résolument dynamiques, curieuses, qui prennent soin d’elles, qui aiment
+        les surprises et entendent profiter de tout ce que la vie peut leur apporter.
+        Des femmes rayonnantes qui ont une nouvelle façon de voir la vie.
+      </p>
+      <p>
+        Découvrez-en un peu plus sur <a href="{% url story %}">«&nbsp;Notre Histoire&nbsp;»</a>.
+      </p>
+    </dd>
+
+
+    <dt>Un coffret Madame Aime, qu’est-ce que c’est&nbsp;?</dt>
+    <dd>
+      <p>
+        Madame Aime est un coffret résolument multi thématique avec&nbsp;:
+      </p>
+      <ul>
+        <li>Des produits de beauté/bien être</li>
+        <li>Des produits culinaires</li>
+        <li>Des produits déco/maison</li>
+        <li>Un magazine</li>
+        <li>Des surprises…</li>
+      </ul>
+      <p>
+        Notre but est de proposer tous les mois à l’intérieur du coffret, un univers qui
+        vous ressemble, des produits raffinés, à votre gout, adaptés à votre mode de vie
+        et à vos aspirations.
+      </p>
+    </dd>
+
+    <dt>Quelle est la contenance des produits présents dans mon coffret&nbsp;?</dt>
+    <dd>
+      <p>
+        Madame Aime s’efforce chaque mois de vous offrir une sélection de produits adaptés
+        au mieux pour vous satisfaire.
+      </p>
+      <p>
+        Notre mission est de vous permettre de les découvrir et de les tester dans les
+        meilleures conditions. Les contenances peuvent varier en fonction de la nature du produit.
+      </p>
+      <p>
+        Nous intégrerons dans notre coffret uniquement les produits dont la contenance nous
+        parait suffisante pour vous permettre de les tester.
+      </p>
+    </dd>
+
+    <dt>Puis je savoir à l’avance ce que contient mon coffret&nbsp;?</dt>
+    <dd>
+      <p>
+        Les produits qui se trouveront dans le coffret ne seront pas dévoilés à l’avance.
+        Une surprise n’est plus une surprise si on vous la révèle&nbsp;!
+      </p>
+      <p>
+        Nous pouvons seulement vous indiquer que le coffret contiendra chaque mois entre
+        5 et 6 produits, ainsi que de la lecture.
+      </p>
+      <p>
+        Un peu de patience, les marques vous seront dévoilées seulement après l'envoi des coffrets.
+      </p>
+    </dd>
+
+    <dt>J’aime le produit, où puis-je l’acheter ensuite&nbsp;?</dt>
+    <dd>
+      <p>
+        Vous voulez continuer à vous faire plaisir, vous avez bien raison&nbsp;!
+        Nous vous fournirons les différentes possibilités de rachat du produit que ce soit
+        sur internet ou dans un magasin physique.
+      </p>
+    </dd>
+  </dl>
+
+  <hr />
+  <h2>Nos offres</h2>
+
+  <dl>
+    <dt>J’ai choisi une offre 1/3/6 coffrets, que se passe-t-il quand elle est finie&nbsp;?</dt>
+    <dd>
+      <p>
+        Les offres 1 mois, 3 mois (Temps forts) et 6 Mois sont des offres non récurrentes.
+        Vous ne payez donc qu’une seule fois pour la totalité des coffrets.
+      </p>
+      <p>
+        Une fois l’offre arrivée à son terme, elle ne sera pas renouvelée automatiquement.
+        Nous vous préviendrons de son échéance de fin et vous pourrez ainsi la renouveler
+        si vous le souhaitez.
+      </p>
+    </dd>
+
+    <dt>Puis je commander les coffrets des mois précédents&nbsp;?</dt>
+    <dd>
+      <p>
+        Les coffrets Madame Aime des mois précédents ne sont plus disponibles à la vente,
+        il est donc impossible de les commander une fois leur commercialisation terminée.
+        Pour ne pas rater le prochain, <a href="{% url offer %}">commandez vite</a>&nbsp;!
+      </p>
+    </dd>
+
+    <dt>Comment me rétracter&nbsp;?</dt>
+    <dd>
+      <p>
+        La loi vous permet de changer d’avis sous certaines conditions.
+      </p>
+      <p>
+        Vous disposez d'un délai de rétractation de 7 jours francs à compter de la date de
+        la commande.
+      </p>
+      <p>
+        Plusieurs cas de figure&nbsp;:
+      </p>
+      <ul>
+        <li>
+          Si votre commande n’est pas encore partie de nos entrepôts, nous procéderons à
+          son remboursement. Vous ne recevrez donc pas de coffret.
+        </li>
+        <li>
+          Si nous ne pouvons plus stopper l’envoi de votre commande, elle sera expédiée.
+          Vous avez dès lors la possibilité de refuser directement le colis auprès du livreur.
+          Dès retour de celui-ci dans nos locaux, nous procèderons au remboursement de votre commande.
+        </li>
+        <li>
+          Si la livraison a eu lieu directement en boîte aux lettres, vous devez nous renvoyer
+          le colis non ouvert, en l’état et à vos frais à l’adresse : 1R2Box SAS 71 boulevard de
+          Strasbourg 75010 Paris. Il faudra au préalable nous communiquer le numéro de suivi du retour.
+          Dès celui-ci retourné dans nos locaux, nous procèderons au remboursement de votre commande
+        </li>
+      </ul>
+      <p>
+        Pour plus de détails, veuillez consulter nos <a href="{% url sales-conditions %}">Conditions
+          Générales de Vente</a>.
+      </p>
+    </dd>
+
+    <dt>Je souhaite offrir un coffret Madame Aime à plusieurs femmes, est ce possible&nbsp;?</dt>
+    <dd>
+      <p>
+        Bien sûr, vous pouvez offrir autant de coffrets que vous le souhaitez.
+      </p>
+      <p>
+        Changez simplement la quantité de coffrets souhaitée dans votre panier.
+        Ensuite inscrivez chaque adresse dans le champ «&nbsp;destinataire&nbsp;» correspondant.
+      </p>
+    </dd>
+  </dl>
+
+  <hr />
+
+  <h2>Livraison</h2>
+
+  <dl>
+    <dt>Quand vais-je recevoir mon coffret Madame Aime&nbsp;?</dt>
+    <dd>
+      <p>
+        Les coffrets Madame Aime seront généralement tous expédiés simultanément entre le 13 et
+        le 15 de chaque mois.
+      </p>
+      <p>
+        Les colis arriveront donc chez le destinataire final, sauf cas exceptionnel, entre le 15
+        et le 24 du mois, en fonction de son lieu d'habitation.
+      </p>
+      <p>
+        En fonction des fêtes (Noël, Saint Valentin, Fête des mères…), ces dates pourront varier
+        afin que le coffret vous arrive avant le jour J.
+      </p>
+    </dd>
+
+    <dt>Comment puis-je modifier mon adresse de livraison&nbsp;?</dt>
+    <dd>
+      <p>
+        Ecrivez nous avant le 5 du mois en cours pour modifier l’adresse de réception du coffret.
+      </p>
+      <p>
+        Au delà de ce délai, il ne sera plus possible de modifier votre adresse de livraison.
+      </p>
+    </dd>
+
+    <dt>Pourquoi mes amies ont déjà reçu leur coffret et pas moi&nbsp;?</dt>
+    <dd>
+      <p>
+        Tous nos coffrets partent simultanément.
+      </p>
+      <p>
+        Suivant votre lieu d’habitation, le délai d’acheminement peut varier.
+        Ne vous inquiétez pas si votre amie a déjà reçu votre coffret, le votre est dans le
+        réseau postal et vous parviendra très bientôt.
+      </p>
+    </dd>
+
+    <dt>Comment puis-je suivre mon colis&nbsp;?</dt>
+    <dd>
+      <p>
+        Vos coffrets vous sont envoyés en Colissimo de La Poste, vous pouvez suivre leur
+        évolution sur le <a href="http://www.csuivi.courrier.laposte.fr/">suivi La Poste</a>.
+      </p>
+    </dd>
+
+    <dt>Mon coffret Madame Aime est arrivé en mauvais état, que puis-je faire&nbsp;?</dt>
+    <dd>
+      <p>
+        Si votre coffret a été endommagé pendant le transport, envoyez nous un mail à
+        <a href="mailto:serviceclient@madameaime.com">serviceclient@madameaime.com</a> avec
+        des photos des dégâts, nous trouverons ensemble une solution au problème.
+      </p>
+      <p>
+        Merci de préciser votre numéro de commande dans le mail.
+      </p>
+    </dd>
+
+    <dt>Est-ce que Madame Aime livre à l’étranger&nbsp;?</dt>
+    <dd>
+      <p>
+        Madame Aime ne livre qu’en France métropolitaine (Corse et Monaco inclus) pour le moment.
+      </p>
+    </dd>
+  </dl>
+
+  <hr />
+
+  <h2>Paiement</h2>
+
+  <dl>
+    <dt>Quels moyens de paiement acceptez-vous&nbsp;?</dt>
+    <dd>
+      <p>
+        Vous pouvez payer sur notre site de façon totalement sécurisée par carte VISA,
+        Mastercard, Paypal, ou American Express.
+      </p>
+    </dd>
+
+    <dt>Comment est sécurisé le paiement&nbsp;?</dt>
+    <dd>
+      <p>
+        Notre module de paiement est basé sur la solution <a href="http://www.be2bill.com/">
+          Be2Bill</a>, édité par <a href="http://www.rentabiliweb.com/">Rentabiliweb</a>,
+        acteur reconnu du paiement sur Internet, agrée par la Banque de France et membre
+        GIE des Cartes bancaires
+      </p>
+      <p>
+        Le paiement est donc totalement sécurisé et assuré par un professionnel du secteur
+        depuis plus de 10 ans.
+      </p>
+    </dd>
+
+    <dt>Y a-t-il des frais cachés&nbsp;?</dt>
+    <dd>
+      <p>
+        Les frais de port ainsi que tous les frais de paiement sont déjà inclus dans le prix final,
+        que vous achetiez un coffret 1 mois, 3 mois ou 6 mois.
+      </p>
+    </dd>
+  </dl>
+
+  <hr />
+
+  <h2>Compte</h2>
+
+  <dl>
+    <dt>J’ai perdu mon mot de passe, comment le récupérer&nbsp;?</dt>
+    <dd>
+      <p>
+        Vous pouvez modifier votre mot de passe sur la page d’<a href="#login">identification</a>
+        et en cliquant sur «&nbsp;Mot de passe oublié&nbsp;».
+      </p>
+    </dd>
+  </dl>
+</div>
+{% endblock %}

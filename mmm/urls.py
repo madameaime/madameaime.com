@@ -58,6 +58,11 @@ urlpatterns = patterns('',
         name='box'
     ),
 
+    url(r'^faq$',
+        TemplateView.as_view(template_name='faq.html'),
+        name='faq'
+    ),
+
     # Examples:
     # url(r'^$', 'mmm.views.home', name='home'),
     # url(r'^mmm/', include('mmm.foo.urls')),
