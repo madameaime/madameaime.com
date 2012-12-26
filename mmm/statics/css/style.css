@@ -221,7 +221,7 @@ span.pink {
 }
 
 #header-login .my {
-    margin-left: 20px;
+    margin-left: 5px;
 }
 
 #header-login i.icon-account {
@@ -233,11 +233,15 @@ span.pink {
 }
 
 #header-login .shopping-cart {
+    margin-left: 10px;
+}
+
+#header-login .disconnect {
     margin-left: 15px;
 }
 
 #header-login i.icon-shopping-cart {
-    margin: -1px 5px 0 0;
+    margin: -1px 3px 0 0;
     vertical-align: top;
     background: url('../img/shopping_cart.png') 0 0 no-repeat;
     width: 24px;
