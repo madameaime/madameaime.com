@@ -9,7 +9,7 @@
 <div id="auth" class="row-fluid">
 	<!-- registration form -->
 	<div class="register span6">
-		<form class="form-horizontal" method="post" action="">
+		<form class="form-horizontal" method="post" action="{% url registration %}">
 			<fieldset>
 				<legend>Créez votre compte</legend>
 				{% csrf_token %}
@@ -45,7 +45,7 @@
 	</div>
 	<!-- login form -->
   <div class="login span6">
-    <form class="form-horizontal" method="post" action="{url_resolver::get('auth.php')}{if isset($next)}?next={$next}{/if}">
+		<form class="form-horizontal" method="post" action="{% url registration %}">
       <fieldset>
 				<legend>Déjà enregistré ?</legend>
 				{% csrf_token %}
