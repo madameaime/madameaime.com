@@ -25,6 +25,11 @@ urlpatterns = patterns('',
         name='about-us'
     ),
 
+    url(r'^notre-histoire$',
+        TemplateView.as_view(template_name='story'),
+        name='story'
+    ),
+
     # Examples:
     # url(r'^$', 'mmm.views.home', name='home'),
     # url(r'^mmm/', include('mmm.foo.urls')),
