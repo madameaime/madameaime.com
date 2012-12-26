@@ -26,8 +26,13 @@ urlpatterns = patterns('',
     ),
 
     url(r'^notre-histoire$',
-        TemplateView.as_view(template_name='story'),
+        TemplateView.as_view(template_name='story.html'),
         name='story'
+    ),
+
+    url(r'^livraison$',
+        TemplateView.as_view(template_name='delivery.html'),
+        name='delivery'
     ),
 
     # Examples:
