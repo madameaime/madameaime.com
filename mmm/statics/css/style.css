@@ -9,17 +9,6 @@
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'didot';
-    src: url('font/didot-htf-l16-light-ital.eot');
-    src: url('font/didot-htf-l16-light-ital.eot?#iefix') format('embedded-opentype'),
-         url('font/didot-htf-l16-light-ital.woff') format('woff'),
-         url('font/didot-htf-l16-light-ital.ttf') format('truetype'),
-         url('font/didot-htf-l16-light-ital.svg#didot') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
 ::selection {
     background-color: #ff9fbe;
 }
