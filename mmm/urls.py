@@ -5,6 +5,8 @@ from django.views.generic import TemplateView, simple
 from django.contrib import admin
 admin.autodiscover()
 
+import views
+
 urlpatterns = patterns('',
     url(r'^favicon\.ico$', simple.redirect_to, { 'url': settings.STATIC_URL + 'img/favicon.ico' }),
 
@@ -60,7 +62,11 @@ urlpatterns = patterns('',
 
     url(r'^faq$',
         TemplateView.as_view(template_name='faq.html'),
-        name='faq'
+        name='faq'),
+
+    url(r'^inscription$',
+        views.RegistrationView.as_view(),
+        name='registration'
     ),
 
     # Examples:

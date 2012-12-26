@@ -1,0 +1,32 @@
+#auth { margin-bottom: 30px; }
+
+#auth .login, #auth .register {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    height: 340px;
+    padding: 15px;
+    position: relative;
+}
+
+#auth .alert-error {
+    position: absolute;
+    top: 58px;
+    right: 60px;
+    left: 15px;
+}
+
+#auth fieldset legend { font-size: 30px; margin-left: 5px; margin: 0 0 55px 0; }
+
+#auth button {
+    background: url('../img/auth/button_overlay.png') 0 0 no-repeat;
+    display: block;
+    width: 224px;
+    height: 61px;
+    font-size: 24px;
+    padding: 0 18px 6px 0;
+    position: absolute;
+    bottom: 15px;
+    right: 50px;
+}
+
+#auth button:hover { text-decoration: none; }
