@@ -35,6 +35,11 @@ urlpatterns = patterns('',
         name='delivery'
     ),
 
+    url(r'^cgv$',
+        TemplateView.as_view(template_name='sales-conditions.html'),
+        name='sales-conditions'
+    ),
+
     # Examples:
     # url(r'^$', 'mmm.views.home', name='home'),
     # url(r'^mmm/', include('mmm.foo.urls')),
