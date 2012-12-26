@@ -21,8 +21,8 @@ urlpatterns = patterns('',
     ),
 
     url(r'^qui-sommes-nous$',
-        TemplateView.as_view(template_name='about-us.html'),
-        name='about-us'
+        TemplateView.as_view(template_name='about.html'),
+        name='about'
     ),
 
     url(r'^notre-histoire$',
