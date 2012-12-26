@@ -40,6 +40,11 @@ urlpatterns = patterns('',
         name='sales-conditions'
     ),
 
+    url(r'^mentions-legales$',
+        TemplateView.as_view(template_name='legal.html'),
+        name='legal'
+    ),
+
     # Examples:
     # url(r'^$', 'mmm.views.home', name='home'),
     # url(r'^mmm/', include('mmm.foo.urls')),

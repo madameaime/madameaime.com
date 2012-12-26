@@ -91,6 +91,8 @@ span.pink {
 }
 
 .boring h2 {
+    font-weight: normal;
+    font-size: 30px;
     margin: 25px 0 10px 0;
     color: #e2507f;
 }
