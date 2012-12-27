@@ -1,6 +1,6 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView
 
-from forms import RegistrationForm
+from forms import RegistrationForm, ContactForm
 
 
 class RegistrationView(TemplateView):
@@ -25,3 +25,8 @@ class RegistrationView(TemplateView):
             pass
 
         # here, raise an error 400 bad request
+
+
+class ContactView(FormView):
+    template_name = 'contact.html'
+    form_class = ContactForm

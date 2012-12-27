@@ -25,3 +25,12 @@ class AuthenticationForm(forms.Form):
     def clean(self):
         # Here, check if username (or email) / password are ok
         return super(AuthenticationForm).clean()
+
+class ContactForm(forms.Form):
+
+    last_name = forms.CharField()
+    first_name = forms.CharField()
+    email = forms.EmailField()
+    order_number = forms.CharField(required = False)
+    subject = forms.CharField()
+    body = forms.CharField(widget = forms.Textarea({ 'rows': 5 }))

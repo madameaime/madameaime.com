@@ -65,7 +65,7 @@ urlpatterns = patterns('',
         name='faq'),
 
     url(r'^contact$',
-        TemplateView.as_view(template_name='contact.html'),
+        views.ContactView.as_view(),
         name='contact'
     ),
 
