@@ -18,7 +18,7 @@ class RegistrationForm(forms.Form):
 
 
 class AuthenticationForm(forms.Form):
-    
+
     username = forms.CharField()
     password = forms.CharField()
 
