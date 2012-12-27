@@ -1,5 +1,6 @@
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.views.generic import TemplateView
+
+from forms import RegistrationForm
 
 
 class RegistrationView(TemplateView):
@@ -8,11 +9,19 @@ class RegistrationView(TemplateView):
     UserCreationForm but there's no way to render something great with
     bootstrap.js easily.
     """
-
     template_name = 'registration.html'
 
-    def get_context_data(self):
-        ctx = super(RegistrationView, self).get_context_data()
-        ctx['registration_form'] = UserCreationForm()
-        #ctx['authentication_form'] = AuthenticationForm()
-        return ctx
+    def post(self, request):
+        if 'register' in request.POST:
+            form = RegistrationForm(request.POST)
+            if form.is_valid():
+                # handle and redirect
+                pass
+            # error, affect errors and return
+            return super(RegistrationView, self).get(
+                            request, registration_errors=form.errors)
+
+        elif 'auth' in request.POST:
+            pass
+
+        # here, raise an error 400 bad request
