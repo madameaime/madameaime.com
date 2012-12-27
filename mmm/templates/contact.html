@@ -1,0 +1,77 @@
+{% extends "mmm/skeleton.html" %}
+{% block head_title %}Si vous avez une question, contactez-nous !{% endblock %}
+{% block meta_description %}Une question sur l'envoi de nos coffrets, le paiement, nos partenaires, etc., contactez-nous !{% endblock %}
+{% block mmm_content %}
+<div class="boring">
+  <h1>Contactez nous</h1>
+
+  {if isset($success)}
+  <div class="alert alert-success">
+    Votre message a bien été pris en compte. Nous vous répondrons par email dans les plus brefs délais.
+  </div>
+  {else}
+
+  <p>Pour toute question, merci de nous contacter via ce formulaire. Nous vous répondrons par email dans les plus brefs délais.</p>
+
+  <form class="form-horizontal" method="post" action="{url_resolver::get('contact_us.php')}">
+    {$csrf_input nofilter}
+
+    <div class="control-group{if isset($errors['fields']['firstname'])} error{/if}">
+      <label class="control-label" for="firstname">Nom*</label>
+      <div class="controls">
+        <input type="text" id="firstname" name="firstname" value="{$fields['firstname']}"/>
+        {if isset($errors['fields']['firstname'])}<span class="help-inline">{$errors['fields']['firstname']}</span>{/if}
+      </div>
+    </div>
+
+    <div class="control-group{if isset($errors['fields']['lastname'])} error{/if}">
+      <label class="control-label" for="lastname">Prénom*</label>
+      <div class="controls">
+        <input type="text" id="lastname" name="lastname" value="{$fields['lastname']}">
+        {if isset($errors['fields']['lastname'])}<span class="help-inline">{$errors['fields']['lastname']}</span>{/if}
+      </div>
+    </div>
+
+    <div class="control-group{if isset($errors['fields']['email'])} error{/if}">
+      <label class="control-label" for="email">Email*</label>
+      <div class="controls">
+        <input type="text" id="email" name="email" value="{$fields['email']}">
+        {if isset($errors['fields']['email'])}<span class="help-inline">{$errors['fields']['email']}</span>{/if}
+      </div>
+    </div>
+
+    <div class="control-group{if isset($errors['fields']['order'])} error{/if}">
+      <label class="control-label" for="order">Numéro de commande</label>
+      <div class="controls">
+        <input type="text" id="order" name="order" value="{$fields['order']}">
+        {if isset($errors['fields']['order'])}<span class="help-inline">{$errors['fields']['order']}</span>{/if}
+      </div>
+    </div>
+
+    <div class="control-group{if isset($errors['fields']['subject'])} error{/if}">
+      <label class="control-label" for="subject">Sujet*</label>
+      <div class="controls">
+        <input type="text" id="subject" name="subject" value="{$fields['subject']}">
+        {if isset($errors['fields']['subject'])}<span class="help-inline">{$errors['fields']['subject']}</span>{/if}
+      </div>
+    </div>
+
+    <div class="control-group{if isset($errors['fields']['message'])} error{/if}">
+      <label class="control-label" for="message">Message*</label>
+      <div class="controls">
+        <textarea id="message" name="message">{$fields['message']}</textarea>
+        {if isset($errors['fields']['message'])}<span class="help-inline">{$errors['fields']['message']}</span>{/if}
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <button type="submit" class="btn">Envoyer</button>
+      </div>
+    </div>
+  </form>
+
+  <p>*Champs obligatoires</p>
+  {/if}
+</div>
+{% endblock %}
