@@ -66,7 +66,7 @@ span.pink {
     box-shadow: none;
 }
 
-#container .error input[type=text], #container .error fieldset { border-color: #b94a48; }
+#container .error input[type=text], #container .error textarea { border-color: #b94a48; }
 
 .boring, .boring-alert {
     background-color: #ffffff;
