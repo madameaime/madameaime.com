@@ -21,7 +21,7 @@ class ProductPackage(models.Model):
     product  = models.ForeignKey(Product)
     quantity = models.IntegerField()
 
-    
+
 class StockMvt(models.Model):
 
     def __unicode__(self):
