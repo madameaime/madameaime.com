@@ -71,7 +71,8 @@ urlpatterns = patterns('',
     ),
 
     url(r'^inscription$',
-        views.RegistrationView.as_view(),
+        'django.contrib.auth.views.login',
+        {'template_name': 'registration.html'},
         name='registration'
     ),
 
