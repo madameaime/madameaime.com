@@ -2,16 +2,14 @@ from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
 from django.db import models
 
-import stockmgmt
+import stockmgmt.models
 
 
 class Sale(models.Model):
 
     def __unicode__(self):
-        return self.name
+        return self.product.name
 
-    name        = models.CharField(max_length=255)
-    description = models.TextField(null=True, default=None, blank=True)
     begin       = models.DateTimeField(null=True, default=None, blank=True)
     end         = models.DateTimeField(null=True, default=None, blank=True)
     product     = models.ForeignKey(stockmgmt.models.Product)
