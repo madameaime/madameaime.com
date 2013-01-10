@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 
 import emarket.models
@@ -23,9 +25,9 @@ class OfferPage(models.Model):
     since date_start.
     """
     def __unicode__(self):
-        return self.date_start
+        return self.date_start.strftime('%Y/%m/%d %H:%M:%S')
 
-    date_start = models.DateTimeField(auto_now_add=True)
+    date_start = models.DateTimeField(default=datetime.now)
 
     product_1 = models.ForeignKey(OfferPageSale, related_name='product_1')
     product_2 = models.ForeignKey(OfferPageSale, related_name='product_2')
