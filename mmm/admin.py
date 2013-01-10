@@ -4,4 +4,4 @@ from models import *
 
 
 admin.site.register(OfferPage)
-admin.site.register(OfferPageProduct)
+admin.site.register(OfferPageSale)

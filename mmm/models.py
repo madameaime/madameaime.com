@@ -3,7 +3,7 @@ from django.db import models
 import emarket.models
 
 
-class OfferPageProduct(models.Model):
+class OfferPageSale(models.Model):
     """
     Product exposed on the offer page.
     """
@@ -27,6 +27,6 @@ class OfferPage(models.Model):
 
     date_start = models.DateTimeField(auto_now_add=True)
 
-    product_1 = models.ForeignKey(OfferPageProduct, related_name='product_1')
-    product_2 = models.ForeignKey(OfferPageProduct, related_name='product_2')
-    product_3 = models.ForeignKey(OfferPageProduct, related_name='product_3')
+    product_1 = models.ForeignKey(OfferPageSale, related_name='product_1')
+    product_2 = models.ForeignKey(OfferPageSale, related_name='product_2')
+    product_3 = models.ForeignKey(OfferPageSale, related_name='product_3')
