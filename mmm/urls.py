@@ -22,7 +22,7 @@ urlpatterns = patterns('',
     ),
 
     url(r'^offrir$',
-        TemplateView.as_view(template_name='offer.html'),
+        views.OfferView.as_view(template_name='offer.html'),
         name='offer'
     ),
 

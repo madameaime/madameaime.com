@@ -29,6 +29,6 @@ class OfferPage(models.Model):
 
     date_start = models.DateTimeField(default=datetime.now)
 
-    product_1 = models.ForeignKey(OfferPageSale, related_name='product_1')
-    product_2 = models.ForeignKey(OfferPageSale, related_name='product_2')
-    product_3 = models.ForeignKey(OfferPageSale, related_name='product_3')
+    sale_1 = models.ForeignKey(OfferPageSale, related_name='sale_1')
+    sale_2 = models.ForeignKey(OfferPageSale, related_name='sale_2')
+    sale_3 = models.ForeignKey(OfferPageSale, related_name='sale_3')

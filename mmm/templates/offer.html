@@ -1,10 +1,12 @@
 {% extends "mmm/skeleton.html" %}
+{% load offerpage %}
 {% block head_title %}Offrez le coffret de référence pour les femmes{% endblock %}
 {% block extra_head %}
 <link href="{{STATIC_URL}}css/offer.css" rel="stylesheet" type="text/css" media="all" />
 {% endblock %}
 {% block meta_description %}Avec Madame Aime, offrez un coffret cadeau original plein de surprises{% endblock %}
 {% block mmm_content %}
+
 <section id="offer">
   <div class="products">
     <h1>Édition limitée</h1>
@@ -20,73 +22,68 @@
     </div>
 
     <div class="lady">
-    </div>
+		</div>
     <ul>
       <li class="one">
-	<h2>Offre 1 coffret</h2>
-	<ul class="details">
-	  <li><em>Noël</em> (Décembre)</li>
-	</ul>
-	<p class="price">24,90 €</p>
-	<p class="delivery">(livraison incluse)</p>
-	<div class="button">
-	  <form method="post" action="">
-	    <input type="hidden" name="ref" value="{$box_1_month->ref}" />
-	    <button class="btn-link shiny" type="submit">Commander</button>
-	  </form>
-	</div>
+				<h2>{{offers.sale_1.title}}</h2>
+				<h3>{{offers.sale_1.subtitle}}</h3>
+				<ul class="details">
+					{{offers.sale_1.content|nl2li}}
+				</ul>
+				<p class="price">{{offers.sale_1.sale.price}} €</p>
+				<p class="delivery">{{offers.sale_1.price_comment}}</p>
+				<div class="button">
+					<form method="post" action="">
+						<input type="hidden" name="ref" value="{$box_1_month->ref}" />
+						<button class="btn-link shiny" type="submit">Commander</button>
+					</form>
+				</div>
       </li>
 
       <li class="three">
-	<h2>Offre temps forts</h2>
-	<h3>3 coffrets :</h3>
-	<ul class="details">
-	  <li><em>Noël</em> (Décembre)</li>
-	  <li>+ <em>Journée de la femme</em> (Mars)</li>
-	  <li>+ <em>Fête des mères</em> (Mai)</li>
-	</ul>
-	<p class="price">64,90 €</p>
-	<p class="delivery">(livraison incluse)</p>
-	<div class="button">
-	  <form method="post" action="">
-	    <input type="hidden" name="ref" value="{$box_3_months->ref}" />
-	    <button class="btn-link shiny" type="submit">Commander</button>
-	  </form>
-	</div>
-      </li>
+				<h2>{{offers.sale_2.title}}</h2>
+				<h3>{{offers.sale_2.subtitle}}</h3>
+				<ul class="details">
+					{{offers.sale_2.content|nl2li}}
+				</ul>
+				<p class="price">{{offers.sale_2.sale.price}} €</p>
+				<p class="delivery">{{offers.sale_2.price_comment}}</p>
+				<div class="button">
+					<form method="post" action="">
+						<input type="hidden" name="ref" value="{$box_3_months->ref}" />
+						<button class="btn-link shiny" type="submit">Commander</button>
+					</form>
+				</div>
+			</li>
 
       <li class="six">
-	<h2>Offre 6 coffrets</h2>
-	<ul class="details">
-	  <li><em>Noël</em> (Décembre)</li>
-	  <li>+ <em>St Valentin</em> (Février)</li>
-	  <li>+ <em>Journée de la femme</em> (Mars)</li>
-	  <li>+ <em>Pâques</em> (Avril)</li>
-	  <li>+ <em>Fête des mères</em> (Mai)</li>
-	  <li>+ <em>Été</em> (Juin)</li>
-	</ul>
-	<div class="badge"></div>
-	<p class="price">124,50 €</p>
-	<p class="delivery">(livraison incluse)</p>
-	<div class="button">
-	  <form method="post" action="">
-	    <input type="hidden" name="ref" value="{$box_6_months->ref}" />
-	    <button class="btn-link shiny" type="submit">Commander</button>
-	  </form>
-	</div>
+				<h2>{{offers.sale_3.title}}</h2>
+				<h3>{{offers.sale_3.subtitle}}</h3>
+				<ul class="details">
+					{{offers.sale_3.content|nl2li}}
+				</ul>
+				<div class="badge"></div>
+				<p class="price">{{offers.sale_3.sale.price}} €</p>
+				<p class="delivery">{{offers.sale_3.price_comment}}</p>
+				<div class="button">
+					<form method="post" action="">
+						<input type="hidden" name="ref" value="{$box_6_months->ref}" />
+						<button class="btn-link shiny" type="submit">Commander</button>
+					</form>
+				</div>
       </li>
     </ul>
     <p class="hurry">
       Commandez avant le 13 décembre pour être livré avant Noël !
     </p>
-  </div>
-  <div class="howto">
-    <p>Comment procéder ?</p>
-  </div>
-  <div class="breakdown row-fluid">
-    <div class="span4">Je choisis l'offre</div>
-    <div class="span4">Je passe commande</div>
-    <div class="span4">Le coffret est livré à domicile</div>
-  </div>
+	</div>
+	<div class="howto">
+		<p>Comment procéder ?</p>
+	</div>
+	<div class="breakdown row-fluid">
+		<div class="span4">Je choisis l'offre</div>
+		<div class="span4">Je passe commande</div>
+		<div class="span4">Le coffret est livré à domicile</div>
+	</div>
 </section>
 {% endblock %}
