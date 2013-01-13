@@ -10,16 +10,7 @@ class Product(models.Model):
 
 
 class Package(Product):
-    products = models.ManyToManyField('ProductPackage', related_name="products")
-
-
-class ProductPackage(models.Model):
-
-    def __unicode__(self):
-        return u'%s *%s' % (self.product, self.quantity)
-
-    product  = models.ForeignKey(Product)
-    quantity = models.IntegerField()
+    products = models.ManyToManyField(Product, related_name="products")
 
 
 class StockMvt(models.Model):
