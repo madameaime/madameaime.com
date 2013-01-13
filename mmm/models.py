@@ -32,3 +32,5 @@ class OfferPage(models.Model):
     sale_1 = models.ForeignKey(OfferPageSale, related_name='sale_1')
     sale_2 = models.ForeignKey(OfferPageSale, related_name='sale_2')
     sale_3 = models.ForeignKey(OfferPageSale, related_name='sale_3')
+
+    hurry_text = models.TextField(null=True, blank=True, default=None)
