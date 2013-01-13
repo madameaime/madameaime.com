@@ -33,8 +33,9 @@
 				<p class="price">{{offers.sale_1.sale.price}} €</p>
 				<p class="delivery">{{offers.sale_1.price_comment}}</p>
 				<div class="button">
-					<form method="post" action="">
-						<input type="hidden" name="ref" value="{$box_1_month->ref}" />
+					<form method="post" action="{% url emarket:shoppingcart.add %}">
+						{% csrf_token %}
+						<input type="hidden" name="sale_id" value="{{offers.sale_1.sale.pk}}" />
 						<button class="btn-link shiny" type="submit">Commander</button>
 					</form>
 				</div>
@@ -49,8 +50,9 @@
 				<p class="price">{{offers.sale_2.sale.price}} €</p>
 				<p class="delivery">{{offers.sale_2.price_comment}}</p>
 				<div class="button">
-					<form method="post" action="">
-						<input type="hidden" name="ref" value="{$box_3_months->ref}" />
+					<form method="post" action="{% url emarket:shoppingcart.add %}">
+						{% csrf_token %}
+						<input type="hidden" name="sale_id" value="{{offers.sale_2.sale.pk}}" />
 						<button class="btn-link shiny" type="submit">Commander</button>
 					</form>
 				</div>
@@ -66,8 +68,9 @@
 				<p class="price">{{offers.sale_3.sale.price}} €</p>
 				<p class="delivery">{{offers.sale_3.price_comment}}</p>
 				<div class="button">
-					<form method="post" action="">
-						<input type="hidden" name="ref" value="{$box_6_months->ref}" />
+					<form method="post" action="{% url emarket:shoppingcart.add %}">
+						{% csrf_token %}
+						<input type="hidden" name="sale_id" value="{{offers.sale_3.sale.pk}}" />
 						<button class="btn-link shiny" type="submit">Commander</button>
 					</form>
 				</div>

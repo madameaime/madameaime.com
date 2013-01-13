@@ -1,0 +1,14 @@
+{% extends "mmm/skeleton.html" %}
+{% block head_title %}Le produit n'est plus disponible{% endblock %}
+{% block meta_description %}{% endblock %}
+{% block mmm_content %}
+<div class="boring-alert">
+  <h1>Nous sommes désolés…</h1>
+  <p>
+		Vous ne pouvez pas ajouter ce produit dans votre panier car nous sommes en rupture de stocks :-(
+  </p>
+	<p>
+		<a href="{% url offer %}">Cliquez ici pour retourner sur la page Offrir</a>
+	</p>
+</div>
+{% endblock %}

@@ -5,7 +5,9 @@ from django.views.generic import TemplateView, simple
 from django.contrib import admin
 admin.autodiscover()
 
+from emarket import views as emarket_views
 import views
+
 
 urlpatterns = patterns('',
     url(r'^favicon\.ico$', simple.redirect_to,
@@ -74,6 +76,14 @@ urlpatterns = patterns('',
         'django.contrib.auth.views.login',
         {'template_name': 'registration.html'},
         name='registration'
+    ),
+
+    url(r'^votre-panier$',
+        emarket_views.ShoppingCartView.as_view(),
+        name='shoppingcart'),
+
+    url(r'emarket/',
+        include('emarket.urls', namespace='emarket')
     ),
 
     # Examples:

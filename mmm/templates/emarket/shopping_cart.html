@@ -1,0 +1,93 @@
+{% extends "mmm/skeleton.html" %}
+{% block head_title %}Votre panier - Madame Aime{% endblock %}
+{% block meta_description %}Madame Aime est un moyen facile de composer son panier de cadeaux pour se faire plaisir ou faire plaisir à ses proches{% endblock %}
+{% block extra_head %}
+<link href="{{STATIC_URL}}css/checkout.css" rel="stylesheet" type="text/css" media="all" />
+{% endblock %}
+{% block mmm_content %}
+<table id="checkout-cart">
+  <thead>
+    <tr>
+      <th class="first"></th>
+      <th class="second">Description</th>
+      <th class="third"></th>
+      <th class="fourth">Prix</th>
+      <th class="fifth"></th>
+    </tr>
+  </thead>
+  <tbody>
+		{% for object in objects %}
+		<tr>
+			<td class="thumb"></td>
+      <td class="info">
+				<b class="name">{{object.sale.product.name}}</b><br />
+        <span class="description">
+					// ici inserer une description
+				</span><br />
+        <span class="delivery">(Livraison avant le 14 Février)</span>
+      </td>
+      <td></td>
+      <td class="price">
+				<span class="value">{{object.sale.price}} €</span><br />
+				<span class="shipping">livraison incluse</span>
+      </td>
+      <td class="delete">
+        <form method="post" action="{url_resolver::get('checkout_step_shopping_cart.php')}">
+					<input type="hidden" name="delete_guid" value="{$pinfo['guid']}" />
+          <button type="submit" class="btn-link shiny">Supprimer</button>
+        </form>
+      </td>
+    </tr>
+
+		{% endfor %}
+	{% comment %}
+    {foreach from=$shopping_cart_content['products'] item=pinfo}
+    <tr>
+      <td class="thumb"></td>
+      <td class="info">
+        <b class="name">{$pinfo['model']->name}</b><br />
+        <span class="description">
+		{if $pinfo['model']->ref == 'box_1_month'}
+		Coffret St Valentin
+		{else}
+		1er coffret: St Valentin
+		{/if}
+	</span><br />
+        <span class="delivery">(Livraison avant le 14 Février)</span>
+      </td>
+      <td></td>
+      <td class="price">
+        <span class="value">{$pinfo['model']->price|string_format:"%.2f"} €</span><br />
+        <span class="shipping">frais de port inclus</span>
+      </td>
+      <td class="delete">
+        <form method="post" action="{url_resolver::get('checkout_step_shopping_cart.php')}">
+	  {$csrf_input nofilter}
+          <input type="hidden" name="delete_guid" value="{$pinfo['guid']}" />
+          <button type="submit" class="btn-link shiny">Supprimer</button>
+        </form>
+      </td>
+    </tr>
+    {/foreach}
+	{% endcomment %}
+  </tbody>
+	{% comment %}
+  <tfoot>
+    <tr>
+      <td class="add" rowspan="2" colspan="2"><a href="{url_resolver::get('offer.php')}">Ajouter un coffret à ma commande</a></td>
+      <td class="total-label">Total</td>
+      <td class="total-value">
+        <span class="value">{$shopping_cart_content['price']|string_format:"%.2f"} €</span><br />
+        <span class="shipping">frais de port inclus</span>
+      </td>
+      <td rowspan="2" class="validate"><a class="shiny" href="{url_resolver::get('checkout_step_auth.php')}">Valider</a></td>
+    </tr>
+    <tr>
+      <td class="vat-label">Dont TVA</td>
+      {assign var=tva value=$shopping_cart_content['price'] * 0.196}
+      <td class="vat-value">{$tva|string_format:"%.2f"} €</td>
+    </tr>
+  </tfoot>
+	{% endcomment %}
+</table>
+{% endblock %}
