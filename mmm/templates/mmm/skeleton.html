@@ -43,7 +43,7 @@
             {% if user.is_authenticated %}
                 <a href="" class="my"><i class="icon-account"></i> Mon compte</a>
                 <a href="{% url shoppingcart %}" class="shopping-cart"><i class="icon-shopping-cart"></i> Panier</a>
-                <a href="" class="disconnect">Déconnexion</a>
+                <a href="{% url logout %}" class="disconnect">Déconnexion</a>
             {% else %}
                 <a href="{% url registration %}" class="account"><i class="icon-account"></i> Se connecter / S'inscrire</a>
                 <a href="{% url shoppingcart %}" class="shopping-cart"><i class="icon-shopping-cart"></i> Panier</a>
