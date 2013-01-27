@@ -74,3 +74,7 @@ class ShoppingCartRemoveView(DeleteView):
         POST.
         """
         raise Http404
+
+
+class DeliveryView(TemplateView):
+    pass
