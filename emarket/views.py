@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from django.contrib.sessions.models import Session
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseServerError
+from django.shortcuts import get_object_or_404
 from django.views.generic import TemplateView, View
 from django.views.generic.simple import direct_to_template, redirect_to
 
@@ -39,12 +40,11 @@ class ShoppingCartView(TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(ShoppingCartView, self).get_context_data(**kwargs)
-        #TODO: replace with get_object_or_404
-        session = Session.objects.get(pk=self.request.session.session_key)
+        session = get_object_or_404(Session,
+                                    pk=self.request.session.session_key)
 
         expired = datetime.now() - timedelta(minutes=30)
         ctx['objects'] = ShoppingCartLog.objects.filter(session=session)   \
                                                 .filter(date__gte=expired) \
                                                 .order_by('date')
-
         return ctx
