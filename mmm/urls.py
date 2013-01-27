@@ -95,7 +95,11 @@ urlpatterns = patterns('',
 
     url(r'^jobs$',
         TemplateView.as_view(template_name='jobs.html'),
-        name='jobs'
+        name='jobs'),
+
+    url(r'^terms$',
+        'FIXME',
+        name='terms'
     ),
 
     url(r'^inscription$',

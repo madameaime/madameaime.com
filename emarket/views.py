@@ -3,12 +3,14 @@ from decimal import Decimal
 
 from django.contrib.sessions.models import Session
 from django.core.urlresolvers import reverse, reverse_lazy
+from django.forms.formsets import formset_factory
 from django.http import Http404, HttpResponseServerError
 from django.shortcuts import get_object_or_404
 from django.views.generic import DeleteView, TemplateView, View
 from django.views.generic.simple import direct_to_template, redirect_to
 
 from models import Sale, ShoppingCartLog
+import forms
 
 
 class ShoppingCartAddView(View):
@@ -77,4 +79,40 @@ class ShoppingCartRemoveView(DeleteView):
 
 
 class DeliveryView(TemplateView):
-    pass
+    template_name = 'emarket/delivery.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(DeliveryView, self).get_context_data(**kwargs)
+
+        post_data = None
+        if self.request.method == 'POST':
+            post_data = self.request.POST
+
+        ctx['billing_form'] = forms.BillingForm(post_data)
+
+        DeliveryFormset = formset_factory(forms.DeliveryForm,
+                                          formset=forms.RequiredFormset,
+                                          extra=2)
+        ctx['delivery_formset'] = DeliveryFormset(post_data)
+        ctx['tos_form'] = forms.ToSForm(post_data)
+
+        return ctx
+
+    def post(self, request):
+        ctx = self.get_context_data()
+
+        tos_form = ctx['tos_form']
+        if tos_form.is_valid():
+            pass
+
+        billing_form = ctx['billing_form']
+        if billing_form.is_valid():
+            pass
+
+        delivery_formset = ctx['delivery_formset']
+        if delivery_formset.is_valid():
+            for form in delivery_formset:
+                pass
+                #print form.cleaned_data['delivery_place']
+
+        return super(DeliveryView, self).get(request)
