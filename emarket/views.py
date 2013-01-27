@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from decimal import Decimal
 
 from django.contrib.sessions.models import Session
 from django.core.urlresolvers import reverse, reverse_lazy
@@ -45,6 +46,8 @@ class ShoppingCartView(TemplateView):
         ctx['objects'] = ShoppingCartLog.objects.filter(session=session)   \
                                                 .filter(date__gte=expired) \
                                                 .order_by('date')
+        ctx['total_price'] = sum(obj.sale.price for obj in ctx['objects'])
+        ctx['charges'] = ctx['total_price'] * Decimal('0.196')
         return ctx
 
 
