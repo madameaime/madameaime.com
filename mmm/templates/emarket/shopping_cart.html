@@ -22,9 +22,8 @@
       <td class="info">
 				<b class="name">{{object.sale.product.name}}</b><br />
         <span class="description">
-					// ici inserer une description
-				</span><br />
-        <span class="delivery">(Livraison avant le 14 Février)</span>
+					{{object.sale.shopping_cart_description|default_if_none:""|linebreaks}}
+				</span>
       </td>
       <td></td>
       <td class="price">

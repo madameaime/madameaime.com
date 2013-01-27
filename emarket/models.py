@@ -17,6 +17,9 @@ class Sale(models.Model):
     product     = models.ForeignKey(stockmgmt.models.Product)
     price       = models.DecimalField(max_digits=5, decimal_places=2)
 
+    shopping_cart_description = models.TextField(null=True,
+        default=None, blank=True,
+        help_text='text displayed in the shopping cart')
 
 class Order(models.Model):
 
