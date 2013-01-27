@@ -19,10 +19,8 @@ class ShoppingCartAddView(View):
             sale_id = int(request.POST['sale_id'])
         except ValueError:
             return HttpResponseServerError('invalid sale_id')
-        #TODO: replace with get_object_or_404
-        sale = Sale.objects.get(pk=sale_id)
-        #TODO: replace with get_object_or_404
-        session = Session.objects.get(pk=request.session.session_key)
+        sale = get_object_or_404(Sale, pk=sale_id)
+        session = get_object_or_404(Session, pk=request.session.session_key)
         
         log = ShoppingCartLog(sale=sale, session=session)
 
