@@ -1,10 +1,10 @@
 from datetime import datetime, timedelta
 
 from django.contrib.sessions.models import Session
-from django.core.urlresolvers import reverse
-from django.http import HttpResponseServerError
+from django.core.urlresolvers import reverse, reverse_lazy
+from django.http import Http404, HttpResponseServerError
 from django.shortcuts import get_object_or_404
-from django.views.generic import TemplateView, View
+from django.views.generic import DeleteView, TemplateView, View
 from django.views.generic.simple import direct_to_template, redirect_to
 
 from models import Sale, ShoppingCartLog
@@ -48,3 +48,28 @@ class ShoppingCartView(TemplateView):
                                                 .filter(date__gte=expired) \
                                                 .order_by('date')
         return ctx
+
+
+class ShoppingCartRemoveView(DeleteView):
+
+    success_url = reverse_lazy('shoppingcart')
+
+    def get_object(self, *args, **kwargs):
+        session = get_object_or_404(Session,
+                                    pk=self.request.session.session_key)
+        log_id = self.kwargs.get('log_id')
+        try:
+            log = ShoppingCartLog.objects.get(session=session, pk=log_id)
+        except ShoppingCartLog.DoesNotExist:
+            raise Http404
+        return log
+
+    def get(self, *args, **kwargs):
+        """By default, DeleteView displays a template to confirm the object
+        deletion.
+
+        This view isn't supposed to be called with GET, so let's avoid a
+        template creation and raise a 404 if the page is not called with a
+        POST.
+        """
+        raise Http404

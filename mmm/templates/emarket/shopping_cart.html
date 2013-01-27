@@ -32,13 +32,12 @@
 				<span class="shipping">livraison incluse</span>
       </td>
       <td class="delete">
-        <form method="post" action="{url_resolver::get('checkout_step_shopping_cart.php')}">
-					<input type="hidden" name="delete_guid" value="{$pinfo['guid']}" />
+				<form method="post" action="{% url shoppingcart.remove log_id=object.pk %}">
+					{% csrf_token %}
           <button type="submit" class="btn-link shiny">Supprimer</button>
         </form>
       </td>
     </tr>
-
 		{% endfor %}
 	{% comment %}
     {foreach from=$shopping_cart_content['products'] item=pinfo}

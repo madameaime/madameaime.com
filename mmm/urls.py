@@ -82,6 +82,10 @@ urlpatterns = patterns('',
         emarket_views.ShoppingCartView.as_view(),
         name='shoppingcart'),
 
+    url(r'^shoppingcart/remove/(?P<log_id>\d+)$',
+        emarket_views.ShoppingCartRemoveView.as_view(),
+        name='shoppingcart.remove'),
+
     url(r'emarket/',
         include('emarket.urls', namespace='emarket')
     ),
