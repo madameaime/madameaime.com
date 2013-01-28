@@ -1,4 +1,4 @@
-#how-does-it-work {
+#how-does-it-work .description {
     height: 576px;
 
     background-color: #ffffff;
@@ -8,8 +8,8 @@
     position: relative;
 }
 
-#how-does-it-work .onetwothree {
-    background: url('../img/how_does_it_work/123.png') 0 0 no-repeat;
+#how-does-it-work .description .onetwothree {
+    background: url('../img/how-does-it-work/123.png') 0 0 no-repeat;
     width: 744px;
     height: 252px;
     position: absolute;
@@ -19,19 +19,19 @@
     left: 43px;
 }
 
-#how-does-it-work .lady {
+#how-does-it-work .description .lady {
     width: 100%;
     height: 100%;
-    background: url('../img/how_does_it_work/lady.png') 0 0 no-repeat;
+    background: url('../img/how-does-it-work/lady.png') 0 0 no-repeat;
     background-position: bottom right;
     z-index: 1;
     position: relative;
 }
 
-#how-does-it-work h1 {
+#how-does-it-work .description h1 {
     position: absolute;
     z-index: 2;
-    background: url('../img/how_does_it_work/grey_overlay.png') 0 0 no-repeat;
+    background: url('../img/how-does-it-work/grey_overlay.png') 0 0 no-repeat;
     width: 376px;
     height: 76px;
 
@@ -44,7 +44,7 @@
     padding: 11px 0 0 40px;
 }
 
-#how-does-it-work .box {
+#how-does-it-work .description .box {
     width: 200px;
     height: 200px;
     position: absolute;
@@ -53,7 +53,7 @@
     top: 120px;
 }
 
-#how-does-it-work .box > h3 {
+#how-does-it-work .description .box > h3 {
     font-family: bebas;
     font-style: normal;
     font-weight: normal;
@@ -63,26 +63,26 @@
     padding-top: 5px;
 }
 
-#how-does-it-work .box > p {
+#how-does-it-work .description .box > p {
     text-align: center;
     margin-top: 125px;
     margin-right: 10px;
     font-size: 16px;
 }
 
-#how-does-it-work .box.one {
+#how-does-it-work .description .box.one {
     left: 58px;
 }
 
-#how-does-it-work .box.two {
+#how-does-it-work .description .box.two {
     left: 290px;
 }
 
-#how-does-it-work .box.three {
+#how-does-it-work .description .box.three {
     left: 515px;
 }
 
-#how-does-it-work .info {
+#how-does-it-work .description .info {
     position: absolute;
     z-index: 2;
 
@@ -90,7 +90,7 @@
     left: 25px;
 }
 
-#how-does-it-work .info > h2 {
+#how-does-it-work .description .info > h2 {
     font-family: bebas;
     font-style: normal;
     font-weight: normal;
@@ -99,36 +99,36 @@
     padding-top: 5px;
 }
 
-#how-does-it-work .info > ul {
+#how-does-it-work .description .info > ul {
     list-style-type: none;
     padding: 0;
     margin: 0 0 0 5px;
 }
 
-#how-does-it-work .info > ul li {
+#how-does-it-work .description .info > ul li {
     list-style-type: none;
-    background: url('../img/how_does_it_work/arrow.png') 0 50% no-repeat;
+    background: url('../img/how-does-it-work/arrow.png') 0 50% no-repeat;
     padding-left: 35px;
     margin-bottom: 10px;
 }
 
-#how-does-it-work .info > ul li:last-child {
+#how-does-it-work .description .info > ul li:last-child {
     color: #e2507f;
 }
 
-#how-does-it-work .info > ul li h4 {
+#how-does-it-work .description .info > ul li h4 {
     margin: 0;
     font-size: 15px;
 }
 
-#how-does-it-work .info > ul li p {
+#how-does-it-work .description .info > ul li p {
     font-size: 15px;
     margin: 0;
 }
 
-#how-does-it-work .profit {
+#how-does-it-work .description .profit {
     position: absolute;
-    background: url('../img/how_does_it_work/yellow_overlay.png') 0 0 no-repeat;
+    background: url('../img/how-does-it-work/button.png') 0 0 no-repeat;
     width: 193px;
     height: 63px;
     z-index: 2;
@@ -137,8 +137,63 @@
     bottom: 72px;
 }
 
-#how-does-it-work .profit a {
+#how-does-it-work .description .profit a {
     font-size: 24px;
     line-height: 55px;
     margin-left: 40px;
+}
+
+/* Gage */
+
+#how-does-it-work .gage {
+    font-family: 'bebas';
+    font-style: normal;
+    font-size: 20px;
+    color: #777777;
+
+    height: 88px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+
+    margin-bottom: 15px;
+}
+
+#how-does-it-work .gage .span4 {
+    margin: 18px 0 0 5px;
+    text-align: center;
+    line-height: 55px;
+    position: relative;
+}
+
+#how-does-it-work .gage .gage-sep {
+    position: absolute;
+    top: -18px;
+    right: -40px;
+    background: url('../img/how-does-it-work/gage_sep.png') 0 0 no-repeat;
+    width: 37px;
+    height: 88px;
+}
+
+#how-does-it-work .gage i.icon-heart {
+    margin: 0 10px 0 0;
+    vertical-align: top;
+    background: url('../img/how-does-it-work/heart.png') 0 0 no-repeat;
+    width: 54px;
+    height: 50px;
+}
+
+#how-does-it-work .gage i.icon-smile {
+    margin: 0 10px 0 0;
+    vertical-align: top;
+    background: url('../img/how-does-it-work/smile.png') 0 0 no-repeat;
+    width: 54px;
+    height: 50px;
+}
+
+#how-does-it-work .gage i.icon-gift {
+    margin: 0 10px 0 0;
+    vertical-align: top;
+    background: url('../img/how-does-it-work/gift.png') 0 0 no-repeat;
+    width: 54px;
+    height: 50px;
 }
