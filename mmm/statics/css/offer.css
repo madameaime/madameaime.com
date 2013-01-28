@@ -41,7 +41,7 @@
 
 #offer .products > h1 {
     position: absolute;
-    background: url('../img/offer/grey_overlay.png') 0 0 no-repeat;
+    background: url('../img/offer/title.png') 0 0 no-repeat;
     width: 279px;
     height: 76px;
 
@@ -136,7 +136,7 @@
 #offer .products > ul > li .button {
     width: 153px;
     height: 57px;
-    background: url('../img/offer/yellow_overlay.png') 0 0 no-repeat;
+    background: url('../img/offer/button.png') 0 0 no-repeat;
     position: relative;
 }
 
