@@ -31,7 +31,7 @@
 #how-does-it-work .description h1 {
     position: absolute;
     z-index: 2;
-    background: url('../img/how-does-it-work/grey_overlay.png') 0 0 no-repeat;
+    background: url('../img/how-does-it-work/title.png') 0 0 no-repeat;
     width: 376px;
     height: 76px;
 
@@ -151,7 +151,7 @@
     font-size: 20px;
     color: #777777;
 
-    height: 88px;
+    height: 90px;
     background-color: #ffffff;
     border: 1px solid #dddddd;
 
@@ -169,7 +169,7 @@
     position: absolute;
     top: -18px;
     right: -40px;
-    background: url('../img/how-does-it-work/gage_sep.png') 0 0 no-repeat;
+    background: url('../img/how-does-it-work/separator.png') 0 0 no-repeat;
     width: 37px;
     height: 88px;
 }
