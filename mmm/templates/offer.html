@@ -22,71 +22,71 @@
     </div>
 
     <div class="lady">
-		</div>
+    </div>
     <ul>
       <li class="one">
-				<h2>{{offers.sale_1.title}}</h2>
-				<h3>{{offers.sale_1.subtitle}}</h3>
-				<ul class="details">
-					{{offers.sale_1.content|nl2li}}
-				</ul>
-				<p class="price">{{offers.sale_1.sale.price}} €</p>
-				<p class="delivery">{{offers.sale_1.price_comment}}</p>
-				<div class="button">
-					<form method="post" action="{% url emarket:shoppingcart.add %}">
-						{% csrf_token %}
-						<input type="hidden" name="sale_id" value="{{offers.sale_1.sale.pk}}" />
-						<button class="btn-link shiny" type="submit">Commander</button>
-					</form>
-				</div>
+	<h2>{{offers.sale_1.title}}</h2>
+	<h3>{{offers.sale_1.subtitle}}</h3>
+	<ul class="details">
+	  {{offers.sale_1.content|nl2li}}
+	</ul>
+	<p class="price">{{offers.sale_1.sale.price}} €</p>
+	<p class="delivery">{{offers.sale_1.price_comment}}</p>
+	<div class="button">
+	  <form method="post" action="{% url emarket:shoppingcart.add %}">
+	    {% csrf_token %}
+	    <input type="hidden" name="sale_id" value="{{offers.sale_1.sale.pk}}" />
+	    <button class="btn-link shiny" type="submit">Commander</button>
+	  </form>
+	</div>
       </li>
 
       <li class="three">
-				<h2>{{offers.sale_2.title}}</h2>
-				<h3>{{offers.sale_2.subtitle}}</h3>
-				<ul class="details">
-					{{offers.sale_2.content|nl2li}}
-				</ul>
-				<p class="price">{{offers.sale_2.sale.price}} €</p>
-				<p class="delivery">{{offers.sale_2.price_comment}}</p>
-				<div class="button">
-					<form method="post" action="{% url emarket:shoppingcart.add %}">
-						{% csrf_token %}
-						<input type="hidden" name="sale_id" value="{{offers.sale_2.sale.pk}}" />
-						<button class="btn-link shiny" type="submit">Commander</button>
-					</form>
-				</div>
-			</li>
+	<h2>{{offers.sale_2.title}}</h2>
+	<h3>{{offers.sale_2.subtitle}}</h3>
+	<ul class="details">
+	  {{offers.sale_2.content|nl2li}}
+	</ul>
+	<p class="price">{{offers.sale_2.sale.price}} €</p>
+	<p class="delivery">{{offers.sale_2.price_comment}}</p>
+	<div class="button">
+	  <form method="post" action="{% url emarket:shoppingcart.add %}">
+	    {% csrf_token %}
+	    <input type="hidden" name="sale_id" value="{{offers.sale_2.sale.pk}}" />
+	    <button class="btn-link shiny" type="submit">Commander</button>
+	  </form>
+	</div>
+      </li>
 
       <li class="six">
-				<h2>{{offers.sale_3.title}}</h2>
-				<h3>{{offers.sale_3.subtitle}}</h3>
-				<ul class="details">
-					{{offers.sale_3.content|nl2li}}
-				</ul>
-				<div class="badge"></div>
-				<p class="price">{{offers.sale_3.sale.price}} €</p>
-				<p class="delivery">{{offers.sale_3.price_comment}}</p>
-				<div class="button">
-					<form method="post" action="{% url emarket:shoppingcart.add %}">
-						{% csrf_token %}
-						<input type="hidden" name="sale_id" value="{{offers.sale_3.sale.pk}}" />
-						<button class="btn-link shiny" type="submit">Commander</button>
-					</form>
-				</div>
+	<h2>{{offers.sale_3.title}}</h2>
+	<h3>{{offers.sale_3.subtitle}}</h3>
+	<ul class="details">
+	  {{offers.sale_3.content|nl2li}}
+	</ul>
+	<div class="badge"></div>
+	<p class="price">{{offers.sale_3.sale.price}} €</p>
+	<p class="delivery">{{offers.sale_3.price_comment}}</p>
+	<div class="button">
+	  <form method="post" action="{% url emarket:shoppingcart.add %}">
+	    {% csrf_token %}
+	    <input type="hidden" name="sale_id" value="{{offers.sale_3.sale.pk}}" />
+	    <button class="btn-link shiny" type="submit">Commander</button>
+	  </form>
+	</div>
       </li>
     </ul>
     <p class="hurry">
-			{{offers.hurry_text}}
+      {{offers.hurry_text}}
     </p>
-	</div>
-	<div class="howto">
-		<p>Comment procéder ?</p>
-	</div>
-	<div class="breakdown row-fluid">
-		<div class="span4">Je choisis l'offre</div>
-		<div class="span4">Je passe commande</div>
-		<div class="span4">Le coffret est livré à domicile</div>
-	</div>
+  </div>
+  <div class="howto">
+    <p>Comment procéder ?</p>
+  </div>
+  <div class="breakdown row-fluid">
+    <div class="span4">Je choisis l'offre</div>
+    <div class="span4">Je passe commande</div>
+    <div class="span4">Le coffret est livré à domicile</div>
+  </div>
 </section>
 {% endblock %}
