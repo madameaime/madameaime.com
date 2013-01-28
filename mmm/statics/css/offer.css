@@ -170,11 +170,11 @@
     font-size: 12px;
 }
 
-#offer .products > ul > li.one > ul > li > em {
+#offer .products > ul > li.one > ul > li {
     font-size: 16px;
 }
 
-#offer .products > ul > li.three > ul > li > em {
+#offer .products > ul > li.three > ul > li {
     font-size: 16px;
     line-height: 35px;
 }
