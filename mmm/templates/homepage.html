@@ -1,16 +1,18 @@
 {% extends "mmm/skeleton.html" %}
 {% block head_title %}Le coffret Madame Aime, la bonne idée cadeau qui plait aux femmes{% endblock %}
 {% block extra_head %}
-<link href="{{STATIC_URL}}css/index.css" rel="stylesheet" type="text/css" media="all" />
+<link href="{{STATIC_URL}}css/homepage.css" rel="stylesheet" type="text/css" media="all" />
 {% endblock %}
 {% block meta_description %}Offrez à votre maman, femme, amie un coffret cadeau plein de surprises{% endblock %}
 {% block mmm_content %}
 <section id="index-slideshow">
   <div class="carousel slide">
     <div class="carousel-inner">
-      <div class="active item one"></div>
+      <div class="active item one">
+        <a href="{url box}"></a>
+      </div>
       <div class="item two">
-	<p>Le 1<sup>er</sup> coffret spécialement conçu pour <span class="pink">Madame</span></p>
+        <a href="{url about-us}"></a>
       </div>
     </div>
     <div class="fade"></div>
@@ -26,10 +28,9 @@
       <p class="box">Un coffret élégant livré à domicile contenant</p>
       <p class="selection">Une sélection de 5-6 produits</p>
       <ul class="types">
-	<li>beauté / bien-être</li>
-	<li>culinaires</li>
-	<li>déco / maison</li>
-	<li>surprise</li>
+        <li>beauté</li>
+        <li>bien-être</li>
+        <li>culinaire</li>
       </ul>
       <div class="equals">=</div>
       <div class="ml">
@@ -44,20 +45,10 @@
 </section>
 
 <section id="index-gage" class="row-fluid">
-  <div class="span4">
-    <i class="icon-heart"></i>
-    <span class="pink">Délicatement</span> confectionné
-    <div class="gage-sep"></div>
-  </div>
-  <div class="span4">
-    <i class="icon-smile"></i>
-    <span class="pink">Effet surprise</span> garanti
-    <div class="gage-sep"></div>
-  </div>
-  <div class="span4">
-    <i class="icon-gift"></i>
-    <span class="pink">Idéal</span> pour Noël
-  </div>
+  <a class="span3 jeanne-m" href="{url_resolver::get('brands_jeanne_m.php')}"></a>
+  <a class="span3 fleur" href="{url_resolver::get('brands_fleur.php')}"></a>
+  <a class="span3 newtree" href="{url_resolver::get('brands_newtree.php')}"></a>
+  <a class="span3 marabout" href="http://www.marabout.com" target="_blank"></a>
 </section>
 
 <section id="index-inserts" class="row">
