@@ -29,22 +29,13 @@ body {
     box-sizing: border-box;
 }
 
-*:focus {
-    outline: none !important;
-}
+*:focus { outline: none !important; }
 
-a {
-    color: #4b4b4b;
-}
+a { color: #4b4b4b; }
+a:hover { color: #e2507f; text-decoration: none; }
 
-a:hover {
-    color: #e2507f;
-    text-decoration: none;
-}
-
-span.pink {
-    color: #e2507f;
-}
+.pink { color: #e2507f; }
+.centered { text-align: center; }
 
 #container .shiny {
     color: #ffffff;
@@ -62,7 +53,10 @@ span.pink {
 #container fieldset { margin: 0; padding: 0; }
 #container fieldset legend { border: 0 none; }
 
-#container input[type=text], #container input[type=password], #container textarea {
+#container input[type=text],
+#container input[type=email],
+#container input[type=password],
+#container textarea {
     font-family: 'Georgia', 'times';
     font-style: italic;
 
@@ -177,15 +171,16 @@ span.pink {
 }
 
 #header-logo {
-    width: 387px;
     position: relative;
     left: -3px;
 }
 
 #header-logo a {
-    text-indent: -9999px;
-    overflow: hidden;
-    text-align: left;
+    border: 0;
+    font: 0/0 a;
+    text-shadow: none;
+    color: transparent;
+    background-color: transparent;
     background: url('../img/logo.png') 0 0 no-repeat;
     display: block;
     height: 112px;
@@ -273,16 +268,10 @@ span.pink {
     background-color: #4b4b4b;
     color: #eeeeee;
     font-size: 14px;
-
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    box-sizing: border-box;
 }
 
 #newsletter {
     height: 70px;
-
     padding: 25px 0 0 30px;
     position: relative;
 }
@@ -303,7 +292,7 @@ span.pink {
 #newsletter .forms > input {
     border: 0 none;
     width: 237px;
-    padding: 5px;
+    padding: 8px 5px 0 5px;
     margin: 6px 0 5px 19px;
 }
 
@@ -338,11 +327,6 @@ span.pink {
     background-color: #ffffff;
     border: 1px solid #dddddd;
     padding: 0 0 0 26px;
-
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    box-sizing: border-box;
 }
 
 #footer-inner {
