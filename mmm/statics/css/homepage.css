@@ -26,17 +26,17 @@
     width: 13px;
     height: 13px;
     display: inline-block;
-    background: url("../img/home/bullet.png") 0 0 no-repeat;
+    background: url("../img/homepage/bullet.png") 0 0 no-repeat;
     margin: 0 8px 0 0;
     cursor: pointer;
 }
 #index-slideshow .carousel-nav span.active,#index-slideshow .carousel-nav span:hover {
-    background: url("../img/home/bullet_active.png") 0 0 no-repeat;
+    background: url("../img/homepage/bullet_active.png") 0 0 no-repeat;
 }
 
 #index-slideshow .item { width: 100%; height: 100%; background-position: right; }
-#index-slideshow .item.one { background: url('../img/home/slideshow_1.png') no-repeat; }
-#index-slideshow .item.two { background: url('../img/home/slideshow_2.png') no-repeat; }
+#index-slideshow .item.one { background: url('../img/homepage/slideshow_1.png') no-repeat; }
+#index-slideshow .item.two { background: url('../img/homepage/slideshow_2.png') no-repeat; }
 #index-slideshow .item > a {
     display: block;
     position: absolute;
@@ -54,7 +54,7 @@
     top: 0;
 
     background-color: #ffffff;
-    background: url('../img/home/slideshow_fade.png') 0 0 no-repeat;
+    background: url('../img/homepage/slideshow_fade.png') 0 0 no-repeat;
     opacity: 0.5;
 }
 
@@ -62,7 +62,7 @@
     position: absolute;
     bottom: 30px;
     left: -13px;
-    background: url('../img/home/slideshow_overlay.png') 0 0 no-repeat;
+    background: url('../img/homepage/slideshow_overlay.png') 0 0 no-repeat;
     width: 386px;
     height: 472px;
 }
@@ -215,7 +215,7 @@
     position: absolute;
     bottom: -7px;
     right: -31px;
-    background: url('../img/home/insert_yellow.png') no-repeat;
+    background: url('../img/homepage/insert_yellow.png') no-repeat;
 }
 
 #index-inserts > div .overlay .span7 {
@@ -238,17 +238,17 @@
 }
 
 #index-inserts .story .inner {
-    background: url('../img/home/inserts_story.png') no-repeat;
+    background: url('../img/homepage/inserts_story.png') no-repeat;
     background-color: #dddddd;
 }
 
 #index-inserts .how-does-it-work .inner {
-    background: url('../img/home/inserts_how_does_it_work.png') no-repeat;
+    background: url('../img/homepage/inserts_how_does_it_work.png') no-repeat;
     background-color: #dddddd;
 }
 
 #index-inserts .gift .inner {
-    background: url('../img/home/inserts_gift.png') 0 -2px no-repeat;
+    background: url('../img/homepage/inserts_gift.png') 0 -2px no-repeat;
     background-color: #dddddd;
 }
 
