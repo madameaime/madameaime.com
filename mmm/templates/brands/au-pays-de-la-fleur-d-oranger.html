@@ -1,11 +1,95 @@
 {% extends "mmm/skeleton.html" %}
-{% block head_title %}Les coffrets cadeaux de Madame Aime{% endblock %}
-{% block meta_description %}Découvrez tous les coffrets cadeaux confectionnés par Madame Aime{% endblock %}
+{% block head_title %}Gel douche par Au Pays de la Fleur d'Oranger{% endblock %}
+{% block extra_head %}
+<link href="{{STATIC_URL}}css/brands.css" rel="stylesheet" type="text/css" media="all" />
+{% endblock %}
+{% block meta_description %}Découvrez Au Pays de la Fleur d'Oranger marque partenaire de Madame Aime{% endblock %}
 {% block mmm_content %}
-<div class="boring-alert">
-  <h1>Un peu de patience…</h1>
-  <p>
-    Madame Aime les surprises ! Notre premier coffret sera révélé très bientôt…
-  </p>
-</div>
+<section id="brand" class="fleur">
+  <header></header>
+  <div class="row-fluid">
+    <div class="span8 left">
+      <div class="description">
+        <h1>Au pays de la fleur d'oranger</h1>
+        <p>
+          Au Pays de la Fleur d’Oranger c’est d’abord l’histoire d’un village,
+          d’une famille, et enfin celle d’une fleur de la région Provence-Alpes-Côte
+          d’Azur. Une entreprise familiale qui, au fil des années s’est développée
+          pour proposer une large gamme de produits dédiés à votre bien être,
+          et depuis quelques mois un parfum raffiné au Néroli, idéal pour Madame.
+        </p>
+        <p>
+          <strong>Madame Aime Décembre 2012&nbsp;: Gel douche à la Fleur d’Oranger 200 ml</strong>
+        </p>
+        <p>
+          Au pays de la Fleur d’Oranger vous fait voyager en Provence !
+          Découvrez une mousse généreuse qui respectera en douceur votre peau et
+          laissera une douceur incomparable.
+          Une odeur de Fleur d’Oranger envoutante qui vous ramènera à vos souvenirs d’enfance…
+        </p>
+
+        <p>
+          <span class="pink">Le + Au Pays de la Fleur d’Oranger&nbsp;:</span><br />
+          - Un marque respectueuse de son environnement et sa région<br />
+          - Une gamme d’huile d’argan biologique<br />
+          - Des produits Made in France (Provence)
+        </p>
+        <p>
+          Pour en savoir plus sur Au Pays de la Fleur d’Oranger&nbsp;:
+          <a href="http://www.lafleuroranger.com">http://www.lafleuroranger.com</a>.
+        </p>
+      </div>
+      <div class="comments">
+        <h2>Donnez-nous votre avis !</h2>
+        <div id="disqus_thread"></div>
+      </div>
+    </div>
+    <div class="span4 right">
+      <div class="visual">
+        <h2>Gel douche à la fleur d’oranger</h2>
+        <p>
+          <img src="{{STATIC_URL}}img/brands/au-pays-de-la-fleur-d-oranger/image.png" alt="Gel douche" /><br />
+          <small>Contenance : 200ml</small>
+        </p>
+        <div class="order row-fluid">
+          <div class="span4">
+            <span class="price">7.5€</span>
+          </div>
+          <div class="span7">
+            <a target="_blank" class="shiny button" href="http://www.lafleuroranger.com/fr/les-produits-pour-le-bain/64-gel-douche-fleur-doranger.html">
+              Commander</a>
+            <small>sur <a href="http://lafleuroranger.com">lafleuroranger.com</a></small>
+          </div>
+        </div>
+      </div>
+      <div class="facebook">
+        <div class="fb-container">
+          <div class="fb-like-box"
+               data-href="https://www.facebook.com/pages/Au-Pays-de-la-Fleur-dOranger/122642484438646"
+               data-width="280"
+               data-height="320"
+               data-show-faces="true"
+               data-border-color="red"
+               data-stream="false"
+               data-header="false">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+  var disqus_shortname = 'madameaime';
+  var disqus_url = 'http://www.madameaime.com{url_resolver::current()}';
+  var disqus_config = function () {
+     this.language = "fr";
+  };
+
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
 {% endblock %}
