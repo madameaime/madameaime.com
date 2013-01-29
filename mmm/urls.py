@@ -93,6 +93,11 @@ urlpatterns = patterns('',
         name='press'
     ),
 
+    url(r'^jobs$',
+        TemplateView.as_view(template_name='jobs.html'),
+        name='jobs'
+    ),
+
     url(r'^inscription$',
         'django.contrib.auth.views.login',
         {'template_name': 'registration.html'},
