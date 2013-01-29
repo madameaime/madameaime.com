@@ -1,11 +1,87 @@
 {% extends "mmm/skeleton.html" %}
 {% block head_title %}Les coffrets cadeaux de Madame Aime{% endblock %}
+{% block extra_head %}
+<link href="{{STATIC_URL}}css/box.css" rel="stylesheet" type="text/css" media="all" />
+{% endblock %}
 {% block meta_description %}Découvrez tous les coffrets cadeaux confectionnés par Madame Aime{% endblock %}
 {% block mmm_content %}
-<div class="boring-alert">
-  <h1>Un peu de patience…</h1>
-  <p>
-    Madame Aime les surprises ! Notre premier coffret sera révélé très bientôt…
-  </p>
-</div>
+<section id="box">
+  <div class="description clearfix">
+    <div class="photo pull-left">
+      <img src="{{STATIC_URL}}img/box/photo.png" alt="Coffret de Noël"/>
+    </div>
+    <div class="text pull-right">
+      <h1>Madame Aime - Noël 2012</h1>
+      <p>
+        Pour Noël, je fais un vœu…<br />
+        Celui de pouvoir tester toujours plus de produits de beauté<br />
+        Celui de pouvoir obtenir de bonnes idées déco faciles à réaliser<br />
+        Celui de pouvoir goûter à de nouvelles recettes parfumées<br />
+        Et le tout chaque mois, dans un coffret<br />
+        Vœu exaucé<br />
+        « Madame aime est née »
+      </p>
+      <p>
+        Pour sa 1ere édition, Madame Aime vous a concocté un menu spécial Hiver&nbsp;:<br />
+        - Prenez soin de vos mains avec Jeanne M.<br />
+        - Détendez vous Au Pays de la Fleur d'Oranger<br />
+        - Dégustez quelques douceurs avec NEWTREE<br />
+        - Régalez vos proches avec des cafés gourmands
+      </p>
+    </div>
+  </div>
+
+  <div class="products">
+    <div class="row-fluid">
+      <div class="span4 product-1">
+        <h2>Jeanne M.</h2>
+        <p>
+          Helixir soin pour les mains Peaux Matures
+        </p>
+        <a class="shiny" href="{% url brands/jeanne-m %}">Découvrir</a>
+      </div>
+      <div class="span4 product-2">
+        <h2>Au pays<br /> de la fleur d'oranger</h2>
+        <p>
+          Gel douche à la Fleur d'Oranger
+        </p>
+        <a class="shiny" href="{% url brands/au-pays-de-la-fleur-d-oranger %}">Découvrir</a>
+      </div>
+      <div class="span4 product-3">
+        <h2>Newtree</h2>
+        <p>
+          Perles de fruits enrobées de chocolat
+        </p>
+        <a class="shiny" href="{% url brands/newtree %}">Découvrir</a>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div class="span4 product-4">
+        <h2>Marabout</h2>
+        <p>
+          Livre de recettes<br />
+          Tout petits cannelés &amp;&nbsp;financiers
+        </p>
+        <a class="shiny" target="_blank" href="http://www.marabout.com/">Découvrir</a>
+      </div>
+      <div class="span8 next">
+        <p>
+          Madame Aime est le premier coffret pour les femmes à partir de 40 ans.
+        </p>
+        <div class="mag">
+          <p>
+            Coffret Noel 2012
+          </p>
+          <a id="open-mag" target="_blank" class="shiny" href="http://issuu.com/madameaime/docs/mag_madameaime_dec12?mode=window">Consulter le mag</a>
+        </div>
+        <div class="more">
+          <p>
+            Prochain Coffret
+          </p>
+          <a class="shiny" href="{% url offer %}">J'en profite</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}
