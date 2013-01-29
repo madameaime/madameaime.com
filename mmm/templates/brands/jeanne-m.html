@@ -1,11 +1,98 @@
 {% extends "mmm/skeleton.html" %}
-{% block head_title %}Les coffrets cadeaux de Madame Aime{% endblock %}
-{% block meta_description %}Découvrez tous les coffrets cadeaux confectionnés par Madame Aime{% endblock %}
+{% block head_title %}Hélixir soin pour les mains par Jeanne M.{% endblock %}
+{% block extra_head %}
+<link href="{{STATIC_URL}}css/brands.css" rel="stylesheet" type="text/css" media="all" />
+{% endblock %}
+{% block meta_description %}Découvrez Jeanne M. marque partenaire de Madame Aime{% endblock %}
 {% block mmm_content %}
-<div class="boring-alert">
-  <h1>Un peu de patience…</h1>
-  <p>
-    Madame Aime les surprises ! Notre premier coffret sera révélé très bientôt…
-  </p>
-</div>
+<section id="brand" class="jeanne-m">
+  <header></header>
+  <div class="row-fluid">
+    <div class="span8 left">
+      <div class="description">
+        <h1>Jeanne M.</h1>
+        <p>
+          A l’origine de Jeanne M, Emmanuelle Taulet a voulu dessiner une marque
+          qui ressemblerait aux femmes matures. Une adéquation entre une gamme de
+          soin qui apporterait une hydratation intense journalière, sans fausse
+          promesse et une philosophie qui respecterait vos valeurs.
+          Retrouvez l’interview d'Emmanuelle Taulet, la créatrice de Jeanne M.
+          sur le mini mag de décembre 2012.
+        </p>
+        <p>
+          <strong>Madame Aime Décembre 2012&nbsp;: Soins pour les mains 50 ml</strong>
+        </p>
+        <p>
+          Le soin Helixir révèle la beauté de vos mains. Avec sa légère odeur
+          florale, le soin se dépose sur la main sous la forme d’un film doux
+          à la texture non grasse et très soyeuse, provoquant une sensation de
+          confort immédiate. La présence d’éléments végétaux réduit efficacement
+          les tâches pigmentaires visibles sur la peau.
+        </p>
+
+        <p>
+          <span class="pink">Le + Jeanne M.&nbsp;:</span><br />
+          - Une marque made in France (Charente)<br />
+          - Une entreprise responsable qui fait don d’un centime par produit vendu.<br />
+          - Certification Ecocert<br />
+          - Des produits locaux et à 98% naturels<br />
+          - 10 % Helix aspera saliva dans chaque produit<br />
+        </p>
+        <p>
+          Pour en savoir plus sur Jeanne M.&nbsp;: <a href="http://www.jeanne-m.com">
+            http://www.jeanne-m.com</a>.
+        </p>
+      </div>
+      <div class="comments">
+        <h2>Donnez-nous votre avis !</h2>
+        <div id="disqus_thread"></div>
+      </div>
+    </div>
+    <div class="span4 right">
+      <div class="visual">
+        <h2>Helixir - Soin pour les mains</h2>
+        <p>
+          <img src="{{STATIC_URL}}img/brands/jeanne-m/image.png" alt="Helixir" /><br />
+          <small>Contenance : 50ml</small>
+        </p>
+        <div class="order row-fluid">
+          <div class="span4">
+            <span class="price">36€</span>
+          </div>
+          <div class="span7">
+            <a target="_blank" class="shiny button" href="http://shop.jeanne-m.com/fr/helixir-jeanne-m/13-helixir-soin-pour-les-mains-3700721700032.html">
+              Commander</a>
+            <small>sur <a href="http://jeanne-m.com">jeanne-m.com</a></small>
+          </div>
+        </div>
+      </div>
+      <div class="facebook">
+        <div class="fb-container">
+          <div class="fb-like-box"
+               data-href="https://www.facebook.com/helixir.Jeanne.M"
+               data-width="280"
+               data-height="320"
+               data-show-faces="true"
+               data-border-color="red"
+               data-stream="false"
+               data-header="false">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+  var disqus_shortname = 'madameaime';
+  var disqus_url = 'http://www.madameaime.com{url_resolver::current()}';
+  var disqus_config = function () {
+     this.language = "fr";
+  };
+
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
 {% endblock %}
