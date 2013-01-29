@@ -1,0 +1,152 @@
+/**********/
+/* Brands */
+/**********/
+
+#brands {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    margin-bottom: 15px;
+    position: relative;
+    padding: 110px 30px 20px 30px;
+}
+
+#brands h1 {
+    position: absolute;
+    background: url('../img/brands/title.png') 0 0 no-repeat;
+    width: 279px;
+    height: 76px;
+
+    top: 25px;
+    left: -14px;
+    color: #eeeeee;
+    font-weight: normal;
+    font-size: 28px;
+    margin: 0;
+    padding: 11px 0 0 40px;
+}
+
+#brands h2 {
+    font-family: 'bebas';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    color: #e2507f;
+}
+
+#brands a.thumbnail:hover { border-color: #e2507f; }
+
+/*****************/
+/* Brand details */
+/*****************/
+
+#brand header {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    margin-bottom: 15px;
+    height: 235px;
+    background-repeat: no-repeat;
+    background-position: 10px;
+}
+
+#brand h1 {
+    margin: 0;
+    font-family: 'bebas';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    color: #e2507f;
+}
+
+#brand h2 {
+    margin: 0;
+    font-family: 'bebas';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 26px;
+    line-height: 30px;
+}
+
+#brand p {
+    font-style: normal;
+    font-size: 15px;
+    margin-top: 15px;
+}
+
+#brand p a { color: #e2507f; }
+#brand p a:hover { text-decoration: underline; }
+#brand small { font-size: 12px; }
+
+#brand.jeanne-m header { background-image: url('../img/brands/jeanne_m/header.png'); }
+#brand.fleur header    { background-image: url('../img/brands/fleur/header.png'); }
+#brand.newtree header  { background-image: url('../img/brands/newtree/header.png'); }
+
+#brand .right {
+    text-align: center;
+}
+
+#brand .description, #brand .visual, #brand .facebook, #brand .comments {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+}
+
+
+#brand .comments { padding-bottom: 0; }
+#brand .comments > div { margin-top: 15px; }
+
+#brand .visual {
+    padding-bottom: 0;
+}
+
+#brand .facebook {
+    padding: 10px 15px 15px 15px;
+}
+
+#brand .facebook .fb-container {
+    width: 278px;
+    height: 318px;
+    overflow: hidden;
+    margin: auto;
+}
+
+#brand .facebook .fb-container > div {
+    margin: -1px 0 0 -1px;
+}
+
+#brand .visual .order {
+    text-align: right;
+    margin-top: 20px;
+}
+
+#brand .visual .order .price {
+    color: #e2507f;
+    font-size: 32px;
+    font-style: normal;
+}
+
+#brand .visual .order a.button {
+    display: block;
+    background: url('../img/brands/order.png') 0 0 no-repeat;
+    width: 153px;
+    height: 57px;
+    padding: 14px 0 0 26px;
+    position: relative;
+    top: -10px;
+
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#brand .visual .order .span7 {
+    text-align: left;
+    font-style: normal;
+}
+
+#brand .visual .order .span7 small {
+    position: relative;
+    top: -20px;
+    left: 10px;
+}

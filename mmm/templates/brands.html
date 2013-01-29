@@ -1,11 +1,43 @@
 {% extends "mmm/skeleton.html" %}
 {% block head_title %}Marques partenaires de Madame Aime{% endblock %}
+{% block extra_head %}
+<link href="{{STATIC_URL}}css/brands.css" rel="stylesheet" type="text/css" media="all" />
+{% endblock %}
 {% block meta_description %}Découvrez toutes les marques partenaires de Madame Aime{% endblock %}
 {% block mmm_content %}
-<div class="boring-alert">
-  <h1>Un peu de patience…</h1>
-  <p>
-    Madame Aime les surprises ! Nos premières marques partenaires seront révélées très bientôt…
-  </p>
-</div>
+<section id="brands">
+  <h1>Les marques</h1>
+
+  <div>
+    <h2>Beauté</h2>
+    <ul class="thumbnails">
+      <li>
+        <a href="{url_resolver::get('brands_jeanne_m.php')}" class="thumbnail">
+          <img src="{{STATIC_URL}}img/brands/jeanne_m/logo.png" alt="">
+        </a>
+      </li>
+      <li>
+        <a href="{url_resolver::get('brands_fleur.php')}" class="thumbnail">
+          <img src="{{STATIC_URL}}img/brands/fleur/logo.png" alt="">
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <h2>Culinaire</h2>
+    <ul class="thumbnails">
+      <li>
+        <a href="{url_resolver::get('brands_newtree.php')}" class="thumbnail">
+          <img src="{{STATIC_URL}}img/brands/newtree/logo.png" alt="">
+        </a>
+      </li>
+      <li>
+        <a href="http://www.marabout.com" target="_blank" class="thumbnail">
+          <img src="{{STATIC_URL}}img/brands/marabout/logo.png" alt="">
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
 {% endblock %}
