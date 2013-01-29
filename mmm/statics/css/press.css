@@ -1,0 +1,12 @@
+#press .thumbnails li {
+    text-align: center;
+}
+#press .thumbnails a {
+    display: block;
+    width: 190px;
+    height: 120px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+#press .thumbnails a:hover { border-color: #e2507f; }

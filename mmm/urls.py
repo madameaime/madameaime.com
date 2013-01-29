@@ -80,11 +80,17 @@ urlpatterns = patterns('',
 
     url(r'^faq$',
         TemplateView.as_view(template_name='faq.html'),
-        name='faq'),
+        name='faq'
+    ),
 
     url(r'^contact$',
         views.ContactView.as_view(),
         name='contact'
+    ),
+
+    url(r'^presse$',
+        TemplateView.as_view(template_name='press.html'),
+        name='press'
     ),
 
     url(r'^inscription$',
