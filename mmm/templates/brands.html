@@ -12,13 +12,13 @@
     <h2>Beauté</h2>
     <ul class="thumbnails">
       <li>
-        <a href="{url_resolver::get('brands_jeanne_m.php')}" class="thumbnail">
-          <img src="{{STATIC_URL}}img/brands/jeanne_m/logo.png" alt="">
+        <a href="{% url brands/jeanne-m %}" class="thumbnail">
+          <img src="{{STATIC_URL}}img/brands/jeanne-m/logo.png" alt="">
         </a>
       </li>
       <li>
-        <a href="{url_resolver::get('brands_fleur.php')}" class="thumbnail">
-          <img src="{{STATIC_URL}}img/brands/fleur/logo.png" alt="">
+        <a href="{% url brands/au-pays-de-la-fleur-d-oranger %}" class="thumbnail">
+          <img src="{{STATIC_URL}}img/brands/au-pays-de-la-fleur-d-oranger/logo.png" alt="">
         </a>
       </li>
     </ul>
@@ -28,7 +28,7 @@
     <h2>Culinaire</h2>
     <ul class="thumbnails">
       <li>
-        <a href="{url_resolver::get('brands_newtree.php')}" class="thumbnail">
+        <a href="{% url brands/newtree %}" class="thumbnail">
           <img src="{{STATIC_URL}}img/brands/newtree/logo.png" alt="">
         </a>
       </li>

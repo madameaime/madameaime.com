@@ -58,6 +58,21 @@ urlpatterns = patterns('',
         name='brands'
     ),
 
+    url(r'^marques/jeanne-m$',
+        TemplateView.as_view(template_name='brands/jeanne-m.html'),
+        name='brands/jeanne-m'
+    ),
+
+    url(r'^marques/au-pays-de-la-fleur-d-oranger$',
+        TemplateView.as_view(template_name='brands/au-pays-de-la-fleur-d-oranger.html'),
+        name='brands/au-pays-de-la-fleur-d-oranger'
+    ),
+
+    url(r'^marques/newtree$',
+        TemplateView.as_view(template_name='brands/newtree.html'),
+        name='brands/newtree'
+    ),
+
     url(r'^coffret$',
         TemplateView.as_view(template_name='box.html'),
         name='box'
