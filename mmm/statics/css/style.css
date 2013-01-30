@@ -59,6 +59,7 @@ a:hover { color: #e2507f; text-decoration: none; }
 #container textarea {
     font-family: 'Georgia', 'times';
     font-style: italic;
+    height: auto;
 
     border: 2px solid #dddddd;
    -moz-box-shadow: none;
