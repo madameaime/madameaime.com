@@ -22,8 +22,9 @@
 
         $(".receiver-addr-toggle", "#checkout-delivery").change(function (e) {
             var el = $(this);
-            el.closest("div.product").find(".receiver-addr").toggle(el.val() === "other");
+            el.closest("div.product").find(".receiver-addr").toggle(el.val() === "1");
         })
+
     });
 
 	var payment_form = $('#payment_form');

@@ -34,23 +34,25 @@
 						<div class="product">
 
 							<label class="radio">
-								<input class="receiver-addr-toogle" type="radio" name="{{form.delivery_place.html_name}}" value="0" {% if not form.delivery_place.value or form.delivery_place.value == "0" %}checked {% endif %}/>
+								<input class="receiver-addr-toggle" type="radio" name="{{form.delivery_place.html_name}}" value="0" {% if not form.delivery_place.value or form.delivery_place.value == "0" %}checked {% endif %}/>
 								Livrer le coffret à mon adresse de facturation
 							</label>
 							<label class="radio">
-								<input class="receiver-addr-toogle" type="radio" name="{{form.delivery_place.html_name}}" value="1" {% if form.delivery_place.value == "1" %}checked {% endif %}/>
+								<input class="receiver-addr-toggle" type="radio" name="{{form.delivery_place.html_name}}" value="1" {% if form.delivery_place.value == "1" %}checked {% endif %}/>
 								Je souhaite une livraison directement chez la personne
 							</label>
 
-						{% include "emarket/delivery_input.html" with field_name="Prénom *" field=form.firstname %}
-						{% include "emarket/delivery_input.html" with field_name="Nom *" field=form.lastname %}
-						{% include "emarket/delivery_input.html" with field_name="Email" field=form.email %}
-						{% include "emarket/delivery_input.html" with field_name="Adresse *" field=form.address %}
-						{% include "emarket/delivery_input.html" with field_name="Complément d'adresse" field=form.additionnal %}
-						{% include "emarket/delivery_input.html" with field_name="Code postal *" field=form.zip_code %}
-						{% include "emarket/delivery_input.html" with field_name="Ville *" field=form.city %}
-						{% include "emarket/delivery_input.html" with field_name="Téléphone" field=form.phone %}
-					</div>
+							<div class="receiver-addr" {% if not form.delivery_place.value or form.delivery_place.value == "0" %} style="display:none;"{% endif %}>
+								{% include "emarket/delivery_input.html" with field_name="Prénom *" field=form.firstname %}
+								{% include "emarket/delivery_input.html" with field_name="Nom *" field=form.lastname %}
+								{% include "emarket/delivery_input.html" with field_name="Email" field=form.email %}
+								{% include "emarket/delivery_input.html" with field_name="Adresse *" field=form.address %}
+								{% include "emarket/delivery_input.html" with field_name="Complément d'adresse" field=form.additionnal %}
+								{% include "emarket/delivery_input.html" with field_name="Code postal *" field=form.zip_code %}
+								{% include "emarket/delivery_input.html" with field_name="Ville *" field=form.city %}
+								{% include "emarket/delivery_input.html" with field_name="Téléphone" field=form.phone %}
+							</div>
+						</div>
 					{% endfor %}
 				</fieldset>
 			</div>
