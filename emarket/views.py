@@ -101,22 +101,22 @@ class DeliveryView(TemplateView):
     def post(self, request):
         ctx = self.get_context_data()
 
+        ret = lambda: super(DeliveryView, self).get(request)
+
         tos_form = ctx['tos_form']
-        if tos_form.is_valid():
-            pass
+        if not tos_form.is_valid():
+            return ret()
 
         billing_form = ctx['billing_form']
-        if billing_form.is_valid():
-            pass
+        if not billing_form.is_valid():
+            return ret()
 
         delivery_formset = ctx['delivery_formset']
+        if not delivery_formset.is_valid():
+            return ret()
 
-        for form in delivery_formset:
-            print form.is_valid(), form.errors
-
-#        if delivery_formset.is_valid():
-#            for form in delivery_formset:
-#                pass
-#                #print form.cleaned_data['delivery_place']
-
-        return super(DeliveryView, self).get(request)
+        # Here, from is valid. Insert in database
+#        for form in delivery_formset:
+#            pass
+#            #print form.cleaned_data['delivery_place']
+        return ret()
