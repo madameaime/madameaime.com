@@ -110,9 +110,13 @@ class DeliveryView(TemplateView):
             pass
 
         delivery_formset = ctx['delivery_formset']
-        if delivery_formset.is_valid():
-            for form in delivery_formset:
-                pass
-                #print form.cleaned_data['delivery_place']
+
+        for form in delivery_formset:
+            print form.is_valid(), form.errors
+
+#        if delivery_formset.is_valid():
+#            for form in delivery_formset:
+#                pass
+#                #print form.cleaned_data['delivery_place']
 
         return super(DeliveryView, self).get(request)
