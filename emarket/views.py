@@ -42,14 +42,30 @@ class ShoppingCartView(TemplateView):
     template_name = 'emarket/shopping_cart.html'
 
     def get_context_data(self, **kwargs):
+        """ Delete items from ShoppingCartLog with a date older than 30 minutes
+        and update valid items timeouts
+        """
         ctx = super(ShoppingCartView, self).get_context_data(**kwargs)
         session = get_object_or_404(Session,
                                     pk=self.request.session.session_key)
 
+        # Delete items for wich timeout is reached
         expired = datetime.now() - timedelta(minutes=30)
-        ctx['objects'] = ShoppingCartLog.objects.filter(session=session)   \
-                                                .filter(date__gte=expired) \
+        timeout_obj = ShoppingCartLog.objects.filter(session=session)  \
+                                             .filter(date__lt=expired)
+        timeout_obj.delete()
+
+        # Get valid objects
+        ctx['objects'] = ShoppingCartLog.objects.filter(session=session) \
                                                 .order_by('date')
+
+        # Update timeouts
+        now = datetime.now()
+        for obj in ctx['objects']:
+            obj.date = now
+            obj.save()
+
+        # Add meta info
         ctx['total_price'] = sum(obj.sale.price for obj in ctx['objects'])
         ctx['charges'] = ctx['total_price'] * Decimal('0.196')
         return ctx
