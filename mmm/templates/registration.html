@@ -6,6 +6,53 @@
 {% block meta_description %}Inscrivez vous sur Madame Aime et offrez un coffret cadeau original{% endblock %}
 {% block mmm_content %}
 
+<div id="auth" class="row-fluid">
+	<div class="register span6">
+		<form class="form-horizontal" method="post" action="">
+			<fieldset>
+				<legend>Créez votre compte</legend>
+			</fieldset>
+    </form>
+  </div>
+
+  <div class="login span6">
+		<form class="form-horizontal" method="post" action="{% url django.contrib.auth.views.login %}">
+			{% csrf_token %}
+			<fieldset>
+				<legend>Déjà enregistré ?</legend>
+
+				{% if form.errors %}
+				<div class="alert alert-error">
+					Accès refusé
+				</div>
+				{% endif %}
+
+				<div class="control-group">
+					<label class="control-label" for="auth_email">Adresse e-mail</label>
+					<div class="controls">
+						<input type="text" name="{{form.username.html_name}}" id="auth_email" value="" />
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="auth_password">Mot de passe</label>
+					<div class="controls">
+						<input type="password" name="{{form.password.html_name}}" id="auth_password" />
+					</div>
+				</div>
+
+				<div class="control-group">
+					<div class="controls">
+						<button type="submit" class="btn-link shiny" name="auth">Se connecter</button>
+					</div>
+				</div>
+			</fieldset>
+    </form>
+  </div>
+</div>
+
+
+{% comment %}
 <form method="post" action="{% url django.contrib.auth.views.login %}">
     {% csrf_token %}
     <table>
@@ -16,5 +63,6 @@
         </tr>
     </table>
 </form>
+{% endcomment %}
 
 {% endblock %}
