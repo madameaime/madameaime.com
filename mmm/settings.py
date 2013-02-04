@@ -27,6 +27,7 @@ DATABASES = {
 # Redirect the user to this URL after authentication success
 from django.core.urlresolvers import reverse_lazy
 LOGIN_REDIRECT_URL = reverse_lazy('offer')
+LOGIN_URL = reverse_lazy('registration')
 
 SESSION_ENGINE = 'mmm.sessions'
 
