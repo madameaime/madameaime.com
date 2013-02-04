@@ -1,11 +1,13 @@
 from datetime import datetime, timedelta
 from decimal import Decimal
 
+from django.contrib.auth.decorators import login_required
 from django.contrib.sessions.models import Session
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.forms.formsets import formset_factory
 from django.http import Http404, HttpResponseServerError
 from django.shortcuts import get_object_or_404
+from django.utils.decorators import method_decorator
 from django.views.generic import DeleteView, TemplateView, View
 from django.views.generic.simple import direct_to_template, redirect_to
 
@@ -80,6 +82,10 @@ class ShoppingCartRemoveView(DeleteView):
 
 class DeliveryView(TemplateView):
     template_name = 'emarket/delivery.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(DeliveryView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
         ctx = super(DeliveryView, self).get_context_data(**kwargs)
