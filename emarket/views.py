@@ -1,5 +1,7 @@
 from datetime import datetime, timedelta
 from decimal import Decimal
+import random
+import string
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.sessions.models import Session
@@ -112,33 +114,47 @@ class DeliveryView(TemplateView):
 
         ctx['billing_form'] = forms.BillingForm(post_data)
 
+        session = get_object_or_404(Session,
+                                    pk=self.request.session.session_key)
+
+        # keep the same order than in ShoppingCartView
+        items = ShoppingCartLog.objects.filter(session=session) \
+                                       .order_by('date')
+        ctx['items'] = items
+
         DeliveryFormset = formset_factory(forms.DeliveryForm,
                                           formset=forms.RequiredFormset,
-                                          extra=2)
+                                          extra=items.count())
+
         ctx['delivery_formset'] = DeliveryFormset(post_data)
         ctx['tos_form'] = forms.ToSForm(post_data)
 
         return ctx
 
+    def _generate_order_id():
+        """ Generate a random order id exposed to the user of length 16
+        """
+        return ''.join(random.choice(string.ascii_uppercase + string.digits)
+                       for x in range(16))
+
+
     def post(self, request):
         ctx = self.get_context_data()
 
-        ret = lambda: super(DeliveryView, self).get(request)
-
         tos_form = ctx['tos_form']
         if not tos_form.is_valid():
-            return ret()
+            return self.render_to_response(ctx)
 
         billing_form = ctx['billing_form']
         if not billing_form.is_valid():
-            return ret()
+            return self.render_to_response(ctx)
 
         delivery_formset = ctx['delivery_formset']
         if not delivery_formset.is_valid():
-            return ret()
+            return self.render_to_response(ctx)
 
         # Here, from is valid. Insert in database
 #        for form in delivery_formset:
 #            pass
 #            #print form.cleaned_data['delivery_place']
-        return ret()
+        return self.render_to_response(ctx)
