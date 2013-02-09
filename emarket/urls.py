@@ -9,7 +9,7 @@ urlpatterns = patterns('',
         name='shoppingcart.add'
     ),
 
-    url(r'^sc/remove/(?P<log_id>\d+)$',
+    url(r'^sc/remove/(?P<sale_id>\d+)$',
         ShoppingCartRemoveView.as_view(),
         name='shoppingcart.remove'),
 

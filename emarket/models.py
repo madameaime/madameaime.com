@@ -56,27 +56,3 @@ class Address(models.Model):
     city        = models.CharField(max_length=64)
     phone       = models.CharField(max_length=32, null=True, default=None, blank=True)
     country     = models.CharField(max_length=64)
-
-
-class ShoppingCartLog(models.Model):
-    sale    = models.ForeignKey(Sale)
-    #FIXME: untimeWarning: DateTimeField received a naive datetime (2013-01-13
-    #       22:58:34.205319) while time zone support is active.
-    date    = models.DateTimeField(default=datetime.now)
-    session = models.ForeignKey(Session, null=True, default=None, blank=True)
-
-    def save(self, *args, **kwargs):
-        """A log entry can only be inserted if the product sold is still
-        available.
-
-        The lifetime of a shopping cart entry is 30 minutes, after which it is
-        considered as deleted. 
-
-        To know if the product is still available:
-        - get from stockmgmt.StockMvt the number of available items ;
-        - substract to this number the count of ShoppingCartLog entries
-          refering to the product ;
-        - if the result is greater or equal than 1, it can be added to the
-          shopping cart.
-        """
-        super(ShoppingCartLog, self).save(*args, **kwargs)

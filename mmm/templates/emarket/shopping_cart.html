@@ -20,18 +20,18 @@
 		<tr>
 			<td class="thumb"></td>
       <td class="info">
-				<b class="name">{{object.sale.product.name}}</b><br />
+				<b class="name">{{object.product.name}}</b><br />
         <span class="description">
-					{{object.sale.shopping_cart_description|default_if_none:""|linebreaks}}
+					{{object.shopping_cart_description|default_if_none:""|linebreaks}}
 				</span>
       </td>
       <td></td>
       <td class="price">
-				<span class="value">{{object.sale.price}} €</span><br />
+				<span class="value">{{object.price}} €</span><br />
 				<span class="shipping">livraison incluse</span>
       </td>
       <td class="delete">
-				<form method="post" action="{% url emarket:shoppingcart.remove log_id=object.pk %}">
+				<form method="post" action="{% url emarket:shoppingcart.remove sale_id=object.pk %}">
 					{% csrf_token %}
           <button type="submit" class="btn-link shiny">Supprimer</button>
         </form>

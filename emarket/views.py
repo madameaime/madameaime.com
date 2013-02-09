@@ -4,39 +4,39 @@ import random
 import string
 
 from django.contrib.auth.decorators import login_required
-from django.contrib.sessions.models import Session
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.forms.formsets import formset_factory
 from django.http import Http404, HttpResponseServerError
 from django.shortcuts import get_object_or_404
 from django.utils.decorators import method_decorator
-from django.views.generic import DeleteView, TemplateView, View
+from django.views.generic import DeleteView, TemplateView, RedirectView, View
 from django.views.generic.simple import direct_to_template, redirect_to
 
-from models import Sale, ShoppingCartLog
+from models import Sale
 import forms
 
 
 class ShoppingCartAddView(View):
 
     def post(self, request):
+        """
+        Add an item to a session.
+
+        For now, there's no check ton ensure that the corresponding sale is
+        valid.
+        We should also check that we don't run out of stocks.
+        """
         # We could use a form to extract the sale_id properly. It'd be a little
         # more complex though, so make the sanitization of sale_id here.
         try:
             sale_id = int(request.POST['sale_id'])
         except ValueError:
             return HttpResponseServerError('invalid sale_id')
-        sale = get_object_or_404(Sale, pk=sale_id)
-        session = get_object_or_404(Session, pk=request.session.session_key)
-        
-        log = ShoppingCartLog(sale=sale, session=session)
 
-        try:
-            log.save()
-        except ValueError:
-            return direct_to_template(request,
-                    'emarket/shoppingcart_add_error.html',
-                    extra_context={'sale': sale})
+        sale = get_object_or_404(Sale, pk=sale_id)
+
+        request.session.setdefault('shopping_cart', []).append(sale)
+        request.session.save()
         return redirect_to(request, reverse('shoppingcart'), permanent=False)
 
 
@@ -44,58 +44,26 @@ class ShoppingCartView(TemplateView):
     template_name = 'emarket/shopping_cart.html'
 
     def get_context_data(self, **kwargs):
-        """ Delete items from ShoppingCartLog with a date older than 30 minutes
-        and update valid items timeouts
-        """
         ctx = super(ShoppingCartView, self).get_context_data(**kwargs)
-        session = get_object_or_404(Session,
-                                    pk=self.request.session.session_key)
-
-        # Delete items for wich timeout is reached
-        expired = datetime.now() - timedelta(minutes=30)
-        timeout_obj = ShoppingCartLog.objects.filter(session=session)  \
-                                             .filter(date__lt=expired)
-        timeout_obj.delete()
-
-        # Get valid objects
-        ctx['objects'] = ShoppingCartLog.objects.filter(session=session) \
-                                                .order_by('date')
-
-        # Update timeouts
-        now = datetime.now()
-        for obj in ctx['objects']:
-            obj.date = now
-            obj.save()
-
-        # Add meta info
-        ctx['total_price'] = sum(obj.sale.price for obj in ctx['objects'])
+        ctx['objects'] = self.request.session['shopping_cart']
+        ctx['total_price'] = sum(sale.price for sale in ctx['objects'])
         ctx['charges'] = ctx['total_price'] * Decimal('0.196')
         return ctx
 
 
-class ShoppingCartRemoveView(DeleteView):
+class ShoppingCartRemoveView(RedirectView):
 
-    success_url = reverse_lazy('shoppingcart')
+    permanent = False
+    url = reverse_lazy('shoppingcart')
 
-    def get_object(self, *args, **kwargs):
-        session = get_object_or_404(Session,
-                                    pk=self.request.session.session_key)
-        log_id = self.kwargs.get('log_id')
-        try:
-            log = ShoppingCartLog.objects.get(session=session, pk=log_id)
-        except ShoppingCartLog.DoesNotExist:
-            raise Http404
-        return log
-
-    def get(self, *args, **kwargs):
-        """By default, DeleteView displays a template to confirm the object
-        deletion.
-
-        This view isn't supposed to be called with GET, so let's avoid a
-        template creation and raise a 404 if the page is not called with a
-        POST.
-        """
-        raise Http404
+    def post(self, *args, **kwargs):
+        remove_id = int(self.kwargs.get('sale_id'))
+        for idx, sale in enumerate(self.request.session['shopping_cart']):
+            if sale.pk == remove_id:
+                del(self.request.session['shopping_cart'][idx])
+                self.request.session.save()
+                break
+        return super(ShoppingCartRemoveView, self).post(*args, **kwargs)
 
 
 class DeliveryView(TemplateView):
@@ -103,28 +71,26 @@ class DeliveryView(TemplateView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
+        """ This page requires the user to be authenticated
+        """
         return super(DeliveryView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
         ctx = super(DeliveryView, self).get_context_data(**kwargs)
 
-        post_data = None
-        if self.request.method == 'POST':
+        if self.request.method != 'POST':
+            post_data = None
+        else:
             post_data = self.request.POST
 
         ctx['billing_form'] = forms.BillingForm(post_data)
 
-        session = get_object_or_404(Session,
-                                    pk=self.request.session.session_key)
-
-        # keep the same order than in ShoppingCartView
-        items = ShoppingCartLog.objects.filter(session=session) \
-                                       .order_by('date')
+        items = self.request.session['shopping_cart']
         ctx['items'] = items
 
         DeliveryFormset = formset_factory(forms.DeliveryForm,
                                           formset=forms.RequiredFormset,
-                                          extra=items.count())
+                                          extra=len(items))
 
         ctx['delivery_formset'] = DeliveryFormset(post_data)
         ctx['tos_form'] = forms.ToSForm(post_data)
