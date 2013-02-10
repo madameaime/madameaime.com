@@ -6,7 +6,7 @@
 {% endblock %}
 {% block mmm_content %}
 <div id="checkout-delivery">
-  <form method="post" action="{% url emarket:delivery %}">
+  <form class="form form-horizontal" method="post" action="{% url emarket:delivery %}">
     {% csrf_token %}
 
     <div class="row-fluid">
