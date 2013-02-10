@@ -64,6 +64,7 @@
       <div class="row-fluid" id="social">
 	<div class="span7" id="newsletter">
 	  <form method="post" action="">
+			{% csrf_token %}
 
 	    <label for="newsletter-email">
 	      Inscrivez-vous à la Newsletter
