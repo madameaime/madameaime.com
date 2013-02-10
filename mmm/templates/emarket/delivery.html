@@ -6,71 +6,71 @@
 {% endblock %}
 {% block mmm_content %}
 <div id="checkout-delivery">
-	<form method="post" action="{% url emarket:delivery %}">
-		{% csrf_token %}
+  <form method="post" action="{% url emarket:delivery %}">
+    {% csrf_token %}
 
-		<div class="row-fluid">
-			<div class="span6">
-				<fieldset>
-					<legend>Mes informations de facturation</legend>
-					<div class="group">
-						{% include "emarket/delivery_input.html" with field_name="Prénom *" field=billing_form.firstname %}
-						{% include "emarket/delivery_input.html" with field_name="Nom *" field=billing_form.lastname %}
-						{% include "emarket/delivery_input.html" with field_name="Email *" field=billing_form.email %}
-						{% include "emarket/delivery_input.html" with field_name="Adresse *" field=billing_form.address %}
-						{% include "emarket/delivery_input.html" with field_name="Complément d'adresse" field=billing_form.additionnal %}
-						{% include "emarket/delivery_input.html" with field_name="Code postal *" field=billing_form.zip_code %}
-						{% include "emarket/delivery_input.html" with field_name="Ville *" field=billing_form.city %}
-						{% include "emarket/delivery_input.html" with field_name="Téléphone *" field=billing_form.phone %}
-					</div> <!-- group -->
-				</fieldset>
-			</div> <!-- span6 -->
+    <div class="row-fluid">
+      <div class="span6">
+	<fieldset>
+	  <legend>Mes informations de facturation</legend>
+	  <div class="group">
+	    {% include "emarket/delivery_input.html" with field_name="Prénom *" field=billing_form.firstname %}
+	    {% include "emarket/delivery_input.html" with field_name="Nom *" field=billing_form.lastname %}
+	    {% include "emarket/delivery_input.html" with field_name="Email *" field=billing_form.email %}
+	    {% include "emarket/delivery_input.html" with field_name="Adresse *" field=billing_form.address %}
+	    {% include "emarket/delivery_input.html" with field_name="Complément d'adresse" field=billing_form.additionnal %}
+	    {% include "emarket/delivery_input.html" with field_name="Code postal *" field=billing_form.zip_code %}
+	    {% include "emarket/delivery_input.html" with field_name="Ville *" field=billing_form.city %}
+	    {% include "emarket/delivery_input.html" with field_name="Téléphone *" field=billing_form.phone %}
+	  </div> <!-- group -->
+	</fieldset>
+      </div> <!-- span6 -->
 
-			<div class="span6">
-				<fieldset>
-					<legend>Où sera livré le coffret Madame Aime</legend>
-					{{delivery_formset.management_form}}
-					{% for form in delivery_formset %}
-						<div class="product">
+      <div class="span6">
+	<fieldset>
+	  <legend>Où sera livré le coffret Madame Aime</legend>
+	  {{delivery_formset.management_form}}
+	  {% for form in delivery_formset %}
+	  <div class="product">
 
-							<label class="radio">
-								<input class="receiver-addr-toggle" type="radio" name="{{form.delivery_place.html_name}}" value="0" {% if not form.delivery_place.value or form.delivery_place.value == "0" %}checked {% endif %}/>
-								Livrer le coffret à mon adresse de facturation
-							</label>
-							<label class="radio">
-								<input class="receiver-addr-toggle" type="radio" name="{{form.delivery_place.html_name}}" value="1" {% if form.delivery_place.value == "1" %}checked {% endif %}/>
-								Je souhaite une livraison directement chez la personne
-							</label>
+	    <label class="radio">
+	      <input class="receiver-addr-toggle" type="radio" name="{{form.delivery_place.html_name}}" value="0" {% if not form.delivery_place.value or form.delivery_place.value == "0" %}checked {% endif %}/>
+	      Livrer le coffret à mon adresse de facturation
+	    </label>
+	    <label class="radio">
+	      <input class="receiver-addr-toggle" type="radio" name="{{form.delivery_place.html_name}}" value="1" {% if form.delivery_place.value == "1" %}checked {% endif %}/>
+	      Je souhaite une livraison directement chez la personne
+	    </label>
 
-							<div class="receiver-addr" {% if not form.delivery_place.value or form.delivery_place.value == "0" %} style="display:none;"{% endif %}>
-								{% include "emarket/delivery_input.html" with field_name="Prénom *" field=form.firstname %}
-								{% include "emarket/delivery_input.html" with field_name="Nom *" field=form.lastname %}
-								{% include "emarket/delivery_input.html" with field_name="Email" field=form.email %}
-								{% include "emarket/delivery_input.html" with field_name="Adresse *" field=form.address %}
-								{% include "emarket/delivery_input.html" with field_name="Complément d'adresse" field=form.additionnal %}
-								{% include "emarket/delivery_input.html" with field_name="Code postal *" field=form.zip_code %}
-								{% include "emarket/delivery_input.html" with field_name="Ville *" field=form.city %}
-								{% include "emarket/delivery_input.html" with field_name="Téléphone" field=form.phone %}
-							</div>
-						</div>
-					{% endfor %}
-				</fieldset>
-			</div>
-		</div> <!-- row fluid -->
+	    <div class="receiver-addr" {% if not form.delivery_place.value or form.delivery_place.value == "0" %} style="display:none;"{% endif %}>
+	      {% include "emarket/delivery_input.html" with field_name="Prénom *" field=form.firstname %}
+	      {% include "emarket/delivery_input.html" with field_name="Nom *" field=form.lastname %}
+	      {% include "emarket/delivery_input.html" with field_name="Email" field=form.email %}
+	      {% include "emarket/delivery_input.html" with field_name="Adresse *" field=form.address %}
+	      {% include "emarket/delivery_input.html" with field_name="Complément d'adresse" field=form.additionnal %}
+	      {% include "emarket/delivery_input.html" with field_name="Code postal *" field=form.zip_code %}
+	      {% include "emarket/delivery_input.html" with field_name="Ville *" field=form.city %}
+	      {% include "emarket/delivery_input.html" with field_name="Téléphone" field=form.phone %}
+	    </div>
+	  </div>
+	  {% endfor %}
+	</fieldset>
+      </div>
+    </div> <!-- row fluid -->
 
 
-		<div class="validate">
-			{% if tos_form.tos.errors %}
-			<span class="help-block">{{tos_form.tos.errors.as_text}}</span>
-			{% endif %}
+    <div class="validate">
+      {% if tos_form.tos.errors %}
+      <span class="help-block">{{tos_form.tos.errors.as_text}}</span>
+      {% endif %}
       <label class="checkbox">
-				<input type="checkbox" name="{{tos_form.tos.html_name}}" {% if tos_form.tos.value %}checked {% endif %}/> J'ai lu et j'accepte les <a href="{% url terms %}">conditions générales de vente</a>
+	<input type="checkbox" name="{{tos_form.tos.html_name}}" {% if tos_form.tos.value %}checked {% endif %}/> J'ai lu et j'accepte les <a href="{% url terms %}">conditions générales de vente</a>
       </label>
       <label class="checkbox">
-				<input type="checkbox" name="{{tos_form.partners.html_name}}" {% if tos_form.partners.value %}checked {% endif %}/> J'accepte de recevoir des bons plans de la part des partenaires de Madame Aime
+	<input type="checkbox" name="{{tos_form.partners.html_name}}" {% if tos_form.partners.value %}checked {% endif %}/> J'accepte de recevoir des bons plans de la part des partenaires de Madame Aime
       </label>
       <button type="submit" class="btn-link shiny">Valider</button>
     </div>
-	</form>
+  </form>
 </div>
 {% endblock %}

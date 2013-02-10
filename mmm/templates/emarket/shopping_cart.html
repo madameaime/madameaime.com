@@ -16,43 +16,43 @@
     </tr>
   </thead>
   <tbody>
-		{% for object in objects %}
-		<tr>
-			<td class="thumb"></td>
+    {% for object in objects %}
+    <tr>
+      <td class="thumb"></td>
       <td class="info">
-				<b class="name">{{object.product.name}}</b><br />
+	<b class="name">{{object.product.name}}</b><br />
         <span class="description">
-					{{object.shopping_cart_description|default_if_none:""|linebreaks}}
-				</span>
+	  {{object.shopping_cart_description|default_if_none:""|linebreaks}}
+	</span>
       </td>
       <td></td>
       <td class="price">
-				<span class="value">{{object.price}} €</span><br />
-				<span class="shipping">livraison incluse</span>
+	<span class="value">{{object.price}} €</span><br />
+	<span class="shipping">livraison incluse</span>
       </td>
       <td class="delete">
-				<form method="post" action="{% url emarket:shoppingcart.remove sale_id=object.pk %}">
-					{% csrf_token %}
+	<form method="post" action="{% url emarket:shoppingcart.remove sale_id=object.pk %}">
+	  {% csrf_token %}
           <button type="submit" class="btn-link shiny">Supprimer</button>
         </form>
       </td>
     </tr>
-		{% endfor %}
+    {% endfor %}
   </tbody>
   <tfoot>
     <tr>
-			<td class="add" rowspan="2" colspan="2"><a href="{% url offer %}">Ajouter un coffret à ma commande</a></td>
+      <td class="add" rowspan="2" colspan="2"><a href="{% url offer %}">Ajouter un coffret à ma commande</a></td>
       <td class="total-label">Total</td>
       <td class="total-value">
-				<span class="value">{{total_price}} €</span><br />
+	<span class="value">{{total_price}} €</span><br />
 
         <span class="shipping">frais de port inclus</span>
       </td>
-			<td rowspan="2" class="validate"><a class="shiny" href="{% url emarket:delivery %}">Valider</a></td>
+      <td rowspan="2" class="validate"><a class="shiny" href="{% url emarket:delivery %}">Valider</a></td>
     </tr>
     <tr>
       <td class="vat-label">Dont TVA</td>
-			<td class="vat-value">{{charges|floatformat:2}}€</td>
+      <td class="vat-value">{{charges|floatformat:2}}€</td>
     </tr>
   </tfoot>
 </table>
