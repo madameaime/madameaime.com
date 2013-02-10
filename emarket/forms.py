@@ -29,6 +29,8 @@ class DeliveryForm(AddressModelForm):
         ('1', 'deliver to custom'),
     )
 
+    sale_id = forms.IntegerField()
+
     delivery_place = forms.ChoiceField(widget=forms.RadioSelect,
                             choices=DELIVERY_PLACES_CHOICES)
 
@@ -55,19 +57,6 @@ class DeliveryForm(AddressModelForm):
                     del self.errors[field]
                     cleaned_data[field] = 'x@x.xxx'
         return cleaned_data
-
-
-class RequiredFormset(BaseFormSet):
-    """ By default, every form of a formset is valid if all of its fields are
-    empty. This class changes that behaviour.
-
-    Note that this class should probably resides in a more appropriate file
-    (ie. excluded from this app) as it is generic.
-    """
-    def __init__(self, *args, **kwargs):
-        super(RequiredFormset, self).__init__(*args, **kwargs)
-        for form in self.forms:
-            form.empty_permitted = False
 
 
 class ToSForm(forms.Form):

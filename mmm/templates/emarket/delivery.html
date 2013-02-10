@@ -33,6 +33,8 @@
 	  {% for form in delivery_formset %}
 	  <div class="product">
 
+			{{form.sale_id.as_hidden}}
+
 	    <label class="radio">
 	      <input class="receiver-addr-toggle" type="radio" name="{{form.delivery_place.html_name}}" value="0" {% if not form.delivery_place.value or form.delivery_place.value == "0" %}checked {% endif %}/>
 	      Livrer le coffret à mon adresse de facturation
