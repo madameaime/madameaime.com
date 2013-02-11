@@ -1,5 +1,7 @@
 from django import forms
 
+import models
+
 
 class ContactForm(forms.Form):
 
@@ -9,3 +11,9 @@ class ContactForm(forms.Form):
     order_number = forms.CharField(required = False)
     subject = forms.CharField()
     body = forms.CharField(widget = forms.Textarea({ 'rows': 5 }))
+
+
+class NewsletterForm(forms.ModelForm):
+    class Meta:
+        model = models.Newsletter
+        exclude = ('date', 'active')

@@ -34,3 +34,9 @@ class OfferPage(models.Model):
     sale_3 = models.ForeignKey(OfferPageSale, related_name='sale_3')
 
     hurry_text = models.TextField(null=True, blank=True, default=None)
+
+
+class Newsletter(models.Model):
+    date = models.DateTimeField(default=datetime.now)
+    email = models.EmailField(unique=True)
+    active = models.BooleanField(default=True)

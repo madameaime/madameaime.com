@@ -102,6 +102,10 @@ urlpatterns = patterns('',
         name='terms'
     ),
 
+    url(r'inscription-sur-newsletter',
+        views.NewsletterView.as_view(),
+        name='newsletter.add'),
+
     url(r'^inscription$',
         'django.contrib.auth.views.login',
         {'template_name': 'registration.html'},

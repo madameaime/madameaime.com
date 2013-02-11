@@ -63,7 +63,7 @@
       {% block mmm_content %}{% endblock %}
       <div class="row-fluid" id="social">
 	<div class="span7" id="newsletter">
-	  <form method="post" action="">
+		<form method="post" action="{% url newsletter.add %}">
 			{% csrf_token %}
 
 	    <label for="newsletter-email">
@@ -71,7 +71,8 @@
 	    </label>
 
 	    <div class="forms">
-	      <input type="email" id="newsletter-email" name="newsletter_email" placeholder="Votre adresse e-mail" autocomplete="off" />
+				{% load newsletter %}
+				<input type="email" id="newsletter-email" name="{% newsletter_email_html_name %}" placeholder="Votre adresse e-mail" autocomplete="off" />
 	      <button type="submit" class="btn-link shiny" name="newsletter_submit">OK</button>
 	    </div>
 
