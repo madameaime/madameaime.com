@@ -30,15 +30,6 @@
 #offer .description p.l4 { font-size: 42px; line-height: 36px; color: #e2507f; }
 #offer .description p.l5 { font-size: 24px; line-height: 24px; }
 
-#offer .lady {
-    background: url('../img/offer/lady.png') bottom left no-repeat;
-    position: absolute;
-    width: 959px;
-    height: 333px;
-    bottom: 17px;
-    left: 0;
-}
-
 #offer .products > h1 {
     position: absolute;
     background: url('../img/offer/title.png') 0 0 no-repeat;
