@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse_lazy
 from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.views.generic import TemplateView, RedirectView
@@ -128,9 +129,9 @@ urlpatterns = patterns('',
     # Ideally, the disconnection page should present a form if accessed on GET
     # to prevent CSRF.
     url(r'deconnexion/$',
-        'django.contrib.auth.views.logout',
-        {'template_name': 'logout.html'},
-        name='logout'),
+        'django.contrib.auth.views.logout', {'next_page': reverse_lazy('homepage')},
+        name='logout'
+    ),
 
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
