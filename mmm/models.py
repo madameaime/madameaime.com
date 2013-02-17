@@ -73,7 +73,7 @@ class OfferPageSale(models.Model):
     title = models.CharField(max_length=64, null=True, blank=True, default=None)
     subtitle = models.CharField(max_length=64, null=True, blank=True, default=None)
     content = models.TextField(null=True, blank=True, default=None)
-    price_comment = models.CharField(max_length=64)
+    price_comment = models.CharField(max_length=64, null=True, blank=True, default=None)
 
 
 class OfferPage(models.Model):
