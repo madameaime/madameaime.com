@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.conf.urls import patterns, include, url
-from django.views.generic import TemplateView, simple
+from django.views.generic import TemplateView, RedirectView
 
 from django.contrib import admin
 admin.autodiscover()
@@ -10,8 +10,9 @@ import views
 
 
 urlpatterns = patterns('',
-    url(r'^favicon\.ico$', simple.redirect_to,
-        {'url': settings.STATIC_URL + 'img/favicon.ico'}),
+    url(r'^favicon\.ico$',
+        RedirectView.as_view(url=settings.STATIC_URL + 'img/favicon.ico')
+    ),
 
     url(r'^$',
         TemplateView.as_view(template_name='homepage.html'),
