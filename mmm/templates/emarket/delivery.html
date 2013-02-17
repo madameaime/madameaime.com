@@ -9,6 +9,12 @@
   <form class="form form-horizontal" method="post" action="{% url 'emarket:delivery' %}">
     {% csrf_token %}
 
+    {% if tos_form.tos.errors %}
+    <div class="alert alert-error">
+      N'oubliez pas de lire et d’accepter les conditions générales de vente !
+    </div>
+    {% endif %}
+
     <div class="row-fluid">
       <div class="span6">
 	<fieldset>
@@ -62,9 +68,6 @@
 
 
     <div class="validate">
-      {% if tos_form.tos.errors %}
-      <span class="help-block">{{tos_form.tos.errors.as_text}}</span>
-      {% endif %}
       <label class="checkbox">
 	<input type="checkbox" name="{{tos_form.tos.html_name}}" {% if tos_form.tos.value %}checked {% endif %}/> J'ai lu et j'accepte les <a href="{% url 'terms' %}">conditions générales de vente</a>
       </label>
