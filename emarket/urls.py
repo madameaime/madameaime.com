@@ -1,15 +1,15 @@
 from django.conf.urls import patterns, include, url
 
-from views import DeliveryView, PaymentView, ShoppingCartAddView, ShoppingCartRemoveView
+from views import *
 
 
 urlpatterns = patterns('',
-    url(r'^sc/add/$',
+    url(r'^emarket/sc/add/$',
         ShoppingCartAddView.as_view(),
         name='shopping-cart.add'
     ),
 
-    url(r'^sc/remove/(?P<sale_id>\d+)$',
+    url(r'^emarket/sc/remove/(?P<sale_id>\d+)$',
         ShoppingCartRemoveView.as_view(),
         name='shopping-cart.remove'),
 

@@ -125,7 +125,7 @@ urlpatterns = patterns('',
         name='payment'
     ),
 
-    url(r'emarket/',
+    url(r'',
         include('emarket.urls', namespace='emarket')
     ),
 
