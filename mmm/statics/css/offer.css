@@ -77,7 +77,7 @@
 }
 
 #offer .products > ul > li.one {
-    top: 55px;
+    top: 50px;
     left: 30px;
     width: 187px;
 }
@@ -103,8 +103,11 @@
     font-size: 28px;
 }
 
-#offer .products > ul > li.one > h2 {
-    margin: 0 0 40px 15px;
+#offer .products > ul > li > h3 {
+    font-family: 'bebas';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
 }
 
 #offer .products > ul > li.three > h2 {
@@ -114,14 +117,6 @@
 
 #offer .products > ul > li.six > h2 {
     margin: 15px 0 10px 20px;
-}
-
-#offer .products > ul > li.three > h3 {
-    font-family: 'bebas';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
-    margin: 0 0 20px 18px;
 }
 
 #offer .products > ul > li .button {
@@ -167,7 +162,7 @@
 
 #offer .products > ul > li.three > ul > li {
     font-size: 16px;
-    line-height: 35px;
+    line-height: 32px;
 }
 
 #offer .products > ul > li > ul > li {
