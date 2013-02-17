@@ -106,7 +106,8 @@ urlpatterns = patterns('',
 
     url(r'inscription-sur-newsletter',
         views.NewsletterView.as_view(),
-        name='newsletter.add'),
+        name='newsletter.add'
+    ),
 
     url(r'^inscription$',
         'django.contrib.auth.views.login',
@@ -116,11 +117,13 @@ urlpatterns = patterns('',
 
     url(r'^votre-panier$',
         emarket_views.ShoppingCartView.as_view(),
-        name='shopping-cart'),
+        name='shopping-cart'
+    ),
 
     url(r'^paiement/$',
         emarket_views.PaymentView.as_view(),
-        name='payment'),
+        name='payment'
+    ),
 
     url(r'emarket/',
         include('emarket.urls', namespace='emarket')
