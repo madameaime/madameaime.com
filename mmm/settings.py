@@ -24,7 +24,7 @@ DATABASES = {
     }
 }
 
-BE2BILL_URL = ''
+BE2BILL_URL = 'https://secure-test.be2bill.com/front/form/process.php'
 BE2BILL_IDENTIFIER = ''
 BE2BILL_PASSWORD = ''
 
