@@ -16,7 +16,7 @@
   </div>
 
   <div class="login span6">
-		<form class="form-horizontal" method="post" action="{% url django.contrib.auth.views.login %}">
+		<form class="form-horizontal" method="post" action="{% url 'django.contrib.auth.views.login' %}">
 			{% csrf_token %}
 			<fieldset>
 				<legend>Déjà enregistré ?</legend>
@@ -54,7 +54,7 @@
 
 
 {% comment %}
-<form method="post" action="{% url django.contrib.auth.views.login %}">
+<form method="post" action="{% url 'django.contrib.auth.views.login' %}">
     {% csrf_token %}
     <table>
     {{form}}

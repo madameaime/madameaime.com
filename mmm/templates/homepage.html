@@ -9,10 +9,10 @@
   <div class="carousel slide">
     <div class="carousel-inner">
       <div class="active item one">
-        <a href="{% url box %}"></a>
+        <a href="{% url 'box' %}"></a>
       </div>
       <div class="item two">
-        <a href="{% url about %}"></a>
+        <a href="{% url 'about' %}"></a>
       </div>
     </div>
     <div class="fade"></div>
@@ -40,14 +40,14 @@
       <p class="price">24,90 €</p>
       <p class="shipping">livraison incluse</p>
     </div>
-    <a href="{% url offer %}" class="more shiny">En savoir plus</a>
+    <a href="{% url 'offer' %}" class="more shiny">En savoir plus</a>
   </div>
 </section>
 
 <section id="index-gage" class="row-fluid">
-  <a class="span3 jeanne-m" href="{% url brands/jeanne-m %}"></a>
-  <a class="span3 fleur" href="{% url brands/au-pays-de-la-fleur-d-oranger %}"></a>
-  <a class="span3 newtree" href="{% url brands/newtree %}"></a>
+  <a class="span3 jeanne-m" href="{% url 'brands/jeanne-m' %}"></a>
+  <a class="span3 fleur" href="{% url 'brands/au-pays-de-la-fleur-d-oranger' %}"></a>
+  <a class="span3 newtree" href="{% url 'brands/newtree' %}"></a>
   <a class="span3 marabout" href="http://www.marabout.com" target="_blank"></a>
 </section>
 
@@ -57,7 +57,7 @@
     </div>
     <div class="overlay row-fluid">
       <div class="span7">Notre histoire</div>
-      <div class="span5"><a class="shiny" href="{% url story %}">Découvrir</a></div>
+      <div class="span5"><a class="shiny" href="{% url 'story' %}">Découvrir</a></div>
     </div>
   </div>
   <div class="span4 how-does-it-work">
@@ -65,7 +65,7 @@
     </div>
     <div class="overlay row-fluid">
       <div class="span7">Comment ça marche ?</div>
-      <div class="span5"><a class="shiny" href="{% url how-does-it-work %}">Découvrir</a></div>
+      <div class="span5"><a class="shiny" href="{% url 'how-does-it-work' %}">Découvrir</a></div>
     </div>
   </div>
   <div class="span4 gift">
@@ -73,7 +73,7 @@
     </div>
     <div class="overlay row-fluid">
       <div class="span7">Le cadeau idéal</div>
-      <div class="span5"><a class="shiny" href="{% url offer %}">Offrir</a></div>
+      <div class="span5"><a class="shiny" href="{% url 'offer' %}">Offrir</a></div>
     </div>
   </div>
 </section>

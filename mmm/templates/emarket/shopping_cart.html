@@ -31,7 +31,7 @@
 	<span class="shipping">livraison incluse</span>
       </td>
       <td class="delete">
-	<form method="post" action="{% url emarket:shoppingcart.remove sale_id=object.pk %}">
+	<form method="post" action="{% url 'emarket:shoppingcart.remove' sale_id=object.pk %}">
 	  {% csrf_token %}
           <button type="submit" class="btn-link shiny">Supprimer</button>
         </form>
@@ -41,14 +41,14 @@
   </tbody>
   <tfoot>
     <tr>
-      <td class="add" rowspan="2" colspan="2"><a href="{% url offer %}">Ajouter un coffret à ma commande</a></td>
+      <td class="add" rowspan="2" colspan="2"><a href="{% url 'offer' %}">Ajouter un coffret à ma commande</a></td>
       <td class="total-label">Total</td>
       <td class="total-value">
 	<span class="value">{{total_price}} €</span><br />
 
         <span class="shipping">frais de port inclus</span>
       </td>
-      <td rowspan="2" class="validate"><a class="shiny" href="{% url emarket:delivery %}">Valider</a></td>
+      <td rowspan="2" class="validate"><a class="shiny" href="{% url 'emarket:delivery' %}">Valider</a></td>
     </tr>
     <tr>
       <td class="vat-label">Dont TVA</td>

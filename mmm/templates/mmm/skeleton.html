@@ -34,28 +34,28 @@
     <div id="container">
       <nav id="header" class="clearfix">
 	<div id="header-logo" class="pull-left">
-	  <a href="{% url homepage %}" title="Le coffret cadeau qui plaît aux femmes !">Madame Aime</a>
+	  <a href="{% url 'homepage' %}" title="Le coffret cadeau qui plaît aux femmes !">Madame Aime</a>
 	</div>
 
 	<div class="fb-like" data-href="https://www.facebook.com/pages/Madame-Aime/435771933150281" data-send="false" data-layout="button_count" data-show-faces="false"></div>
 	<div class="header-inner pull-right">
 	  <div id="header-login" class="pull-right">
             {% if user.is_authenticated %}
-                <a href="" class="my"><i class="icon-account"></i> Mon compte</a>
-                <a href="{% url shoppingcart %}" class="shopping-cart"><i class="icon-shopping-cart"></i> Panier</a>
-                <a href="{% url logout %}" class="disconnect">Déconnexion</a>
+            <a href="" class="my"><i class="icon-account"></i> Mon compte</a>
+            <a href="{% url 'shoppingcart' %}" class="shopping-cart"><i class="icon-shopping-cart"></i> Panier</a>
+            <a href="{% url 'logout' %}" class="disconnect">Déconnexion</a>
             {% else %}
-                <a href="{% url registration %}" class="account"><i class="icon-account"></i> Se connecter / S'inscrire</a>
-                <a href="{% url shoppingcart %}" class="shopping-cart"><i class="icon-shopping-cart"></i> Panier</a>
+            <a href="{% url 'registration' %}" class="account"><i class="icon-account"></i> Se connecter / S'inscrire</a>
+            <a href="{% url 'shoppingcart' %}" class="shopping-cart"><i class="icon-shopping-cart"></i> Panier</a>
 	    {% endif %}
 	  </div>
 
 	  <div id="header-nav">
-	    <a href="{% url homepage %}">Accueil</a>
-	    <a href="{% url how-does-it-work %}">Comment ça marche ?</a>
-	    <a href="{% url offer %}">Offrir</a>
-	    <a href="{% url brands %}">Marques</a>
-	    <a href="{% url box %}">Coffret</a>
+	    <a href="{% url 'homepage' %}">Accueil</a>
+	    <a href="{% url 'how-does-it-work' %}">Comment ça marche ?</a>
+	    <a href="{% url 'offer' %}">Offrir</a>
+	    <a href="{% url 'brands' %}">Marques</a>
+	    <a href="{% url 'box' %}">Coffret</a>
 	    <a href="http://blog.madameaime.com">Blog</a>
 	  </div>
 	</div>
@@ -63,16 +63,16 @@
       {% block mmm_content %}{% endblock %}
       <div class="row-fluid" id="social">
 	<div class="span7" id="newsletter">
-		<form method="post" action="{% url newsletter.add %}">
-			{% csrf_token %}
+	  <form method="post" action="{% url 'newsletter.add' %}">
+	    {% csrf_token %}
 
 	    <label for="newsletter-email">
 	      Inscrivez-vous à la Newsletter
 	    </label>
 
 	    <div class="forms">
-				{% load newsletter %}
-				<input type="email" id="newsletter-email" name="{% newsletter_email_html_name %}" placeholder="Votre adresse e-mail" autocomplete="off" />
+	      {% load newsletter %}
+	      <input type="email" id="newsletter-email" name="{% newsletter_email_html_name %}" placeholder="Votre adresse e-mail" autocomplete="off" />
 	      <button type="submit" class="btn-link shiny" name="newsletter_submit">OK</button>
 	    </div>
 
@@ -95,31 +95,31 @@
 	  <div class="span3">
 	    <h3>Madame Aime</h3>
 	    <ul>
-	      <li><a href="{% url how-does-it-work %}">Comment ça marche ?</a></li>
-	      <li><a href="{% url offer %}">Offrir</a></li>
-	      <li><a href="{% url brands %}">Marques</a></li>
-	      <li><a href="{% url box %}">Coffret</a></li>
+	      <li><a href="{% url 'how-does-it-work' %}">Comment ça marche ?</a></li>
+	      <li><a href="{% url 'offer' %}">Offrir</a></li>
+	      <li><a href="{% url 'brands' %}">Marques</a></li>
+	      <li><a href="{% url 'box' %}">Coffret</a></li>
 	      <li><a href="http://blog.madameaime.com">Le Blog</a></li>
 	    </ul>
 	  </div>
 	  <div class="span3">
 	    <h3>À propos</h3>
 	    <ul>
-	      <li><a href="{% url about %}">Qui sommes-nous ?</a></li>
-	      <li><a href="{% url story %}">Notre histoire</a></li>
-	      <li><a href="{% url delivery %}">Livraison</a></li>
-	      <li><a href="{% url sales-conditions %}">Conditions Générales de Vente</a></li>
-	      <li><a href="{% url legal %}">Mentions légales</a></li>
+	      <li><a href="{% url 'about' %}">Qui sommes-nous ?</a></li>
+	      <li><a href="{% url 'story' %}">Notre histoire</a></li>
+	      <li><a href="{% url 'delivery' %}">Livraison</a></li>
+	      <li><a href="{% url 'sales-conditions' %}">Conditions Générales de Vente</a></li>
+	      <li><a href="{% url 'legal' %}">Mentions légales</a></li>
 	    </ul>
 	  </div>
 	  <div class="span3">
 	    <h3>Contactez-nous</h3>
 	    <ul>
-	      <li><a href="{% url contact %}">Contact</a></li>
-	      <li><a href="{% url faq %}">Foire aux questions</a></li>
+	      <li><a href="{% url 'contact' %}">Contact</a></li>
+	      <li><a href="{% url 'faq' %}">Foire aux questions</a></li>
 	      <li><a href="mailto:partenaire@madameaime.com">Devenir partenaire</a></li>
-	      <li><a href="{% url press %}">Presse</a></li>
-	      <li><a href="{% url jobs %}">Recrutement</a></li>
+	      <li><a href="{% url 'press' %}">Presse</a></li>
+	      <li><a href="{% url 'jobs' %}">Recrutement</a></li>
 	    </ul>
 	  </div>
 	  <div class="span3">

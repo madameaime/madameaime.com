@@ -15,7 +15,7 @@
     Nous vous répondrons par email dans les plus brefs délais.
   </p>
 
-  <form action="{% url contact %}" method="post" class="form-horizontal">
+  <form action="{% url 'contact' %}" method="post" class="form-horizontal">
     {% csrf_token %}
 
     <div class="control-group{% if form.first_name.errors %} error{% endif %}">

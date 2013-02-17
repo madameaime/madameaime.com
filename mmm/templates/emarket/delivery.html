@@ -6,7 +6,7 @@
 {% endblock %}
 {% block mmm_content %}
 <div id="checkout-delivery">
-  <form class="form form-horizontal" method="post" action="{% url emarket:delivery %}">
+  <form class="form form-horizontal" method="post" action="{% url 'emarket:delivery' %}">
     {% csrf_token %}
 
     <div class="row-fluid">
@@ -66,7 +66,7 @@
       <span class="help-block">{{tos_form.tos.errors.as_text}}</span>
       {% endif %}
       <label class="checkbox">
-	<input type="checkbox" name="{{tos_form.tos.html_name}}" {% if tos_form.tos.value %}checked {% endif %}/> J'ai lu et j'accepte les <a href="{% url terms %}">conditions générales de vente</a>
+	<input type="checkbox" name="{{tos_form.tos.html_name}}" {% if tos_form.tos.value %}checked {% endif %}/> J'ai lu et j'accepte les <a href="{% url 'terms' %}">conditions générales de vente</a>
       </label>
       <label class="checkbox">
 	<input type="checkbox" name="{{tos_form.partners.html_name}}" {% if tos_form.partners.value %}checked {% endif %}/> J'accepte de recevoir des bons plans de la part des partenaires de Madame Aime
