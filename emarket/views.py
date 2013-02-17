@@ -184,9 +184,10 @@ class PaymentView(TemplateView):
     def get_context_data(self, **kwargs):
         ctx = super(PaymentView, self).get_context_data(**kwargs)
         order_id = self.request.GET.get('order')
-        # TODO: ensure that the order belongs to self.request.user
-        # and has not already been paid and if it not the case raise a Http404.
-        order = get_object_or_404(Order, exposed_id=order_id)
+        # TODO: ensure that the order has not already been paid or raise a
+        # Http404.
+        order = get_object_or_404(Order, exposed_id=order_id,
+                                  user=self.request.user)
         sales = OrderSale.objects.filter(order=order)
         price = int(sum(sale.sale.price * 100 for sale in sales))
         ctx['form'] = forms.Be2billForm({
