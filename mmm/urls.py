@@ -129,8 +129,6 @@ urlpatterns = patterns('',
         include('emarket.urls', namespace='emarket')
     ),
 
-    # Ideally, the disconnection page should present a form if accessed on GET
-    # to prevent CSRF.
     url(r'deconnexion/$',
         'django.contrib.auth.views.logout', {'next_page': reverse_lazy('homepage')},
         name='logout'
