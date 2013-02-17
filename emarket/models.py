@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from django.contrib.auth.models import User
+from django.conf import settings
 from django.contrib.sessions.models import Session
 from django.db import models
 
@@ -28,7 +28,7 @@ class Order(models.Model):
 
     exposed_id = models.CharField(max_length=32)
     date       = models.DateTimeField(auto_now_add=True)
-    user       = models.ForeignKey(User)
+    user       = models.ForeignKey(settings.AUTH_USER_MODEL)
     billing    = models.ForeignKey('Address')
 
 

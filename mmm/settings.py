@@ -133,8 +133,10 @@ INSTALLED_APPS = (
 
     'mmm',
     'stockmgmt',
-    'emarket',
+    'emarket'
 )
+
+AUTH_USER_MODEL = 'mmm.User'
 
 INTERNAL_IPS = ('127.0.0.1',)
 
