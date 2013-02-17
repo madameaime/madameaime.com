@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 
-from views import DeliveryView, ShoppingCartAddView, ShoppingCartRemoveView
+from views import DeliveryView, PaymentView, ShoppingCartAddView, ShoppingCartRemoveView
 
 
 urlpatterns = patterns('',

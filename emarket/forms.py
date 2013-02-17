@@ -1,5 +1,8 @@
 from django import forms
+from django.conf import settings
 from django.forms.formsets import BaseFormSet
+
+from be2bill import PaymentForm
 
 from models import Address
 
@@ -65,3 +68,25 @@ class ToSForm(forms.Form):
     """
     tos = forms.BooleanField()
     partners = forms.BooleanField(required=False)
+
+
+class Be2billForm(forms.Form):
+
+    def __init__(self, fields, *args, **kwargs):
+        """ fields is a dictionary of form fields 
+        """
+        # Default params
+        defaults = {
+            'IDENTIFIER': settings.BE2BILL_IDENTIFIER,
+            '3DSECURE': 'no'
+        }
+
+        b2b_form = PaymentForm(url=settings.BE2BILL_URL,
+                               fields=dict(list(defaults.items())
+                                         + list(fields.items())))
+        # .get_fields() checks that all fields are valid and computes the HASH
+        all_fields = b2b_form.get_fields(settings.BE2BILL_PASSWORD)
+        super(Be2billForm, self).__init__(initial=all_fields, *args, **kwargs)
+        # dynamically create fields
+        for key in all_fields:
+            self.fields[key] = forms.CharField()

@@ -1,0 +1,24 @@
+{% extends "mmm/skeleton.html" %}
+{% block head_title %}Paiement de votre commande sur Madame Aime{% endblock %}
+{% block meta_description %}Paiement de votre commande sur Madame Aime{% endblock %}
+{% block extra_head %}
+<link href="{{STATIC_URL}}css/checkout.css" rel="stylesheet" type="text/css" media="all" />
+{% endblock %}
+{% block mmm_content %}
+<div id="checkout-payment" class="row-fluid">
+	<form id="payment_form" method="post" action="{{form_action}}">
+		<fieldset>
+			Vous allez être redirigé vers notre système de paiement sécurisé.
+		</fieldset>
+		{% for field in form %}
+		{{field.as_hidden}}
+		{% endfor %}
+    <div class="control-group">
+      <label class="control-label">Cliquez ci-dessous pour accéder directement à l'interface de paiement</label>
+      <div class="controls">
+				<button type="submit" class="btn-link shiny" id="payment_submit" name="ok">Paiement</button>
+      </div>
+    </div>
+	</form>
+</div>
+{% endblock %}

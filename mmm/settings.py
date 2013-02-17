@@ -24,6 +24,10 @@ DATABASES = {
     }
 }
 
+BE2BILL_URL = ''
+BE2BILL_IDENTIFIER = ''
+BE2BILL_PASSWORD = ''
+
 # Redirect the user to this URL after authentication success
 from django.core.urlresolvers import reverse_lazy
 LOGIN_REDIRECT_URL = reverse_lazy('offer')

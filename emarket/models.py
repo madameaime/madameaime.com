@@ -21,6 +21,7 @@ class Sale(models.Model):
         default=None, blank=True,
         help_text='text displayed in the shopping cart')
 
+
 class Order(models.Model):
 
     def __unicode__(self):

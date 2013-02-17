@@ -3,6 +3,7 @@ from decimal import Decimal
 import random
 import string
 
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.db import IntegrityError
@@ -107,7 +108,8 @@ class DeliveryView(TemplateView):
                        for x in range(8))
 
     def _create_order(self, request, billing_form, delivery_formset):
-        """ Insert a new Order, and correspondings OrderSale entries """
+        """ Insert a new Order, and correspondings OrderSale entries. Return
+        the order_id. """
 
         billing_address = billing_form.save()
 
@@ -138,6 +140,7 @@ class DeliveryView(TemplateView):
             # Create the order sale
             osale = OrderSale(order=order, sale=sale, delivery=delivery)
             osale.save()
+        return order_id
 
     def post(self, request):
         ctx = self.get_context_data()
@@ -155,6 +158,35 @@ class DeliveryView(TemplateView):
             return self.render_to_response(ctx)
 
         # Forms are valid, create the order
-        self._create_order(request, billing_form, delivery_formset)
+        order_id = self._create_order(request, billing_form, delivery_formset)
         # Redirect to the payment process page
-        return self.render_to_response(ctx)
+        return redirect(reverse('payment') + '?order=%s' % order_id,
+                        permanent=False)
+
+
+class PaymentView(TemplateView):
+    template_name = 'emarket/payment.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        """ This page required the user to be authenticated
+        """
+        return super(PaymentView, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        ctx = super(PaymentView, self).get_context_data(**kwargs)
+        order_id = self.request.GET.get('order')
+        # TODO: ensure that the order belongs to self.request.user
+        # and has not already been paid and if it not the case raise a Http404.
+        order = get_object_or_404(Order, exposed_id=order_id)
+        sales = OrderSale.objects.filter(order=order)
+        price = int(sum(sale.sale.price * 100 for sale in sales))
+        ctx['form'] = forms.Be2billForm({
+            "CLIENTIDENT": order.billing.email,
+            "DESCRIPTION": "Les coffrets de Madame Aime",
+            "CLIENTEMAIL": order.billing.email,
+            "ORDERID": order.exposed_id,
+            "AMOUNT": price,
+        })
+        ctx['form_action'] = settings.BE2BILL_URL
+        return ctx
