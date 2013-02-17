@@ -45,7 +45,7 @@ class ShoppingCartView(TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(ShoppingCartView, self).get_context_data(**kwargs)
-        ctx['objects'] = self.request.session['shopping_cart']
+        ctx['objects'] = self.request.session.get('shopping_cart', [])
         ctx['total_price'] = sum(sale.price for sale in ctx['objects'])
         ctx['charges'] = ctx['total_price'] * Decimal('0.196')
         return ctx
@@ -58,9 +58,10 @@ class ShoppingCartRemoveView(RedirectView):
 
     def post(self, *args, **kwargs):
         remove_id = int(self.kwargs.get('sale_id'))
-        for idx, sale in enumerate(self.request.session['shopping_cart']):
+        objects = self.request.session.get('shopping_cart', [])
+        for idx, sale in enumerate(objects):
             if sale.pk == remove_id:
-                del(self.request.session['shopping_cart'][idx])
+                del(objects[idx])
                 self.request.session.save()
                 break
         return super(ShoppingCartRemoveView, self).post(*args, **kwargs)
@@ -86,7 +87,7 @@ class DeliveryView(TemplateView):
         else:
             post_data = self.request.POST
 
-        items = self.request.session['shopping_cart']
+        items = self.request.session.get('shopping_cart', [])
 
         DeliveryFormset = formset_factory(forms.DeliveryForm, extra=0)
         # Billing form
