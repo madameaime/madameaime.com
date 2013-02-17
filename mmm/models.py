@@ -13,6 +13,7 @@ class UserManager(BaseUserManager):
         """
         Creates and saves a User with the given email and password.
         """
+
         now = timezone.now()
         if not email:
             raise ValueError('The given email must be set')

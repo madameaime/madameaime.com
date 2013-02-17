@@ -1,0 +1,19 @@
+{% extends "mmm/skeleton.html" %}
+{% block head_title %}Inscription ou Connexion à votre compte{% endblock %}
+{% block extra_head %}
+<link href="{{STATIC_URL}}css/auth.css" rel="stylesheet" type="text/css" media="all" />
+{% endblock %}
+{% block meta_description %}Inscrivez vous sur Madame Aime et offrez un coffret cadeau original{% endblock %}
+{% block mmm_content %}
+
+<div id="auth" class="row-fluid">
+  <div class="register span6">
+    {% include 'auth/register.html' with form=registration_form %}
+  </div>
+
+  <div class="login span6">
+    {% include 'auth/login.html' with form=login_form %}
+  </div>
+</div>
+
+{% endblock %}

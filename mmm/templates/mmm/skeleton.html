@@ -45,7 +45,7 @@
             <a href="{% url 'shopping-cart' %}" class="shopping-cart"><i class="icon-shopping-cart"></i> Panier</a>
             <a href="{% url 'logout' %}" class="disconnect">Déconnexion</a>
             {% else %}
-            <a href="{% url 'registration' %}" class="account"><i class="icon-account"></i> Se connecter / S'inscrire</a>
+            <a href="{% url 'login' %}" class="account"><i class="icon-account"></i> Se connecter / S'inscrire</a>
             <a href="{% url 'shopping-cart' %}" class="shopping-cart"><i class="icon-shopping-cart"></i> Panier</a>
 	    {% endif %}
 	  </div>

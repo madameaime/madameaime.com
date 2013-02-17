@@ -110,9 +110,13 @@ urlpatterns = patterns('',
     ),
 
     url(r'^inscription$',
-        'django.contrib.auth.views.login',
-        {'template_name': 'registration.html'},
-        name='registration'
+        views.RegistrationView.as_view(),
+        name='register'
+    ),
+
+    url(r'^se-connecter$',
+        views.LoginView.as_view(),
+        name='login'
     ),
 
     url(r'^votre-panier$',
