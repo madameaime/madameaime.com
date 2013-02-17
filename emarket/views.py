@@ -71,11 +71,17 @@ class ShoppingCartRemoveView(RedirectView):
 class DeliveryView(TemplateView):
     template_name = 'emarket/delivery.html'
 
+    class EmptyShoppingCart(Exception):
+        pass
+
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         """ This page requires the user to be authenticated
         """
-        return super(DeliveryView, self).dispatch(*args, **kwargs)
+        try:
+            return super(DeliveryView, self).dispatch(*args, **kwargs)
+        except DeliveryView.EmptyShoppingCart:
+            return redirect(reverse('offer'), permanent=False)
 
     def get_context_data(self, **kwargs):
         """ Generate the three forms displayed (billing info, delivery info and
@@ -89,6 +95,8 @@ class DeliveryView(TemplateView):
             post_data = self.request.POST
 
         items = self.request.session.get('shopping_cart', [])
+        if len(items) == 0:
+            raise DeliveryView.EmptyShoppingCart("Cannot delivery nothing")
 
         DeliveryFormset = formset_factory(forms.DeliveryForm, extra=0)
         # Billing form
