@@ -115,7 +115,7 @@ urlpatterns = patterns('',
 
     url(r'^votre-panier$',
         emarket_views.ShoppingCartView.as_view(),
-        name='shoppingcart'),
+        name='shopping-cart'),
 
     url(r'emarket/',
         include('emarket.urls', namespace='emarket')

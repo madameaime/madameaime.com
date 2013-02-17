@@ -31,7 +31,7 @@
 	<span class="shipping">livraison incluse</span>
       </td>
       <td class="delete">
-	<form method="post" action="{% url 'emarket:shoppingcart.remove' sale_id=object.pk %}">
+	<form method="post" action="{% url 'emarket:shopping-cart.remove' sale_id=object.pk %}">
 	  {% csrf_token %}
           <button type="submit" class="btn-link shiny">Supprimer</button>
         </form>

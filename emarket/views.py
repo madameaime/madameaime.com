@@ -37,11 +37,11 @@ class ShoppingCartAddView(View):
 
         request.session.setdefault('shopping_cart', []).append(sale)
         request.session.modified = True
-        return redirect(reverse('shoppingcart'), permanent=False)
+        return redirect(reverse('shopping-cart'), permanent=False)
 
 
 class ShoppingCartView(TemplateView):
-    template_name = 'emarket/shopping_cart.html'
+    template_name = 'emarket/shopping-cart.html'
 
     def get_context_data(self, **kwargs):
         ctx = super(ShoppingCartView, self).get_context_data(**kwargs)
@@ -54,7 +54,7 @@ class ShoppingCartView(TemplateView):
 class ShoppingCartRemoveView(RedirectView):
 
     permanent = False
-    url = reverse_lazy('shoppingcart')
+    url = reverse_lazy('shopping-cart')
 
     def post(self, *args, **kwargs):
         remove_id = int(self.kwargs.get('sale_id'))
