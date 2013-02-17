@@ -1,7 +1,9 @@
 <div class="control-group{% if field.errors %} error{% endif %}">
   <label class="control-label" for="{{field.id_for_label}}">{{field_name}}</label>
   <div class="controls">
-    {% if field.errors %}<span class="help-block">{{field.errors.as_text}}</span>{% endif %}
-    <input type="text" class="input-xlarge" name="{{field.html_name}}" id="{{field.id_for_label}}" value="{{field.value|default_if_none:""}}" />
+    {% if field.errors and display_error_messages %}
+    <span class="help-block">{{field.errors.as_text}}</span>
+    {% endif %}
+    <input type="{{field_type|default:"text"}}" class="input-xlarge" name="{{field.html_name}}" id="{{field.id_for_label}}" value="{{field.value|default_if_none:""}}" />
   </div>
 </div>

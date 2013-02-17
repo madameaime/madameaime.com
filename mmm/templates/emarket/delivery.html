@@ -16,7 +16,7 @@
 	  <div class="group">
 	    {% include "emarket/delivery-input.html" with field_name="Prénom *" field=billing_form.firstname %}
 	    {% include "emarket/delivery-input.html" with field_name="Nom *" field=billing_form.lastname %}
-	    {% include "emarket/delivery-input.html" with field_name="Email *" field=billing_form.email %}
+	    {% include "emarket/delivery-input.html" with field_name="Email *" field_type="email" field=billing_form.email %}
 	    {% include "emarket/delivery-input.html" with field_name="Adresse *" field=billing_form.address %}
 	    {% include "emarket/delivery-input.html" with field_name="Complément d'adresse" field=billing_form.additionnal %}
 	    {% include "emarket/delivery-input.html" with field_name="Code postal *" field=billing_form.zip_code %}

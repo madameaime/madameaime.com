@@ -68,7 +68,12 @@ a:hover { color: #e2507f; text-decoration: none; }
     box-shadow: none;
 }
 
-#container .error input[type=text], #container .error textarea { border-color: #b94a48; }
+#container .error input[type=text],
+#container .error input[type=email],
+#container .error input[type=password],
+#container .error textarea {
+    border-color: #b94a48;
+}
 
 .boring, .boring-alert {
     background-color: #ffffff;
