@@ -8,10 +8,9 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from django.db import IntegrityError
 from django.forms.formsets import formset_factory
 from django.http import Http404, HttpResponseServerError
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.utils.decorators import method_decorator
 from django.views.generic import DeleteView, TemplateView, RedirectView, View
-from django.views.generic.simple import direct_to_template, redirect_to
 
 from models import Order, OrderSale, Sale
 import forms
@@ -38,7 +37,7 @@ class ShoppingCartAddView(View):
 
         request.session.setdefault('shopping_cart', []).append(sale)
         request.session.modified = True
-        return redirect_to(request, reverse('shoppingcart'), permanent=False)
+        return redirect(reverse('shoppingcart'), permanent=False)
 
 
 class ShoppingCartView(TemplateView):
