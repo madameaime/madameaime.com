@@ -3,6 +3,7 @@ from decimal import Decimal
 import random
 import string
 
+from be2bill import PaymentForm
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse, reverse_lazy
@@ -191,11 +192,24 @@ class PaymentView(TemplateView):
         sales = OrderSale.objects.filter(order=order)
         price = int(sum(sale.sale.price * 100 for sale in sales))
         ctx['form'] = forms.Be2billForm({
-            "CLIENTIDENT": order.billing.email,
-            "DESCRIPTION": "Les coffrets de Madame Aime",
-            "CLIENTEMAIL": order.billing.email,
-            "ORDERID": order.exposed_id,
-            "AMOUNT": price,
-        })
-        ctx['form_action'] = settings.BE2BILL_URL
+                        "CLIENTIDENT": order.billing.email,
+                        "DESCRIPTION": "Les coffrets de Madame Aime",
+                        "CLIENTEMAIL": order.billing.email,
+                        "ORDERID": order.exposed_id,
+                        "AMOUNT": price })
+        return ctx
+
+
+class CheckoutOKClient(TemplateView):
+
+    def get_template_names(self):
+        PaymentForm.verify_hash(settings.BE2BILL_PASSWORD,
+                                self.request.GET)
+        if self.request.GET.get('EXECCODE') in ('0000', '0001'):
+            return 'emarket/checkout-ok-client.html'
+        return 'emarket/checkout-ko-client.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(CheckoutOKClient, self).get_context_data(**kwargs)
+        ctx['GET'] = self.request.GET
         return ctx

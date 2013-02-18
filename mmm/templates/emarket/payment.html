@@ -6,7 +6,7 @@
 {% endblock %}
 {% block mmm_content %}
 <div id="checkout-payment" class="row-fluid">
-	<form id="payment_form" method="post" action="{{form_action}}">
+	<form id="payment_form" method="post" action="{{form.get_url}}">
 		<fieldset>
 			Vous allez être redirigé vers notre système de paiement sécurisé.
 		</fieldset>

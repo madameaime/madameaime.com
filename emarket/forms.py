@@ -70,23 +70,21 @@ class ToSForm(forms.Form):
     partners = forms.BooleanField(required=False)
 
 
-class Be2billForm(forms.Form):
-
+class Be2billForm(forms.Form, PaymentForm):
     def __init__(self, fields, *args, **kwargs):
-        """ fields is a dictionary of form fields 
-        """
         # Default params
         defaults = {
             'IDENTIFIER': settings.BE2BILL_IDENTIFIER,
             '3DSECURE': 'no'
         }
-
-        b2b_form = PaymentForm(url=settings.BE2BILL_URL,
-                               fields=dict(list(defaults.items())
-                                         + list(fields.items())))
-        # .get_fields() checks that all fields are valid and computes the HASH
-        all_fields = b2b_form.get_fields(settings.BE2BILL_PASSWORD)
-        super(Be2billForm, self).__init__(initial=all_fields, *args, **kwargs)
-        # dynamically create fields
-        for key in all_fields:
+        # be2bill.PaymentForm ctor
+        PaymentForm.__init__(self,
+                url=settings.BE2BILL_URL,
+                fields=dict(list(defaults.items()) + list(fields.items())))
+        # Get fields
+        fields = self.get_fields(settings.BE2BILL_PASSWORD)
+        # django.forms.Form ctor
+        forms.Form.__init__(self, initial=fields, *args, **kwargs)
+        # Create fields dynamically for this form
+        for key in fields:
             self.fields[key] = forms.CharField()

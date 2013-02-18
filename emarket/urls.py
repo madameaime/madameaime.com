@@ -16,4 +16,9 @@ urlpatterns = patterns('',
     url(r'^vos-adresses-de-livraison/$',
         DeliveryView.as_view(),
         name='delivery'),
+
+    # Confirm the client everything went fine
+    url(r'^checkout-ok/$',
+        CheckoutOKClient.as_view(),
+        name='checkout_ok.client'),
 )

@@ -1,23 +1,21 @@
 from hashlib import sha256
 
-from exceptions import ImproperlyConfigured, ValidationError
+from .exceptions import (ImproperlyConfigured, HashValidationError,
+                         ValidationError)
 
 
 class FormMixin(object):
 
+    # Be2bill URL where to redirect the user
     url = None
 
-    fields = {
-        'VERSION': '2.0'
-    }
+    # current version
+    fields = {'VERSION': '2.0'}
 
     required_fields = None
     optional_felds = None
 
     def __init__(self, fields=None, **kwargs):
-        """ Update self.fields and, for every <key> of kwargs, set
-        self.<key> = kwarg[key]
-        """
         if fields:
             self.fields.update(fields)
 
@@ -25,42 +23,75 @@ class FormMixin(object):
             setattr(self, key, value)
 
     def get_url(self):
+        """ Instead of directly setting the url, it might be useful to compute
+        it dynamically. For instance, if the URI is test.domain.com we could
+        redirect to the test extranet, otherwise to the production extranet.
+        """
         if self.url is None:
             raise ImproperlyConfigured(
                 "be2bill FormMixin requires either a definition of "
                 "'url' or an implementation of 'get_url'")
         return self.url
 
-    def make_hash(self, b2b_passwd):
+    @staticmethod
+    def _compute_fields_hash(b2b_passwd, fields):
+        """ Internal function return the Be2bill hash from fields.
+
+        The hash is the sha256 of the clear string
+            PASSWD + (KEY + '=' + VALUE) + PASSWD
+
+        where PASSWD is the private password provided by Be2bill, and KEY/VALUE
+        are the values to sign (key 'HASH' excluded)
+        """
         clear = b2b_passwd
         clear += ''.join('%(key)s=%(value)s%(password)s' % {
                             'key': key,
-                            'value': self.fields[key],
+                            'value': fields[key],
                             'password': b2b_passwd
-                        } for key in sorted(self.fields))
+                        } for key in sorted(fields)
+                           if key != 'HASH')
         return sha256(clear).hexdigest()
 
-    def get_fields(self, b2b_passwd):
-        if not self.is_valid():
-            return None
-        hash_field = ('HASH', self.make_hash(b2b_passwd))
-        return dict(self.fields.items() + [hash_field])
+    def make_hash(self, b2b_passwd):
+        """ Compute the Be2bill hash from form fields
+        """
+        return self._compute_fields_hash(b2b_passwd, self.fields)
 
-    def is_valid(self):
-        """ Ensure that fields all required fields are present, and there's no
+    @staticmethod
+    def verify_hash(b2b_passwd, fields, hash=None):
+        """ Compute the Be2bill hash from fields, and ensure that it is equal
+        to `hash` or, if None, to `fields['HASH']`.
+
+        If not equal, raise exceptions.HashValidationError
+        """
+        verified = FormMixin._compute_fields_hash(b2b_passwd, fields)
+        if (hash or fields['HASH']) != verified:
+            raise HashValidationError('Invalid hash for these fields')
+
+    def ensure_fields_validation(self):
+        """ Ensure that fields all required fields are present and there's no
         extra invalid fields.
         """
         missing_required = set(self.required_fields) - set(self.fields)
         if len(missing_required) != 0:
             raise ValidationError("Missing required fields: %s" %
                                   ', '.join(missing_required))
-
         extra_fields = (set(self.fields)
                       - set(self.required_fields) - set(self.optional_fields))
         if len(extra_fields) != 0:
             raise ValidationError("Extra invalid fields: %s" %
                                   ', '.join(extra_fields))
-        return True
+
+    def get_fields(self, b2b_passwd):
+        """ Return all fields set in ctor, ensure they are valid (no missing
+        required field or no extra field), compute the Be2bill hash and return
+        fields to display in a form.
+
+        Raise exceptions.ValidationError if missing/extra fields.
+        """
+        self.ensure_fields_validation()
+        hash_field = ('HASH', self.make_hash(b2b_passwd))
+        return dict(self.fields.items() + [hash_field])
 
 
 class PaymentForm(FormMixin):
@@ -78,8 +109,8 @@ class PaymentForm(FormMixin):
     )
 
     def __init__(self, fields=None, **kwargs):
-        """ If OPERATIONTYPE is not in fields, set its default value to PAYMENT
-        and call the parent __init__ method.
+        """ Set the default value for OPERATIONTYPE to PAYMENT and initialize
+        required and optional fields.
         """
         if fields is None:
             fields = {}
@@ -93,20 +124,3 @@ class AuthorizationForm(FormMixin):
     """ Not yet implemented
     """
     pass
-
-
-if __name__ == '__main__':
-    url = 'https://secure-test.be2bill.com/front/form/process.php'
-    identifier = '1R2Box'
-    b2b_password = 'W%ZIlle@WK$ZO>J9'
-    form = PaymentForm(url=url,
-            fields={
-                "IDENTIFIER": identifier,
-                "3DSECURE": "no",
-                "CLIENTIDENT": "toto@gmail.com",
-                "DESCRIPTION": "Les coffrets de Madame Aime",
-                "CLIENTEMAIL": "toto@gmail.com",
-                "ORDERID": "3AI72572QS4L3B4R",
-                "AMOUNT": "4980",
-            })
-    print form.get_fields(b2b_password)
