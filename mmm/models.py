@@ -71,10 +71,10 @@ class OfferPageSale(models.Model):
         return self.sale.product.name
 
     sale = models.ForeignKey(emarket.models.Sale)
-    title = models.CharField(max_length=64, null=True, blank=True, default=None)
-    subtitle = models.CharField(max_length=64, null=True, blank=True, default=None)
-    content = models.TextField(null=True, blank=True, default=None)
-    price_comment = models.CharField(max_length=64, null=True, blank=True, default=None)
+    title = models.CharField(max_length=64, blank=True)
+    subtitle = models.CharField(max_length=64, blank=True)
+    content = models.TextField(blank=True)
+    price_comment = models.CharField(max_length=64, blank=True)
 
 
 class OfferPage(models.Model):

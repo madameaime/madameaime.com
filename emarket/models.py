@@ -17,8 +17,7 @@ class Sale(models.Model):
     product     = models.ForeignKey(stockmgmt.models.Product)
     price       = models.DecimalField(max_digits=5, decimal_places=2)
 
-    shopping_cart_description = models.TextField(null=True,
-        default=None, blank=True,
+    shopping_cart_description = models.TextField(blank=True,
         help_text='text displayed in the shopping cart')
 
 
@@ -40,7 +39,7 @@ class OrderSale(models.Model):
 
     order    = models.ForeignKey(Order)
     sale     = models.ForeignKey(Sale)
-    delivery = models.ForeignKey('Address', null=True, default=None, blank=True)
+    delivery = models.ForeignKey('Address', null=True, blank=True)
 
 
 class Address(models.Model):
@@ -52,8 +51,8 @@ class Address(models.Model):
     lastname    = models.CharField(max_length=64)
     email       = models.EmailField()
     address     = models.TextField()
-    additionnal = models.TextField(null=True, default=None, blank=True)
+    additionnal = models.TextField(blank=True)
     zip_code    = models.CharField(max_length=16)
     city        = models.CharField(max_length=64)
-    phone       = models.CharField(max_length=32, null=True, default=None, blank=True)
+    phone       = models.CharField(max_length=32, blank=True)
     country     = models.CharField(max_length=64)
