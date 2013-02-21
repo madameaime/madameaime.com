@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 from decimal import Decimal
+import json
 import random
 import string
 
@@ -9,12 +10,13 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.db import IntegrityError
 from django.forms.formsets import formset_factory
-from django.http import Http404, HttpResponseServerError
+from django.http import Http404, HttpResponse, HttpResponseServerError
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import DeleteView, TemplateView, RedirectView, View
 
-from models import Order, OrderSale, Sale
+from models import Be2billTransaction, Order, OrderSale, Sale
 import forms
 
 
@@ -219,3 +221,33 @@ class CheckoutOKClient(TemplateView):
         ctx['order_sales'] = OrderSale.objects.filter(order=order)
         ctx['total_price'] = sum(p.sale.price for p in ctx['order_sales'])
         return ctx
+
+
+class Be2billNotifTransaction(View):
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(Be2billNotifTransaction, self).dispatch(*args, **kwargs)
+
+    def _save_transaction(self, request, params):
+        log_values = {}
+        for field_name in Be2billTransaction._meta.get_all_field_names():
+            # Model fields are in lower case and be2bill loves uppercase.
+            key = field_name.upper()
+            # Python variables can't start with a digit. The key 3DSECURE has a
+            # corresponding field named '_3dsecure'. Skip the first undescore.
+            if key.startswith('_'):
+                key = key[1:]
+            value = params.get(key)
+            if value:
+                log_values[field_name] = value
+
+        log_values['blob'] = json.dumps(params)
+        Be2billTransaction(**log_values).save()
+        return HttpResponse('OK')
+
+    def get(self, request, *args, **kwargs):
+        return self._save_transaction(request, request.GET)
+
+    def post(self, request, *args, **kwargs):
+        return self._save_transaction(request, request.POST)

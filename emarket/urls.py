@@ -21,4 +21,8 @@ urlpatterns = patterns('',
     url(r'^checkout-ok/$',
         CheckoutOKClient.as_view(),
         name='checkout_ok.client'),
+
+    url(r'be2bill/notifications/transaction/',
+        Be2billNotifTransaction.as_view(),
+        name='be2bill.notifications.transaction'),
 )
