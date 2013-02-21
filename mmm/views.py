@@ -30,6 +30,7 @@ class AuthenticationView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super(AuthenticationView, self).get_context_data(**kwargs)
+        context[self.redirect_field_name] = self.request.REQUEST.get(self.redirect_field_name, '')
         context['authentication_form'] = context['form']
         context['registration_form'] = RegistrationForm()
         return context
@@ -41,14 +42,14 @@ class AuthenticationView(FormView):
             redirect_to = request.REQUEST.get(self.redirect_field_name, '')
 
             if not is_safe_url(url=redirect_to, host=request.get_host()):
-                redirect_to = reverse('homepage')
+                redirect_to = self.get_success_url();
 
             login(request, form.get_user())
 
             if request.session.test_cookie_worked():
                 request.session.delete_test_cookie()
 
-            return redirect(self.get_success_url())
+            return redirect(redirect_to)
 
         return self.form_invalid(form)
 
@@ -61,6 +62,7 @@ class RegistrationView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super(RegistrationView, self).get_context_data(**kwargs)
+        context[self.redirect_field_name] = self.request.REQUEST.get(self.redirect_field_name, '')
         context['registration_form'] = context['form']
         context['authentication_form'] = AuthenticationForm()
         return context
@@ -77,21 +79,17 @@ class RegistrationView(FormView):
             redirect_to = request.REQUEST.get(self.redirect_field_name, '')
 
             if not is_safe_url(url=redirect_to, host=request.get_host()):
-                redirect_to = reverse('homepage')
+                redirect_to = self.get_success_url();
 
             form.save()
-            print request.POST.get('email')
-            print request.POST.get('password')
 
             new_user = authenticate(
                 username=request.POST.get('email'),
                 password=request.POST.get('password')
             )
-
-            print new_user
             login(request, new_user)
 
-            return redirect(self.get_success_url())
+            return redirect(redirect_to)
         return self.form_invalid(form)
 
 

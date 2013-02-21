@@ -31,7 +31,7 @@ BE2BILL_PASSWORD = ''
 # Redirect the user to this URL after authentication success
 from django.core.urlresolvers import reverse_lazy
 LOGIN_REDIRECT_URL = reverse_lazy('offer')
-LOGIN_URL = reverse_lazy('registration')
+LOGIN_URL = reverse_lazy('login')
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
