@@ -18,6 +18,7 @@ from django.views.generic import DeleteView, TemplateView, RedirectView, View
 
 from models import Be2billTransaction, Order, OrderSale, Sale
 import forms
+import utils
 
 
 class ShoppingCartAddView(View):
@@ -232,6 +233,7 @@ class Be2billNotifTransaction(View):
         return super(Be2billNotifTransaction, self).dispatch(*args, **kwargs)
 
     def _save_transaction(self, request, params):
+        PaymentForm.verify_hash(settings.BE2BILL_PASSWORD, params)
         log_values = {}
         for field_name in Be2billTransaction._meta.get_all_field_names():
             # Model fields are in lower case and be2bill loves uppercase.
@@ -246,6 +248,20 @@ class Be2billNotifTransaction(View):
 
         log_values['blob'] = json.dumps(params)
         Be2billTransaction(**log_values).save()
+
+        # In case of success, send a mail to inform the transaction is a
+        # success
+        if params.get('EXECCODE') in ('0000', '0001'):
+            exposed_id = params.get('ORDERID')
+            order = Order.objects.get(exposed_id=exposed_id)
+            mail_to = order.billing.email
+            utils.send_mail(settings.TRANSACTION_SUCCESS_MAIL_SUBJECT,
+                            [mail_to],
+                            settings.TRANSACTION_SUCCESS_MAIL_FROM,
+                            'emarket/transaction_confirm.txt',
+                            'emarket/transaction_confirm.html',
+                            params={'order': order})
+
         return HttpResponse('OK')
 
     def get(self, request, *args, **kwargs):

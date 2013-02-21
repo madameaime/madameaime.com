@@ -28,6 +28,16 @@ BE2BILL_URL = 'https://secure-test.be2bill.com/front/form/process.php'
 BE2BILL_IDENTIFIER = ''
 BE2BILL_PASSWORD = ''
 
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+TRANSACTION_SUCCESS_MAIL_SUBJECT = 'Confirmation de votre commande sur Madame Aime'
+TRANSACTION_SUCCESS_MAIL_FROM = 'contact@madameaime.com'
+
+
 # Redirect the user to this URL after authentication success
 from django.core.urlresolvers import reverse_lazy
 LOGIN_REDIRECT_URL = reverse_lazy('offer')
