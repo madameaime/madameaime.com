@@ -20,106 +20,101 @@ urlpatterns = patterns('',
         name='homepage'
     ),
 
-    url(r'^comment-ca-marche$',
+    url(r'^comment-ca-marche/$',
         TemplateView.as_view(template_name='how-does-it-work.html'),
         name='how-does-it-work'
     ),
 
-    url(r'^offrir$',
+    url(r'^offrir/$',
         views.OfferView.as_view(template_name='offer.html'),
         name='offer'
     ),
 
-    url(r'^qui-sommes-nous$',
+    url(r'^qui-sommes-nous/$',
         TemplateView.as_view(template_name='about.html'),
         name='about'
     ),
 
-    url(r'^notre-histoire$',
+    url(r'^notre-histoire/$',
         TemplateView.as_view(template_name='story.html'),
         name='story'
     ),
 
-    url(r'^livraison$',
+    url(r'^livraison/$',
         TemplateView.as_view(template_name='delivery.html'),
         name='delivery'
     ),
 
-    url(r'^cgv$',
+    url(r'^cgv/$',
         TemplateView.as_view(template_name='sales-conditions.html'),
         name='sales-conditions'
     ),
 
-    url(r'^mentions-legales$',
+    url(r'^mentions-legales/$',
         TemplateView.as_view(template_name='legal.html'),
         name='legal'
     ),
 
-    url(r'^marques$',
+    url(r'^marques/$',
         TemplateView.as_view(template_name='brands.html'),
         name='brands'
     ),
 
-    url(r'^marques/jeanne-m$',
+    url(r'^marques/jeanne-m/$',
         TemplateView.as_view(template_name='brands/jeanne-m.html'),
         name='brands/jeanne-m'
     ),
 
-    url(r'^marques/au-pays-de-la-fleur-d-oranger$',
+    url(r'^marques/au-pays-de-la-fleur-d-oranger/$',
         TemplateView.as_view(template_name='brands/au-pays-de-la-fleur-d-oranger.html'),
         name='brands/au-pays-de-la-fleur-d-oranger'
     ),
 
-    url(r'^marques/newtree$',
+    url(r'^marques/newtree/$',
         TemplateView.as_view(template_name='brands/newtree.html'),
         name='brands/newtree'
     ),
 
-    url(r'^coffret$',
+    url(r'^coffret/$',
         TemplateView.as_view(template_name='box.html'),
         name='box'
     ),
 
-    url(r'^faq$',
+    url(r'^faq/$',
         TemplateView.as_view(template_name='faq.html'),
         name='faq'
     ),
 
-    url(r'^contact$',
+    url(r'^contact/$',
         views.ContactView.as_view(),
         name='contact'
     ),
 
-    url(r'^presse$',
+    url(r'^presse/$',
         TemplateView.as_view(template_name='press.html'),
         name='press'
     ),
 
-    url(r'^jobs$',
+    url(r'^jobs/$',
         TemplateView.as_view(template_name='jobs.html'),
         name='jobs'),
-
-    url(r'^terms$',
-        'FIXME',
-        name='terms'
-    ),
 
     url(r'inscription-sur-newsletter',
         views.NewsletterView.as_view(),
         name='newsletter.add'
     ),
 
-    url(r'^inscription$',
+    url(r'^inscription/$',
         views.RegistrationView.as_view(),
         name='register'
     ),
 
-    url(r'^se-connecter$',
+    url(r'^se-connecter/$',
         views.AuthenticationView.as_view(),
         name='login'
     ),
 
-    url(r'^votre-panier$',
+    url(r'^votre-panier/$',
         emarket_views.ShoppingCartView.as_view(),
         name='shopping-cart'
     ),
