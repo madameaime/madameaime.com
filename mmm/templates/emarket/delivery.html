@@ -39,7 +39,7 @@
 	  {% for form in delivery_formset %}
 	  <div class="product">
 
-			{{form.sale_id.as_hidden}}
+	    {{form.sale_id.as_hidden}}
 
 	    <label class="radio">
 	      <input class="receiver-addr-toggle" type="radio" name="{{form.delivery_place.html_name}}" value="0" {% if not form.delivery_place.value or form.delivery_place.value == "0" %}checked {% endif %}/>
@@ -69,7 +69,7 @@
 
     <div class="validate">
       <label class="checkbox">
-	<input type="checkbox" name="{{tos_form.tos.html_name}}" {% if tos_form.tos.value %}checked {% endif %}/> J'ai lu et j'accepte les <a href="{% url 'terms' %}">conditions générales de vente</a>
+	<input type="checkbox" name="{{tos_form.tos.html_name}}" {% if tos_form.tos.value %}checked {% endif %}/> J'ai lu et j'accepte les <a href="{% url 'sales-conditions' %}">conditions générales de vente</a>
       </label>
       <label class="checkbox">
 	<input type="checkbox" name="{{tos_form.partners.html_name}}" {% if tos_form.partners.value %}checked {% endif %}/> J'accepte de recevoir des bons plans de la part des partenaires de Madame Aime
