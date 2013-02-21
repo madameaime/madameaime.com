@@ -212,4 +212,10 @@ class CheckoutOKClient(TemplateView):
     def get_context_data(self, **kwargs):
         ctx = super(CheckoutOKClient, self).get_context_data(**kwargs)
         ctx['GET'] = self.request.GET
+
+        exposed_id = self.request.GET.get('ORDERID')
+        order = Order.objects.get(exposed_id=exposed_id)
+        ctx['order'] = order
+        ctx['order_sales'] = OrderSale.objects.filter(order=order)
+        ctx['total_price'] = sum(p.sale.price for p in ctx['order_sales'])
         return ctx

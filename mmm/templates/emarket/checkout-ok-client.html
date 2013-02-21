@@ -8,13 +8,12 @@
 <div style="background: #ffffff; margin: 100px 0 200px 0; font-style: normal; font-size: 70%; padding: 20px; border: 1px solid #dddddd;">
   <h4 style="margin: 0 0 10px 0;">Le paiement a été validé</h4>
   <p class="text-info">Le paiement s'est bien déroulé. Votre commande a bien été prise en compte. Madame Aime vous remercie de votre fidélité</p>
-{% comment %}
-  {if $products|@count}
-  <script>
+
+	<script>
     _gaq.push(['_addTrans',
-      '{$transaction_id}',
+			'{{GET.TRANSACTIONID}}',
       undefined,    // affiliation or store name
-      '{$price}',
+			'{{total_price}}',
       null,             // tax
       null,             // shipping
       null,             // city
@@ -22,22 +21,17 @@
       'FR'              // country
     ]);
 
-    {foreach from=$products item=pinfo}
-
+		{% for order_sale in order_sales %}
       _gaq.push(['_addItem',
-        '{$transaction_id}',
-        '{$pinfo['model']->ref}',     // SKU/code - required
-        '{$pinfo['model']->name}',   // product name
+				'{{GET.TRANSACTIONID}}',
+				'{{order_sale.sale.pk}}',     // SKU/code - required
+				'{{order_sale.sale.product.name}}',   // product name
         null,                        // category or variation
-        '{$pinfo['model']->price}',  // unit price - required
+				'{{order_sale.sale.price}}',  // unit price - required
         '1'                          // quantity - required
       ]);
-
-    {/foreach}
-
+		{% endfor %}
     _gaq.push(['_trackTrans']);
-  </script>
-  {/if}
-{% endcomment %}
+	</script>
 </div>
 {% endblock %}
