@@ -31,7 +31,7 @@
 
 	if (payment_form.length) {
 		setTimeout(function() {
-//			$('#payment_form').submit();
+			$('#payment_form').submit();
 		}, 0);
 	}
 
