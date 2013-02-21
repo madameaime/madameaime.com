@@ -208,6 +208,8 @@ class CheckoutOKClient(TemplateView):
         PaymentForm.verify_hash(settings.BE2BILL_PASSWORD,
                                 self.request.GET)
         if self.request.GET.get('EXECCODE') in ('0000', '0001'):
+            # empty shopping card
+            self.request.session['shopping_cart'] = []
             return 'emarket/checkout-ok-client.html'
         return 'emarket/checkout-ko-client.html'
 
