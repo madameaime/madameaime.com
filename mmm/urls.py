@@ -115,7 +115,7 @@ urlpatterns = patterns('',
     ),
 
     url(r'^se-connecter$',
-        views.LoginView.as_view(),
+        views.AuthenticationView.as_view(),
         name='login'
     ),
 

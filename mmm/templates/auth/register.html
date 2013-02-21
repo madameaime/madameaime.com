@@ -1,7 +1,7 @@
 <form class="form-horizontal" method="post" action="{% url 'register' %}">
   {% csrf_token %}
 
-  {% if form.errors %}
+  {% if registration_form.errors %}
   <div class="alert alert-error">
     Le formulaire contient des erreurs !
   </div>
@@ -13,21 +13,21 @@
     <div class="control-group">
       <label class="control-label" for="registration_email">Adresse e-mail</label>
       <div class="controls">
-	<input type="email" name="{{form.email.html_name}}" id="registration_email" value="{{form.email.value|default:""}}" />
+	<input type="email" name="{{registration_form.email.html_name}}" id="registration_email" value="{{registration_form.email.value|default:""}}" />
       </div>
     </div>
 
     <div class="control-group">
       <label class="control-label" for="registration_password">Mot de passe</label>
       <div class="controls">
-	<input type="password" name="{{form.password.html_name}}" id="registration_password" />
+	<input type="password" name="{{registration_form.password.html_name}}" id="registration_password" />
       </div>
     </div>
 
     <div class="control-group">
       <label class="control-label" for="registration_password_repeat">Confirmer mot de passe</label>
       <div class="controls">
-	<input type="password" name="{{form.password_repeat.html_name}}" id="registration_password_repeat" />
+	<input type="password" name="{{registration_form.password_repeat.html_name}}" id="registration_password_repeat" />
       </div>
     </div>
 

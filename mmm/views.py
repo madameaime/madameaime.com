@@ -17,7 +17,7 @@ from forms import ContactForm, NewsletterForm, RegistrationForm
 from models import OfferPage
 
 
-class LoginView(FormView):
+class AuthenticationView(FormView):
     template_name = 'auth.html'
     form_class = AuthenticationForm
     redirect_field_name = REDIRECT_FIELD_NAME
@@ -26,11 +26,12 @@ class LoginView(FormView):
     @method_decorator(csrf_protect)
     @method_decorator(never_cache)
     def dispatch(self, *args, **kwargs):
-        return super(LoginView, self).dispatch(*args, **kwargs)
+        return super(AuthenticationView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        context = super(LoginView, self).get_context_data(**kwargs)
-        context['login_form'] = context['form']
+        context = super(AuthenticationView, self).get_context_data(**kwargs)
+        context['authentication_form'] = context['form']
+        context['registration_form'] = RegistrationForm()
         return context
 
     def post(self, request, *args, **kwargs):
@@ -61,6 +62,7 @@ class RegistrationView(FormView):
     def get_context_data(self, **kwargs):
         context = super(RegistrationView, self).get_context_data(**kwargs)
         context['registration_form'] = context['form']
+        context['authentication_form'] = AuthenticationForm()
         return context
 
     @method_decorator(csrf_protect)
