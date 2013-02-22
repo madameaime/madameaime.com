@@ -98,3 +98,17 @@ class Newsletter(models.Model):
     date = models.DateTimeField(default=timezone.now)
     email = models.EmailField(unique=True)
     active = models.BooleanField(default=True)
+
+
+class ContactMessage(models.Model):
+
+    def __unicode__(self):
+        return self.subject
+
+    date = models.DateTimeField(auto_now_add=True)
+    firstname = models.CharField(max_length=64)
+    lastname = models.CharField(max_length=64)
+    email = models.EmailField()
+    command = models.CharField(max_length=32, blank=True)
+    subject = models.CharField(max_length=255)
+    message = models.TextField()

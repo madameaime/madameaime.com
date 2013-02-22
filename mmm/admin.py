@@ -3,6 +3,8 @@ from django.contrib import admin
 from models import *
 
 
+admin.site.register(ContactMessage)
+
 class NewsletterAdmin(admin.ModelAdmin):
     list_display = ('email', 'date', 'active')
 

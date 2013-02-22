@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.core.urlresolvers import reverse_lazy, reverse
-from django.views.generic import FormView, RedirectView, TemplateView
+from django.views.generic import CreateView, FormView, RedirectView, TemplateView
 
 from django.shortcuts import redirect, render
 
@@ -13,8 +13,8 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 
-from forms import ContactForm, NewsletterForm, RegistrationForm
-from models import OfferPage
+from forms import NewsletterForm, RegistrationForm
+from models import ContactMessage, OfferPage
 
 
 class AuthenticationView(FormView):
@@ -93,9 +93,18 @@ class RegistrationView(FormView):
         return self.form_invalid(form)
 
 
-class ContactView(FormView):
+class ContactView(CreateView):
     template_name = 'contact.html'
-    form_class = ContactForm
+    model = ContactMessage
+
+    def get_success_url(self):
+        return reverse('contact') + '?status=ok'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(ContactView, self).get_context_data(**kwargs)
+        if self.request.GET.get('status') == 'ok':
+            ctx['success'] = True
+        return ctx
 
 
 class OfferView(TemplateView):

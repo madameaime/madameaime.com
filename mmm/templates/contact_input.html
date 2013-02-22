@@ -1,0 +1,13 @@
+<div class="control-group{% if field.errors %} error{% endif %}">
+  <label class="control-label" for="{{field.id_for_label}}">{{field_name}}</label>
+  <div class="controls">
+    {% if field.errors and display_error_messages %}
+    <span class="help-block">{{field.errors.as_text}}</span>
+    {% endif %}
+    {% if field_type == "textarea" %}
+    <textarea rows="6" name="{{field.html_name}}">{{field.value|default_if_none:""}}</textarea>
+    {% else %}
+    <input type="{{field_type|default:"text"}}" class="input-xlarge" name="{{field.html_name}}" id="{{field.id_for_label}}" value="{{field.value|default_if_none:""}}" />
+    {% endif %}
+  </div>
+</div>

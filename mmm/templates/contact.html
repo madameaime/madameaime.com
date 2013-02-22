@@ -5,85 +5,29 @@
 <div class="boring">
   <h1>Contactez-nous !</h1>
 
-  {if isset($success)}
+  {% if success %}
   <div class="alert alert-success">
-    Votre message a bien été pris en compte. Nous vous répondrons par email dans les plus brefs délais.
+  Votre message a bien été pris en compte. Nous vous répondrons par email dans les plus brefs délais.
   </div>
-  {else}
-  <p>
-    Pour toute question, merci de nous contacter via ce formulaire.
-    Nous vous répondrons par email dans les plus brefs délais.
-  </p>
+  {% else %}
+  <p>Pour toute question, merci de nous contacter via ce formulaire. Nous vous répondrons par email dans les plus brefs délais.</p>
 
-  <form action="{% url 'contact' %}" method="post" class="form-horizontal">
+  <form class="form-horizontal" method="post" action="{% url "contact" %}">
     {% csrf_token %}
+    {% include "contact_input.html" with field_name="Prénom *" field=form.firstname %}
+    {% include "contact_input.html" with field_name="Nom *" field=form.lastname %}
+    {% include "contact_input.html" with field_name="Email *" field=form.email %}
+    {% include "contact_input.html" with field_name="Numéro de commande" field=form.command %}
+    {% include "contact_input.html" with field_name="Sujet *" field=form.subject %}
+    {% include "contact_input.html" with field_name="Message *" field=form.message field_type="textarea" %}
 
-    <div class="control-group{% if form.first_name.errors %} error{% endif %}">
-      <label class="control-label" for="id_first_name">Prénom *</label>
-      <div class="controls">
-        {{ form.first_name }}
-        <span class="help-inline">
-          {% for error in form.first_name.errors %} {{ error|escape }} {% endfor %}
-        </span>
-      </div>
+    <div class="control-group">
+        <div class="controls">
+            <button type="submit" class="btn">Envoyer</button>
+        </div>
     </div>
-
-    <div class="control-group{% if form.last_name.errors %} error{% endif %}">
-      <label class="control-label" for="id_last_name">Nom *</label>
-      <div class="controls">
-        {{ form.last_name }}
-        <span class="help-inline">
-          {% for error in form.last_name.errors %} {{ error|escape }} {% endfor %}
-        </span>
-      </div>
-    </div>
-
-    <div class="control-group{% if form.email.errors %} error{% endif %}">
-      <label class="control-label" for="id_email">Email *</label>
-      <div class="controls">
-        {{ form.email }}
-        <span class="help-inline">
-          {% for error in form.email.errors %} {{ error|escape }} {% endfor %}
-        </span>
-      </div>
-    </div>
-
-    <div class="control-group{% if form.order_number.errors %} error{% endif %}">
-      <label class="control-label" for="id_order_number">Numéro de commande</label>
-      <div class="controls">
-        {{ form.order_number }}
-        <span class="help-inline">
-          {% for error in form.order_number.errors %} {{ error|escape }} {% endfor %}
-        </span>
-      </div>
-    </div>
-
-    <div class="control-group{% if form.subject.errors %} error{% endif %}">
-      <label class="control-label" for="id_subject">Sujet *</label>
-      <div class="controls">
-        {{ form.subject }}
-        <span class="help-inline">
-          {% for error in form.subject.errors %} {{ error|escape }} {% endfor %}
-        </span>
-      </div>
-    </div>
-
-    <div class="control-group{% if form.body.errors %} error{% endif %}">
-      <label class="control-label" for="id_body">Message *</label>
-      <div class="controls">
-        {{ form.body }}
-        <span class="help-inline">
-          {% for error in form.body.errors %} {{ error|escape }} {% endfor %}
-        </span>
-      </div>
-    </div>
-
-    <div class="form-actions">
-      <button type="submit" class="btn">Envoyer</button>
-    </div>
+    <p>*Champs obligatoires</p>
   </form>
-
-  <p>*Champs obligatoires</p>
-  {/if}
+  {% endif %}
 </div>
 {% endblock %}
