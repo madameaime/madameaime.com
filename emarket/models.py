@@ -30,6 +30,7 @@ class Order(models.Model):
     date       = models.DateTimeField(auto_now_add=True)
     user       = models.ForeignKey(settings.AUTH_USER_MODEL)
     billing    = models.ForeignKey('Address')
+    promo_code = models.CharField(max_length=32, blank=True)
 
 
 class OrderSale(models.Model):

@@ -66,6 +66,7 @@ class ToSForm(forms.Form):
     """ Checkboxes for terms of service and to subscribe for emails from our
     partners.
     """
+    promo_code = forms.CharField(required=False)
     tos = forms.BooleanField()
     partners = forms.BooleanField(required=False)
 

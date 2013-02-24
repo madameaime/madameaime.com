@@ -119,7 +119,7 @@ class DeliveryView(TemplateView):
         return ''.join(random.choice(string.ascii_uppercase + string.digits)
                        for x in range(8))
 
-    def _create_order(self, request, billing_form, delivery_formset):
+    def _create_order(self, request, tos_form, billing_form, delivery_formset):
         """ Insert a new Order, and correspondings OrderSale entries. Return
         the order_id. """
 
@@ -131,9 +131,11 @@ class DeliveryView(TemplateView):
         while not inserted:
             try:
                 order_id = self._generate_order_id()
+                promo_code = tos_form.cleaned_data['promo_code']
                 order = Order(exposed_id=order_id,
                               user=request.user,
-                              billing=billing_address)
+                              billing=billing_address,
+                              promo_code=promo_code)
                 order.save()
                 inserted = True
             except IntegrityError:
@@ -170,7 +172,8 @@ class DeliveryView(TemplateView):
             return self.render_to_response(ctx)
 
         # Forms are valid, create the order
-        order_id = self._create_order(request, billing_form, delivery_formset)
+        order_id = self._create_order(request, tos_form, billing_form,
+                                      delivery_formset)
         # Redirect to the payment process page
         return redirect(reverse('payment') + '?order=%s' % order_id,
                         permanent=False)
