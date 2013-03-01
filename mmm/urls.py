@@ -55,6 +55,8 @@ urlpatterns = patterns('',
         name='legal'
     ),
 
+    # Brands:
+
     url(r'^marques/$',
         TemplateView.as_view(template_name='brands.html'),
         name='brands'
@@ -75,10 +77,25 @@ urlpatterns = patterns('',
         name='brands/newtree'
     ),
 
+    url(r'^marques/secrets-de-miel/$',
+        TemplateView.as_view(template_name='brands/secrets-de-miel.html'),
+        name='brands/secrets-de-miel'
+    ),
+
+    url(r'^marques/sous-l-oranger/$',
+        TemplateView.as_view(template_name='brands/sous-l-oranger.html'),
+        name='brands/sous-l-oranger'
+    ),
+
+    url(r'^marques/comptoir-colonial/$',
+        TemplateView.as_view(template_name='brands/comptoir-colonial.html'),
+        name='brands/comptoir-colonial'
+    ),
+
     # Boxes:
 
     url(r'^coffret/$',
-        RedirectView.as_view(url=reverse_lazy('box-2012-dec')),
+        RedirectView.as_view(url=reverse_lazy('box-2013-feb')),
         name='box'
     ),
 

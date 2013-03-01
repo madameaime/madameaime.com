@@ -1,0 +1,113 @@
+{% extends "mmm/skeleton.html" %}
+{% block head_title %}Les coffrets cadeaux de Madame Aime{% endblock %}
+{% block extra_head %}
+<link href="{{STATIC_URL}}css/box.css" rel="stylesheet" type="text/css" media="all" />
+{% endblock %}
+{% block meta_description %}Découvrez tous les coffrets cadeaux confectionnés par Madame Aime{% endblock %}
+{% block mmm_content %}
+<section id="box">
+  <div class="description clearfix">
+    <div class="photo pull-left">
+      <img src="{{STATIC_URL}}img/boxes/2013-feb/photo.png" alt="Coffret de la St. Valentin"/>
+    </div>
+    <div class="text pull-right">
+      <h1>Madame Aime - Février 2013</h1>
+      <p style="font-size: 80%;">
+        Le mois de février est souvent source d’interrogations …<br />
+        Dois-je convaincre mon homme de célébrer la Saint Valentin ?<br />
+        Et si je m’écoutais pour une fois ? Et si je profitais de<br />
+        «&nbsp;la fête des amoureux&nbsp;» pour m’occuper un peu de moi ?<br />
+        De toutes façons, je n’ai rien à perdre, mon homme n’en sera<br />
+        que comblé … Pour cela, Madame Aime a tout prévu …<br />
+        Elle vous a concocté de quoi vous dorloter, en attendant le jour J …<br />
+        Et peut-être davantage … La curiosité vous démange déjà ?<br />
+        N’attendez plus !
+      </p>
+      <p style="font-size: 80%;">
+        Pour sa 2eme édition, MadameAime vous a concocté un menu spécial :<br />
+        - Prenez soin de votre corps  avec Sous l’Oranger<br />
+        - Mettez en valeur votre décolleté avec Secrets de Miel<br />
+        - Epicez votre Saint Valentin avec le Comptoir Colonial
+      </p>
+    </div>
+  </div>
+
+  <div class="products">
+    <div class="row-fluid">
+      <div class="span4 product row-fluid">
+        <div class="span4 image">
+          <img src="{{STATIC_URL}}img/brands/secrets-de-miel/image.png" alt="" />
+        </div>
+        <div class="span8 details">
+          <h2>Secrets de Miel</h2>
+          <p>
+            Gel buste royal
+          </p>
+        </div>
+        <a class="shiny" href="{% url 'brands/secrets-de-miel' %}">Découvrir</a>
+      </div>
+
+      <div class="span4 product row-fluid">
+        <div class="span4 image">
+          <img src="{{STATIC_URL}}img/brands/sous-l-oranger/image.png" alt="" />
+        </div>
+        <div class="span8 details">
+          <h2>Sous l’Oranger</h2>
+          <p>
+            Huile naturelle d’Argan
+          </p>
+        </div>
+        <a class="shiny" href="{% url 'brands/sous-l-oranger' %}">Découvrir</a>
+      </div>
+
+      <div class="span4 product row-fluid">
+        <div class="span5 image">
+          <img src="{{STATIC_URL}}img/brands/comptoir-colonial/image.png" alt="" />
+        </div>
+        <div class="span7 details">
+          <h2>Comptoir Colonial</h2>
+          <p>
+            Boutons de Rose et
+            Gingembre en poudre
+          </p>
+        </div>
+        <a class="shiny" href="{% url 'brands/comptoir-colonial' %}">Découvrir</a>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span4 product row-fluid">
+        <div class="span6 image">
+          <img src="{{STATIC_URL}}img/brands/solar-editions/image.png" alt="" />
+        </div>
+        <div class="span6 details">
+          <h2>Solar Editions</h2>
+          <p>
+            Livre épices
+          </p>
+        </div>
+        <a class="shiny" target="_blank" href="http://www.marabout.com/">Découvrir</a>
+      </div>
+
+      <div class="span8 next">
+        <img src="{{STATIC_URL}}img/boxes/2013-feb/poster.png" alt="" />
+        <p>
+          Madame Aime est le premier coffret pour les femmes à partir de 40 ans.
+        </p>
+        <div class="mag">
+          <p>
+            Coffret Février 2013
+          </p>
+          <a id="open-mag" target="_blank" class="shiny" href="http://issuu.com/madameaime/docs/mag_madameaime_fev13?mode=window">Consulter le mag</a>
+        </div>
+        <div class="more">
+          <p>
+            Prochain Coffret
+          </p>
+          <a class="shiny" href="{% url 'offer' %}">J'en profite</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

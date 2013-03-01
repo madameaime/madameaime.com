@@ -18,11 +18,11 @@
 #box .description .text h1 {
     text-align: center;
     font-size: 29px;
-    font-weight: normal;
     line-height: 40px;
+    font-weight: normal;
     color: #e2507f;
     letter-spacing: -0.06em;
-    margin-bottom: 20px;
+    margin: 0 0 10px 0;
 }
 
 #box .description .text p {
