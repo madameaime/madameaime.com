@@ -75,10 +75,23 @@ urlpatterns = patterns('',
         name='brands/newtree'
     ),
 
+    # Boxes:
+
     url(r'^coffret/$',
-        TemplateView.as_view(template_name='box.html'),
+        RedirectView.as_view(url=reverse_lazy('box-2012-dec')),
         name='box'
     ),
+
+    url(r'^coffret/fevrier-2013/$',
+        TemplateView.as_view(template_name='boxes/2013-feb.html'),
+        name='box-2013-feb'
+    ),
+
+    url(r'^coffret/decembre-2012/$',
+        TemplateView.as_view(template_name='boxes/2012-dec.html'),
+        name='box-2012-dec'
+    ),
+
 
     url(r'^faq/$',
         TemplateView.as_view(template_name='faq.html'),
