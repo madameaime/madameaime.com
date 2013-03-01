@@ -80,6 +80,7 @@
     position: relative;
     height: 215px;
     background-color: #4b4b4b;
+    border: 1px solid #dddddd;
     padding-left: 200px;
     padding-right: 100px;
     padding-top: 20px;
