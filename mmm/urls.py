@@ -96,17 +96,17 @@ urlpatterns = patterns('',
 
     url(r'^coffret/$',
         RedirectView.as_view(url=reverse_lazy('box-2013-feb')),
-        name='box'
+        name='boxes'
     ),
 
     url(r'^coffret/fevrier-2013/$',
         TemplateView.as_view(template_name='boxes/2013-feb.html'),
-        name='box-2013-feb'
+        name='boxes/2013-feb'
     ),
 
     url(r'^coffret/decembre-2012/$',
         TemplateView.as_view(template_name='boxes/2012-dec.html'),
-        name='box-2012-dec'
+        name='boxes/2012-dec'
     ),
 
 
