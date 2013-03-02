@@ -44,8 +44,7 @@
     border: 1px solid #dddddd;
     margin-bottom: 15px;
     height: 235px;
-    background-repeat: no-repeat;
-    background-position: 10px;
+    padding: 10px 0 0 10px;
 }
 
 #brand h1 {
@@ -75,10 +74,6 @@
 #brand p a { color: #e2507f; }
 #brand p a:hover { text-decoration: underline; }
 #brand small { font-size: 12px; }
-
-#brand.jeanne-m header { background-image: url('../img/brands/jeanne-m/header.png'); }
-#brand.fleur header    { background-image: url('../img/brands/au-pays-de-la-fleur-d-oranger/header.png'); }
-#brand.newtree header  { background-image: url('../img/brands/newtree/header.png'); }
 
 #brand .right {
     text-align: center;
@@ -140,12 +135,12 @@
     box-sizing: border-box;
 }
 
-#brand .visual .order .span7 {
+#brand .visual .order .button {
     text-align: left;
     font-style: normal;
 }
 
-#brand .visual .order .span7 small {
+#brand .visual .order small {
     position: relative;
     top: -20px;
     left: 10px;

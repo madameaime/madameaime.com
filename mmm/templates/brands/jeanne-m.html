@@ -5,8 +5,8 @@
 {% endblock %}
 {% block meta_description %}Découvrez Jeanne M. marque partenaire de Madame Aime{% endblock %}
 {% block mmm_content %}
-<section id="brand" class="jeanne-m">
-  <header></header>
+<section id="brand">
+  <header><img src="{{STATIC_URL}}img/brands/jeanne-m/header.png" alt="" /></header>
   <div class="row-fluid">
     <div class="span8 left">
       <div class="description">
@@ -84,7 +84,7 @@
 </section>
 <script type="text/javascript">
   var disqus_shortname = 'madameaime';
-  var disqus_url = 'http://www.madameaime.com{% url 'brands/jeanne-m' %}';
+  var disqus_url = 'http://www.madameaime.com/marques/jeanne-m';
   var disqus_config = function () {
      this.language = "fr";
   };

@@ -1,0 +1,97 @@
+{% extends "mmm/skeleton.html" %}
+{% block head_title %}Huile d’Argan par Sous l’Oranger{% endblock %}
+{% block extra_head %}
+<link href="{{STATIC_URL}}css/brands.css" rel="stylesheet" type="text/css" media="all" />
+{% endblock %}
+{% block meta_description %}Découvrez Sous l’Oranger, marque partenaire de Madame Aime{% endblock %}
+{% block mmm_content %}
+<section id="brand">
+  <header><img src="{{STATIC_URL}}img/brands/sous-l-oranger/header.png" alt="" /></header>
+  <div class="row-fluid">
+    <div class="span8 left">
+      <div class="description">
+        <h1>Sous l'Oranger</h1>
+        <p>
+          Sous l’Oranger, c’est une marque gourmande, ancrée entre la Provence
+          et l’Orient. Une entreprise artisanale qui propose des produits
+          naturels et écologiques. Une gamme composée de savon noir, beurre de
+          karité et d’huiles naturelles ou parfumées…
+          Sous l’Oranger se cachent la Dame et le Môssieur de l'Oranger, deux
+          passionnés qui ont décidé de vous proposer des produits simples et
+          respectueux de la nature et cela Madame Aime.
+        </p>
+        <p>
+          <strong>Madame Aime Février 2013&nbsp;: Huile Naturelle d’Argan à la Figue de Barbarie</strong>
+        </p>
+        <p>
+          MadameAime et Sous L'Oranger se sont associés pour vous faire
+          découvrir une édition spéciale : Une huile d’argan pressée à froid,
+          antioxydante et riche en vitamine E parfumée à la figue de barbarie.
+          En plus de combattre le vieillissement cutané, elle redonne à votre
+          peau son éclat tout en améliorant son hydratation. Un produit
+          multi-usage à appliquer sur le corps, les cheveux et mêmes les ongles.
+        </p>
+
+        <p>
+          <span class="pink">Le + Sous l'Oranger&nbsp;:</span><br />
+          - Une gamme de produits naturels<br />
+          - Des produits Ecologique et artisanaux
+        </p>
+        <p>
+          Pour en savoir plus sur Sous l'Oranger&nbsp;:
+          <a href="http://www.sousloranger.fr">http://www.sousloranger.fr</a>.
+        </p>
+      </div>
+      <div class="comments">
+        <h2>Donnez-nous votre avis !</h2>
+        <div id="disqus_thread"></div>
+      </div>
+    </div>
+    <div class="span4 right">
+      <div class="visual">
+        <h2>Huile naturelle d'Argan</h2>
+        <p>
+          <img src="{{STATIC_URL}}img/brands/sous-l-oranger/image.png" alt="Huile d'Argan" /><br />
+          <small>Contenance : 75 ml</small>
+        </p>
+        <div class="order row-fluid">
+          <div class="span5">
+            <span class="price">17.90€</span>
+          </div>
+          <div class="span6">
+            <a target="_blank" class="shiny button" href="http://www.sousloranger.fr/beaute-du-monde/45-huile-naturelle-d-argan.html">
+              Commander</a>
+            <small>sur <a href="http://www.sousloranger.fr">sousloranger.fr</a></small>
+          </div>
+        </div>
+      </div>
+      <div class="facebook">
+        <div class="fb-container">
+          <div class="fb-like-box"
+               data-href="https://www.facebook.com/SOUSLORANGERSARL"
+               data-width="280"
+               data-height="320"
+               data-show-faces="true"
+               data-border-color="red"
+               data-stream="false"
+               data-header="false">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+  var disqus_shortname = 'madameaime';
+  var disqus_url = 'http://www.madameaime.com/marques/sous-l-oranger';
+  var disqus_config = function () {
+     this.language = "fr";
+  };
+
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+{% endblock %}

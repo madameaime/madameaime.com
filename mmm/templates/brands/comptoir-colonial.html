@@ -1,0 +1,73 @@
+{% extends "mmm/skeleton.html" %}
+{% block head_title %}Gingembre en poudre et Boutons de Rose par le Comptoir Colonial{% endblock %}
+{% block extra_head %}
+<link href="{{STATIC_URL}}css/brands.css" rel="stylesheet" type="text/css" media="all" />
+{% endblock %}
+{% block meta_description %}Découvrez Le Comptoir Colonial, marque partenaire de Madame Aime{% endblock %}
+{% block mmm_content %}
+<section id="brand">
+  <header><img src="{{STATIC_URL}}img/brands/comptoir-colonial/header.png" alt="" /></header>
+  <div class="row-fluid">
+    <div class="span8 left">
+      <div class="description">
+        <h1>Le Comptoir Colonial</h1>
+        <p>
+          Créé en 1971, Le Comptoir Colonial c'est plus de 40 ans d'expérience
+          au service de l'exotisme. Cette marque s'est imposée comme le
+          spécialiste des produits d'épicerie venus d'ailleurs, devenant
+          fournisseur de maisons renommées comme Fauchon, Paul Bocuse,
+          ou Albert Menès.
+        </p>
+        <p>
+          Envie d'une escapade épicée ? Découvrez leur boutique Rue Lepic à Paris, au pied de la Butte Montmartre.
+        </p>
+        <p>
+          <strong>Madame Aime Février 2013&nbsp;: Gingembre en poudre et Boutons de rose</strong>
+        </p>
+        <p>
+          En Février, MadameAime a épicé votre Saint Valentin en vous proposant
+          du Gingembre en poudre à utiliser dans des recettes originales.
+        </p>
+        <p>
+          Pour aromatiser votre thé, Le Comtoir Colonial vous a également une
+          touche florale avec des Boutons de Rose...
+        </p>
+        <p>
+          Découvrez plus de 1500 produits sur&nbsp;:
+          <a href="http://www.lecomptoircolonial.com/">http://www.lecomptoircolonial.com/</a>.
+        </p>
+      </div>
+      <div class="comments">
+        <h2>Donnez-nous votre avis !</h2>
+        <div id="disqus_thread"></div>
+      </div>
+    </div>
+    <div class="span4 right">
+      <div class="visual">
+        <h2>Gingembre en poudre<br />et boutons de rose</h2>
+        <p>
+          <img src="{{STATIC_URL}}img/brands/comptoir-colonial/image.png" alt="Comptoir Colonial" /><br />
+        </p>
+        <div class="order row-fluid">
+          <div class="offset3 span7">
+            <a target="_blank" class="shiny button" href="http://www.lecomptoircolonial.com/">Découvrir</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+  var disqus_shortname = 'madameaime';
+  var disqus_url = 'http://www.madameaime.com/marques/comptoir-colonial';
+  var disqus_config = function () {
+     this.language = "fr";
+  };
+
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+{% endblock %}
