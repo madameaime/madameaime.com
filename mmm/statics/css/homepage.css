@@ -153,12 +153,7 @@
 /********/
 
 #index-gage {
-    font-family: 'bebas';
-    font-style: normal;
-    font-size: 20px;
-    color: #777777;
-
-    height: 90px;
+    height: 100px;
     background-color: #ffffff;
     border: 1px solid #dddddd;
 
@@ -166,7 +161,7 @@
 }
 
 #index-gage > a {
-    height: 90px;
+    height: 100%;
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
@@ -174,15 +169,23 @@
     transition: all 0.2s ease-in-out;
 }
 
-#index-gage .jeanne-m { background: url('../img/brands/jeanne-m/logo_off.png') 0 -13px no-repeat; }
-#index-gage .fleur { background: url('../img/brands/au-pays-de-la-fleur-d-oranger/logo_off.png') 0 -13px no-repeat; }
-#index-gage .newtree { background: url('../img/brands/newtree/logo_off.png') 0 -13px no-repeat; }
-#index-gage .marabout { background: url('../img/brands/marabout/logo_off.png') 0 -13px no-repeat; }
 
-#index-gage .jeanne-m:hover { background: url('../img/brands/jeanne-m/logo.png') 0 -13px no-repeat; }
-#index-gage .fleur:hover { background: url('../img/brands/au-pays-de-la-fleur-d-oranger/logo.png') 0 -13px no-repeat; }
-#index-gage .newtree:hover { background: url('../img/brands/newtree/logo.png') 0 -13px no-repeat; }
-#index-gage .marabout:hover { background: url('../img/brands/marabout/logo.png') 0 -13px no-repeat; }
+
+
+#index-gage .one { background: url('../img/brands/sous-l-oranger/logo_off.png') 0 -8px no-repeat; }
+#index-gage .one:hover { background: url('../img/brands/sous-l-oranger/logo.png') 0 -8px no-repeat; }
+
+#index-gage .two { background: url('../img/brands/secrets-de-miel/logo_off.png') 0 -8px no-repeat; }
+#index-gage .two:hover { background: url('../img/brands/secrets-de-miel/logo.png') 0 -8px no-repeat; }
+
+
+#index-gage .three { background: url('../img/brands/jeanne-m/logo_off.png') 0 -5px no-repeat; }
+#index-gage .three:hover { background: url('../img/brands/jeanne-m/logo.png') 0 -5px no-repeat; }
+
+#index-gage .four { background: url('../img/brands/au-pays-de-la-fleur-d-oranger/logo_off.png') 0 -5px no-repeat; }
+#index-gage .four:hover { background: url('../img/brands/au-pays-de-la-fleur-d-oranger/logo.png') 0 -5px no-repeat; }
+
+
 
 
 /***********/
