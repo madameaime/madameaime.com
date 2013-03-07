@@ -53,7 +53,7 @@ class Address(models.Model):
     lastname    = models.CharField(max_length=64)
     email       = models.EmailField()
     address     = models.TextField()
-    additionnal = models.TextField(blank=True)
+    additional  = models.TextField(blank=True)
     zip_code    = models.CharField(max_length=16)
     city        = models.CharField(max_length=64)
     phone       = models.CharField(max_length=32, blank=True)
