@@ -97,6 +97,9 @@ class PartnersSubscription(models.Model):
     or not.
     Whatever is his decision, store it.
     """
+    def __unicode__(self):
+        return self.order.user.email
+
     date = models.DateTimeField(default=timezone.now)
     order = models.ForeignKey(Order, primary_key=True)
     register = models.BooleanField()
