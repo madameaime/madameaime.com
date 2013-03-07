@@ -40,6 +40,11 @@ TRANSACTION_SUCCESS_MAIL_FROM = 'contact@madameaime.com'
 FORGOT_PASSWORD_MAIL_SUBJECT = 'Votre mot de passe Madame Aime'
 FORGOT_PASSWORD_MAIL_FROM = 'contact@madameaime.com'
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'mmm.backends.V1BackwardCompatibilityBackend',
+)
+
 
 # Redirect the user to this URL after authentication success
 from django.core.urlresolvers import reverse_lazy
