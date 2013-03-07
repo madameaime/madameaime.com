@@ -16,7 +16,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import DeleteView, TemplateView, RedirectView, View
 
-from models import Be2billTransaction, Order, OrderSale, Sale
+from models import Be2billTransaction, Order, OrderSale, PartnersSubscription, Sale
 import forms
 import utils
 
@@ -140,6 +140,11 @@ class DeliveryView(TemplateView):
                 inserted = True
             except IntegrityError:
                 pass
+
+        # Save partnership info
+        PartnersSubscription(
+            order=order,
+            register=tos_form.cleaned_data.get('partners', False)).save()
 
         # Save delivery forms
         for form in delivery_formset:

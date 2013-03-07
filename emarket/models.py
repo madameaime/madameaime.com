@@ -3,6 +3,7 @@ from datetime import datetime
 from django.conf import settings
 from django.contrib.sessions.models import Session
 from django.db import models
+from django.utils import timezone
 
 import stockmgmt.models
 
@@ -89,3 +90,13 @@ class Be2billTransaction(models.Model):
 
     # Store all parameters in a blob field in case a new field is added
     blob = models.TextField()
+
+
+class PartnersSubscription(models.Model):
+    """ When a user makes an order, he can choose to be contacted by partners
+    or not.
+    Whatever is his decision, store it.
+    """
+    date = models.DateTimeField(default=timezone.now)
+    order = models.ForeignKey(Order, primary_key=True)
+    register = models.BooleanField()
