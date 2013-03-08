@@ -21,6 +21,7 @@
       <label class="control-label" for="login_password">Mot de passe</label>
       <div class="controls">
         <input type="password" name="{{form.password.html_name}}" id="login_password" />
+        <br /><a href="{% url "password.recover" %}">Mot de passe oublié ?</a>
       </div>
     </div>
 

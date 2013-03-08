@@ -11,3 +11,4 @@ class NewsletterAdmin(admin.ModelAdmin):
 admin.site.register(Newsletter, NewsletterAdmin)
 admin.site.register(OfferPage)
 admin.site.register(OfferPageSale)
+admin.site.register(PasswordRecovery)

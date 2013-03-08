@@ -114,6 +114,16 @@ urlpatterns = patterns('',
         name='login'
     ),
 
+    url(r'mot-de-passe-oublie/$',
+        views.RecoverPasswordView.as_view(),
+        name='password.recover'
+    ),
+
+    url(r'nouveau-mot-de-passe/$',
+        views.UpdatePasswordView.as_view(),
+        name='password.update'
+    ),
+
     url(r'^votre-panier/$',
         emarket_views.ShoppingCartView.as_view(),
         name='shopping-cart'

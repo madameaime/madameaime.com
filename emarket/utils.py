@@ -7,6 +7,7 @@ def send_mail(subject, mail_to, mail_from,
               params=None):
     text = render_to_string(template_text, params)
     html = render_to_string(template_html, params)
+
     msg = EmailMultiAlternatives(subject, text, mail_from, mail_to)
     msg.attach_alternative(html, 'text/html')
     msg.send()

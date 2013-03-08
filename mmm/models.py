@@ -1,3 +1,5 @@
+import random
+
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.utils import timezone
@@ -112,3 +114,15 @@ class ContactMessage(models.Model):
     command = models.CharField(max_length=32, blank=True)
     subject = models.CharField(max_length=255)
     message = models.TextField()
+
+
+class PasswordRecovery(models.Model):
+
+    def __unicode__(self):
+        return self.secret
+
+    user = models.ForeignKey(User)
+    secret = models.CharField(max_length=32,
+                default=lambda: '%30x' % random.randrange(256**15))
+    date = models.DateTimeField(auto_now_add=True)
+    ip_addr = models.GenericIPAddressField(null=True, default=None, blank=True)

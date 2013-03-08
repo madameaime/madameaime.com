@@ -37,6 +37,9 @@ EMAIL_USE_TLS = True
 TRANSACTION_SUCCESS_MAIL_SUBJECT = 'Confirmation de votre commande sur Madame Aime'
 TRANSACTION_SUCCESS_MAIL_FROM = 'contact@madameaime.com'
 
+FORGOT_PASSWORD_MAIL_SUBJECT = 'Votre mot de passe Madame Aime'
+FORGOT_PASSWORD_MAIL_FROM = 'contact@madameaime.com'
+
 
 # Redirect the user to this URL after authentication success
 from django.core.urlresolvers import reverse_lazy
