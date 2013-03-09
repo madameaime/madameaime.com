@@ -12,11 +12,14 @@ class V1BackwardCompatibilityBackend(object):
         try:
             user = UserModel._default_manager.get_by_natural_key(username)
             # check that old password format is valid
-            if bcrypt.hashpw(password, user.password) == user.password:
-                # store password using the django format
-                user.set_password(password)
-                user.save()
-                return user
+            try:
+                if bcrypt.hashpw(password, user.password) == user.password:
+                    # store password using the django format
+                    user.set_password(password)
+                    user.save()
+                    return user
+            except: # bad hash format
+                return None
 
         except UserModel.DoesNotExist:
             return None
