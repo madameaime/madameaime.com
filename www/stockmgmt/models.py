@@ -1,6 +1,10 @@
 from django.db import models
 
 
+class Supplier(models.Model):
+    name = models.CharField(max_length=128)
+
+
 class Product(models.Model):
 
     def __unicode__(self):
@@ -10,6 +14,7 @@ class Product(models.Model):
     product_type = models.CharField(max_length=64, blank=True)
     public_price = models.DecimalField(blank=True, null=True, default=None,
                                        max_digits=6, decimal_places=2)
+    supplier = models.ForeignKey(Supplier, blank=True, null=True, default=None)
 
 
 class Package(Product):
