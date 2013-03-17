@@ -7,6 +7,9 @@ class Product(models.Model):
         return self.name
 
     name = models.CharField(max_length=255)
+    product_type = models.CharField(max_length=64, blank=True)
+    public_price = models.DecimalField(blank=True, null=True, default=None,
+                                       max_digits=6, decimal_places=2)
 
 
 class Package(Product):
