@@ -104,7 +104,7 @@ urlpatterns = patterns('',
 
     url(r'^marques/phyderma/creme-mains-reparatrice/$',
         TemplateView.as_view(template_name='brands/phyderma/creme-mains-reparatrice.html'),
-        name='brands/phyderma/creme-main-reparatrice'
+        name='brands/phyderma/creme-mains-reparatrice'
     ),
 
 
