@@ -8,10 +8,13 @@
     <title>{% block head_title %}{% endblock %}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="description" content="{% block meta_description %}{% endblock %}" />
-    <meta property="og:title" content="Madame Aime" />
+    <meta property="og:title" content="MadameAime" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="http://www.madameaime.com" />
-    <meta property="og:image" content="" />
+    <meta property="og:image" content="{{ STATIC_URL }}img/logo.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="387" />
+    <meta property="og:image:height" content="112" />
     <meta property="og:site_name" content="MadameAime.com" />
     <meta property="fb:app_id" content="435771933150281" />
 
@@ -34,7 +37,7 @@
     <div id="container">
       <nav id="header" class="clearfix">
 	<div id="header-logo" class="pull-left">
-	  <a href="{% url 'homepage' %}" title="Le coffret cadeau qui plaît aux femmes !">Madame Aime</a>
+	  <a href="{% url 'homepage' %}" title="Le coffret cadeau qui plaît aux femmes !">MadameAime</a>
 	</div>
 
 	<div class="fb-like" data-href="https://www.facebook.com/pages/Madame-Aime/435771933150281" data-send="false" data-layout="button_count" data-show-faces="false"></div>
