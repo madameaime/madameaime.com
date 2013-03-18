@@ -65,7 +65,7 @@
     line-height: 30px;
 }
 
-#brand p {
+#brand p, #brand ul {
     font-style: normal;
     font-size: 15px;
     margin-top: 15px;
