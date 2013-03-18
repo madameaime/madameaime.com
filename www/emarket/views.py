@@ -255,6 +255,7 @@ class Be2billNotifTransaction(View):
                 log_values[field_name] = value
 
         log_values['blob'] = json.dumps(params)
+        log_values['order'] = Order.objects.get(exposed_id=params.get('ORDERID'))
         Be2billTransaction(**log_values).save()
 
         # In case of success, send a mail to inform the transaction is a
