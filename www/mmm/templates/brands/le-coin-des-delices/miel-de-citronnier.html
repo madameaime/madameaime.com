@@ -1,0 +1,57 @@
+{% extends "mmm/skeleton.html" %}
+{% block head_title %}Miel de Citronnier par Le coin des Délices{% endblock %}
+{% block extra_head %}
+<link href="{{STATIC_URL}}css/brands.css" rel="stylesheet" type="text/css" media="all" />
+{% endblock %}
+{% block meta_description %}Découvrez Le coin des Délices, marque partenaire de Madame Aime{% endblock %}
+{% block mmm_content %}
+<section id="brand">
+  <header><img src="{{STATIC_URL}}img/brands/le-coin-des-delices/header.png" alt="" /></header>
+  <div class="row-fluid">
+    <div class="span8 left">
+      <div class="description">
+        <h1>Le coin des Délices</h1>
+        <p>
+
+        </p>
+      </div>
+      <div class="comments">
+        <h2>Donnez-nous votre avis !</h2>
+        <div id="disqus_thread"></div>
+      </div>
+    </div>
+    <div class="span4 right">
+      <div class="visual">
+        <h2>Miel de Citronnier</h2>
+        <p>
+          <img src="{{STATIC_URL}}img/brands/le-coin-des-delices/miel-de-citronnier/image.png" alt="Miel de Citronnier" /><br />
+          <small>Contenance : 250ml</small>
+        </p>
+        <div class="order row-fluid">
+          <div class="span5">
+            <span class="price">9.95€</span>
+          </div>
+          <div class="span6">
+            <a target="_blank" class="shiny button" href="http://www.lecoindesdelices.com">
+              Commander</a>
+            <small>sur <a href="http://www.lecoindesdelices.com" target="_blank">lecoindesdelices.com</a></small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+  var disqus_shortname = 'madameaime';
+  var disqus_url = 'http://www.madameaime.com/marques/le-coin-des-delices/miel-de-citronnier';
+  var disqus_config = function () {
+     this.language = "fr";
+  };
+
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+{% endblock %}
