@@ -1,0 +1,38 @@
+{% extends "mmm/skeleton.html" %}
+{% block head_title %}Phyderma{% endblock %}
+{% block extra_head %}
+<link href="{{STATIC_URL}}css/brands.css" rel="stylesheet" type="text/css" media="all" />
+{% endblock %}
+{% block meta_description %}Découvrez Phyderma marque partenaire de Madame Aime{% endblock %}
+{% block mmm_content %}
+<section id="brand">
+  <header>
+    <a target="_blank" href="http://www.phyderma.fr"><img src="{{STATIC_URL}}img/brands/phyderma/header.png" alt="" /></a>
+  </header>
+  <div class="row-fluid">
+    <div class="span8 left">
+      <div class="description">
+        <h1>Phyderma</h1>
+        <p>
+
+        </p>
+      </div>
+    </div>
+    <div class="span4 right">
+      <div class="facebook">
+        <div class="fb-container">
+          <div class="fb-like-box"
+               data-href="https://www.facebook.com/phyderma"
+               data-width="280"
+               data-height="320"
+               data-show-faces="true"
+               data-border-color="red"
+               data-stream="false"
+               data-header="false">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

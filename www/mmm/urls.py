@@ -92,6 +92,22 @@ urlpatterns = patterns('',
         name='brands/comptoir-colonial'
     ),
 
+    url(r'^marques/phyderma/$',
+        TemplateView.as_view(template_name='brands/phyderma.html'),
+        name='brands/phyderma'
+    ),
+
+    url(r'^marques/phyderma/soin-de-jour-revitalisant/$',
+        TemplateView.as_view(template_name='brands/phyderma/soin-de-jour-revitalisant.html'),
+        name='brands/phyderma/soin-de-jour-revitalisant'
+    ),
+
+    url(r'^marques/phyderma/creme-mains-reparatrice/$',
+        TemplateView.as_view(template_name='brands/phyderma/creme-mains-reparatrice.html'),
+        name='brands/phyderma/creme-main-reparatrice'
+    ),
+
+
     # Boxes:
 
     url(r'^coffret/$',
