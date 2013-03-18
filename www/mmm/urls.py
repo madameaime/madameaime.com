@@ -95,7 +95,7 @@ urlpatterns = patterns('',
     # Boxes:
 
     url(r'^coffret/$',
-        RedirectView.as_view(url=reverse_lazy('box-2013-feb')),
+        RedirectView.as_view(url=reverse_lazy('boxes/2013-feb')),
         name='boxes'
     ),
 
