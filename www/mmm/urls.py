@@ -20,6 +20,11 @@ urlpatterns = patterns('',
         name='homepage'
     ),
 
+    url(r'^concours/$',
+        TemplateView.as_view(template_name='contest.html'),
+        name='contest'
+    ),
+
     url(r'^comment-ca-marche/$',
         TemplateView.as_view(template_name='how-does-it-work.html'),
         name='how-does-it-work'
