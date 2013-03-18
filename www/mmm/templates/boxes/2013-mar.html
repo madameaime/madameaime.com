@@ -1,0 +1,110 @@
+{% extends "mmm/skeleton.html" %}
+{% block head_title %}Les coffrets cadeaux de Madame Aime{% endblock %}
+{% block meta_description %}Découvrez tous les coffrets cadeaux confectionnés par Madame Aime{% endblock %}
+{% block mmm_content %}
+<section id="box">
+  <div class="description clearfix">
+    <div class="photo pull-left">
+      <a href="{% url "offer" %}">
+        <img src="{{STATIC_URL}}img/boxes/2013-mar/photo.png" alt="Coffret Phyderma"/>
+      </a>
+    </div>
+    <div class="text pull-right">
+      <h1>Madame Aime Phyderma</h1>
+      <p style="font-size: 80%;">
+
+      </p>
+      <p style="font-size: 80%;">
+
+      </p>
+    </div>
+  </div>
+
+  <div class="products">
+    <div class="row-fluid">
+        <div class="span4 product row-fluid">
+          <div class="span5 image">
+            <img src="{{STATIC_URL}}img/brands/phyderma/soin-de-jour-revitalisant/image.png" alt="" />
+          </div>
+          <div class="span7 details">
+            <h2>Phyderma</h2>
+            <p>
+              Soin de jour revitalisant Royalessence
+            </p>
+          </div>
+          <a class="shiny" href="{% url 'brands/phyderma/soin-de-jour-revitalisant' %}">Découvrir</a>
+        </div>
+
+        <div class="span4 product row-fluid">
+          <div class="span5 image">
+            <img src="{{STATIC_URL}}img/brands/phyderma/creme-mains-reparatrice/image.png" alt="" />
+          </div>
+          <div class="span7 details">
+            <h2>Phyderma</h2>
+            <p>
+              Crème mains réparatrice protection hiver
+            </p>
+          </div>
+          <a class="shiny" href="{% url 'brands/phyderma/creme-mains-reparatrice' %}">Découvrir</a>
+        </div>
+
+      <div class="span4 product row-fluid">
+        <div class="span6 image">
+          <img src="{{STATIC_URL}}img/brands/dans-le-noir-le-spa/image.png" alt="" />
+        </div>
+        <div class="span6 details">
+          <h2>Dans le noir ? Le Spa</h2>
+          <p>
+            Rituel de hammam pour 2 personnes
+          </p>
+        </div>
+        <a class="shiny" href="{% url "brands/dans-le-noir-le-spa" %}">Découvrir</a>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span4 product row-fluid">
+        <div class="span6 image">
+          <img src="{{STATIC_URL}}img/brands/le-coin-des-delices/miel-de-citronnier/image.png" alt="" />
+        </div>
+        <div class="span6 details">
+          <h2>Le coin des délices</h2>
+          <p>
+            Miel de Citronnier
+          </p>
+        </div>
+        <a class="shiny" href="{% url "brands/le-coin-des-delices/miel-de-citronnier" %}">Découvrir</a>
+      </div>
+
+      <div class="span4 product row-fluid">
+        <div class="span6 image">
+          <img src="{{STATIC_URL}}img/brands/le-coin-des-delices/nougat-de-montelimar/image.png" alt="" />
+        </div>
+        <div class="span6 details">
+          <h2>Le coin des délices</h2>
+          <p>
+            Nougat de Montélimar
+          </p>
+        </div>
+        <a class="shiny" href="{% url "brands/le-coin-des-delices/nougat-de-montelimar" %}">Découvrir</a>
+      </div>
+
+      <div class="span4 next">
+        <p>
+          <small>Madame Aime est le premier coffret pour les femmes à partir de 40 ans.</small>
+        </p>
+        <div class="mag">
+          <p>
+            Coffret MadameAime Phyderma
+          </p>
+          <div class="more">
+            <a class="shiny" href="{% url 'offer' %}">J'en profite</a>
+          </div>
+          <a id="open-mag" target="_blank" class="shiny" href="http://issuu.com/madameaime">Consulter le mag</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include 'boxes/previous.html' %}
+</section>
+{% endblock %}

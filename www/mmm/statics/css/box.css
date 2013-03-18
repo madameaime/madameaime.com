@@ -87,10 +87,15 @@
     height: 215px;
     background-color: #4b4b4b;
     border: 1px solid #dddddd;
+    color: #ffffff;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+
+#box .products .next.padded {
+    padding-top: 20px;
     padding-left: 200px;
     padding-right: 100px;
-    padding-top: 20px;
-    color: #ffffff;
 }
 
 #box .products .next img {
@@ -105,15 +110,20 @@
     line-height: 23px;
 }
 
-#box .products .next .mag,
-#box .products .more {
-    margin-top: 35px;
+#box .products .next.padded .mag,
+#box .products .next.padded .more {
     position: relative;
+    margin-top: 35px;
 }
 
 #box .products .next .mag a,
 #box .products .next .more a {
     display: block;
+    height: 53px;
+}
+
+#box .products .next.padded .mag a,
+#box .products .next.padded .more a {
     position: absolute;
     height: 57px;
     left: 200px;

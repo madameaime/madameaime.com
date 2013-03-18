@@ -107,13 +107,33 @@ urlpatterns = patterns('',
         name='brands/phyderma/creme-mains-reparatrice'
     ),
 
+    url(r'^marques/dans-le-noir-le-spa/$',
+        TemplateView.as_view(template_name='brands/dans-le-noir-le-spa.html'),
+        name='brands/dans-le-noir-le-spa'
+    ),
+
+    url(r'^marques/le-coin-des-delices/miel-de-citronnier/$',
+        TemplateView.as_view(template_name='brands/le-coin-des-delices/miel-de-citronnier.html'),
+        name='brands/le-coin-des-delices/miel-de-citronnier'
+    ),
+
+    url(r'^marques/le-coin-des-delices/nougat-de-montelimar/$',
+        TemplateView.as_view(template_name='brands/le-coin-des-delices/nougat-de-montelimar.html'),
+        name='brands/le-coin-des-delices/nougat-de-montelimar'
+    ),
+
 
     # Boxes:
 
     url(r'^coffret/$',
-        RedirectView.as_view(url=reverse_lazy('boxes/2013-feb'),
+        RedirectView.as_view(url=reverse_lazy('boxes/2013-mar'),
                              permanent=False),
         name='boxes'
+    ),
+
+    url(r'^coffret/mars-2013/$',
+        TemplateView.as_view(template_name='boxes/2013-mar.html'),
+        name='boxes/2013-mar'
     ),
 
     url(r'^coffret/fevrier-2013/$',
