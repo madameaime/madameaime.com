@@ -1,9 +1,6 @@
 {% extends "mmm/skeleton.html" %}
 {% block head_title %}Paiement de votre commande sur Madame Aime{% endblock %}
 {% block meta_description %}Paiement de votre commande sur Madame Aime{% endblock %}
-{% block extra_head %}
-<link href="{{STATIC_URL}}css/checkout.css" rel="stylesheet" type="text/css" media="all" />
-{% endblock %}
 {% block mmm_content %}
 <div id="checkout-payment" class="row-fluid">
 	<form id="payment_form" method="post" action="{{form.get_url}}">

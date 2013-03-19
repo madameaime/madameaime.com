@@ -1,9 +1,6 @@
 {% extends "mmm/skeleton.html" %}
 {% block head_title %}Livraison de votre commande{% endblock %}
 {% block meta_description %}Choisissez les points de livraison où seront envoyés vos coffrets{% endblock %}
-{% block extra_head %}
-<link href="{{STATIC_URL}}css/checkout.css" rel="stylesheet" type="text/css" media="all" />
-{% endblock %}
 {% block mmm_content %}
 <div id="checkout-delivery">
   <form class="form form-horizontal" method="post" action="{% url 'emarket:delivery' %}">
