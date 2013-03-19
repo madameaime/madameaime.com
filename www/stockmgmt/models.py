@@ -30,7 +30,7 @@ class Product(models.Model):
     # grams
     weight = models.IntegerField(blank=True, null=True, default=None)
     # EAN (ISBN, EAN, GENCOD)
-    models.CharField(max_length=64, blank=True)
+    ean = models.CharField(max_length=64, blank=True)
 
 
 class Package(Product):
