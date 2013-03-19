@@ -1,0 +1,21 @@
+{% extends "mmm/skeleton.html" %}
+{% block head_title %}Page non trouvée :-({% endblock %}
+{% block meta_description %}Les coffrets MadameAime : enfin un coffret qui plait aux femmes de plus de 45 ans{% endblock %}
+{% block mmm_content %}
+<div class="boring">
+  <h1>Page non trouvée</h1>
+
+  <p>
+    Nous sommes désolés, mais la page que vous recherchez n'existe pas !
+  </p>
+
+  <p>
+    Peut-être avez vous fait une erreur en tapant l'adresse dans la page
+    d'adresse ? Si vous pensez que le problème vient de chez nous, n'hésitez
+    surtout pas à nous envoyer un email sur
+    <a href="mailto:contact@madameaime.com">contact@madameaime.com</a> ou en
+    nous laissant un message directement depuis notre rubrique de
+    <a href="{% url "contact" %}">contact</a>
+  </p>
+</div>
+{% endblock %}
