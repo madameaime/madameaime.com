@@ -153,7 +153,6 @@ class RecoverPasswordView(FormView):
         mail = form.cleaned_data['email']
         ip = self.request.META['REMOTE_ADDR']
 
-        print form.cleaned_data
         user = User.objects.get(email=mail)
         model = PasswordRecovery(user=user,
                                  ip_addr=self.request.META['REMOTE_ADDR'])
