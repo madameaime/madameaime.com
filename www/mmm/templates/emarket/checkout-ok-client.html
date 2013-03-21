@@ -7,11 +7,11 @@
   <h4 style="margin: 0 0 10px 0;">Le paiement a été validé</h4>
   <p class="text-info">Le paiement s'est bien déroulé. Votre commande a bien été prise en compte. Madame Aime vous remercie de votre fidélité</p>
 
-	<script>
+  <script>
     _gaq.push(['_addTrans',
-			'{{GET.TRANSACTIONID}}',
-      undefined,    // affiliation or store name
-			'{{total_price|unlocalize}}',
+      '{{GET.TRANSACTIONID}}',
+      undefined,        // affiliation or store name
+      '{{total_price|unlocalize}}',
       null,             // tax
       null,             // shipping
       null,             // city
@@ -19,17 +19,18 @@
       'FR'              // country
     ]);
 
-		{% for order_sale in order_sales %}
-      _gaq.push(['_addItem',
-				'{{GET.TRANSACTIONID}}',
-				'{{order_sale.sale.pk}}',     // SKU/code - required
-				'{{order_sale.sale.product.name}}',   // product name
-        null,                        // category or variation
-				'{{order_sale.sale.price|unlocalize}}',  // unit price - required
-        '1'                          // quantity - required
-      ]);
-		{% endfor %}
+    {% for order_sale in order_sales %}
+    _gaq.push(['_addItem',
+      '{{GET.TRANSACTIONID}}',
+      '{{order_sale.sale.pk}}',                // SKU/code - required
+      '{{order_sale.sale.product.name}}',      // product name
+      null,                                    // category or variation
+      '{{order_sale.sale.price|unlocalize}}',  // unit price - required
+      '1'                                      // quantity - required
+    ]);
+    {% endfor %}
+
     _gaq.push(['_trackTrans']);
-	</script>
+  </script>
 </div>
 {% endblock %}
