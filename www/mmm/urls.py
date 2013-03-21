@@ -20,6 +20,10 @@ urlpatterns = patterns('',
         name='homepage'
     ),
 
+    url(r'^google5fa0e92da89aaa27\.html$',
+        TemplateView.as_view(template_name='google5fa0e92da89aaa27.html')
+    ),
+
     url(r'^concours/$',
         TemplateView.as_view(template_name='contest.html'),
         name='contest'
