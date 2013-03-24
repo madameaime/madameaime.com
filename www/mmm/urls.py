@@ -214,6 +214,10 @@ urlpatterns = patterns('',
         include('emarket.urls', namespace='emarket')
     ),
 
+    url(r'^backoffice/',
+        include('mmm_backoffice.urls', namespace='mmm_backoffice')
+    ),
+
     url(r'deconnexion/$',
         'django.contrib.auth.views.logout', {'next_page': reverse_lazy('homepage')},
         name='logout'

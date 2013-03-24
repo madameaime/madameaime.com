@@ -1,0 +1,85 @@
+{% extends "mmm/skeleton.html" %}
+{% block head_title %}backoffice: liste des stransactions{% endblock %}
+{% block extra_head %}
+<style type="text/css">
+  .backoffice td, .backoffice th {
+    border:1px solid black;
+  }
+
+  .fail {
+    background-color:#770000;
+  }
+</style>
+{% endblock %}
+{% block mmm_content %}
+
+<div class="backoffice">
+  <table>
+    <tr>
+      <th>commande</th>
+      <th>date</th>
+      <th>code promo</th>
+      <th>prix</th>
+      <th>produit</th>
+
+      <th>be2bill code retour</th>
+      <th>be2bill message</th>
+
+      <th>fact. prénom</th>
+      <th>fact. nom</th>
+      <th>fact. email</th>
+      <th>fact. adresse</th>
+      <th>fact. addresse 2</th>
+      <th>fact. code postal</th>
+      <th>fact. ville</th>
+      <th>fact. tel</th>
+      <th>fact. pays</th>
+
+      <th>livr. prénom</th>
+      <th>livr. nom</th>
+      <th>livr. email</th>
+      <th>livr. adresse</th>
+      <th>livr. addresse 2</th>
+      <th>livr. code postal</th>
+      <th>livr. ville</th>
+      <th>livr. tel</th>
+      <th>livr. pays</th>
+    </tr>
+
+    {% for transaction in be2billtransaction_list %}
+      {% for ordersale in transaction.order.ordersale_set.all %}
+      <tr{% if transaction.execcode != 0 %} class="fail"{% endif %}>
+        <td>{{ordersale.order.exposed_id}}</td> 
+        <td>{{ordersale.order.date}}</td> 
+        <td>{{ordersale.order.promo_code}}</td> 
+        <td>{{ordersale.sale.price}}</td> 
+        <td>{{ordersale.sale.product.name}}</td> 
+
+        <td>{{transaction.execcode}}</td>
+        <td>{{transaction.message}}</td>
+
+        <td>{{ordersale.order.billing.firstname}}</td> 
+        <td>{{ordersale.order.billing.lastname}}</td> 
+        <td>{{ordersale.order.billing.email}}</td> 
+        <td>{{ordersale.order.billing.address}}</td> 
+        <td>{{ordersale.order.billing.additional}}</td> 
+        <td>{{ordersale.order.billing.zip_code}}</td> 
+        <td>{{ordersale.order.billing.city}}</td> 
+        <td>{{ordersale.order.billing.phone}}</td> 
+        <td>{{ordersale.order.billing.country}}</td> 
+
+        <td>{% if ordersale.delivery %}{{ordersale.delivery.firstname}}{% else %}{{ordersale.order.billing.firstname}}{% endif %}</td> 
+        <td>{% if ordersale.delivery %}{{ordersale.delivery.lastname}}{% else %}{{ordersale.order.billing.lastname}}{% endif %}</td> 
+        <td>{% if ordersale.delivery %}{{ordersale.delivery.email}}{% else %}{{ordersale.order.billing.email}}{% endif %}</td> 
+        <td>{% if ordersale.delivery %}{{ordersale.delivery.address}}{% else %}{{ordersale.order.billing.address}}{% endif %}</td> 
+        <td>{% if ordersale.delivery %}{{ordersale.delivery.additional}}{% else %}{{ordersale.order.billing.additional}}{% endif %}</td> 
+        <td>{% if ordersale.delivery %}{{ordersale.delivery.zip_code}}{% else %}{{ordersale.order.billing.zip_code}}{% endif %}</td> 
+        <td>{% if ordersale.delivery %}{{ordersale.delivery.city}}{% else %}{{ordersale.order.billing.city}}{% endif %}</td> 
+        <td>{% if ordersale.delivery %}{{ordersale.delivery.phone}}{% else %}{{ordersale.order.billing.phone}}{% endif %}</td> 
+        <td>{% if ordersale.delivery %}{{ordersale.delivery.country}}{% else %}{{ordersale.order.billing.country}}{% endif %}</td> 
+      </tr>
+      {% endfor %}
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

@@ -154,6 +154,7 @@ INSTALLED_APPS = (
     'south',
 
     'mmm',
+    'mmm_backoffice',
     'stockmgmt',
     'emarket'
 )

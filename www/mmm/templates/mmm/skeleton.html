@@ -46,6 +46,7 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script>
+    {% block extra_head %}{% endblock %}
   </head>
   <body>
     <div id="fb-root"></div>
