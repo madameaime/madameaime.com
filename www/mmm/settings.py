@@ -4,7 +4,7 @@ import os
 
 PROJECT_DIR = os.path.dirname(os.path.realpath(__file__))
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -150,6 +150,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
 
+    'braces',
     'debug_toolbar',
     'south',
 
