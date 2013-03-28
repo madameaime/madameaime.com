@@ -16,10 +16,10 @@ class TransactionsList(SuperuserRequiredMixin, ListView):
         return Be2billTransaction.objects.order_by('-order__date')
 
 
-class ADSView(SuperuserRequiredMixin, TemplateView):
-    template_name = 'backoffice/ads.html'
+class ADSProductsView(SuperuserRequiredMixin, TemplateView):
+    template_name = 'backoffice/ads_products.html'
 
     def get_context_data(self, **kwargs):
-        ctx = super(ADSView, self).get_context_data(**kwargs)
+        ctx = super(ADSProductsView, self).get_context_data(**kwargs)
         ctx['products'] = get_product_file(Product.objects.all())
         return ctx
