@@ -9,7 +9,7 @@ urlpatterns = patterns('',
         name='transactions.list'
     ),
 
-    url(r'^ads/$',
+    url(r'^ads/products/$',
         ADSView.as_view(),
         name='ads.products'
     ),
