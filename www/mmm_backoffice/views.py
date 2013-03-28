@@ -6,7 +6,7 @@ from braces.views import SuperuserRequiredMixin
 from emarket.models import Be2billTransaction
 from stockmgmt.models import Product
 
-from .ads import get_product_file
+from .ads import get_kits_file, get_product_file
 
 
 class TransactionsList(SuperuserRequiredMixin, ListView):
@@ -22,4 +22,13 @@ class ADSProductsView(SuperuserRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         ctx = super(ADSProductsView, self).get_context_data(**kwargs)
         ctx['products'] = get_product_file(Product.objects.all())
+        return ctx
+
+
+class ADSKitsView(SuperuserRequiredMixin, TemplateView):
+    template_name = 'backoffice/ads_kits.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(ADSKitsView, self).get_context_data(**kwargs)
+        ctx['kits'] = get_kits_file(Product.objects.all())
         return ctx

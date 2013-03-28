@@ -13,4 +13,9 @@ urlpatterns = patterns('',
         ADSProductsView.as_view(),
         name='ads.products'
     ),
+
+    url(r'^ads/kits/$',
+        ADSKitsView.as_view(),
+        name='ads.kits'
+    ),
 )

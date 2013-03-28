@@ -56,3 +56,41 @@ def get_product_file(products):
             reformat('', 'A', 18),
         ])
     return ret
+
+def get_kits_file(products):
+    """
+    CODE_KIT    (A18)
+    LIB_LONG    (A50)
+    LIB_COURT   (A16)
+    CODE_ART    (A18)
+    QTE         (N)
+
+    Only return kits that contain products which are not packages
+    """
+    ret = []
+    for product in products:
+        # if it is a package
+        try:
+            package = Package.objects.get(pk=product.pk)
+        except Package.DoesNotExist:
+            continue
+
+        # this is a true package (no package inside it)
+        true_package = True
+        for element in package.products.all():
+            if Package.objects.filter(pk=element.pk).count() != 0:
+                true_package = False
+                break
+        if true_package is False:
+            continue
+
+        # yeah!
+        for item in package.products.all():
+            ret.append([
+                reformat(product.pk, 'N'),
+                reformat(product.name[:50], 'A', 50),
+                reformat(product.name[:16], 'A', 16),
+                reformat(item.pk, 'N'),
+                reformat(1, 'N')
+            ])
+    return ret
