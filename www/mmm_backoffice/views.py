@@ -16,9 +16,10 @@ class CSVResponseMixin(object):
     response_class = HttpResponse
 
     def render_to_response(self, context, **response_kwargs):
-        response_kwargs['content_type'] = 'text/csv'
-
-        response = self.response_class(**response_kwargs)
+        response = self.response_class(content_type='text/csv',
+                                       **response_kwargs)
+        response['Content-Disposition'] = ('attachment; filename="%s"' %
+                                            self.filename)
         writer = csv.writer(response)
         for line in context['objects']:
             writer.writerow([value.encode('utf8') for value in line])
@@ -33,6 +34,8 @@ class TransactionsList(SuperuserRequiredMixin, ListView):
 
 
 class ADSProductsView(SuperuserRequiredMixin, CSVResponseMixin, TemplateView):
+    filename = 'products.csv'
+
     def get_context_data(self, **kwargs):
         ctx = super(ADSProductsView, self).get_context_data(**kwargs)
         ctx['objects'] = get_product_file(Product.objects.all())
@@ -40,6 +43,8 @@ class ADSProductsView(SuperuserRequiredMixin, CSVResponseMixin, TemplateView):
 
 
 class ADSKitsView(SuperuserRequiredMixin, CSVResponseMixin, TemplateView):
+    filename = 'kits.csv'
+
     def get_context_data(self, **kwargs):
         ctx = super(ADSKitsView, self).get_context_data(**kwargs)
         ctx['objects'] = get_kits_file(Product.objects.all())
