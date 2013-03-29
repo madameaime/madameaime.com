@@ -1,13 +1,14 @@
 import csv
 
 from django.core.exceptions import PermissionDenied
+from django.db.models import Q
 from django.http import HttpResponse
 from django.views.generic import ListView, TemplateView
 
 from braces.views import SuperuserRequiredMixin
 
-from emarket.models import Be2billTransaction
-from stockmgmt.models import Product
+from emarket.models import Be2billTransaction, OrderSale
+from stockmgmt.models import Package, Product
 
 from .ads import *
 
@@ -53,10 +54,22 @@ class ADSKitsView(SuperuserRequiredMixin, CSVResponseMixin, TemplateView):
         return ctx
 
 
-class ADSCommandsView( CSVResponseMixin, TemplateView):
+class ADSCommandsView(SuperuserRequiredMixin, CSVResponseMixin, TemplateView):
     filename = 'commands.csv'
 
     def get_context_data(self, **kwargs):
         ctx = super(ADSCommandsView, self).get_context_data(**kwargs)
-        ctx['objects'] = get_commands_file(Be2billTransaction.objects.all())
+        box_march = Product.objects.get(pk=3)
+        ctx['objects'] = get_commands_file(box_march)
+        return ctx
+
+
+class ADSDetailedCommandsView(SuperuserRequiredMixin, CSVResponseMixin,
+                              TemplateView):
+    filename = 'commands.csv'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(ADSDetailedCommandsView, self).get_context_data(**kwargs)
+        box_march = Product.objects.get(pk=3)
+        ctx['objects'] = get_detailed_commands_file(box_march)
         return ctx

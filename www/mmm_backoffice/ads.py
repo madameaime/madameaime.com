@@ -110,7 +110,25 @@ def get_kits_file(products):
     return ret
 
 
-def get_commands_file(transactions):
+def get_product_ordersales(product):
+    """ Return a list of OrderSale that correspond to valid Be2Bill
+    transactions for `product`.
+    """
+    # get packages that contain `product`
+    packages = Package.objects.filter(products__in=[product])
+
+    # get ordersales objects...
+    osales = OrderSale.objects
+    # that correspond to a valid be2bill transaction...
+    osales = osales.filter(Q(order__be2billtransaction__execcode=0) |
+                           Q(order__be2billtransaction__execcode=1))
+    # and that concern a `product` or `packages` 
+    osales = osales.filter(Q(sale__product__in=[product]) |
+                           Q(sale__product__in=packages))
+    return osales.all()
+
+
+def get_commands_file(product):
     """
     NUM_CMDE                (A30)
     NAT_CMDE                (A30)
@@ -178,9 +196,7 @@ def get_commands_file(transactions):
     ret = []
 
     # iterate over OrderSales that have a valid related Be2BillTransaction
-    for osale in OrderSale.objects \
-                          .filter(Q(order__be2billtransaction__execcode=0) |
-                                  Q(order__be2billtransaction__execcode=1)):
+    for osale in get_product_ordersales(product):
         trans = osale.order.be2billtransaction_set.all()[0]
         order = osale.order
         assert(order.billing.country.lower() == 'france')
@@ -196,7 +212,7 @@ def get_commands_file(transactions):
             reformat('', 'A', 30),
             reformat('BtoC', 'A', 10),
             reformat(order.user.pk, 'A', 20),
-            reformat(trans.pk, 'A', 20),
+            reformat(osale.pk, 'A', 20),
             reformat(order.date.strftime('%Y%m%d'), 'A', 8),
             reformat('', 'A', 20), # NUMIC
             reformat('', 'A', 50), # SOCIETE FAC
@@ -265,4 +281,37 @@ def get_commands_file(transactions):
             reformat(int(order.billing != delivery), 'A', 1), # CADEAU, true if delivery addr != billing addr
         ])
 
+    return ret
+
+
+def get_detailed_commands_file(product):
+    """
+    NUM_FACTURE_BL
+    CODE_ART
+    LIBELLE_ART
+    QTE
+    OBLIGATOIRE
+    PRIX_UNITAIRE_HT
+    TAUX_TVA
+    REMISE
+    TAUX_REMISE
+    MONTANT_TOTAL_LIGNE_HT
+    """
+    ret = []
+    for osale in get_product_ordersales(product):
+        trans = osale.order.be2billtransaction_set.all()[0]
+        order = osale.order
+
+        ret.append([
+            reformat(osale.pk, 'A', 20),
+            reformat(product.pk, 'A', 18),
+            reformat(product.name, 'A', 50),
+            reformat(1, 'N'), # QTE
+            reformat('O', 'A', 1), # OBLIGATOIRE
+            reformat('0', 'A', 15), # PRIX_UNITAIRE_HT
+            reformat('0', 'A', 10), # TAUX TVA
+            reformat('0', 'A', 15), # REMISE
+            reformat('0', 'A', 10), # TAUX REMISE
+            reformat('0', 'A', 15), # MONTANT_TOTAL_LIGNE_HT
+        ])
     return ret

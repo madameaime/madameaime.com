@@ -23,4 +23,9 @@ urlpatterns = patterns('',
         ADSCommandsView.as_view(),
         name='ads.commands'
     ),
+
+    url(r'ads/detailedcommands/$',
+        ADSDetailedCommandsView.as_view(),
+        name='ads.detailedcommands'
+    ),
 )
