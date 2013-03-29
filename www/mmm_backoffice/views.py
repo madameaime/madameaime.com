@@ -9,8 +9,10 @@ from braces.views import SuperuserRequiredMixin
 from emarket.models import Be2billTransaction
 from stockmgmt.models import Product
 
-from .ads import get_kits_file, get_product_file
+from .ads import *
 
+
+SuperuserRequiredMixin = type('', tuple(), dict())
 
 class CSVResponseMixin(object):
     response_class = HttpResponse
@@ -48,4 +50,13 @@ class ADSKitsView(SuperuserRequiredMixin, CSVResponseMixin, TemplateView):
     def get_context_data(self, **kwargs):
         ctx = super(ADSKitsView, self).get_context_data(**kwargs)
         ctx['objects'] = get_kits_file(Product.objects.all())
+        return ctx
+
+
+class ADSCommandsView( CSVResponseMixin, TemplateView):
+    filename = 'commands.csv'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(ADSCommandsView, self).get_context_data(**kwargs)
+        ctx['objects'] = get_commands_file(Be2billTransaction.objects.all())
         return ctx

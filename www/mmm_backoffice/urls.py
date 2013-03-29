@@ -18,4 +18,9 @@ urlpatterns = patterns('',
         ADSKitsView.as_view(),
         name='ads.kits'
     ),
+
+    url(r'^ads/commands/$',
+        ADSCommandsView.as_view(),
+        name='ads.commands'
+    ),
 )
