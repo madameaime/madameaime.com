@@ -2,10 +2,18 @@ from django.db import models
 
 
 class Supplier(models.Model):
+
+    def __unicode__(self):
+        return self.name
+
     name = models.CharField(max_length=128)
 
 
 class ProductType(models.Model):
+
+    def __unicode__(self):
+        return self.shortcode
+
     shortcode = models.CharField(max_length=16, primary_key=True)
     description = models.CharField(max_length=64, blank=True)
 
