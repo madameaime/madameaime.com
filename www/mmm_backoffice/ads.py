@@ -26,12 +26,23 @@ def get_product_file(products):
     VAL_DECLAREE            (A15)
     FLAG_PART_SEUL          (A1)
     CODE_ART_SUBSTITUTION   (A18)
+
+    Do not return products that are packages and that contain packages
     """
     ret = []
     for product in products:
         try:
-            Package.objects.get(pk=product.pk)
-            continue
+            package = Package.objects.get(pk=product.pk)
+            is_metapackage = False
+            # iterate over package products. If one of them is a package, do
+            # not add product to ret
+            for package_product in package.products.all():
+                if Package.objects.filter(pk=package_product.pk).count():
+                    is_metapackage = True
+                    break
+            if is_metapackage:
+                continue
+
         except Package.DoesNotExist:
             pass
 
@@ -42,7 +53,7 @@ def get_product_file(products):
         ret.append([
             reformat(product.pk, 'A', 18),
             reformat(product.name[:50], 'A', 50),
-            reformat(product.name[:16], 'A', 50),
+            reformat('', 'A', 16), # shortname
             reformat(product_type, 'A', 3),
             'O',
             reformat(product.article_family[:30], 'A', 30),
