@@ -13,8 +13,6 @@ from stockmgmt.models import Package, Product
 from .ads import *
 
 
-SuperuserRequiredMixin = type('', tuple(), dict())
-
 class CSVResponseMixin(object):
     response_class = HttpResponse
 
