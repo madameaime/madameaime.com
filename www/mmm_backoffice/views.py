@@ -64,7 +64,7 @@ class ADSCommandsView(SuperuserRequiredMixin, CSVResponseMixin, TemplateView):
 
 class ADSDetailedCommandsView(SuperuserRequiredMixin, CSVResponseMixin,
                               TemplateView):
-    filename = 'commands.csv'
+    filename = 'detailedcommands.csv'
 
     def get_context_data(self, **kwargs):
         ctx = super(ADSDetailedCommandsView, self).get_context_data(**kwargs)
