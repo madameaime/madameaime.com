@@ -101,7 +101,7 @@ def get_kits_file(products):
         # yeah!
         for item in package.products.all():
             ret.append([
-                reformat(product.pk, 'N'),
+                reformat(product.pk, 'A', 18),
                 reformat(product.name[:50], 'A', 50),
                 reformat(product.name[:16], 'A', 16),
                 reformat(item.pk, 'N'),
