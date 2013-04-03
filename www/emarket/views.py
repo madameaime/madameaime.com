@@ -241,7 +241,10 @@ class Be2billNotifTransaction(View):
         return super(Be2billNotifTransaction, self).dispatch(*args, **kwargs)
 
     def _save_transaction(self, request, params):
-        PaymentForm.verify_hash(settings.BE2BILL_PASSWORD, params)
+        try:
+            PaymentForm.verify_hash(settings.BE2BILL_PASSWORD, params)
+        except:
+            return HttpResponse('bad hash')
         log_values = {}
         for field_name in Be2billTransaction._meta.get_all_field_names():
             # Model fields are in lower case and be2bill loves uppercase.
@@ -255,8 +258,15 @@ class Be2billNotifTransaction(View):
                 log_values[field_name] = value
 
         log_values['blob'] = json.dumps(params)
-        log_values['order'] = Order.objects.get(exposed_id=params.get('ORDERID'))
-        Be2billTransaction(**log_values).save()
+        try:
+            log_values['order'] = Order.objects.get(exposed_id=params.get('ORDERID'))
+        except Order.DoesNotExist:
+            return HttpResponse('no such order')
+
+        try:
+            Be2billTransaction(**log_values).save()
+        except IntegrityError:
+            return HttpResponse('order already processed')
 
         # In case of success, send a mail to inform the transaction is a
         # success
