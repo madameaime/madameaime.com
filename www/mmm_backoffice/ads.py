@@ -104,7 +104,7 @@ def get_kits_file(products):
                 reformat(product.pk, 'A', 18),
                 reformat(product.name[:50], 'A', 50),
                 reformat(product.name[:16], 'A', 16),
-                reformat(item.pk, 'N'),
+                reformat(item.pk, 'A', 18),
                 reformat(1, 'N')
             ])
     return ret
