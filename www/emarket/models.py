@@ -67,7 +67,7 @@ class Be2billTransaction(models.Model):
     def __unicode__(self):
         return self.transactionid
 
-    order = models.ForeignKey(Order)
+    order = models.ForeignKey(Order, unique=True)
 
     _3dsecure = models.CharField(max_length=3, blank=True)
     alias = models.CharField(max_length=32, blank=True)
