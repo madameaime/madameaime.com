@@ -50,7 +50,7 @@ class FormMixin(object):
                             'password': b2b_passwd
                         } for key in sorted(fields)
                            if key != 'HASH')
-        return sha256(clear).hexdigest()
+        return sha256(clear.encode('utf8')).hexdigest()
 
     def make_hash(self, b2b_passwd):
         """ Compute the Be2bill hash from form fields
