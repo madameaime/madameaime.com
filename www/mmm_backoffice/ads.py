@@ -109,24 +109,36 @@ def get_kits_file(products):
             ])
     return ret
 
-
 def get_product_ordersales(product):
-    """ Return a list of OrderSale that correspond to valid Be2Bill
-    transactions for `product`.
+    """ Return a list of tuple. Every tuple is composed as follow: (ordersale,
+    last corresponding be2bill transaction)
     """
     # get packages that contain `product`
     packages = Package.objects.filter(products__in=[product])
 
-    # get ordersales objects...
-    osales = OrderSale.objects
-    # that correspond to a valid be2bill transaction...
-    osales = osales.filter(Q(order__be2billtransaction__execcode=0) |
-                           Q(order__be2billtransaction__execcode=1))
-    # and that concern a `product` or `packages` 
-    osales = osales.filter(Q(sale__product__in=[product]) |
-                           Q(sale__product__in=packages))
-    return osales.all()
+    ##### below there's something dirty. can't find an equivalent using the
+    ##### django orm for:
+    ##### SELECT * FROM (SELECT * FROM table ORDER BY date DESC) as subq
+    #####   GROUP BY subq.order
 
+    # get all ordersale objects related to the product
+    osales = OrderSale.objects.filter(Q(sale__product__in=[product]) |
+                                      Q(sale__product__in=packages))
+    ret = []
+    # for each ordersale, get related be2bill transaction
+    for osale in osales:
+        try:
+            # last successful payment transaction 
+            last_transaction = Be2billTransaction.objects \
+                    .filter(order=osale.order) \
+                    .filter(operationtype='payment') \
+                    .filter(Q(order__be2billtransaction__execcode=0) |
+                            Q(order__be2billtransaction__execcode=1)) \
+                    .order_by('-date_insert')[0]
+            ret.append((osale, last_transaction))
+        except IndexError:
+            pass
+    return ret
 
 def get_commands_file(product):
     """
@@ -134,7 +146,7 @@ def get_commands_file(product):
     NAT_CMDE                (A30)
     TYPE_CMDE               (A10)
     CODE_CLIENT             (A20)
-    NUM_FACTURE_BL          (A20)
+
     DATE_EDITION            (A8)
     NUMIC                   (A20)
     SOCIETE_FAC             (A50)
@@ -196,8 +208,8 @@ def get_commands_file(product):
     ret = []
 
     # iterate over OrderSales that have a valid related Be2BillTransaction
-    for osale in get_product_ordersales(product):
-        trans = osale.order.be2billtransaction_set.all()[0]
+    for osale, trans in get_product_ordersales(product):
+        print osale, trans, osale.pk, trans.pk
         order = osale.order
         if not order.billing.country:
             order.billing.country = 'France'
@@ -304,8 +316,7 @@ def get_detailed_commands_file(product):
     MONTANT_TOTAL_LIGNE_HT
     """
     ret = []
-    for osale in get_product_ordersales(product):
-        trans = osale.order.be2billtransaction_set.all()[0]
+    for osale, trans in get_product_ordersales(product):
         order = osale.order
 
         ret.append([

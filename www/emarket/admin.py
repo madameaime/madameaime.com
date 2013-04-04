@@ -38,5 +38,17 @@ class AddressAdmin(admin.ModelAdmin):
 admin.site.register(Address, AddressAdmin)
 
 
-admin.site.register(Be2billTransaction)
+class Be2billTransactionAdmin(admin.ModelAdmin):
+
+    def get_order_date(transaction):
+        return transaction.order.date
+
+    list_display = ('order', 'operationtype', 'date_insert', get_order_date,
+                    'execcode', 'message', 'amount', 'cardfullname',
+                    'clientemail')
+    search_fields = ('clientemail', 'order__exposed_id')
+    ordering = ['-order__date', '-date_insert']
+    list_filter = ['execcode', 'currency', 'order__date']
+
+admin.site.register(Be2billTransaction, Be2billTransactionAdmin)
 admin.site.register(PartnersSubscription)
