@@ -2,9 +2,14 @@
 {% block head_title %}Coffret MadameAime Phyderma : Offrez-vous un coffret exceptionnel !{% endblock %}
 {% block meta_description %}Offrez à votre maman, femme, amie un coffret cadeau plein de surprises{% endblock %}
 {% block mmm_content %}
-<div class="boring" style="padding: 0 0 1px 0; text-align: center;">
+<div class="boring" style="padding: 0 0 1px 0; text-align: center; position: relative;">
   <a href="{% url "boxes/2013-mar" %}">
     <img src="{{ STATIC_URL }}img/landing/madameaime-phyderma.png" alt="" />
   </a>
+  <form method="post" action="{% url 'emarket:shopping-cart.add' %}" style="position: absolute; bottom: 0; left: 0;">
+    {% csrf_token %}
+    <input type="hidden" name="sale_id" value="5" />
+    <button style="border: 0 none; position: absolute; bottom: 5px; left: 365px; width: 255px; height: 75px; background: transparent;" type="submit">&nbsp;</button>
+  </form>
 </div>
 {% endblock %}
