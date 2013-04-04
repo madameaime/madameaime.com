@@ -32,9 +32,10 @@ class AddressAdmin(admin.ModelAdmin):
     list_display = ('firstname', 'lastname', 'email', 'address', 'additional',
                     'zip_code', 'city', 'phone', 'country')
     search_fields = ('firstname', 'lastname', 'email', 'city')
+    list_filter = ('country',)
 
 
-admin.site.register(Address)
+admin.site.register(Address, AddressAdmin)
 
 
 admin.site.register(Be2billTransaction)
