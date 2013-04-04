@@ -199,11 +199,17 @@ def get_commands_file(product):
     for osale in get_product_ordersales(product):
         trans = osale.order.be2billtransaction_set.all()[0]
         order = osale.order
+        if not order.billing.country:
+            order.billing.country = 'France'
+            order.billing.save()
         assert(order.billing.country.lower() == 'france')
         billing_iso_country = 'FR'
 
         # if no delivery address, take the billing address
         delivery = osale.delivery or order.billing
+        if not delivery.country:
+            delivery.country = 'France'
+            delivery.save()
         assert(delivery.country.lower() == 'france')
         delivery_iso_country = 'FR'
 
