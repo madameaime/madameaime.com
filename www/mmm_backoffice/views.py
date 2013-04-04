@@ -21,7 +21,11 @@ class CSVResponseMixin(object):
                                        **response_kwargs)
         response['Content-Disposition'] = ('attachment; filename="%s"' %
                                             self.filename)
-        writer = csv.writer(response)
+
+        # ADS sucks. They don't know how to parse a CSV (escaping characters seem
+        # to be too complicated to handle for them). Separate fields with a pipe
+        # (as it won't be used in fields, at least I hope)
+        writer = csv.writer(response, delimiter='|')
         for line in context['objects']:
             writer.writerow([value.encode('utf8') for value in line])
         return response
