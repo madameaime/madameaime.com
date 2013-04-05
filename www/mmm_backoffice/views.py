@@ -1,7 +1,7 @@
 import csv
 
 from django.core.exceptions import PermissionDenied
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.http import HttpResponse
 from django.views.generic import ListView, TemplateView
 
@@ -35,7 +35,34 @@ class TransactionsList(SuperuserRequiredMixin, ListView):
     template_name = 'backoffice/be2billtransaction_list.html'
 
     def get_queryset(self):
-        return Be2billTransaction.objects.order_by('-order__date')
+        """
+        SQL equivalent: SELECT * FROM (SELECT * FROM be2billtransaction ORDER
+        BY date_insert DESC, order__date DESC, id DESC) AS subq GROUP BY order
+
+        >> Get every latest be2bill transaction corresponding to every sale
+
+        Of course, doing this with the Django ORM is a pain in the ass
+        """
+        # get all order sales
+        osales = OrderSale.objects \
+                          .all() \
+                          .prefetch_related('order__be2billtransaction_set')
+        trans_ids = []
+        # for every osale, get the last transaction
+        for osale in osales:
+            try:
+                # order by pk because if dates conflict, take the last insert
+                last_transaction = Be2billTransaction.objects \
+                            .filter(order=osale.order) \
+                            .order_by('-date_insert', '-order__date', '-pk')[0]
+                trans_ids.append(last_transaction.pk)
+            except IndexError:
+                pass
+        # return the last transaction for every osale
+        return Be2billTransaction.objects.filter(pk__in=trans_ids) \
+                                         .order_by('-date_insert',
+                                                   '-order__date') \
+                                         .select_related('order')
 
 
 class ADSProductsView(SuperuserRequiredMixin, CSVResponseMixin, TemplateView):

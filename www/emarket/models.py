@@ -92,7 +92,7 @@ class Be2billTransaction(models.Model):
     version = models.CharField(max_length=16, blank=True)
 
     # Store all parameters in a blob field in case a new field is added
-    blob = models.TextField()
+    blob = models.TextField(blank=True)
 
 
 class PartnersSubscription(models.Model):
