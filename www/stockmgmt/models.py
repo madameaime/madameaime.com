@@ -42,7 +42,7 @@ class Product(models.Model):
 
 
 class Package(Product):
-    products = models.ManyToManyField(Product, related_name="products")
+    products = models.ManyToManyField(Product, related_name="products", blank=True)
 
 
 class StockMvt(models.Model):
