@@ -51,7 +51,7 @@ class Address(models.Model):
 
     firstname   = models.CharField(max_length=64)
     lastname    = models.CharField(max_length=64)
-    email       = models.EmailField()
+    email       = models.EmailField(blank=True)
     address     = models.TextField()
     additional  = models.TextField(blank=True)
     zip_code    = models.CharField(max_length=16)
