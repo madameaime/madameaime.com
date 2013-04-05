@@ -48,8 +48,9 @@
 
     {% for transaction in be2billtransaction_list %}
       {% for ordersale in transaction.order.ordersale_set.all %}
-      <tr{% if transaction.execcode != 0 %} class="fail"{% endif %}>
+      <tr{% if transaction.execcode != 0  or transaction.operationtype != 'payment' %} class="fail"{% endif %}>
         <td>{{ordersale.order.exposed_id}}</td> 
+        <td>{{transaction.operationtype}}</td> 
         <td>{{ordersale.order.date}}</td> 
         <td>{{ordersale.order.promo_code}}</td> 
         <td>{{ordersale.sale.price}}</td> 
