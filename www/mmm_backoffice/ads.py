@@ -134,7 +134,7 @@ def get_product_ordersales(product):
                     .filter(operationtype='payment') \
                     .filter(Q(order__be2billtransaction__execcode=0) |
                             Q(order__be2billtransaction__execcode=1)) \
-                    .order_by('-date_insert')[0]
+                    .order_by('-date_insert', '-order__date', '-pk')[0]
             ret.append((osale, last_transaction))
         except IndexError:
             pass
