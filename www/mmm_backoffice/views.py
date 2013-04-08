@@ -1,4 +1,5 @@
 import csv
+import datetime
 
 from django.core.exceptions import PermissionDenied
 from django.db.models import Q, Count
@@ -13,14 +14,20 @@ from stockmgmt.models import Package, Product
 from .ads import *
 
 
+GET_CSV_FILENAME_HELPER = lambda base: '%s_%s_%s.csv' % (base,
+                                datetime.datetime.now().strftime('%Y%m%d'),
+                                datetime.datetime.now().strftime('%H%M%S'))
+
+
 class CSVResponseMixin(object):
     response_class = HttpResponse
 
     def render_to_response(self, context, **response_kwargs):
         response = self.response_class(content_type='text/csv',
                                        **response_kwargs)
+        filename = self.get_filename()
         response['Content-Disposition'] = ('attachment; filename="%s"' %
-                                            self.filename)
+                                           filename)
 
         # ADS sucks. They don't know how to parse a CSV (escaping characters seem
         # to be too complicated to handle for them). Separate fields with a pipe
@@ -66,7 +73,9 @@ class TransactionsList(SuperuserRequiredMixin, ListView):
 
 
 class ADSProductsView(SuperuserRequiredMixin, CSVResponseMixin, TemplateView):
-    filename = 'products.csv'
+
+    def get_filename(self):
+        return GET_CSV_FILENAME_HELPER('products')
 
     def get_context_data(self, **kwargs):
         ctx = super(ADSProductsView, self).get_context_data(**kwargs)
@@ -75,7 +84,9 @@ class ADSProductsView(SuperuserRequiredMixin, CSVResponseMixin, TemplateView):
 
 
 class ADSKitsView(SuperuserRequiredMixin, CSVResponseMixin, TemplateView):
-    filename = 'kits.csv'
+
+    def get_filename(self):
+        return GET_CSV_FILENAME_HELPER('kits')
 
     def get_context_data(self, **kwargs):
         ctx = super(ADSKitsView, self).get_context_data(**kwargs)
@@ -84,7 +95,9 @@ class ADSKitsView(SuperuserRequiredMixin, CSVResponseMixin, TemplateView):
 
 
 class ADSCommandsView(SuperuserRequiredMixin, CSVResponseMixin, TemplateView):
-    filename = 'commands.csv'
+
+    def get_filename(self):
+        return GET_CSV_FILENAME_HELPER('commands')
 
     def get_context_data(self, **kwargs):
         ctx = super(ADSCommandsView, self).get_context_data(**kwargs)
@@ -95,7 +108,9 @@ class ADSCommandsView(SuperuserRequiredMixin, CSVResponseMixin, TemplateView):
 
 class ADSDetailedCommandsView(SuperuserRequiredMixin, CSVResponseMixin,
                               TemplateView):
-    filename = 'detailedcommands.csv'
+
+    def get_filename(self):
+        GET_CSV_FILENAME_HELPER('detailedcommands')
 
     def get_context_data(self, **kwargs):
         ctx = super(ADSDetailedCommandsView, self).get_context_data(**kwargs)
