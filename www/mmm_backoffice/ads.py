@@ -128,14 +128,15 @@ def get_product_ordersales(product):
     # for each ordersale, get related be2bill transaction
     for osale in osales:
         try:
-            # last successful payment transaction 
+            # last successful transaction 
             last_transaction = Be2billTransaction.objects \
                     .filter(order=osale.order) \
-                    .filter(operationtype='payment') \
                     .filter(Q(order__be2billtransaction__execcode=0) |
                             Q(order__be2billtransaction__execcode=1)) \
                     .order_by('-date_insert', '-order__date', '-pk')[0]
-            ret.append((osale, last_transaction))
+            # only if payment transaction
+            if last_transaction.operationtype == 'payment':
+                ret.append((osale, last_transaction))
         except IndexError:
             pass
     return ret
