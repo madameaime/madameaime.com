@@ -209,7 +209,6 @@ def get_commands_file(product):
 
     # iterate over OrderSales that have a valid related Be2BillTransaction
     for osale, trans in get_product_ordersales(product):
-        print osale, trans, osale.pk, trans.pk
         order = osale.order
         if not order.billing.country:
             order.billing.country = 'France'
