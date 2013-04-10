@@ -364,7 +364,7 @@ a:hover { color: #e2507f; text-decoration: none; }
 }
 
 #delivery-partners {
-    background: url('../img/delivery_partners.png') 0 0 no-repeat;
+    background: url('../img/delivery_partners.png?1') 0 0 no-repeat;
     width: 232px;
     height: 55px;
 }
