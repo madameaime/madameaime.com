@@ -35,6 +35,7 @@ a { color: #4b4b4b; }
 a:hover { color: #e2507f; text-decoration: none; }
 
 .pink { color: #e2507f; }
+.yellow { color: #e0b253; }
 .centered { text-align: center; }
 
 #container .shiny {

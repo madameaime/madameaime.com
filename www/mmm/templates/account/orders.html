@@ -1,0 +1,43 @@
+{% extends "account/layout.html" %}
+{% block account_title %}Mes commandes{% endblock %}
+{% block account_content %}
+<div class="orders">
+  <p class="help boring">
+    Sélectionnez une commande pour accéder à son détail.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 150px;">Référence</th>
+        <th style="width: 130px;">Contenu</th>
+        <th>Adresse de facturation</th>
+        <th style="width: 130px;">Date</th>
+        <!-- <th style="width: 120px;">Statut</th> -->
+        <!-- <th style="width: 130px;">Action</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in user.order_set.all %}
+      <tr>
+        <td><a href="{% url "account/order" order.pk %}">{{ order.exposed_id }}</a></td>
+        <td>{{ order.ordersale_set.all | length }} produit(s)</td>
+        <td>
+          {{ order.billing.address }}<br />
+          {% if order.billing.additional %}
+            {{ order.billing.additional }}<br />
+          {% endif %}
+          {{ order.billing.zip_code }} {{ order.billing.city }} ({{ order.billing.country }})
+        </td>
+        <td>{{ order.date | date:"d M Y" }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="4" class="foot"></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+{% endblock %}

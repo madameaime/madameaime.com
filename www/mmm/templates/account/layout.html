@@ -1,0 +1,27 @@
+{% extends "mmm/skeleton.html" %}
+{% block head_title %}Mon compte : {% block account_title %}{% endblock %}{% endblock %}
+{% block meta_description %}{% endblock %}
+{% block mmm_content %}
+<section id="account">
+  <div class="top clearfix">
+    <h1>Mon compte</h1>
+    <div class="greeting">
+      Bonjour, <span class="yellow">{{ user }}</span>
+      <img alt="" src="{{ STATIC_URL }}img/account/logout.png" />
+      <a href="{% url "logout" %}">déconnexion</a>
+    </div>
+  </div>
+
+  <div class="row-fluid">
+    <ul class="menu span3">
+      <li class="active">
+        <a class="shiny" href="{% url "account/orders" %}">Mes commandes</a>
+        <img src="{{ STATIC_URL }}img/account/orders.png" alt="">
+      </li>
+    </ul>
+    <div class="span9 content">
+      {% block account_content %}{% endblock %}
+    </div>
+  </div>
+</section>
+{% endblock %}

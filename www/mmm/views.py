@@ -9,7 +9,7 @@ from django.utils.decorators import method_decorator
 from django.utils.http import is_safe_url
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
-from django.views.generic import CreateView, FormView, RedirectView, TemplateView
+from django.views.generic import CreateView, FormView, RedirectView, TemplateView, DetailView
 
 from forms import NewsletterForm, RecoverPasswordForm, RegistrationForm, UpdatePasswordForm
 from models import ContactMessage, OfferPage, PasswordRecovery, User
@@ -190,3 +190,8 @@ class UpdatePasswordView(FormView):
         return form_class(self.request.GET.get('mail'),
                           self.request.GET.get('secret'),
                           post_data)
+
+
+class OrderView(DetailView):
+    template_name = "account/order.hml"
+    model = emarket.models.Order

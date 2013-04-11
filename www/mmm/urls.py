@@ -29,6 +29,22 @@ urlpatterns = patterns('',
         name='homepage'
     ),
 
+    url(r'^mon-compte/$',
+        RedirectView.as_view(url=reverse_lazy('account/orders'),
+                             permanent=False),
+        name='account'
+    ),
+
+    url(r'^mon-compte/commandes/$',
+        TemplateView.as_view(template_name='account/orders.html'),
+        name='account/orders'
+    ),
+
+    url(r'^mon-compte/commandes/(?P<pk>\d+)/$',
+        views.OrderView.as_view(template_name='account/order.html'),
+        name='account/order'
+    ),
+
     url(r'^google5fa0e92da89aaa27\.html$',
         TemplateView.as_view(template_name='google5fa0e92da89aaa27.html')
     ),

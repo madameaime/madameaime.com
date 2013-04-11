@@ -1,0 +1,115 @@
+#account {
+}
+
+#account .top {
+    background-color: white;
+    border: 1px solid #dddddd;
+    height: 70px;
+    margin-bottom: 15px;
+}
+
+#account .top > h1 {
+    font-weight: normal;
+    color: #e2507f;
+    font-size: 36px;
+    padding: 5px 0 0 30px;
+    float: left;
+}
+
+#account .top > .greeting {
+    float: right;
+    font-size: 16px;
+    margin: 24px 30px 0 0;
+}
+
+#account .top > .greeting img {
+    margin-left: 20px;
+}
+
+#account .top > .greeting a {
+    margin-left: 5px;
+    font-size: 12px;
+}
+
+#account .menu {
+    list-style-type: none;
+}
+
+#account .menu li {
+    background: url('../img/account/section-off.png');
+    background-repeat: no-repeat;
+    width: 202px;
+    height: 90px;
+    font-size: 24px;
+    position: relative;
+
+    padding: 25px 0 0 20px;
+
+}
+
+#account .menu li.active {
+    background: url('../img/account/section-on.png');
+    margin-left: -2px;
+}
+
+#account .menu li img {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+}
+
+#account .content {
+    margin-bottom: 15px;
+}
+
+#account .content p.boring.help {
+    font-style: italic;
+    padding: 10px 15px;
+}
+
+
+/**********/
+/* Orders */
+/**********/
+
+#account .orders table {
+    width: 100%;
+}
+
+#account .orders table thead th {
+    background-color: white;
+    border: 1px solid #dddddd;
+    height: 70px;
+
+    font-family: 'bebas';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+}
+
+#account .orders table tbody td {
+    background-color: #dddddd;
+    padding: 10px;
+
+    text-align: center;
+    font-size: 14px;
+
+    border: 1px solid white;
+}
+
+#account .orders table a {
+    color: #e2507f;
+}
+
+#account .orders table tbody td:first-child {
+    border-left: 1px solid #dddddd;
+}
+
+#account .orders table tbody td:last-child {
+    border-right: 1px solid #dddddd;
+}
+
+#account .orders table tfoot td {
+    background-color: #dddddd;
+    height: 35px;
+}

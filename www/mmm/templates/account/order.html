@@ -1,0 +1,46 @@
+{% extends "account/layout.html" %}
+{% block account_title %}Mes commandes{% endblock %}
+{% block account_content %}
+<div class="orders">
+  <p class="help boring">
+    Depuis <a href="{% url "account/orders" %}">mes commandes</a> vous
+    avez la possibilité de suivre toute l’activité de vos commandes et
+    mettre à jour celles-ci. Choisissez un des liens plus bas pour voir ou
+    éditer vos commandes
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 200px;">Produit</th>
+        <!-- <th style="width: 120px;">Début de l’abonnement</th> -->
+        <th>Adresse</th>
+        <!-- <th style="width: 120px;">Statut</th> -->
+        <!-- <th style="width: 130px;">Action</th> -->
+        <th style="width: 100px;">Prix</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in user.order_set.all %}
+      {% for ordersale in order.ordersale_set.all %}
+      <tr>
+        <td>{{ ordersale.sale.product.name }}</td>
+        <td>
+          {{ ordersale.delivery.address }}<br />
+          {% if ordersale.delivery.additional %}
+            {{ ordersale.delivery.additional }}<br />
+          {% endif %}
+          {{ ordersale.delivery.zip_code }} {{ ordersale.delivery.city }} ({{ ordersale.delivery.country }})
+        </td>
+        <td>{{ ordersale.sale.price }}</td>
+      </tr>
+      {% endfor %}
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3" class="foot"></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+{% endblock %}
