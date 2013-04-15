@@ -86,7 +86,11 @@ def main():
         for j in xrange(worksheet.ncols):
             cell_type, cell_value = get_cell(worksheet, i, j)
             data.append(cell_value)
-        data[0] = int(data[0]) # fix sale_id typ
+        data[0] = int(data[0]) # fix sale_id type
+        # fix zip_code type, always on 5 chars
+        zip_code = int(data[6])
+        zip_code = ((5 - len(str(zip_code))) * '0') + str(zip_code)
+        data[6] = zip_code
         insert_info(*data)
 
 if __name__ == '__main__':
