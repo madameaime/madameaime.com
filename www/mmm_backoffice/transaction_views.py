@@ -7,7 +7,7 @@ from braces.views import SuperuserRequiredMixin
 from emarket.models import Be2billTransaction, Order, OrderSale
 
 
-class TransactionList(SuperuserRequiredMixin, TemplateView):
+class TransactionListView(SuperuserRequiredMixin, TemplateView):
     template_name = 'mmm_backoffice/transactions/list.html'
 
     def get_context_data(self, **kwargs):

@@ -6,7 +6,7 @@ from . import admin_views, general_views, transaction_views
 # General
 urlpatterns = patterns('',
     url(r'^$',
-        general_views.BackofficeIndex.as_view(),
+        general_views.BackofficeIndexView.as_view(),
         name='mmm_backoffice.index'
     ),
 )
@@ -14,11 +14,11 @@ urlpatterns = patterns('',
 # Administration
 urlpatterns += patterns('',
     url(r'^contact_messages/list/$',
-        admin_views.ContactMessageList.as_view(),
+        admin_views.ContactMessageListView.as_view(),
         name='mmm_backoffice.contact_messages.list'
     ),
     url(r'^newsletter/list/$',
-        admin_views.NewsletterList.as_view(),
+        admin_views.NewsletterListView.as_view(),
         name='mmm_backoffice.newsletter.list'
     ),
 )
@@ -26,7 +26,7 @@ urlpatterns += patterns('',
 # Transactions
 urlpatterns += patterns('',
     url(r'^transactions/list/$',
-        transaction_views.TransactionList.as_view(),
+        transaction_views.TransactionListView.as_view(),
         name='mmm_backoffice.transactions.list'
     ),
 )
