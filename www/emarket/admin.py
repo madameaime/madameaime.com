@@ -21,10 +21,10 @@ admin.site.register(Order, OrderAdmin)
 
 
 class OrderSaleAdmin(admin.ModelAdmin):
-    list_display = ('order', 'sale', 'delivery')
+    list_display = ('order', 'sale', 'delivery', 'delivered')
     ordering = ['-order__date']
     search_fields = ('order', 'sale', 'delivery')
-    list_filter = ('sale',)
+    list_filter = ('sale', 'delivered')
 
 admin.site.register(OrderSale, OrderSaleAdmin)
 

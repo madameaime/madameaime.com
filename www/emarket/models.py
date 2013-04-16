@@ -40,9 +40,10 @@ class OrderSale(models.Model):
     def __unicode__(self):
         return self.order.exposed_id
 
-    order    = models.ForeignKey(Order)
-    sale     = models.ForeignKey(Sale)
-    delivery = models.ForeignKey('Address', null=True, blank=True)
+    order     = models.ForeignKey(Order)
+    sale      = models.ForeignKey(Sale)
+    delivery  = models.ForeignKey('Address', null=True, blank=True)
+    delivered = models.BooleanField(default=False)
 
 
 class Address(models.Model):
