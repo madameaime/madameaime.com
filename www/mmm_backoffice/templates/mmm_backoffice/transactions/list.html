@@ -9,6 +9,9 @@
     background-color:rgba(64, 0, 0, .1);
   }
 
+  .text-center {
+    text-align:center;
+  }
 </style>
 {% endblock %}
 {% block content %}
@@ -117,6 +120,9 @@
       </tbody>
     </table>
 
+    {% if not order.be2bill_transactions %}
+    <p class="text-center"><strong>Aucune transaction Be2bill pour cette commande</strong></p>
+    {% else %}
     <!-- be2bill info -->
     <table class="table table-striped table-hover table-bordered table-condensed">
       <caption>Transactions be2bill pour cette commande</caption>
@@ -148,6 +154,7 @@
       {% endfor %}
       </tbody>
     </table>
+    {% endif %}
 
     <hr />
   </div> <!-- wrapper -->
