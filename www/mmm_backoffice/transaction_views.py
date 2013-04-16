@@ -14,6 +14,7 @@ class TransactionList(SuperuserRequiredMixin, TemplateView):
         """ Return {
             'order_pk': {
                 'info': order info
+                'success': True or False
                 'content': what's in the order
                 'be2bill_transactions': be2bill_transactions
             }
@@ -46,6 +47,18 @@ class TransactionList(SuperuserRequiredMixin, TemplateView):
                                              .prefetch_related('order'):
             array = orders[transaction.order.pk]['be2bill_transactions']
             array.append(transaction)
+
+        # Add success status. Transaction is successfull if the last
+        # transaction is a valid payment.
+        for order_pk, info in orders.iteritems():
+            info['success'] = False
+            try:
+                last_transaction = info['be2bill_transactions'][0]
+                if (last_transaction.execcode in (0, 1) and
+                        last_transaction.operationtype == 'payment'):
+                    info['success'] = True
+            except IndexError:
+                pass
 
         # Sort orders by pk
         ctx['orders'] = sorted(orders.iteritems())[::-1]
