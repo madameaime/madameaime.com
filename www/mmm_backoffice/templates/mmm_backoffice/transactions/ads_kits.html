@@ -1,0 +1,23 @@
+{% extends "mmm_backoffice/base.html" %}
+{% block content %}
+<table class="table table-striped table-hover table-bordered table-condensed">
+  <thead>
+    <tr>
+      <th>Code KIT</th>
+      <th>Lib LONG</th>
+      <th>Lib COURT</th>
+      <th>Code ART</th>
+      <th>Quantité</th>
+    </tr>
+</thead>
+  <tbody>
+    {% for ads_kit in ads_kits %}
+    <tr>
+      {% for row in ads_kit %}
+      <td>{{row}}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -31,7 +31,11 @@ urlpatterns += patterns('',
     ),
     ### ADS ###
     url(r'^ads/products/$',
-        transaction_views.ADSProductView.as_view(),
+        transaction_views.ADSProductListView.as_view(),
         name='mmm_backoffice.ads.products'
+    ),
+    url(r'^ads/kits/$',
+        transaction_views.ADSKitListView.as_view(),
+        name='mmm_backoffice.ads.kits'
     ),
 )
