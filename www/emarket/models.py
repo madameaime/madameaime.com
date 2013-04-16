@@ -32,6 +32,7 @@ class Order(models.Model):
     user       = models.ForeignKey(settings.AUTH_USER_MODEL)
     billing    = models.ForeignKey('Address')
     promo_code = models.CharField(max_length=32, blank=True)
+    is_free    = models.BooleanField(default=False)
 
 
 class OrderSale(models.Model):
