@@ -215,7 +215,7 @@ urlpatterns = patterns('',
     ),
 
     url(r'^backoffice/',
-        include('mmm_backoffice.urls', namespace='mmm_backoffice')
+        include('mmm_backoffice.urls')
     ),
 
     url(r'deconnexion/$',

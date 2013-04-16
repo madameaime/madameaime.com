@@ -138,6 +138,7 @@ WSGI_APPLICATION = 'mmm.wsgi.application'
 
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_DIR, 'templates'),
+    os.path.join(PROJECT_DIR, '..', 'mmm_backoffice', 'templates'),
 )
 
 INSTALLED_APPS = (

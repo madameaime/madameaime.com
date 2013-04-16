@@ -1,0 +1,39 @@
+{% extends "mmm_backoffice/base.html" %}
+{% block content %}
+
+{% for message in object_list %}
+<table class="table table-striped table-hover table-bordered table-condensed">
+  <tr>
+    <th>Prénom</th>
+    <td>{{message.firstname}}</td>
+  </tr>
+  <tr>
+    <th>Nom</th>
+    <td>{{message.lastname}}</td>
+  </tr>
+  <tr>
+    <th>Date</th>
+    <td>{{message.date}}</td>
+  </tr>
+  <tr>
+    <th>Email</th>
+    <td>{{message.email}}</td>
+  </tr>
+  <tr>
+    <th>Commande</th>
+    <td>{{message.command}}</td>
+  </tr>
+  <tr>
+    <th>Sujet</th>
+    <td>{{message.subject}}</td>
+  </tr>
+  <tr>
+    <th>Message</th>
+    <td>{{message.message|linebreaks}}</td>
+  </tr>
+</table>
+
+<hr />
+{% endfor %}
+
+{% endblock %}
