@@ -20,7 +20,7 @@ class TransactionListView(SuperuserRequiredMixin, TemplateView):
             }
         }
         """
-        ctx = super(TransactionList, self).get_context_data(**kwargs)
+        ctx = super(TransactionListView, self).get_context_data(**kwargs)
         orders = {}
 
         for order in Order.objects.prefetch_related('billing'):
