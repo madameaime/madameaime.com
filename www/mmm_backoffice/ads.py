@@ -13,7 +13,7 @@ def reformat(value, format_type, format_len=0):
     raise ValueError('Invalid format type %s' % format_type)
 
 
-def get_product_file(products):
+def get_products_file(products):
     """ return
     CODE                    (A18)
     LIB_LONG                (A50)

@@ -4,7 +4,9 @@ from django.views.generic import ListView, TemplateView
 
 from braces.views import SuperuserRequiredMixin
 
+from . import ads
 from emarket.models import Be2billTransaction, Order, OrderSale
+from stockmgmt.models import Product
 
 
 class TransactionListView(SuperuserRequiredMixin, TemplateView):
@@ -66,4 +68,14 @@ class TransactionListView(SuperuserRequiredMixin, TemplateView):
 
         # Sort orders by pk
         ctx['orders'] = sorted(orders.iteritems())[::-1]
+        return ctx
+
+
+class ADSProductView(SuperuserRequiredMixin, TemplateView):
+    template_name = 'mmm_backoffice/transactions/ads_products.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(ADSProductView, self).get_context_data(**kwargs)
+        all_products = Product.objects.all()
+        ctx['ads_products'] = ads.get_products_file(all_products)
         return ctx
