@@ -109,39 +109,6 @@ def get_kits_file(products):
             ])
     return ret
 
-def get_product_ordersales(product):
-    """ Return a list of tuple. Every tuple is composed as follow: (ordersale,
-    last corresponding be2bill transaction)
-    """
-    # get packages that contain `product`
-    packages = Package.objects.filter(products__in=[product])
-
-    ##### below there's something dirty. can't find an equivalent using the
-    ##### django orm for:
-    ##### SELECT * FROM (SELECT * FROM table ORDER BY date DESC) as subq
-    #####   GROUP BY subq.order
-
-    # get all ordersale objects related to the product
-    osales = OrderSale.objects.filter(Q(sale__product__in=[product]) |
-                                      Q(sale__product__in=packages))
-    ret = []
-    # for each ordersale, get related be2bill transaction
-    for osale in osales:
-        try:
-            # last successful transaction 
-            last_transaction = Be2billTransaction.objects \
-                    .filter(order=osale.order) \
-                    .filter(Q(order__be2billtransaction__execcode=0) |
-                            Q(order__be2billtransaction__execcode=1)) \
-                    .order_by('-date_insert', '-order__date', '-pk')[0]
-            # only if payment transaction
-            if last_transaction.operationtype == 'payment':
-                ret.append((osale, last_transaction))
-        except IndexError:
-            pass
-    return ret
-
-
 def get_non_delivered_ordersales():
     """ Get all non-delivered ordersales related to valid transactions (paid or
     free offers).
