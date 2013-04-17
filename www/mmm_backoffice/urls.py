@@ -38,4 +38,8 @@ urlpatterns += patterns('',
         transaction_views.ADSKitListView.as_view(),
         name='mmm_backoffice.ads.kits'
     ),
+    url(r'^ads/commands/$',
+        transaction_views.ADSCommandsListView.as_view(),
+        name='mmm_backoffice.ads.commands'
+    ),
 )

@@ -89,3 +89,12 @@ class ADSKitListView(SuperuserRequiredMixin, TemplateView):
         all_products = Product.objects.all()
         ctx['ads_kits'] = ads.get_kits_file(all_products)
         return ctx
+
+
+class ADSCommandsListView(SuperuserRequiredMixin, TemplateView):
+    template_name = 'mmm_backoffice/transactions/ads_commands.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(ADSCommandsListView, self).get_context_data(**kwargs)
+        ctx['ads_commands'] = ads.get_commands_file()
+        return ctx

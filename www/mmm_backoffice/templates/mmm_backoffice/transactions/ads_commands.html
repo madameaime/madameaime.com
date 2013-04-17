@@ -1,0 +1,83 @@
+{% extends "mmm_backoffice/base.html" %}
+{% block content %}
+<table class="table table-striped table-hover table-bordered table-condensed">
+  <thead>
+    <tr>
+      <th>NUM_CMDE</th>
+      <th>NAT_CMDE</th>
+      <th>TYPE_CMDE</th>
+      <th>CODE_CLIENT</th>
+      <th>NUM FACTURE</th>
+      <th>DATE_EDITION</th>
+      <th>NUMIC</th>
+      <th>SOCIETE_FAC</th>
+      <th>CIVILITE_FAC</th>
+      <th>NOM_CLIENT_FAC</th>
+      <th>PRENOM_CLIENT_FAC</th>
+      <th>ADR1_FAC</th>
+      <th>ADR2_FAC</th>
+      <th>ADR3_FAC</th>
+      <th>ADR4_FAC</th>
+      <th>CP_FAC</th>
+      <th>VILLE_FAC</th>
+      <th>ETAT_FAC</th>
+      <th>PAYS_FAC</th>
+      <th>CODE_ISO_FAC</th>
+      <th>SOCIETE_LIV</th>
+      <th>CIVILITE_LIV</th>
+      <th>NOM_CLIENT_LIV</th>
+      <th>PRENOM_CLIENT_LIV</th>
+      <th>ADR1_LIV</th>
+      <th>ADR2_LIV</th>
+      <th>ADR3_LIV</th>
+      <th>ADR4_LIV</th>
+      <th>CP_LIV</th>
+      <th>VILLE_LIV</th>
+      <th>ETAT_LIV</th>
+      <th>PAYS_LIV</th>
+      <th>CODE_ISO_LIV</th>
+      <th>TELEPHONE_LIV</th>
+      <th>EMAIL_LIV</th>
+      <th>TYPE_ENVOI</th>
+      <th>CODE_TRANSPORTEUR_DEDIE</th>
+      <th>NUMERO_POINT_RELAIS</th>
+      <th>CODE_ISO_POINT_RELAIS</th>
+      <th>TAUX_TVA_1</th>
+      <th>BASE_TVA_1</th>
+      <th>MONTANT_TVA_1</th>
+      <th>TAUX_TVA_2</th>
+      <th>BASE_TVA_2</th>
+      <th>MONTANT_TVA_2</th>
+      <th>TAUX_TVA_3</th>
+      <th>BASE_TVA_3</th>
+      <th>MONTANT_TVA_3</th>
+      <th>MONTANT_ESCOMPTE</th>
+      <th>MONTANT_ACOMPTE</th>
+      <th>MONTANT_FRAIS_ENVOI_HT</th>
+      <th>MONTANT_FRAIS_ENVOI_TTC</th>
+      <th>MONTANT_TOTAL_HT</th>
+      <th>MONTANT_TOTAL_TTC</th>
+      <th>DATE_ECHEANCE</th>
+      <th>MODE_PAIEMENT</th>
+      <th>DATE_PAIEMENT</th>
+      <th>MONTANT_PAIEMENT</th>
+      <th>RESTANT_DU</th>
+      <th>DEVISE</th>
+      <th>TYPE_FACTURE</th>
+      <th>COMMENTAIRE_1_COMMANDE</th>
+      <th>COMMENTAIRE_2_COMMANDE</th>
+      <th>COMMENTAIRE_3_COMMANDE</th>
+      <th>CADEAU</th>
+    </tr>
+</thead>
+  <tbody>
+    {% for ads_command in ads_commands %}
+    <tr>
+      {% for row in ads_command %}
+      <td>{{row}}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

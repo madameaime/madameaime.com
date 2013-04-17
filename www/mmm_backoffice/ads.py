@@ -141,7 +141,39 @@ def get_product_ordersales(product):
             pass
     return ret
 
-def get_commands_file(product):
+
+def get_non_delivered_ordersales():
+    """ Get all non-delivered ordersales related to valid transactions (paid or
+    free offers).
+    """
+    # build a dictionary of latest transactions like :
+    # {'order_pk': last_be2bill_transaction, ...}
+    all_transactions = Be2billTransaction.objects \
+                            .filter(Q(order__be2billtransaction__execcode=0) |
+                                    Q(order__be2billtransaction__execcode=1))\
+                            .order_by('-date_insert', '-pk') \
+                            .prefetch_related('order')
+    latest_transactions = {}
+    for transaction in all_transactions:
+        if transaction.order.pk not in latest_transactions:
+            latest_transactions[transaction.order.pk] = transaction
+
+    valid = []
+    for order_sale in OrderSale.objects.filter(delivered=False).all()    \
+                               .select_related('order', 'sale',
+                                       'order__user', 'order__billing',
+                                       'delivery'):
+
+        if order_sale.order.is_free:
+            valid.append(order_sale)
+        else:
+            transaction = latest_transactions.get(order_sale.order.pk)
+            if (transaction is not None and
+                    transaction.operationtype == 'payment'):
+                valid.append(order_sale)
+    return valid
+
+def get_commands_file():
     """
     NUM_CMDE                (A30)
     NAT_CMDE                (A30)
@@ -209,7 +241,7 @@ def get_commands_file(product):
     ret = []
 
     # iterate over OrderSales that have a valid related Be2BillTransaction
-    for osale, trans in get_product_ordersales(product):
+    for osale in get_non_delivered_ordersales():
         order = osale.order
         if not order.billing.country:
             order.billing.country = 'France'
