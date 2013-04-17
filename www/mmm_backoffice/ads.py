@@ -13,6 +13,18 @@ def reformat(value, format_type, format_len=0):
     raise ValueError('Invalid format type %s' % format_type)
 
 
+def get_metapackages_list():
+    """ Return Packages that are metapackages.
+
+    A metapackage is a packages which contains at least one product which is
+    itself a Package.
+    A non-metapackage is a Package that contains only real Products.
+    """
+    return Package.objects.filter(
+            products__in=Package.objects.values_list('pk', flat=True)
+    ).values_list('pk', flat=True)
+
+
 def get_products_file():
     """ return
     CODE                    (A18)
@@ -33,14 +45,7 @@ def get_products_file():
     Do not return products that are packages and that contain packages
     """
     ret = []
-
-    # Get all products that are not metapackages (a metapackage is a Package
-    # that contains another Package).
-    metapackages = Package.objects.filter(
-                    products__in=Package.objects \
-                                        .values_list('pk', flat=True)) \
-                          .values_list('pk', flat=True)
-
+    metapackages = get_metapackages_list()
     for product in Product.objects.all().select_related('product_type'):
         # If this product is a metapackage, do not add it to the ret list
         if product.pk in metapackages:
@@ -79,29 +84,16 @@ def get_kits_file():
     Only return kits that contain products which are not packages
     """
     ret = []
-    for product in Product.objects.all():
-        # if it is a package
-        try:
-            package = Package.objects.get(pk=product.pk)
-        except Package.DoesNotExist:
+    metapackages = get_metapackages_list()
+    for package in Package.objects.all().prefetch_related('products'):
+        if package.pk in metapackages:
             continue
-
-        # this is a true package (no package inside it)
-        true_package = True
-        for element in package.products.all():
-            if Package.objects.filter(pk=element.pk).count() != 0:
-                true_package = False
-                break
-        if true_package is False:
-            continue
-
-        # yeah!
-        for item in package.products.all():
+        for product in package.products.all():
             ret.append([
+                reformat(package.pk, 'A', 18),
+                reformat(package.name[:50], 'A', 50),
+                reformat(package.name[:16], 'A', 16),
                 reformat(product.pk, 'A', 18),
-                reformat(product.name[:50], 'A', 50),
-                reformat(product.name[:16], 'A', 16),
-                reformat(item.pk, 'A', 18),
                 reformat(1, 'N')
             ])
     return ret
