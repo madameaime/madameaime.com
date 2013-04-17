@@ -162,6 +162,7 @@ def get_non_delivered_ordersales():
     for order_sale in OrderSale.objects.filter(delivered=False).all()    \
                                .select_related('order', 'sale',
                                        'order__user', 'order__billing',
+                                       'sale__product',
                                        'delivery'):
 
         if order_sale.order.is_free:
@@ -334,7 +335,7 @@ def get_commands_file():
     return ret
 
 
-def get_detailed_commands_file(product):
+def get_detailed_commands_file():
     """
     NUM_FACTURE_BL
     CODE_ART
@@ -348,9 +349,9 @@ def get_detailed_commands_file(product):
     MONTANT_TOTAL_LIGNE_HT
     """
     ret = []
-    for osale, trans in get_product_ordersales(product):
+    for osale in get_non_delivered_ordersales():
         order = osale.order
-
+        product = osale.sale.product
         ret.append([
             reformat(osale.pk, 'A', 20),
             reformat(product.pk, 'A', 18),

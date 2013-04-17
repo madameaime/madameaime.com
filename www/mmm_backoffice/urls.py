@@ -42,4 +42,8 @@ urlpatterns += patterns('',
         transaction_views.ADSCommandsListView.as_view(),
         name='mmm_backoffice.ads.commands'
     ),
+    url(r'^ads/detailedcommands/$',
+        transaction_views.ADSDetailedCommandsListView.as_view(),
+        name='mmm_backoffice.ads.detailedcommands'
+    ),
 )

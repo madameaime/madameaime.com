@@ -98,3 +98,13 @@ class ADSCommandsListView(SuperuserRequiredMixin, TemplateView):
         ctx = super(ADSCommandsListView, self).get_context_data(**kwargs)
         ctx['ads_commands'] = ads.get_commands_file()
         return ctx
+
+
+class ADSDetailedCommandsListView(SuperuserRequiredMixin, TemplateView):
+    template_name = 'mmm_backoffice/transactions/ads_detailedcommands.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(ADSDetailedCommandsListView, self) \
+                .get_context_data(**kwargs)
+        ctx['ads_detailed_commands'] = ads.get_detailed_commands_file()
+        return ctx
