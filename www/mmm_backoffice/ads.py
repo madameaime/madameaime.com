@@ -33,21 +33,18 @@ def get_products_file():
     Do not return products that are packages and that contain packages
     """
     ret = []
-    for product in Product.objects.all():
-        try:
-            package = Package.objects.get(pk=product.pk)
-            is_metapackage = False
-            # iterate over package products. If one of them is a package, do
-            # not add product to ret
-            for package_product in package.products.all():
-                if Package.objects.filter(pk=package_product.pk).count():
-                    is_metapackage = True
-                    break
-            if is_metapackage:
-                continue
 
-        except Package.DoesNotExist:
-            pass
+    # Get all products that are not metapackages (a metapackage is a Package
+    # that contains another Package).
+    metapackages = Package.objects.filter(
+                    products__in=Package.objects \
+                                        .values_list('pk', flat=True)) \
+                          .values_list('pk', flat=True)
+
+    for product in Product.objects.all().select_related('product_type'):
+        # If this product is a metapackage, do not add it to the ret list
+        if product.pk in metapackages:
+            continue
 
         product_type = ''
         if product.product_type is not None:
