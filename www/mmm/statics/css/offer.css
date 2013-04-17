@@ -203,6 +203,7 @@
 }
 
 #offer .products > ul > li.six > .badge {
+    display: block;
     height: 62px;
     width: 62px;
     background: url('../img/offer/badge.png') 0 0 no-repeat;
