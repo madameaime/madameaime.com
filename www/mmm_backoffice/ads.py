@@ -1,7 +1,7 @@
 from django.db.models import Q
 
 from emarket.models import Be2billTransaction, OrderSale
-from stockmgmt.models import Package
+from stockmgmt.models import Package, Product
 
 
 def reformat(value, format_type, format_len=0):
@@ -13,7 +13,7 @@ def reformat(value, format_type, format_len=0):
     raise ValueError('Invalid format type %s' % format_type)
 
 
-def get_products_file(products):
+def get_products_file():
     """ return
     CODE                    (A18)
     LIB_LONG                (A50)
@@ -33,7 +33,7 @@ def get_products_file(products):
     Do not return products that are packages and that contain packages
     """
     ret = []
-    for product in products:
+    for product in Product.objects.all():
         try:
             package = Package.objects.get(pk=product.pk)
             is_metapackage = False
@@ -71,7 +71,7 @@ def get_products_file(products):
         ])
     return ret
 
-def get_kits_file(products):
+def get_kits_file():
     """
     CODE_KIT    (A18)
     LIB_LONG    (A50)
@@ -82,7 +82,7 @@ def get_kits_file(products):
     Only return kits that contain products which are not packages
     """
     ret = []
-    for product in products:
+    for product in Product.objects.all():
         # if it is a package
         try:
             package = Package.objects.get(pk=product.pk)

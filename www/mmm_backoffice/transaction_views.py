@@ -76,8 +76,7 @@ class ADSProductListView(SuperuserRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(ADSProductListView, self).get_context_data(**kwargs)
-        all_products = Product.objects.all()
-        ctx['ads_products'] = ads.get_products_file(all_products)
+        ctx['ads_products'] = ads.get_products_file()
         return ctx
 
 
@@ -87,7 +86,7 @@ class ADSKitListView(SuperuserRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         ctx = super(ADSKitListView, self).get_context_data(**kwargs)
         all_products = Product.objects.all()
-        ctx['ads_kits'] = ads.get_kits_file(all_products)
+        ctx['ads_kits'] = ads.get_kits_file()
         return ctx
 
 
