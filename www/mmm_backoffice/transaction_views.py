@@ -71,39 +71,35 @@ class TransactionListView(SuperuserRequiredMixin, TemplateView):
         return ctx
 
 
-class ADSProductListView(SuperuserRequiredMixin, TemplateView):
+class ADSMixin(SuperuserRequiredMixin):
+    template_var_name = None
+    get_data = None
+
+    def get_context_data(self, **kwargs):
+        ctx = super(ADSMixin, self).get_context_data(**kwargs)
+        ctx[self.template_var_name] = self.get_data()
+        return ctx
+
+
+class ADSProductListView(ADSMixin, TemplateView):
     template_name = 'mmm_backoffice/transactions/ads_products.html'
-
-    def get_context_data(self, **kwargs):
-        ctx = super(ADSProductListView, self).get_context_data(**kwargs)
-        ctx['ads_products'] = ads.get_products_file()
-        return ctx
+    template_var_name = 'ads_products'
+    get_data = lambda self: ads.get_products_file()
 
 
-class ADSKitListView(SuperuserRequiredMixin, TemplateView):
+class ADSKitListView(ADSMixin, TemplateView):
     template_name = 'mmm_backoffice/transactions/ads_kits.html'
-
-    def get_context_data(self, **kwargs):
-        ctx = super(ADSKitListView, self).get_context_data(**kwargs)
-        all_products = Product.objects.all()
-        ctx['ads_kits'] = ads.get_kits_file()
-        return ctx
+    template_var_name = 'ads_kits'
+    get_data = lambda self: ads.get_kits_file()
 
 
-class ADSCommandsListView(SuperuserRequiredMixin, TemplateView):
+class ADSCommandsListView(ADSMixin, TemplateView):
     template_name = 'mmm_backoffice/transactions/ads_commands.html'
-
-    def get_context_data(self, **kwargs):
-        ctx = super(ADSCommandsListView, self).get_context_data(**kwargs)
-        ctx['ads_commands'] = ads.get_commands_file()
-        return ctx
+    template_var_name = 'ads_commands'
+    get_data = lambda self: ads.get_commands_file()
 
 
-class ADSDetailedCommandsListView(SuperuserRequiredMixin, TemplateView):
+class ADSDetailedCommandsListView(ADSMixin, TemplateView):
     template_name = 'mmm_backoffice/transactions/ads_detailedcommands.html'
-
-    def get_context_data(self, **kwargs):
-        ctx = super(ADSDetailedCommandsListView, self) \
-                .get_context_data(**kwargs)
-        ctx['ads_detailed_commands'] = ads.get_detailed_commands_file()
-        return ctx
+    template_var_name = 'ads_detailed_commands'
+    get_data = lambda self: ads.get_detailed_commands_file()
