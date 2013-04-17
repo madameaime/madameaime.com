@@ -1,5 +1,8 @@
 from collections import defaultdict
+import csv
+import datetime
 
+from django.http import HttpResponse
 from django.views.generic import ListView, TemplateView
 
 from braces.views import SuperuserRequiredMixin
@@ -80,26 +83,53 @@ class ADSMixin(SuperuserRequiredMixin):
         ctx[self.template_var_name] = self.get_data()
         return ctx
 
+    def render_to_response(self, context):
+        if self.request.GET.get('format') == 'csv':
+            return self.render_csv_response(context[self.template_var_name])
+        return super(ADSMixin, self).render_to_response(context)
+
+    def render_csv_response(self, rows):
+        response = HttpResponse(content_type='text/csv')
+        filename = self.get_filename()
+        response['Content-Disposition'] = ('attachment; filename="%s"' %
+                                           filename)
+        # ADS sucks. They don't know how to parse a CSV (escaping characters seem
+        # to be too complicated to handle for them). Separate fields with a pipe
+        # (as it won't be used in fields, at least I hope)
+        writer = csv.writer(response, delimiter='|')
+        for line in rows:
+            writer.writerow([value.encode('utf8') for value in line])
+        return response
+
+    def get_filename(self):
+        return self.csv_filename + '_%s_%s.csv' % (
+            datetime.datetime.now().strftime('%Y%m%d'),
+            datetime.datetime.now().strftime('%H%M%S'))
+
 
 class ADSProductListView(ADSMixin, TemplateView):
     template_name = 'mmm_backoffice/transactions/ads_products.html'
     template_var_name = 'ads_products'
     get_data = lambda self: ads.get_products_file()
+    csv_filename = 'products'
 
 
 class ADSKitListView(ADSMixin, TemplateView):
     template_name = 'mmm_backoffice/transactions/ads_kits.html'
     template_var_name = 'ads_kits'
     get_data = lambda self: ads.get_kits_file()
+    csv_filename = 'kits'
 
 
 class ADSCommandsListView(ADSMixin, TemplateView):
     template_name = 'mmm_backoffice/transactions/ads_commands.html'
     template_var_name = 'ads_commands'
     get_data = lambda self: ads.get_commands_file()
+    csv_filename = 'commands'
 
 
 class ADSDetailedCommandsListView(ADSMixin, TemplateView):
     template_name = 'mmm_backoffice/transactions/ads_detailedcommands.html'
     template_var_name = 'ads_detailed_commands'
     get_data = lambda self: ads.get_detailed_commands_file()
+    csv_filename = 'detailed_commands'

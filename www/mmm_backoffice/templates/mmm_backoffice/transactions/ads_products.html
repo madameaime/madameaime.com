@@ -1,5 +1,10 @@
 {% extends "mmm_backoffice/base.html" %}
 {% block content %}
+
+<p>
+  <a href="{% url "mmm_backoffice.ads.products" %}?format=csv">Export CSV</a>
+</p>
+
 <table class="table table-striped table-hover table-bordered table-condensed">
   <thead>
     <tr>
