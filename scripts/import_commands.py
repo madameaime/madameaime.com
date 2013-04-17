@@ -49,8 +49,6 @@ def insert_info(sale_id, firstname, lastname, email, address, additional,
             delivery_formset.is_valid()):
         raise ValueError('ERROR! INVALID FORMS!111!')
 
-
-
     class Request(object):
         """ Simulate a HttpRequest object. Worst hack ever (it's 00.30pm here).
         """
@@ -59,13 +57,8 @@ def insert_info(sale_id, firstname, lastname, email, address, additional,
     order_id = emarket.views.DeliveryView()._create_order(Request(),
                                     tos_form, billing_form, delivery_formset)
     order = emarket.models.Order.objects.get(exposed_id=order_id)
-
-    # Create fake Be2billTransaction
-    blob = {'REASON': 'imported from import_commands.py'}
-    emarket.models.Be2billTransaction(order=order,
-            execcode=0,
-            operationtype='payment',
-            blob=json.dumps(blob)).save()
+    order.is_free = True
+    order.save()
 
 
 def get_cell(worksheet, row, cell):
