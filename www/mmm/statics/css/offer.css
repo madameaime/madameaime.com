@@ -209,7 +209,8 @@
     background: url('../img/offer/badge.png') 0 0 no-repeat;
     position: absolute;
     z-index: 1;
-    right: -50px;
+    top: 150px;
+    right: -40px;
 }
 
 #offer .products .hurry {
