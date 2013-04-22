@@ -24,6 +24,12 @@ class Product(models.Model):
         return self.name
 
     name = models.CharField(max_length=255)
+
+    # This product can be delivered to ADS.
+    # Only deliverable Products are in the list of non-delivered products sent
+    # to ADS.
+    deliverable = models.BooleanField(default=False)
+
     product_type = models.ForeignKey(ProductType, blank=True,
                                      null=True, default=None)
     # cosmetic, book, ...
@@ -42,7 +48,8 @@ class Product(models.Model):
 
 
 class Package(Product):
-    products = models.ManyToManyField(Product, related_name="products", blank=True)
+    products = models.ManyToManyField(Product,
+                    related_name="package_products", blank=True)
 
 
 class StockMvt(models.Model):

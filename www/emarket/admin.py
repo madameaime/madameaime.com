@@ -21,12 +21,19 @@ admin.site.register(Order, OrderAdmin)
 
 
 class OrderSaleAdmin(admin.ModelAdmin):
-    list_display = ('order', 'sale', 'delivery', 'delivered')
+    list_display = ('order', 'sale', 'delivery')
     ordering = ['-order__date']
     search_fields = ('order', 'sale', 'delivery')
-    list_filter = ('sale', 'delivered')
+    list_filter = ('sale',)
 
 admin.site.register(OrderSale, OrderSaleAdmin)
+
+
+class DeliveredProductAdmin(admin.ModelAdmin):
+    list_display = ('order_sale', 'product')
+
+
+admin.site.register(DeliveredProduct, DeliveredProductAdmin)
 
 
 class AddressAdmin(admin.ModelAdmin):

@@ -43,7 +43,21 @@ class OrderSale(models.Model):
     order     = models.ForeignKey(Order)
     sale      = models.ForeignKey(Sale)
     delivery  = models.ForeignKey('Address', null=True, blank=True)
-    delivered = models.BooleanField(default=False)
+
+
+class DeliveredProduct(models.Model):
+    """ Keep track of Products given to ADS.
+
+    A `delivered` flag used to exist in OrderSale but this wasn't working with
+    metapackages.
+
+    In the case the OrderSale references a metapackage, for instance three
+    boxes, we want to be able to know which box has been delivered or not, and
+    not if the whole package (which is a pure commercial product) has been
+    delivered.
+    """
+    order_sale = models.ForeignKey(OrderSale)
+    product = models.ForeignKey(stockmgmt.models.Product)
 
 
 class Address(models.Model):

@@ -1,6 +1,6 @@
 from django.db.models import Q
 
-from emarket.models import Be2billTransaction, OrderSale
+from emarket.models import Be2billTransaction, DeliveredProduct, OrderSale
 from stockmgmt.models import Package, Product
 
 
@@ -20,9 +20,9 @@ def get_metapackages_list():
     itself a Package.
     A non-metapackage is a Package that contains only real Products.
     """
-    return Package.objects.filter(
+    return set(Package.objects.filter(
             products__in=Package.objects.values_list('pk', flat=True)
-    ).values_list('pk', flat=True)
+    ).values_list('pk', flat=True))
 
 
 def get_products_file():
@@ -99,8 +99,11 @@ def get_kits_file():
     return ret
 
 def get_non_delivered_ordersales():
-    """ Get all non-delivered ordersales related to valid transactions (paid or
-    free offers).
+    """ Get all non-delivered ordersales corresponding to valid transactions
+    (paid or free offers).
+
+    Return a dictionary where keys are OrderSale objects, and values are lists
+    of Product to deliver.
     """
     # build a dictionary of latest transactions like :
     # {'order_pk': last_be2bill_transaction, ...}
@@ -113,22 +116,61 @@ def get_non_delivered_ordersales():
     for transaction in all_transactions:
         if transaction.order.pk not in latest_transactions:
             latest_transactions[transaction.order.pk] = transaction
+   
+    # Generate a list of metapackages
+    metapackages = get_metapackages_list()
+    # And a dict of packages
+    packages = dict((package.pk, package)
+                    for package in Package.objects.all())
 
-    valid = []
-    for order_sale in OrderSale.objects.filter(delivered=False).all()    \
+    # Build a dict of delivered products
+    # {order_sale: [product1, product2, product3], ...}
+    data = DeliveredProduct.objects.values_list('order_sale', 'product')
+    delivered = {}
+    for osale_pk, product_pk in data:
+        delivered.setdefault(osale_pk, []).append(product_pk)
+
+    product_is_delivered = lambda osale, product: \
+                                    product in delivered.get(osale, [])
+
+    # get non delivered ordersales
+    valid = {}
+    # select related. This will cause problem someday (the query generated is
+    # huge and someday MySQL won't like such a big query) but let's try to keep
+    # it this way for now.
+    for order_sale in OrderSale.objects.all()    \
                                .select_related('order', 'sale',
                                        'order__user', 'order__billing',
                                        'sale__product',
                                        'delivery'):
+        # If free transaction or paid transaction
+        transaction = latest_transactions.get(order_sale.order.pk)
+        if order_sale.order.is_free or (transaction is not None and
+                transaction.operationtype == 'payment'
+        ):
+            products_to_deliver = []
+            product = order_sale.sale.product
 
-        if order_sale.order.is_free:
-            valid.append(order_sale)
-        else:
-            transaction = latest_transactions.get(order_sale.order.pk)
-            if (transaction is not None and
-                    transaction.operationtype == 'payment'):
-                valid.append(order_sale)
+            # The Product related to the OrderSale is not a metapackage and is
+            # deliverable
+            if product.pk not in metapackages:
+                if (product.deliverable is True and
+                    not product_is_delivered(order_sale.pk, product.pk)):
+                    products_to_deliver.append(product)
+            # If it is a metapackage, iterate over products in it to know which
+            # one we need to deliver
+            else:
+                package = packages[product.pk]
+                for product in package.products.all():
+                    if (product.deliverable is True and
+                        not product_is_delivered(order_sale.pk, product.pk)):
+                        products_to_deliver.append(product)
+
+            if products_to_deliver:
+                valid[order_sale] = products_to_deliver
+
     return valid
+
 
 def get_commands_file():
     """
@@ -198,7 +240,7 @@ def get_commands_file():
     ret = []
 
     # iterate over OrderSales that have a valid related Be2BillTransaction
-    for osale in get_non_delivered_ordersales():
+    for osale, products in get_non_delivered_ordersales().iteritems():
         order = osale.order
         if not order.billing.country:
             order.billing.country = 'France'
@@ -305,28 +347,19 @@ def get_detailed_commands_file():
     MONTANT_TOTAL_LIGNE_HT
     """
     ret = []
-    metapackages = get_metapackages_list()
-    for osale in get_non_delivered_ordersales():
-        order = osale.order
-        product = osale.sale.product
-        # HACK HACK HACK : for now, there's no way to keep track of deliveries
-        # of packs. If the product is a metapackage, return the first element
-        # of the package.
-        if product.pk in metapackages:
-            product = Package.objects               \
-                                .get(pk=product.pk) \
-                                .products.all()[0]
-
-        ret.append([
-            reformat(osale.pk, 'A', 20),
-            reformat(product.pk, 'A', 18),
-            reformat(product.name, 'A', 50),
-            reformat(1, 'N'), # QTE
-            reformat('O', 'A', 1), # OBLIGATOIRE
-            reformat('0', 'A', 15), # PRIX_UNITAIRE_HT
-            reformat('0', 'A', 10), # TAUX TVA
-            reformat('0', 'A', 15), # REMISE
-            reformat('0', 'A', 10), # TAUX REMISE
-            reformat('0', 'A', 15), # MONTANT_TOTAL_LIGNE_HT
-        ])
+    for osale, products in get_non_delivered_ordersales().iteritems():
+        for product in products:
+            order = osale.order
+            ret.append([
+                reformat(osale.pk, 'A', 20),
+                reformat(product.pk, 'A', 18),
+                reformat(product.name, 'A', 50),
+                reformat(1, 'N'), # QTE
+                reformat('O', 'A', 1), # OBLIGATOIRE
+                reformat('0', 'A', 15), # PRIX_UNITAIRE_HT
+                reformat('0', 'A', 10), # TAUX TVA
+                reformat('0', 'A', 15), # REMISE
+                reformat('0', 'A', 10), # TAUX REMISE
+                reformat('0', 'A', 15), # MONTANT_TOTAL_LIGNE_HT
+            ])
     return ret

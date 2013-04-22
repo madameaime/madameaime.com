@@ -4,10 +4,10 @@ from models import *
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'product_type', 'article_family',
-            'supplier', 'public_price', 'length', 'width', 'height',
-            'weight', 'ean')
-    list_filter = ('product_type',)
+    list_display = ('name', 'deliverable', 'product_type', 'article_family',
+            'supplier', 'public_price', 'length', 'width', 'height', 'weight',
+            'ean')
+    list_filter = ('product_type', 'deliverable')
 
 admin.site.register(Product, ProductAdmin)
 
