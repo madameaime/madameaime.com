@@ -313,16 +313,13 @@ def get_detailed_commands_file():
         # of packs. If the product is a metapackage, return the first element
         # of the package.
         if product.pk in metapackages:
-            product_pk = Package.objects            \
+            product = Package.objects               \
                                 .get(pk=product.pk) \
-                                .products.all()[0]  \
-                                .pk
-        else:
-            product_pk = product.pk
+                                .products.all()[0]
 
         ret.append([
             reformat(osale.pk, 'A', 20),
-            reformat(product_pk, 'A', 18),
+            reformat(product.pk, 'A', 18),
             reformat(product.name, 'A', 50),
             reformat(1, 'N'), # QTE
             reformat('O', 'A', 1), # OBLIGATOIRE
