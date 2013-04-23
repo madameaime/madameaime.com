@@ -305,12 +305,24 @@ def get_detailed_commands_file():
     MONTANT_TOTAL_LIGNE_HT
     """
     ret = []
+    metapackages = get_metapackages_list()
     for osale in get_non_delivered_ordersales():
         order = osale.order
         product = osale.sale.product
+        # HACK HACK HACK : for now, there's no way to keep track of deliveries
+        # of packs. If the product is a metapackage, return the first element
+        # of the package.
+        if product.pk in metapackages:
+            product_pk = Package.objects            \
+                                .get(pk=product.pk) \
+                                .products.all()[0]  \
+                                .pk
+        else:
+            product_pk = product.pk
+
         ret.append([
             reformat(osale.pk, 'A', 20),
-            reformat(product.pk, 'A', 18),
+            reformat(product_pk, 'A', 18),
             reformat(product.name, 'A', 50),
             reformat(1, 'N'), # QTE
             reformat('O', 'A', 1), # OBLIGATOIRE
