@@ -350,16 +350,18 @@ def get_detailed_commands_file():
     for osale, products in get_non_delivered_ordersales().iteritems():
         for product in products:
             order = osale.order
-            ret.append([
-                reformat(osale.pk, 'A', 20),
-                reformat(product.pk, 'A', 18),
-                reformat(product.name, 'A', 50),
-                reformat(1, 'N'), # QTE
-                reformat('O', 'A', 1), # OBLIGATOIRE
-                reformat('0', 'A', 15), # PRIX_UNITAIRE_HT
-                reformat('0', 'A', 10), # TAUX TVA
-                reformat('0', 'A', 15), # REMISE
-                reformat('0', 'A', 10), # TAUX REMISE
-                reformat('0', 'A', 15), # MONTANT_TOTAL_LIGNE_HT
+            ret.append([osale, product,         
+                [
+                    reformat(osale.pk, 'A', 20),
+                    reformat(product.pk, 'A', 18),
+                    reformat(product.name, 'A', 50),
+                    reformat(1, 'N'), # QTE
+                    reformat('O', 'A', 1), # OBLIGATOIRE
+                    reformat('0', 'A', 15), # PRIX_UNITAIRE_HT
+                    reformat('0', 'A', 10), # TAUX TVA
+                    reformat('0', 'A', 15), # REMISE
+                    reformat('0', 'A', 10), # TAUX REMISE
+                    reformat('0', 'A', 15), # MONTANT_TOTAL_LIGNE_HT
+                ]
             ])
     return ret

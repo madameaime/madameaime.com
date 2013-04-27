@@ -2,13 +2,16 @@ from collections import defaultdict
 import csv
 import datetime
 
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse
-from django.views.generic import ListView, TemplateView
+from django.shortcuts import get_object_or_404
+from django.views.generic import ListView, RedirectView, TemplateView
 
 from braces.views import SuperuserRequiredMixin
 
 from . import ads
-from emarket.models import Be2billTransaction, Order, OrderSale
+from emarket.models import (Be2billTransaction, DeliveredProduct, Order,
+                            OrderSale)
 from stockmgmt.models import Product
 
 
@@ -131,5 +134,30 @@ class ADSCommandsListView(ADSMixin, TemplateView):
 class ADSDetailedCommandsListView(ADSMixin, TemplateView):
     template_name = 'mmm_backoffice/transactions/ads_detailedcommands.html'
     template_var_name = 'ads_detailed_commands'
-    get_data = lambda self: ads.get_detailed_commands_file()
     csv_filename = 'detailed_commands'
+
+    def get_data(self):
+        return [info for order_sale, product, info in
+                ads.get_detailed_commands_file()]
+
+
+class ADSDetailedCommandSetDeliveredView(SuperuserRequiredMixin,
+                                         RedirectView):
+    permanent = False
+    
+    def get_redirect_url(self):
+        return reverse('mmm_backoffice.ads.detailedcommands')
+
+    def post(self, request, *args, **kwargs):
+        # yeah, we should use dango.forms here instead of hardcoding HTML
+        # elements values
+        order_sale = get_object_or_404(OrderSale,
+                        pk=request.POST.get('order_sale'))
+        product = get_object_or_404(Product,
+                        pk=request.POST.get('product'))
+
+        deliv = DeliveredProduct(order_sale=order_sale, product=product)
+        deliv.save()
+
+        return super(ADSDetailedCommandSetDeliveredView, self) \
+                    .post(request, *args, **kwargs)

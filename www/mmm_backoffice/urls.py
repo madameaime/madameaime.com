@@ -46,4 +46,9 @@ urlpatterns += patterns('',
         transaction_views.ADSDetailedCommandsListView.as_view(),
         name='mmm_backoffice.ads.detailedcommands'
     ),
+
+    # set a command status as delivered
+    url(r'^ads/detailedcommands/set_delivered/$',
+        transaction_views.ADSDetailedCommandSetDeliveredView.as_view(),
+        name='mmm_backoffice.ads.detailedcommands.set_delivered'),
 )
