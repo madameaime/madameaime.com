@@ -137,8 +137,11 @@ class ADSDetailedCommandsListView(ADSMixin, TemplateView):
     csv_filename = 'detailed_commands'
 
     def get_data(self):
-        return [info for order_sale, product, info in
-                ads.get_detailed_commands_file()]
+        """ reformat if CSV """
+        if self.request.GET.get('format') == 'csv':
+            return [info for order_sale, product, info in
+                    ads.get_detailed_commands_file()]
+        return ads.get_detailed_commands_file()
 
 
 class ADSDetailedCommandSetDeliveredView(SuperuserRequiredMixin,
