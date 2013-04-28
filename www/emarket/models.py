@@ -3,6 +3,7 @@ from datetime import datetime
 from django.conf import settings
 from django.contrib.sessions.models import Session
 from django.db import models
+from django.db.models import Q
 from django.utils import timezone
 
 import stockmgmt.models
@@ -33,6 +34,24 @@ class Order(models.Model):
     billing    = models.ForeignKey('Address')
     promo_code = models.CharField(max_length=32, blank=True)
     is_free    = models.BooleanField(default=False)
+
+    def is_paid(self):
+        """ 
+        Return True if free or if a valid paid transaction corresponds to
+        this order.
+        """
+        if self.is_free:
+            return True
+        try:
+            last_trans = Be2billTransaction.objects.filter(order=self) \
+                            .filter(Q(order__be2billtransaction__execcode=0) |
+                                    Q(order__be2billtransaction__execcode=1))\
+                            .order_by('-date_insert', '-pk').distinct()[0]
+            if last_trans.operationtype == 'payment':
+                return True
+        except IndexError:
+            pass
+        return False
 
 
 class OrderSale(models.Model):

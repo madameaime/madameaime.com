@@ -36,7 +36,7 @@ urlpatterns = patterns('',
     ),
 
     url(r'^mon-compte/commandes/$',
-        TemplateView.as_view(template_name='account/orders.html'),
+        views.AccountOrdersView.as_view(),
         name='account/orders'
     ),
 

@@ -18,7 +18,7 @@
       </tr>
     </thead>
     <tbody>
-      {% for order in user.order_set.all %}
+      {% for order in object_list %}
       <tr>
         <td><a href="{% url "account/order" order.pk %}">{{ order.exposed_id }}</a></td>
         <td>{{ order.ordersale_set.all | length }} produit(s)</td>
@@ -30,6 +30,10 @@
           {{ order.billing.zip_code }} {{ order.billing.city }} ({{ order.billing.country }})
         </td>
         <td>{{ order.date | date:"d M Y" }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="4">Aucune commande effectuée</td>
       </tr>
       {% endfor %}
     </tbody>

@@ -4,13 +4,16 @@ from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME, login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.urlresolvers import reverse_lazy, reverse
-from django.shortcuts import redirect, render
+from django.http import Http404
+from django.shortcuts import redirect, render, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.utils.http import is_safe_url
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
-from django.views.generic import CreateView, FormView, RedirectView, TemplateView, DetailView
+from django.views.generic import (CreateView, FormView, RedirectView,
+                                  TemplateView, DetailView, ListView)
 
+from emarket.models import Be2billTransaction, Order
 from forms import NewsletterForm, RecoverPasswordForm, RegistrationForm, UpdatePasswordForm
 from models import ContactMessage, OfferPage, PasswordRecovery, User
 import emarket
@@ -192,6 +195,22 @@ class UpdatePasswordView(FormView):
                           post_data)
 
 
+class AccountOrdersView(ListView):
+    template_name = 'account/orders.html'
+
+    def get_queryset(self):
+        orders = Order.objects.filter(user=self.request.user)
+        return filter(lambda order: order.is_paid(), orders)
+
+
 class OrderView(DetailView):
     template_name = "account/order.hml"
     model = emarket.models.Order
+
+    def dispatch(self, request, pk=None, *args, **kwargs):
+        order = get_object_or_404(Order, pk=pk)
+        if order.user != request.user:
+            raise Http404
+        if not order.is_paid():
+            raise Http404
+        return super(OrderView, self).dispatch(request, pk, *args, **kwargs)

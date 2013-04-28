@@ -20,8 +20,7 @@
       </tr>
     </thead>
     <tbody>
-      {% for order in user.order_set.all %}
-      {% for ordersale in order.ordersale_set.all %}
+      {% for ordersale in object.ordersale_set.all %}
       <tr>
         <td>{{ ordersale.sale.product.name }}</td>
         <td>
@@ -33,7 +32,6 @@
         </td>
         <td>{{ ordersale.sale.price }}</td>
       </tr>
-      {% endfor %}
       {% endfor %}
     </tbody>
     <tfoot>
