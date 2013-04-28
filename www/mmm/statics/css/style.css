@@ -308,25 +308,23 @@ a:hover { color: #e2507f; text-decoration: none; }
 }
 
 #newsletter .forms {
-    background: url('../img/newsletter_bg.png') no-repeat;
-    width: 335px;
     height: 44px;
     position: absolute;
-    top: 12px;
+    top: 15px;
     left: 260px;
 }
 
 #newsletter .forms > input {
-    border: 0 none;
     width: 237px;
-    padding: 8px 5px 0 5px;
-    margin: 6px 0 5px 19px;
+    padding: 8px 6px;
 }
 
 #newsletter .forms > button {
     color: #ffffff;
     font-size: 22px;
-    margin: 7px 0 0 34px;
+    background-color: #e2507f;
+    padding: 8px 6px;
+    margin: -10px 0 0 8px;
 }
 
 #newsletter .forms > button:hover {
