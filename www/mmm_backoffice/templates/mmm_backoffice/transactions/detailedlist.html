@@ -90,6 +90,7 @@
       <caption>Contenu de la commande &amp; livraison</caption>
       <thead>
         <th>Livré ?</th>
+        <th>ADS num BL/Commande</th>
         <th>Produit</th>
         <th>Prix du produit</th>
         <th>Prénom</th>
@@ -106,6 +107,7 @@
         {% for order_sale in order.content %}
           <tr class="{% if order_sale.delivered %}success{% else %}error{% endif %}">
             <td>{{order_sale.delivered}}</td>
+            <td>{{order_sale.pk}}</td>
             <td>{{order_sale.sale.product.name}}</td>
             <td>{{order_sale.sale.price}}</td>
             <td>{% if order_sale.delivery %}{{order_sale.delivery.firstname}}{% else %}{{order.info.billing.firstname}}{% endif %}</td>
