@@ -89,9 +89,12 @@ class OfferPage(models.Model):
 
     date_start = models.DateTimeField(default=timezone.now)
 
-    sale_1 = models.ForeignKey(OfferPageSale, related_name='sale_1')
-    sale_2 = models.ForeignKey(OfferPageSale, related_name='sale_2')
-    sale_3 = models.ForeignKey(OfferPageSale, related_name='sale_3')
+    sale_1 = models.ForeignKey(OfferPageSale, related_name='sale_1',
+                                default=None, null=True, blank=True)
+    sale_2 = models.ForeignKey(OfferPageSale, related_name='sale_2',
+                                default=None, null=True, blank=True)
+    sale_3 = models.ForeignKey(OfferPageSale, related_name='sale_3',
+                                default=None, null=True, blank=True)
 
     hurry_text = models.TextField(null=True, blank=True, default=None)
 
