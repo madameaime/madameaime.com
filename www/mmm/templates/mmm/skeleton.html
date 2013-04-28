@@ -21,7 +21,7 @@
     <link href="https://plus.google.com/105522103830375553633" rel="publisher" />
     <link href="{{STATIC_URL}}css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
 
-    <link href="{{STATIC_URL}}css/style.css?1" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{STATIC_URL}}css/style.css?2" rel="stylesheet" type="text/css" media="all" />
     <link href="{{STATIC_URL}}css/box.css?1" rel="stylesheet" type="text/css" media="all" />
     <link href="{{STATIC_URL}}css/homepage.css?2" rel="stylesheet" type="text/css" media="all" />
     <link href="{{STATIC_URL}}css/auth.css" rel="stylesheet" type="text/css" media="all" />
@@ -63,9 +63,15 @@
 	  <a href="{% url 'homepage' %}" title="Le coffret cadeau qui plaît aux femmes !">MadameAime</a>
 	</div>
 
-	<div class="fb-like" data-href="https://www.facebook.com/pages/Madame-Aime/435771933150281" data-send="false" data-layout="button_count" data-show-faces="false"></div>
 	<div class="header-inner pull-right">
 	  <div id="header-login" class="pull-right">
+	    <form class="form-inline" method="post" action="{% url 'newsletter.add' %}">
+	      {% csrf_token %}
+	      <label for="newsletter-email">Newsletter</label>
+	      {% load newsletter %}
+	      <input type="email" id="newsletter-email" name="{% newsletter_email_html_name %}" placeholder="Votre e-mail" autocomplete="off" />
+	      <button type="submit" class="btn-link" name="newsletter_submit">OK</button>
+	    </form>
             {% if user.is_authenticated %}
             <a href="" class="my"><i class="icon-account"></i> Mon compte</a>
             <a href="{% url 'shopping-cart' %}" class="shopping-cart"><i class="icon-shopping-cart"></i> Panier</a>
@@ -76,10 +82,12 @@
 	    {% endif %}
 	  </div>
 
+	  <div class="fb-like pull-right" data-href="https://www.facebook.com/pages/Madame-Aime/435771933150281" data-send="false" data-layout="button_count" data-show-faces="false"></div>
+
 	  <div id="header-nav">
 	    <a href="{% url 'homepage' %}">Accueil</a>
 	    <a href="{% url 'how-does-it-work' %}">Comment ça marche ?</a>
-	    <a href="{% url 'offer' %}">Offrir</a>
+	    <a href="{% url 'offer' %}">Commander</a>
 	    <a href="{% url 'brands' %}">Marques</a>
 	    <a href="{% url 'boxes' %}">Coffret</a>
 	    <a href="http://blog.madameaime.com">Blog</a>

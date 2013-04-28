@@ -173,6 +173,9 @@ a:hover { color: #e2507f; text-decoration: none; }
 
 #header {
     height: 120px;
+}
+
+#header .header-inner {
     position: relative;
 }
 
@@ -193,29 +196,36 @@ a:hover { color: #e2507f; text-decoration: none; }
     width: 387px;
 }
 
-#header > .fb-like {
-    position: absolute;
-    top: 8px;
-    right: 360px;
-}
-
 #header-login {
-    width: 340px;
+    width: 576px;
     height: 35px;
     line-height: 32px;
+    padding-left: 15px;
     background-color: #4b4b4b;
-    overflow: hidden;
-
-    border-left-width: 30px;
-    border-style: solid;
-    border-width: 0px 15px;
-    -moz-border-image: url('../img/login-border.png') 0 15 repeat;
-    -webkit-border-image: url('../img/login-border.png') 0 15 repeat;
-    -o-border-image: url('../img/login-border.png') 0 15 repeat;
-    border-image: url('../img/login-border.png') 0 15 repeat;
 }
 
-#header-login a {
+#header-login form {
+    display: inline;
+}
+
+#header-login form input {
+    padding: 2px 6px 1px;
+    margin: -3px 0 0 10px;
+    width: 120px;
+    line-height: 14px;
+}
+
+#header-login form button {
+    background-color: #e2507f;
+    margin-top: -3px;
+    margin-right: 5px;
+    line-height: 14px;
+    padding-left: 2px;
+    padding-right: 4px;
+    color: #ffffff;
+}
+
+#header-login a, #header-login form label {
     color: #eeeeee;
     font-size: 14px;
 }
@@ -256,18 +266,29 @@ a:hover { color: #e2507f; text-decoration: none; }
     height: 35px;
 }
 
+#header .fb-like {
+    position: static;
+    clear: right;
+    margin-top: 10px;
+}
+
 #header-nav {
     clear: right;
+    position: absolute;
     font-family: 'bebas';
     font-style: normal;
     font-size: 20px;
     text-align: right;
-    padding-top: 53px;
-    margin-right: 10px;
+    right: 0;
+    top: 89px;
 }
 
 #header-nav a {
-    margin-left: 20px;
+    margin-left: 28px;
+}
+
+#header-nav a:first-child {
+    margin-left: 0;
 }
 
 #social {
