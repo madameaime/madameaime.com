@@ -45,6 +45,31 @@
 #index-slideshow .item { width: 100%; height: 100%; text-align: right; }
 #index-slideshow .item.two > p .pink { font-size: 29px; }
 
+/************/
+/* Security */
+/************/
+
+#index-security {
+    margin: 0 0 25px 0;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    height: 70px;
+
+    color: #999999;
+    font-family: 'bebas';
+    font-size: 32px;
+    font-style: normal;
+}
+
+#index-security div {
+    text-align: center;
+    padding-top: 15px;
+}
+
+#index-security div img {
+    margin-right: 15px;
+}
+
 /***********/
 /* Inserts */
 /***********/
