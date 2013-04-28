@@ -28,7 +28,8 @@ class TransactionListView(SuperuserRequiredMixin, TemplateView):
             }
         }
         """
-        ctx = super(TransactionListView, self).get_context_data(**kwargs)
+        ctx = super(TransactionListView, self) \
+                                .get_context_data(**kwargs)
         orders = {}
 
         for order in Order.objects.prefetch_related('billing'):
@@ -75,6 +76,10 @@ class TransactionListView(SuperuserRequiredMixin, TemplateView):
         # Sort orders by pk
         ctx['orders'] = sorted(orders.iteritems())[::-1]
         return ctx
+
+
+class TransactionDetailedListView(TransactionListView):
+    template_name = 'mmm_backoffice/transactions/detailedlist.html'
 
 
 class ADSMixin(SuperuserRequiredMixin):
