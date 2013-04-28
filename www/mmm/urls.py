@@ -15,6 +15,15 @@ urlpatterns = patterns('',
         RedirectView.as_view(url=settings.STATIC_URL + 'img/favicon.ico')
     ),
 
+    #Legacy
+
+    url(r'^offrir/$',
+        RedirectView.as_view(url=reverse_lazy('order'),
+                             permanent=False),
+        name='offer'
+    ),
+
+
     url(r'^$',
         TemplateView.as_view(template_name='homepage.html'),
         name='homepage'
@@ -34,9 +43,9 @@ urlpatterns = patterns('',
         name='how-does-it-work'
     ),
 
-    url(r'^offrir/$',
-        views.OfferView.as_view(template_name='offer.html'),
-        name='offer'
+    url(r'^commander/$',
+        views.OfferView.as_view(template_name='order.html'),
+        name='order'
     ),
 
     url(r'^qui-sommes-nous/$',
