@@ -1,10 +1,10 @@
 +function ($, undefined) {
     $(function (){
-        var carousel = $("#index-slideshow .carousel");
+        var carousel = $(".carousel");
 
         carousel.carousel();
 
-        $("#index-slideshow .carousel-nav span").click(function(e){
+        $(".carousel-nav span").click(function(e){
             e.preventDefault();
             carousel.carousel($(this).index());
         });
@@ -27,12 +27,12 @@
 
     });
 
-	var payment_form = $('#payment_form');
+    var payment_form = $('#payment_form');
 
-	if (payment_form.length) {
-		setTimeout(function() {
-			$('#payment_form').submit();
-		}, 0);
-	}
+    if (payment_form.length) {
+        setTimeout(function() {
+                $('#payment_form').submit();
+            }, 0);
+    }
 
 }(window.jQuery);

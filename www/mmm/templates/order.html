@@ -1,85 +1,105 @@
 {% extends "mmm/skeleton.html" %}
 {% load offerpage %}
-{% block head_title %}Offrez le coffret de référence pour les femmes{% endblock %}
+{% block head_title %}Commandez le coffret de référence pour les femmes{% endblock %}
 {% block meta_description %}Avec Madame Aime, offrez un coffret cadeau original plein de surprises{% endblock %}
 {% block mmm_content %}
-<section id="order">
-  <div class="products">
-    <h1>Édition limitée</h1>
-
-    <div class="happy">Toutes les occasions sont bonnes pour (se) faire plaisir !</div>
-
-    <div class="description">
-      <p class="l1">Offrez un cadeau</p>
-      <p class="l2">vraiment original</p>
-      <p class="l3">une sélection de</p>
-      <p class="l4">5 à 6 produits</p>
-      <p class="l5">beauté, culinaires, déco…</p>
+<section id="order-slideshow">
+  <div class="carousel slide">
+    <div class="carousel-inner">
+      <div class="active item">
+        <a href="{% url "order" %}">
+          <img src="{{ STATIC_URL }}img/homepage/slides/slide-coffret-vivolta.jpg" alt="" />
+        </a>
+      </div>
+      <div class="item">
+        <a href="{% url "boxes" %}">
+          <img src="{{ STATIC_URL }}img/homepage/slides/slide-madameaime-generique.jpg" alt="" />
+        </a>
+      </div>
     </div>
-
-    <ul>
-      <li class="one">
-	<h2>{{offers.sale_1.title}}</h2>
-        {% if offers.sale_1.subtitle %}
-	<h3>{{offers.sale_1.subtitle}}</h3>
-        {% endif %}
-	<ul class="details">
-	  {{offers.sale_1.content|nl2li}}
-	</ul>
-	<p class="price">{{offers.sale_1.sale.price}} €</p>
-	<p class="delivery">{{offers.sale_1.price_comment}}</p>
-	<div class="button">
-	  <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
-	    {% csrf_token %}
-	    <input type="hidden" name="sale_id" value="{{offers.sale_1.sale.pk}}" />
-	    <button class="btn-link shiny" type="submit">Commander</button>
-	  </form>
-	</div>
-      </li>
-
-      <li class="three">
-	<h2>{{offers.sale_2.title}}</h2>
-        {% if offers.sale_2.subtitle %}
-	<h3>{{offers.sale_2.subtitle}}</h3>
-        {% endif %}
-	<ul class="details">
-	  {{offers.sale_2.content|nl2li}}
-	</ul>
-	<p class="price">{{offers.sale_2.sale.price}} €</p>
-	<p class="delivery">{{offers.sale_2.price_comment}}</p>
-	<div class="button">
-	  <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
-	    {% csrf_token %}
-	    <input type="hidden" name="sale_id" value="{{offers.sale_2.sale.pk}}" />
-	    <button class="btn-link shiny" type="submit">Commander</button>
-	  </form>
-	</div>
-      </li>
-
-      <li class="six">
-	<h2>{{offers.sale_3.title}}</h2>
-        {% if offers.sale_3.subtitle %}
-	<h3>{{offers.sale_3.subtitle}}</h3>
-        {% endif %}
-	<ul class="details">
-	  {{offers.sale_3.content|nl2li}}
-	</ul>
-	<div class="badge"></div>
-	<p class="price">{{offers.sale_3.sale.price}} €</p>
-	<p class="delivery">{{offers.sale_3.price_comment}}</p>
-	<div class="button">
-	  <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
-	    {% csrf_token %}
-	    <input type="hidden" name="sale_id" value="{{offers.sale_3.sale.pk}}" />
-	    <button class="btn-link shiny" type="submit">Commander</button>
-	  </form>
-	</div>
-      </li>
-    </ul>
-    <p class="hurry">
-      {{offers.hurry_text}}
-    </p>
+    <div class="carousel-nav">
+      <span class="active"></span>
+      <span></span>
+    </div>
   </div>
+
+  <p>
+    <a href="{% url "boxes" %}">Voir le contenu de nos coffrets</a>
+  </p>
+</section>
+
+<section id="order-products" class="row-fluid">
+  <div class="span6">
+    <div class="what">
+      <div class="am">Je m’abonne</div>
+      <div class="stram">{{ offers.sale_1.sale.price }}€</div>
+      <div class="gram">par coffret</div>
+
+      <p>
+        Résiliable à tout moment,<br />
+        sans engagement de durée.
+      </p>
+
+      <a href="{% url "boxes" %}">Voir nos coffrets</a>
+    </div>
+    <div class="info">
+      <h2>{{ offers.sale_1.title }}</h2>
+      <div class="content">
+	{{ offers.sale_1.content | linebreaksbr }}
+      </div>
+      <div class="price">{{ offers.sale_1.sale.price }}€</div>
+      <div class="insteadof">Au lieu de <s>24,90€</s></div>
+      <div class="delivery">{{ offers.sale_1.price_comment }}</div>
+      <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
+	{% csrf_token %}
+	<input type="hidden" name="sale_id" value="{{ offers.sale_1.sale.pk }}" />
+	<input type="image" src="{{ STATIC_URL }}img/order/subscribe.png" alt="S’abonner"/>
+      </form>
+    </div>
+  </div>
+  <div class="span6">
+    <div class="what">
+      <div class="am">Économisez</div>
+      <div class="stram">10€</div>
+      <div class="gram">avec notre pack</div>
+      <div class="pic">3 coffrets !</div>
+
+      <a href="{% url "boxes" %}">Voir nos coffrets</a>
+    </div>
+    <div class="info">
+      <h2>{{ offers.sale_2.title }}</h2>
+      <div class="content">
+	{{ offers.sale_2.content | linebreaksbr }}
+      </div>
+      <div class="price">{{ offers.sale_2.sale.price }}€</div>
+      <img src="{{ STATIC_URL }}img/order/badge.png" alt="10€ offerts" />
+      <div class="insteadof">Au lieu de <s>74,70€</s></div>
+      <div class="delivery">{{ offers.sale_2.price_comment }}</div>
+      <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
+	{% csrf_token %}
+	<input type="hidden" name="sale_id" value="{{ offers.sale_2.sale.pk }}" />
+	<input type="image" src="{{ STATIC_URL }}img/order/order.png" alt="Commander"/>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="index-security" class="row-fluid">
+  <div class="span4">
+    <img src="{{ STATIC_URL }}img/homepage/lock.png" alt=""/>
+    Paiement sécurisé
+  </div>
+  <div class="span4">
+    <img src="{{ STATIC_URL }}img/homepage/truck.png" alt=""/>
+    Livraison incluse
+  </div>
+  <div class="span4">
+    <img src="{{ STATIC_URL }}img/homepage/phone.png" alt=""/>
+    01.45.23.29.90
+  </div>
+</section>
+
+<section id="order">
   <div class="howto">
     <p>Comment procéder ?</p>
   </div>
