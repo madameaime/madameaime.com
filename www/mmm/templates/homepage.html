@@ -6,46 +6,27 @@
   <div class="carousel slide">
     <div class="carousel-inner">
       <div class="active item one">
-        <a href="{% url 'landing/madameaime-phyderma' %}"></a>
+        <a href="{% url "offer" %}">
+          <img src="{{ STATIC_URL }}img/homepage/slides/slide-coffret-vivolta.jpg">
+        </a>
       </div>
       <div class="item two">
-        <a href="{% url 'about' %}"></a>
+        <a href="{% url "offer" %}">
+          <img src="{{ STATIC_URL }}img/homepage/slides/slide-coffret-promo-phyderma.jpg">
+        </a>
+      </div>
+      <div class="item three">
+        <a href="{% url "boxes" %}">
+          <img src="{{ STATIC_URL }}img/homepage/slides/slide-madameaime-generique.jpg">
+        </a>
       </div>
     </div>
-    <div class="fade"></div>
     <div class="carousel-nav">
       <span class="active"></span>
       <span></span>
+      <span></span>
     </div>
   </div>
-  <div id="index-slideshow-overlay">
-    <div class="inner">
-      <p class="recipe">la recette du</p>
-      <p class="gift">cadeau idéal</p>
-      <p class="box">Un coffret élégant livré à domicile contenant</p>
-      <p class="selection">Une sélection de 5-6 produits</p>
-      <ul class="types">
-        <li>beauté</li>
-        <li>bien-être</li>
-        <li>culinaire</li>
-      </ul>
-      <div class="equals">=</div>
-      <div class="ml">
-	<div class="madam">Madame</div>
-	<div class="loves">Aime</div>
-      </div>
-      <p class="price">24,90 €</p>
-      <p class="shipping">livraison incluse</p>
-    </div>
-    <a href="{% url 'offer' %}" class="more shiny">En savoir plus</a>
-  </div>
-</section>
-
-<section id="index-gage" class="row-fluid">
-  <a class="span3 one" href="{% url 'brands/sous-l-oranger' %}"></a>
-  <a class="span3 two" href="{% url 'brands/secrets-de-miel' %}"></a>
-  <a class="span3 three" href="{% url 'brands/jeanne-m' %}"></a>
-  <a class="span3 four" href="{% url 'brands/au-pays-de-la-fleur-d-oranger' %}"></a>
 </section>
 
 <section id="index-inserts" class="row">
@@ -73,5 +54,12 @@
       <div class="span5"><a class="shiny" href="{% url 'offer' %}">Offrir</a></div>
     </div>
   </div>
+</section>
+
+<section id="index-brands" class="row-fluid">
+  <a class="span3 one" href="{% url 'brands/sous-l-oranger' %}"></a>
+  <a class="span3 two" href="{% url 'brands/secrets-de-miel' %}"></a>
+  <a class="span3 three" href="{% url 'brands/jeanne-m' %}"></a>
+  <a class="span3 four" href="{% url 'brands/au-pays-de-la-fleur-d-oranger' %}"></a>
 </section>
 {% endblock %}

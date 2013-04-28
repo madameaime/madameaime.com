@@ -3,23 +3,30 @@
 /*************/
 
 #index-slideshow {
-    height: 535px;
+    height: 329px;
     background-color: #ffffff;
     border: 1px solid #dddddd;
 
-    margin-bottom: 15px;
-    padding-right: 1px;
+    margin-top: 10px;
+    margin-bottom: 25px;
 
     position: relative;
 }
+
 #index-slideshow .carousel {
     width: 100%;
     height: 100%;
-
-    border: 10px solid #ffffff;
 }
+
 #index-slideshow .carousel-inner { width: 100%; height: 100%; }
-#index-slideshow .carousel-nav { position: absolute; bottom: 8px; right: 8px; z-index: 2; }
+
+#index-slideshow .carousel-nav {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    z-index: 2;
+}
+
 #index-slideshow .carousel-nav span {
     position: static;
     display: inline;
@@ -30,170 +37,20 @@
     margin: 0 8px 0 0;
     cursor: pointer;
 }
+
 #index-slideshow .carousel-nav span.active,#index-slideshow .carousel-nav span:hover {
     background: url("../img/homepage/bullet_active.png") 0 0 no-repeat;
 }
 
-#index-slideshow .item { width: 100%; height: 100%; background-position: right; }
-#index-slideshow .item.one { background: url('../img/homepage/slideshow_1.png') no-repeat; }
-#index-slideshow .item.two { background: url('../img/homepage/slideshow_2.png') no-repeat; }
-#index-slideshow .item > a {
-    display: block;
-    position: absolute;
-    top: 0; right: 0; bottom: 0;
-    left: 340px;
-    z-index: 1;
-}
+#index-slideshow .item { width: 100%; height: 100%; text-align: right; }
 #index-slideshow .item.two > p .pink { font-size: 29px; }
-
-#index-slideshow .fade {
-    width: 100%;
-    height: 100%;
-
-    position: absolute;
-    top: 0;
-
-    background-color: #ffffff;
-    background: url('../img/homepage/slideshow_fade.png') 0 0 no-repeat;
-    opacity: 0.5;
-}
-
-#index-slideshow-overlay {
-    position: absolute;
-    bottom: 30px;
-    left: -13px;
-    background: url('../img/homepage/slideshow_overlay.png') 0 0 no-repeat;
-    width: 386px;
-    height: 472px;
-}
-#index-slideshow-overlay .inner { width: 100%; height: 460px; margin-left: 20px; }
-#index-slideshow-overlay .inner .recipe { color: #ffffff; margin: 30px 0 0 95px; line-height: 20px; }
-#index-slideshow-overlay .inner .gift {
-    color: #e2507f;
-    font-size: 57px;
-    line-height: 30px;
-    letter-spacing: -0.05em;
-    margin: 0 0 35px 0;
-}
-#index-slideshow-overlay .inner .box {
-    font-family: 'bebas';
-    font-style: normal;
-    font-size: 19px;
-    color: #bbbbbb;
-    margin: 0;
-}
-#index-slideshow-overlay .inner .selection {
-    font-family: 'bebas';
-    font-style: normal;
-    font-size: 30px;
-    line-height: 32px;
-    color: #bbbbbb;
-    margin: 0 0 10px 0;
-}
-#index-slideshow-overlay .inner .types {
-    font-family: 'bebas';
-    font-style: normal;
-    color: #ffffff;
-    list-style-type: none;
-    margin: 0 0 0 50px;
-    font-size: 23px;
-}
-#index-slideshow-overlay .inner .types li {
-    list-style-type: none;
-    line-height: 35px;
-}
-#index-slideshow-overlay .inner .equals {
-    font-style: normal;
-    font-size: 36px;
-    color: #b5b5b5;
-    margin: 30px 0 0 0;
-}
-
-#index-slideshow-overlay .inner .ml {
-    position: relative;
-    top: -20px;
-    left: 40px;
-}
-
-#index-slideshow-overlay .inner .madam {
-    font-size: 42px;
-    color: #ffffff;
-    letter-spacing: -0.08em;
-}
-
-#index-slideshow-overlay .inner .loves {
-    color: #e2507f;
-    letter-spacing: -0.1em;
-    font-size: 49px;
-    position: relative;
-    line-height: 0px;
-    left: 142px;
-}
-
-#index-slideshow-overlay .inner .price {
-    font-size: 34px;
-    line-height: 34px;
-    color: #e4b451;
-    margin: 27px 0 0 0;
-}
-
-#index-slideshow-overlay .inner .shipping {
-    font-size: 15px;
-    color: #e4b451;
-}
-
-#index-slideshow-overlay .more {
-    position: absolute;
-    bottom: 54px;
-    right: 100px;
-}
-
-/********/
-/* Gage */
-/********/
-
-#index-gage {
-    height: 100px;
-    background-color: #ffffff;
-    border: 1px solid #dddddd;
-
-    margin-bottom: 15px;
-}
-
-#index-gage > a {
-    height: 100%;
-    -webkit-transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-    -ms-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-}
-
-
-
-
-#index-gage .one { background: url('../img/brands/sous-l-oranger/logo_off.png') 0 -8px no-repeat; }
-#index-gage .one:hover { background: url('../img/brands/sous-l-oranger/logo.png') 0 -8px no-repeat; }
-
-#index-gage .two { background: url('../img/brands/secrets-de-miel/logo_off.png') 0 -8px no-repeat; }
-#index-gage .two:hover { background: url('../img/brands/secrets-de-miel/logo.png') 0 -8px no-repeat; }
-
-
-#index-gage .three { background: url('../img/brands/jeanne-m/logo_off.png') 0 -5px no-repeat; }
-#index-gage .three:hover { background: url('../img/brands/jeanne-m/logo.png') 0 -5px no-repeat; }
-
-#index-gage .four { background: url('../img/brands/au-pays-de-la-fleur-d-oranger/logo_off.png') 0 -5px no-repeat; }
-#index-gage .four:hover { background: url('../img/brands/au-pays-de-la-fleur-d-oranger/logo.png') 0 -5px no-repeat; }
-
-
-
 
 /***********/
 /* Inserts */
 /***********/
 
 #index-inserts {
-    margin: 0 0 15px 0;
+    margin: 0 0 25px 0;
 }
 
 #index-inserts > div {
@@ -258,3 +115,39 @@
 #index-inserts .gift .overlay .span5 {
     padding-left: 18px;
 }
+
+
+/**********/
+/* Brands */
+/**********/
+
+#index-brands {
+    height: 100px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+
+    margin-bottom: 25px;
+}
+
+#index-brands > a {
+    height: 100%;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+
+#index-brands .one { background: url('../img/brands/sous-l-oranger/logo_off.png') 0 -8px no-repeat; }
+#index-brands .one:hover { background: url('../img/brands/sous-l-oranger/logo.png') 0 -8px no-repeat; }
+
+#index-brands .two { background: url('../img/brands/secrets-de-miel/logo_off.png') 0 -8px no-repeat; }
+#index-brands .two:hover { background: url('../img/brands/secrets-de-miel/logo.png') 0 -8px no-repeat; }
+
+
+#index-brands .three { background: url('../img/brands/jeanne-m/logo_off.png') 0 -5px no-repeat; }
+#index-brands .three:hover { background: url('../img/brands/jeanne-m/logo.png') 0 -5px no-repeat; }
+
+#index-brands .four { background: url('../img/brands/au-pays-de-la-fleur-d-oranger/logo_off.png') 0 -5px no-repeat; }
+#index-brands .four:hover { background: url('../img/brands/au-pays-de-la-fleur-d-oranger/logo.png') 0 -5px no-repeat; }
