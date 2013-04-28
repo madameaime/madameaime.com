@@ -341,11 +341,17 @@ a:hover { color: #e2507f; text-decoration: none; }
     margin: 5px 0 0 20px;
 }
 
+
 #follow-us span a {
     display: inline-block;
     margin-top: -8px;
+    margin-left: 40px;
+}
+
+#follow-us span a:first-child {
     margin-left: 5px;
 }
+
 
 #footer {
     margin: 15px 0 50px 0;
