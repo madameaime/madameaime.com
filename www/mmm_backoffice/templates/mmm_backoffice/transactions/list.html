@@ -5,7 +5,6 @@
     <tr>
       <th>commande</th>
       <th>ADS num commande</th>
-      <th>ADS num BL</th>
       <th>operation type</th>
       <th>date</th>
       <th>code promo</th>
@@ -42,8 +41,7 @@
     {% for order_sale in order.content %}
     <tr class="{% if order.success %}success{% else %}error {% endif %}">
       <td>{{order.info.exposed_id}}</td>
-      <td>{{order.pk}}</td>
-      <td>{{order_sale.pk}}</td>
+      <td>{{order.info.pk}}</td>
       <td>{{order.be2bill_transactions.0.operationtype}}</td>
       <td>{{order.info.date}}</td>
       <td>{{order.info.promo_code}}</td>
