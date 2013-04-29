@@ -12,6 +12,7 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic import (CreateView, FormView, RedirectView,
                                   TemplateView, DetailView, ListView)
+import mailhelpers
 
 from emarket.models import Be2billTransaction, Order
 from forms import NewsletterForm, RecoverPasswordForm, RegistrationForm, UpdatePasswordForm
@@ -107,6 +108,16 @@ class ContactView(CreateView):
         if self.request.GET.get('status') == 'ok':
             ctx['success'] = True
         return ctx
+
+    def form_valid(self, form):
+        send_mail = mailhelpers.utils.send_mail
+        send_mail('Nouveau message de contact sur madameaime.com',
+                  ['contact@madameaime.com'],
+                  'contact@madameaime.com',
+                  'mmm/new_contact_message.txt',
+                  'mmm/new_contact_message.html',
+                  params={'data': form.cleaned_data})
+        return super(ContactView, self).form_valid(form)
 
 
 class OfferView(TemplateView):

@@ -1,0 +1,7 @@
+Prénom : {{data.firstname}}
+Nom : {{data.lastname}}
+Email : {{data.email}}
+Sujet : {{data.subject}}
+Message:
+
+{{data.message}}
