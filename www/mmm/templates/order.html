@@ -6,15 +6,19 @@
 <section id="order-slideshow">
   <div class="carousel slide">
     <div class="carousel-inner">
-      <div class="active item">
-        <a href="{% url "order" %}">
-          <img src="{{ STATIC_URL }}img/homepage/slides/slide-coffret-vivolta.jpg" alt="" />
-        </a>
+      <div class="active item one">
+        <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
+	  {% csrf_token %}
+	  <input type="hidden" name="sale_id" value="14" />
+	  <input type="image" src="{{ STATIC_URL }}img/homepage/slides/slide-coffret-vivolta.jpg" alt="" />
+        </form>
       </div>
-      <div class="item">
-        <a href="{% url "boxes" %}">
-          <img src="{{ STATIC_URL }}img/homepage/slides/slide-madameaime-generique.jpg" alt="" />
-        </a>
+      <div class="item two">
+        <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
+	  {% csrf_token %}
+	  <input type="hidden" name="sale_id" value="13" />
+	  <input type="image" src="{{ STATIC_URL }}img/homepage/slides/slide-coffret-promo-phyderma.jpg" alt="" />
+        </form>
       </div>
     </div>
     <div class="carousel-nav">
