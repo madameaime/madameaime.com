@@ -41,7 +41,7 @@ class ShoppingCartAddView(View):
 
         sale = get_object_or_404(Sale, pk=sale_id)
 
-        request.session.setdefault('shopping_cart', []).append(sale)
+        request.session.setdefault('shopping_cart', []).append(sale.pk)
         request.session.modified = True
         return redirect(reverse('shopping-cart'), permanent=False)
 
@@ -51,7 +51,8 @@ class ShoppingCartView(TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(ShoppingCartView, self).get_context_data(**kwargs)
-        ctx['objects'] = self.request.session.get('shopping_cart', [])
+        objects = self.request.session.get('shopping_cart', [])
+        ctx['objects'] = [get_object_or_404(Sale, pk=pk) for pk in objects]
         ctx['total_price'] = sum(sale.price for sale in ctx['objects'])
         ctx['charges'] = ctx['total_price'] * Decimal('0.196')
         return ctx
