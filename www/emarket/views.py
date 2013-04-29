@@ -16,9 +16,10 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import DeleteView, TemplateView, RedirectView, View
 
+from mailhelpers import utils
+
 from models import Be2billTransaction, Order, OrderSale, PartnersSubscription, Sale
 import forms
-import utils
 
 
 class ShoppingCartAddView(View):

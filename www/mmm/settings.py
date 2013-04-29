@@ -158,7 +158,8 @@ INSTALLED_APPS = (
     'mmm',
     'mmm_backoffice',
     'stockmgmt',
-    'emarket'
+    'emarket',
+    'mailhelpers',
 )
 
 AUTH_USER_MODEL = 'mmm.User'
