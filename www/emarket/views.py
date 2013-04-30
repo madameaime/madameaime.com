@@ -66,8 +66,8 @@ class ShoppingCartRemoveView(RedirectView):
     def post(self, *args, **kwargs):
         remove_id = int(self.kwargs.get('sale_id'))
         objects = self.request.session.get('shopping_cart', [])
-        for idx, sale in enumerate(objects):
-            if sale.pk == remove_id:
+        for idx, sale_pk in enumerate(objects):
+            if sale_pk == remove_id:
                 del(objects[idx])
                 self.request.session.save()
                 break
@@ -100,7 +100,8 @@ class DeliveryView(TemplateView):
         else:
             post_data = self.request.POST
 
-        items = self.request.session.get('shopping_cart', [])
+        objects = self.request.session.get('shopping_cart', [])
+        items = [get_object_or_404(Sale, pk=pk) for pk in objects]
         if len(items) == 0:
             raise DeliveryView.EmptyShoppingCart("Cannot delivery nothing")
 
