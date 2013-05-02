@@ -3,6 +3,8 @@ from django.contrib import admin
 from models import *
 
 
+admin.site.register(Supplier)
+
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'deliverable', 'product_type', 'article_family',
             'supplier', 'public_price', 'length', 'width', 'height', 'weight',
