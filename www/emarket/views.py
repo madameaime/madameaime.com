@@ -18,7 +18,8 @@ from django.views.generic import DeleteView, TemplateView, RedirectView, View
 
 from mailhelpers import utils
 
-from models import Be2billTransaction, Order, OrderSale, PartnersSubscription, Sale
+from models import (Be2billTransaction, Order, OrderSale, PartnersSubscription,
+                    Sale)
 import forms
 
 
@@ -230,7 +231,7 @@ class CheckoutOKClient(TemplateView):
         ctx['GET'] = self.request.GET
 
         exposed_id = self.request.GET.get('ORDERID')
-        order = Order.objects.get(exposed_id=exposed_id)
+        order = get_object_or_404(Order, exposed_id=exposed_id)
         ctx['order'] = order
         ctx['order_sales'] = OrderSale.objects.filter(order=order)
         ctx['total_price'] = sum(p.sale.price for p in ctx['order_sales'])
@@ -262,7 +263,8 @@ class Be2billNotifTransaction(View):
 
         log_values['blob'] = json.dumps(params)
         try:
-            log_values['order'] = Order.objects.get(exposed_id=params.get('ORDERID'))
+            log_values['order'] = \
+                    Order.objects.get(exposed_id=params.get('ORDERID'))
         except Order.DoesNotExist:
             return HttpResponse('no such order')
 
