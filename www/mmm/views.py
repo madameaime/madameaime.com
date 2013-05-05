@@ -12,6 +12,9 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic import (CreateView, FormView, RedirectView,
                                   TemplateView, DetailView, ListView)
+
+from braces.views import LoginRequiredMixin
+
 import mailhelpers
 
 from emarket.models import Be2billTransaction, Order
@@ -206,7 +209,7 @@ class UpdatePasswordView(FormView):
                           post_data)
 
 
-class AccountOrdersView(ListView):
+class AccountOrdersView(LoginRequiredMixin, ListView):
     template_name = 'account/orders.html'
 
     def get_queryset(self):
@@ -214,7 +217,7 @@ class AccountOrdersView(ListView):
         return filter(lambda order: order.is_paid(), orders)
 
 
-class OrderView(DetailView):
+class OrderView(LoginRequiredMixin, DetailView):
     template_name = "account/order.hml"
     model = emarket.models.Order
 
