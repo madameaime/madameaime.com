@@ -217,14 +217,19 @@ class AccountOrdersView(LoginRequiredMixin, ListView):
         return filter(lambda order: order.is_paid(), orders)
 
 
-class OrderView(LoginRequiredMixin, DetailView):
-    template_name = "account/order.hml"
-    model = emarket.models.Order
-
+class LimitOrderViewMixin(LoginRequiredMixin):
     def dispatch(self, request, pk=None, *args, **kwargs):
+        """ The details of an Order can only be seen by a user if he is logged,
+        if the Order belongs to him and if it is a paid (or free) order. """
         order = get_object_or_404(Order, pk=pk)
         if order.user != request.user:
             raise Http404
         if not order.is_paid():
             raise Http404
-        return super(OrderView, self).dispatch(request, pk, *args, **kwargs)
+        return super(LimitOrderViewMixin, self).dispatch(request, pk,
+                                                         *args, **kwargs)
+
+
+class OrderView(LimitOrderViewMixin, DetailView):
+    template_name = "account/order.hml"
+    model = emarket.models.Order
