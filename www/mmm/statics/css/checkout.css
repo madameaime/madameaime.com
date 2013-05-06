@@ -109,58 +109,65 @@
     color: #e2507f;
 }
 
-#cart-upsale table {
+#cart-upsale .products {
     background-color: #ffffff;
+    border: 1px solid #dddddd;
     margin-bottom: 25px;
 }
 
-#cart-upsale table td {
-    border: 1px solid #dddddd;
+#cart-upsale .products > div {
+    border-left: 1px solid #dddddd;
     text-align: center;
     vertical-align: top;
     height: 325px;
+    float: left;
+    width: 246px;
     position: relative;
 }
 
-#cart-upsale table td h4 {
+#cart-upsale .products > div:first-child {
+    border-left: none;
+}
+
+#cart-upsale .products h4 {
     font-weight: bold;
     font-size: 15px;
     color: #777777;
 }
 
-#cart-upsale table td p {
+#cart-upsale .products p {
     margin: 0;
 }
 
-#cart-upsale table td .hint {
+#cart-upsale .products .hint {
     font-weight: bold;
     font-size: 14px;
     color: #e2507f;
 }
 
-#cart-upsale table td .details {
+#cart-upsale .products .details {
     font-weight: bold;
     font-size: 14px;
     color: #777777;
 }
 
-#cart-upsale table td .bottom {
+#cart-upsale .products .bottom {
     position: absolute;
     bottom: 10px;
     left: 0; right: 0;
 }
 
-#cart-upsale table td .price {
+#cart-upsale .products .price {
     font-size: 20px;
     margin-top: 15px;
     color: #777777;
 }
-#cart-upsale table td .delivery {
+#cart-upsale .products .delivery {
     font-size: 13px;
     color: #777777;
 }
 
-#cart-upsale table td form {
+#cart-upsale .products form {
     margin-top: 10px;
 }
 

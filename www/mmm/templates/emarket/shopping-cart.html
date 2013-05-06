@@ -60,92 +60,88 @@
 
 <section id="cart-upsale">
   <h2>Nous vous proposons également :</h2>
-  <table>
-    <tr>
-      <td style="width: 20%;">
-        <img src="{{ STATIC_URL }}img/checkout/upsale/1.png" alt="" />
-        <h4>Coffret MadameAime Phyderma</h4>
-        <p class="hint">
-          Derniers coffrets<br />disponibles
+  <div class="products clearfix">
+    <div>
+      <img src="{{ STATIC_URL }}img/checkout/upsale/1.png" alt="" />
+      <h4>Coffret MadameAime Phyderma</h4>
+      <p class="hint">
+        Derniers coffrets<br />disponibles
+      </p>
+      <div class="bottom">
+        <p class="price">
+          14,90€
         </p>
-        <div class="bottom">
-          <p class="price">
-            14,90€
-          </p>
-          <p class="delivery">
-            livraison incluse
-          </p>
-          <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
-            {% csrf_token %}
-            <input type="hidden" name="sale_id" value="13" />
-            <input type="image" src="{{ STATIC_URL }}img/checkout/upsale/add.png" alt="Commander"/>
-          </form>
-        </div>
-      </td>
-      <td style="width: 20%;">
-        <img src="{{ STATIC_URL }}img/checkout/upsale/2.png" alt="" />
-        <h4>Coffret MadameAime by Vivolta</h4>
-        <div class="bottom">
-          <p class="price">
-            24,90€
-          </p>
-          <p class="delivery">
-            livraison incluse
-          </p>
-          <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
-            {% csrf_token %}
-            <input type="hidden" name="sale_id" value="14" />
-            <input type="image" src="{{ STATIC_URL }}img/checkout/upsale/add.png" alt="Commander"/>
-          </form>
-        </div>
-      </td>
-      <td style="width: 20%;">
-        <img src="{{ STATIC_URL }}img/checkout/upsale/3.png" alt="" />
-        <h4>Abonnement MadameAime</h4>
-        <p class="details">
-          1er coffret :<br />
-          MadameAime by Vivolta
+        <p class="delivery">
+          livraison incluse
         </p>
-        <div class="bottom">
-          <p class="price">
-            22,90€ / coffret
-          </p>
-          <p class="delivery">
-            livraison incluse
-          </p>
-          <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
-            {% csrf_token %}
-            <input type="hidden" name="sale_id" value="11" />
-            <input type="image" src="{{ STATIC_URL }}img/checkout/upsale/add.png" alt="Commander"/>
-          </form>
-        </div>
-      </td>
-      <td style="width: 20%;">
-        <img src="{{ STATIC_URL }}img/checkout/upsale/4.png" alt="" />
-        <h4>Pack 3 coffrets</h4>
-        <p class="details">
-          MadameAime by Vivolta<br />
-          + MadameAime l’été<br />
-          + MadameAime la rentrée
+        <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
+          {% csrf_token %}
+          <input type="hidden" name="sale_id" value="13" />
+          <input type="image" src="{{ STATIC_URL }}img/checkout/upsale/add.png" alt="Commander"/>
+        </form>
+      </div>
+    </div>
+    <div>
+      <img src="{{ STATIC_URL }}img/checkout/upsale/2.png" alt="" />
+      <h4>Coffret MadameAime by Vivolta</h4>
+      <div class="bottom">
+        <p class="price">
+          24,90€
         </p>
-        <div class="bottom">
-          <p class="price">
-            67,90€ les 3 coffrets
-          </p>
-          <p class="delivery">
-            livraison incluse
-          </p>
-          <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
-            {% csrf_token %}
-            <input type="hidden" name="sale_id" value="12" />
-            <input type="image" src="{{ STATIC_URL }}img/checkout/upsale/add.png" alt="Commander"/>
-          </form>
-        </div>
-      </td>
-    </tr>
-    <tr>
-    </tr>
-  </table>
+        <p class="delivery">
+          livraison incluse
+        </p>
+        <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
+          {% csrf_token %}
+          <input type="hidden" name="sale_id" value="14" />
+          <input type="image" src="{{ STATIC_URL }}img/checkout/upsale/add.png" alt="Commander"/>
+        </form>
+      </div>
+    </div>
+    <div>
+      <img src="{{ STATIC_URL }}img/checkout/upsale/3.png" alt="" />
+      <h4>Abonnement MadameAime</h4>
+      <p class="details">
+        1er coffret :<br />
+        MadameAime by Vivolta
+      </p>
+      <div class="bottom">
+        <p class="price">
+          22,90€ / coffret
+        </p>
+        <p class="delivery">
+          livraison incluse
+        </p>
+        <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
+          {% csrf_token %}
+          <input type="hidden" name="sale_id" value="11" />
+          <input type="image" src="{{ STATIC_URL }}img/checkout/upsale/add.png" alt="Commander"/>
+        </form>
+      </div>
+    </div>
+    <div>
+      <img src="{{ STATIC_URL }}img/checkout/upsale/4.png" alt="" />
+      <h4>Pack 3 coffrets</h4>
+      <p class="details">
+        MadameAime by Vivolta<br />
+        + MadameAime l’été<br />
+        + MadameAime la rentrée
+      </p>
+      <div class="bottom">
+        <p class="price">
+          67,90€ les 3 coffrets
+        </p>
+        <p class="delivery">
+          livraison incluse
+        </p>
+        <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
+          {% csrf_token %}
+          <input type="hidden" name="sale_id" value="12" />
+          <input type="image" src="{{ STATIC_URL }}img/checkout/upsale/add.png" alt="Commander"/>
+        </form>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="index-security" class="row-fluid">
