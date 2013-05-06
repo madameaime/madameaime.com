@@ -15,6 +15,7 @@
         <th style="width: 130px;">Date</th>
         <!-- <th style="width: 120px;">Statut</th> -->
         <!-- <th style="width: 130px;">Action</th> -->
+        <th>Facture</th>
       </tr>
     </thead>
     <tbody>
@@ -30,6 +31,7 @@
           {{ order.billing.zip_code }} {{ order.billing.city }} ({{ order.billing.country }})
         </td>
         <td>{{ order.date | date:"d M Y" }}</td>
+        <td><a href="{% url 'account/order/pdf_invoice' pk=order.pk %}">Télécharger</a></td>
       </tr>
       {% empty %}
       <tr>

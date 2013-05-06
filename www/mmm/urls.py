@@ -45,6 +45,11 @@ urlpatterns = patterns('',
         name='account/order'
     ),
 
+    url(r'^mon-compte/commandes/(?P<pk>\d+)/facture/$',
+        views.OrderInvoicePdfView.as_view(template_name='account/order.html'),
+        name='account/order/pdf_invoice'
+    ),
+
     url(r'^google5fa0e92da89aaa27\.html$',
         TemplateView.as_view(template_name='google5fa0e92da89aaa27.html')
     ),

@@ -1,4 +1,5 @@
 from datetime import datetime
+from decimal import Decimal
 
 from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME, login, authenticate
@@ -14,6 +15,7 @@ from django.views.generic import (CreateView, FormView, RedirectView,
                                   TemplateView, DetailView, ListView)
 
 from braces.views import LoginRequiredMixin
+from django_xhtml2pdf.utils import render_to_pdf_response
 
 import mailhelpers
 
@@ -233,3 +235,32 @@ class LimitOrderViewMixin(LoginRequiredMixin):
 class OrderView(LimitOrderViewMixin, DetailView):
     template_name = "account/order.hml"
     model = emarket.models.Order
+
+
+class OrderInvoicePdfView(LimitOrderViewMixin, DetailView):
+    model = emarket.models.Order
+
+    def get_context_data(self, **kwargs):
+        ctx = super(OrderInvoicePdfView, self).get_context_data(**kwargs)
+        order = self.object
+        ordersales = order.ordersale_set.all()
+        ctx['items'] = [
+            {
+             'product': ordersale.sale.product,
+             'price_ht': (ordersale.sale.price -
+                          ordersale.sale.price * Decimal('0.196'))
+            }
+            for ordersale in ordersales
+        ]
+        ctx['total_ttc'] = sum(ordersale.sale.price
+                                for ordersale in ordersales)
+        ctx['total_tva'] = sum(ordersale.sale.price
+                                for ordersale in ordersales) * Decimal('0.196')
+        ctx['total_ht'] = (ctx['total_ttc'] -
+                            ctx['total_ttc'] * Decimal('0.196'))
+        return ctx
+
+    def render_to_response(self, context, **response_kwargs):
+        response = render_to_pdf_response('account/pdf_invoice.html',
+                                          context=context)
+        return response
