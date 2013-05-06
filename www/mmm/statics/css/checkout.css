@@ -94,19 +94,74 @@
 #checkout-cart tfoot td.vat-label { color: #b2b2b2; font-size: 12px; background-color: #f6f6f6; }
 #checkout-cart tfoot td.vat-value { color: #b2b2b2; font-size: 14px; font-weight: bold; background-color: #f6f6f6; }
 #checkout-cart tfoot td.validate { background-color: #f6f6f6; }
-#checkout-cart tfoot td.validate a {
-    background: url('../img/checkout/validate_overlay.png') 0 0 no-repeat;
-    display: block;
-    width: 161px;
-    height: 59px;
-    text-align: left;
-    line-height: 49px;
+#checkout-cart tfoot td.validate img {
+    margin-top: 25px;
+}
+
+#cart-upsale h2 {
+    font-family: 'bebas';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 25px;
+    line-height: 32px;
+
+    margin: 0 0 0 2px;
+    color: #e2507f;
+}
+
+#cart-upsale table {
+    background-color: #ffffff;
+    margin-bottom: 25px;
+}
+
+#cart-upsale table td {
+    border: 1px solid #dddddd;
+    text-align: center;
+    vertical-align: top;
+    height: 325px;
     position: relative;
-    font-size: 26px;
-    padding-left: 35px;
-    position: relative;
-    bottom: -47px;
-    right: -35px;
+}
+
+#cart-upsale table td h4 {
+    font-weight: bold;
+    font-size: 15px;
+    color: #777777;
+}
+
+#cart-upsale table td p {
+    margin: 0;
+}
+
+#cart-upsale table td .hint {
+    font-weight: bold;
+    font-size: 14px;
+    color: #e2507f;
+}
+
+#cart-upsale table td .details {
+    font-weight: bold;
+    font-size: 14px;
+    color: #777777;
+}
+
+#cart-upsale table td .bottom {
+    position: absolute;
+    bottom: 10px;
+    left: 0; right: 0;
+}
+
+#cart-upsale table td .price {
+    font-size: 20px;
+    margin-top: 15px;
+    color: #777777;
+}
+#cart-upsale table td .delivery {
+    font-size: 13px;
+    color: #777777;
+}
+
+#cart-upsale table td form {
+    margin-top: 10px;
 }
 
 /************/
