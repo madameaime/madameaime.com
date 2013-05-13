@@ -14,7 +14,7 @@ class OrderAdmin(admin.ModelAdmin):
     list_display = ('exposed_id', 'date', 'user', 'billing', 'promo_code',
                     'is_free')
     ordering = ['-date']
-    search_fields = ('exposed_id', 'date', 'user', 'billing', 'promo_code')
+    search_fields = ('exposed_id', 'date', 'promo_code')
     list_filter = ('promo_code', 'date')
 
 admin.site.register(Order, OrderAdmin)
