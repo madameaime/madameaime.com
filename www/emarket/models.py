@@ -62,6 +62,7 @@ class OrderSale(models.Model):
     order     = models.ForeignKey(Order)
     sale      = models.ForeignKey(Sale)
     delivery  = models.ForeignKey('Address', null=True, blank=True)
+    message   = models.TextField(blank=True)
 
 
 class DeliveredProduct(models.Model):

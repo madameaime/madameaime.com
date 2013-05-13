@@ -161,7 +161,8 @@ class DeliveryView(TemplateView):
             else:
                 delivery = form.save()
             # Create the order sale
-            osale = OrderSale(order=order, sale=sale, delivery=delivery)
+            osale = OrderSale(order=order, sale=sale, delivery=delivery,
+                              message=form.cleaned_data['message'])
             osale.save()
         return order_id
 

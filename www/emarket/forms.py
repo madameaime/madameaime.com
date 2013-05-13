@@ -37,6 +37,8 @@ class DeliveryForm(AddressModelForm):
     delivery_place = forms.ChoiceField(widget=forms.RadioSelect,
                             choices=DELIVERY_PLACES_CHOICES)
 
+    message = forms.CharField(widget=forms.widgets.Textarea, required=False)
+
     def clean(self):
         """ UGLY HACK
 
