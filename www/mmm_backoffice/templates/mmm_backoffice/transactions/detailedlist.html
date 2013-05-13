@@ -106,6 +106,7 @@
         <th>Ville</th>
         <th>Téléphone</th>
         <th>Pays</th>
+        <th>Message</th>
       </thead>
       <tbody>
         {% for order_sale in order.content %}
@@ -123,6 +124,7 @@
             <td>{% if order_sale.delivery %}{{order_sale.delivery.city}}{% else %}{{order.info.billing.city}}{% endif %}</td>
             <td>{% if order_sale.delivery %}{{order_sale.delivery.phone}}{% else %}{{order.info.billing.phone}}{% endif %}</td>
             <td>{% if order_sale.delivery %}{{order_sale.delivery.country}}{% else %}{{order.info.billing.country}}{% endif %}</td>
+            <td>{{order_sale.message}}</td>
           </tr>
         {% endfor %}
       </tbody>
