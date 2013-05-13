@@ -1,0 +1,13 @@
+{% if ordersale.delivery %}
+  {{ ordersale.delivery.address }}<br />
+  {% if ordersale.delivery.additional %}
+    {{ ordersale.delivery.additional }}<br />
+  {% endif %}
+  {{ ordersale.delivery.zip_code }} {{ ordersale.delivery.city }} ({{ ordersale.delivery.country }})
+{% else %}
+  {{ ordersale.order.billing.address }}<br />
+  {% if ordersale.order.billing.additional %}
+    {{ ordersale.order.billing.additional }}<br />
+  {% endif %}
+  {{ ordersale.order.billing.zip_code }} {{ ordersale.order.billing.city }} ({{ ordersale.order.billing.country }})
+{% endif %}

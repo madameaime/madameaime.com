@@ -24,11 +24,7 @@
       <tr>
         <td>{{ ordersale.sale.product.name }}</td>
         <td>
-          {{ ordersale.delivery.address }}<br />
-          {% if ordersale.delivery.additional %}
-            {{ ordersale.delivery.additional }}<br />
-          {% endif %}
-          {{ ordersale.delivery.zip_code }} {{ ordersale.delivery.city }} ({{ ordersale.delivery.country }})
+          {% include "account/order-delivery-display.html" %}
         </td>
         <td>{{ ordersale.sale.price }}</td>
       </tr>

@@ -57,6 +57,17 @@
 	      {% include "emarket/delivery-input.html" with field_name="Ville *" field=form.city %}
 	      {% include "emarket/delivery-input.html" with field_name="Téléphone" field=form.phone %}
 	    </div>
+
+      <div class="control-group{% if form.message.errors %} error{% endif %}">
+        <label class="control-label" for="{{form.message.id_for_label}}">Message personnalisé</label>
+        <div class="controls">
+          {% if form.message.errors and display_error_messages %}
+          <span class="help-block">{{form.message.errors.as_text}}</span>
+          {% endif %}
+          <textarea name="{{form.message.html_name}}" id="{{form.message.id_for_label}}">{{form.message.value|default_if_none:""}}</textarea>
+        </div>
+      </div>
+
 	  </div>
 	  {% endfor %}
 	</fieldset>
