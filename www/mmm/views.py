@@ -23,6 +23,7 @@ from emarket.models import Be2billTransaction, Order
 from forms import NewsletterForm, RecoverPasswordForm, RegistrationForm, UpdatePasswordForm
 from models import ContactMessage, OfferPage, PasswordRecovery, User
 import emarket
+import mailhelpers
 
 
 class AuthenticationView(FormView):
@@ -181,7 +182,7 @@ class RecoverPasswordView(FormView):
         update_uri = reverse('password.update') + '?' + args
         absolute_update_uri = self.request.build_absolute_uri(update_uri)
 
-        emarket.utils.send_mail(settings.FORGOT_PASSWORD_MAIL_SUBJECT,
+        mailhelpers.utils.send_mail(settings.FORGOT_PASSWORD_MAIL_SUBJECT,
             [mail], settings.FORGOT_PASSWORD_MAIL_FROM,
             'mmm/password_recovery_mail.txt',
             'mmm/password_recovery_mail.html',
