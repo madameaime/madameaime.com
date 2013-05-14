@@ -58,6 +58,8 @@
 	      {% include "emarket/delivery-input.html" with field_name="Téléphone" field=form.phone %}
 	    </div>
 
+      {% comment %}
+      <!-- REMOVE FORM TO ADD A CUSTOM MESSAGE, BECAUSE ADS DOESN'T SUPPORT IT EASILY -->
       <div class="control-group{% if form.message.errors %} error{% endif %}">
         <label class="control-label" for="{{form.message.id_for_label}}">Message personnalisé</label>
         <div class="controls">
@@ -67,6 +69,7 @@
           <textarea name="{{form.message.html_name}}" id="{{form.message.id_for_label}}">{{form.message.value|default_if_none:""}}</textarea>
         </div>
       </div>
+      {% endcomment %}
 
 	  </div>
 	  {% endfor %}

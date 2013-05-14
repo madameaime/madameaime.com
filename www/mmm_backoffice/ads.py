@@ -322,11 +322,9 @@ def get_commands_file():
             reformat('', 'A', 15), # RESTANT_DU
             reformat('Euros', 'A', 20), # DEVISE
             reformat('B', 'A', 1), # TYPE_FACTURE (Facture (F) ou BL (B))
-
-            reformat(osale.message[0:50], 'A', 50), # COMMENTAIRE 1
-            reformat(osale.message[50:100], 'A', 50), # COMMENTAIRE 2
-            reformat(osale.message[100:150], 'A', 50), # COMMENTAIRE 3
-
+            reformat('', 'A', 50), # COMMENTAIRE 1
+            reformat('', 'A', 50), # COMMENTAIRE 2
+            reformat('', 'A', 50), # COMMENTAIRE 3
             reformat(int(order.billing != delivery), 'A', 1), # CADEAU, true if delivery addr != billing addr
         ])
 
