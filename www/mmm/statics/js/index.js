@@ -27,12 +27,12 @@
 
     });
 
-//    var payment_form = $('#payment_form');
-//
-//    if (payment_form.length) {
-//        setTimeout(function() {
-//                $('#payment_form').submit();
-//            }, 0);
-//    }
+    var payment_form = $('#payment_form');
+
+    if (payment_form.length) {
+        setTimeout(function() {
+                $('#payment_form').submit();
+            }, 0);
+    }
 
 }(window.jQuery);
