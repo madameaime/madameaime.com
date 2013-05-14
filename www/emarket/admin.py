@@ -3,8 +3,15 @@ from django.contrib import admin
 from models import *
 
 
+class TransportTypeAdmin(admin.ModelAdmin):
+    list_display = ('ads_field', 'as_string')
+
+
+admin.site.register(TransportType, TransportTypeAdmin)
+
+
 class SaleAdmin(admin.ModelAdmin):
-    list_display = ('begin', 'end', 'product', 'price',
+    list_display = ('begin', 'end', 'product', 'transport_type', 'price',
                     'shopping_cart_description')
 
 admin.site.register(Sale, SaleAdmin)

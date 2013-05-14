@@ -9,15 +9,27 @@ from django.utils import timezone
 import stockmgmt.models
 
 
+class TransportType(models.Model):
+    """ Specify the type of transport to use to deliver the product to the
+    client.
+    """
+    def __unicode__(self):
+        return self.as_string
+
+    ads_field = models.CharField(max_length=16)
+    as_string = models.CharField(max_length=64)
+
+
 class Sale(models.Model):
 
     def __unicode__(self):
         return self.product.name
 
-    begin       = models.DateTimeField(null=True, default=None, blank=True)
-    end         = models.DateTimeField(null=True, default=None, blank=True)
-    product     = models.ForeignKey(stockmgmt.models.Product)
-    price       = models.DecimalField(max_digits=5, decimal_places=2)
+    begin          = models.DateTimeField(null=True, default=None, blank=True)
+    end            = models.DateTimeField(null=True, default=None, blank=True)
+    product        = models.ForeignKey(stockmgmt.models.Product)
+    transport_type = models.ForeignKey(TransportType, null=True, blank=True)
+    price          = models.DecimalField(max_digits=5, decimal_places=2)
 
     shopping_cart_description = models.TextField(blank=True,
         help_text='text displayed in the shopping cart')

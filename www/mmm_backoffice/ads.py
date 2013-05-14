@@ -140,6 +140,7 @@ def get_non_delivered_ordersales():
     # it this way for now.
     for order_sale in OrderSale.objects.all()    \
                                .select_related('order', 'sale',
+                                       'sale__transport_type',
                                        'order__user', 'order__billing',
                                        'sale__product',
                                        'delivery'):
@@ -256,6 +257,13 @@ def get_commands_file():
         assert(delivery.country.lower() == 'france')
         delivery_iso_country = 'FR'
 
+        # By default, transport_type is always 1 (defined with ADS as
+        # "COLIECO")
+        if osale.sale.transport_type is not None:
+            transport_type = osale.sale.transport_type.ads_field
+        else:
+            transport_type = '1'
+        
         ret.append([
             reformat(order.pk, 'A', 30),
             reformat('', 'A', 30),
@@ -295,7 +303,7 @@ def get_commands_file():
             reformat(delivery.phone, 'A', 20),
             reformat(delivery.email, 'A', 50),
 
-            reformat('', 'A', 2), # TYPE_ENVOI
+            reformat(transport_type, 'A', 2), # TYPE_ENVOI
             reformat('', 'A', 30), # CODE_TRANSPORTEUR_DEDIE
             reformat('', 'A', 10), # NUMERO_POINT_RELAIS
             reformat('', 'A', 2), # CODE_ISO_POINT_RELAIS
