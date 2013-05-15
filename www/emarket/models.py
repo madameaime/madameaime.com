@@ -39,6 +39,9 @@ class PromoCode(models.Model):
     """ A promotion code gives a reduction for a given sale (if specified, else
     every sale) and has an expiration date.
     """
+    def __unicode__(self):
+        return self.code
+
     code = models.CharField(max_length=64, unique=True)
     sale = models.ForeignKey(Sale, blank=True, null=True)
     expire = models.DateTimeField(blank=True, null=True)
@@ -54,7 +57,7 @@ class Order(models.Model):
     date       = models.DateTimeField(auto_now_add=True)
     user       = models.ForeignKey(settings.AUTH_USER_MODEL)
     billing    = models.ForeignKey('Address')
-    promo_code = models.CharField(max_length=32, blank=True)
+    promo_code = models.ForeignKey(PromoCode, null=True, blank=True)
     is_free    = models.BooleanField(default=False)
 
     def is_paid(self):
