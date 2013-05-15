@@ -39,7 +39,7 @@ class PromoCodeMixin(object):
         if promo_code is None:
             return view()
         objects = self.request.session.get('shopping_cart', [])
-        if promo_code.sale.pk not in objects:
+        if promo_code.sale and promo_code.sale.pk not in objects:
             del(self.request.session['promo_code'])
         return view()
         
