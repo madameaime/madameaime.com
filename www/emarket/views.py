@@ -14,13 +14,50 @@ from django.http import Http404, HttpResponse, HttpResponseServerError
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import DeleteView, TemplateView, RedirectView, View
+from django.views.generic import (DeleteView, TemplateView, RedirectView, View,
+                                  FormView)
 
 from mailhelpers import utils
 
-from models import (Be2billTransaction, Order, OrderSale, PartnersSubscription,
-                    Sale)
-import forms
+from .models import (Be2billTransaction, Order, OrderSale,
+                     PartnersSubscription, PromoCode, Sale)
+from . import forms
+
+
+class PromoCodeMixin(object):
+
+    def dispatch(self, request, *args, **kwargs):
+        """ If the product for which the promo code applies has been removed
+        from the shopping cart, cancel the promo code.
+        I prefer not to check if the promo code has expired (if someone added
+        the code before it was expired, I don't see a reason why I should
+        cancel it. Maybe should I).
+        """
+        view = lambda: super(PromoCodeMixin, self).dispatch(request, *args,
+                                                            **kwargs)
+        promo_code = self.get_from_session()
+        if promo_code is None:
+            return view()
+        objects = self.request.session.get('shopping_cart', [])
+        if promo_code.sale.pk not in objects:
+            del(self.request.session['promo_code'])
+        return view()
+        
+    def set_in_session(self, promo_code):
+        """ Set promo_code in session. No check is done to ensure that it is
+        valid.
+        """
+        self.request.session['promo_code'] = promo_code
+
+    def get_from_session(self):
+        try:
+            promo_code = self.request.session['promo_code']
+        except KeyError:
+            return None
+        if promo_code:
+            obj = get_object_or_404(PromoCode, code=promo_code)
+            return obj
+        return None
 
 
 class ShoppingCartAddView(View):
@@ -47,14 +84,44 @@ class ShoppingCartAddView(View):
         return redirect(reverse('shopping-cart'), permanent=False)
 
 
-class ShoppingCartView(TemplateView):
+class ShoppingCartView(PromoCodeMixin, FormView):
     template_name = 'emarket/shopping-cart.html'
+    form_class = forms.PromoCodeForm
+
+    def get_initial(self):
+        initial = super(ShoppingCartView, self).get_initial()
+        initial['code'] = self.request.session.get('promo_code')
+        return initial
+
+    def get_form_kwargs(self):
+        kwargs = super(ShoppingCartView, self).get_form_kwargs()
+        objects = self.request.session.get('shopping_cart', [])
+        kwargs['shopping_cart'] = [get_object_or_404(Sale, pk=pk)
+                                    for pk in objects]
+        return kwargs
+
+    def form_valid(self, form):
+        http_response = super(ShoppingCartView, self).form_valid(form)
+        # set the promo code in session
+        promo_code = form.cleaned_data['code']
+        self.set_in_session(promo_code)
+        return http_response
+
+    def get_success_url(self):
+        return reverse('shopping-cart')
 
     def get_context_data(self, **kwargs):
         ctx = super(ShoppingCartView, self).get_context_data(**kwargs)
         objects = self.request.session.get('shopping_cart', [])
         ctx['objects'] = [get_object_or_404(Sale, pk=pk) for pk in objects]
+
         ctx['total_price'] = sum(sale.price for sale in ctx['objects'])
+
+        promo_code = self.get_from_session()
+        if promo_code:
+            ctx['total_price'] -= promo_code.discount
+
+
         ctx['charges'] = ctx['total_price'] * Decimal('0.196')
         return ctx
 
@@ -135,11 +202,9 @@ class DeliveryView(TemplateView):
         while not inserted:
             try:
                 order_id = self._generate_order_id()
-                promo_code = tos_form.cleaned_data['promo_code']
                 order = Order(exposed_id=order_id,
                               user=request.user,
-                              billing=billing_address,
-                              promo_code=promo_code)
+                              billing=billing_address)
                 order.save()
                 inserted = True
             except IntegrityError:
@@ -189,7 +254,7 @@ class DeliveryView(TemplateView):
                         permanent=False)
 
 
-class PaymentView(TemplateView):
+class PaymentView(PromoCodeMixin, TemplateView):
     template_name = 'emarket/payment.html'
 
     @method_decorator(login_required)
@@ -207,6 +272,9 @@ class PaymentView(TemplateView):
                                   user=self.request.user)
         sales = OrderSale.objects.filter(order=order)
         price = int(sum(sale.sale.price * 100 for sale in sales))
+        promo_code = self.get_from_session()
+        if promo_code:
+            price -= promo_code.discount * 100
         ctx['form'] = forms.Be2billForm({
                         "CLIENTIDENT": order.billing.email,
                         "DESCRIPTION": "Les coffrets de Madame Aime",

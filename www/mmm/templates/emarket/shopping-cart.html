@@ -35,14 +35,33 @@
       </td>
     </tr>
     {% endfor %}
+
+    {% if objects %}
+    <tr>
+      <td>&nbsp;</td>
+      <td class="info"><b>Code promo</b></td>
+      <td colspan="2">
+        <form method="post" action="{% url 'shopping-cart' %}">
+          {% csrf_token %}
+          <div class="control-group{% if form.code.errors %} error{% endif %}">
+            {% if form.code.errors %}
+            <span class="help-block">{{form.code.errors.as_text}}</span>
+            {% endif %}
+            <input type="text" class="input-xlarge" name="{{form.code.html_name}}" id="{{form.code.id_for_label}}" value="{{form.code.value|default_if_none:""}}" />
+            <input type="submit" value="Utiliser ce code promo" />
+          </div>
+        </form>
+      </td>
+    </tr>
+    {% endif %}
+
   </tbody>
   <tfoot>
     <tr>
       <td class="add" rowspan="2" colspan="2"><a href="{% url 'offer' %}">Ajouter un coffret à ma commande</a></td>
       <td class="total-label">Total</td>
       <td class="total-value">
-	<span class="value">{{total_price}} €</span><br />
-
+        <span class="value">{{total_price}} €</span><br />
         <span class="shipping">frais de port inclus</span>
       </td>
       <td rowspan="2" class="validate">

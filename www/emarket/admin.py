@@ -17,6 +17,12 @@ class SaleAdmin(admin.ModelAdmin):
 admin.site.register(Sale, SaleAdmin)
 
 
+class PromoCodeAdmin(admin.ModelAdmin):
+    list_display = ('code', 'sale', 'expire', 'discount')
+
+admin.site.register(PromoCode, PromoCodeAdmin)
+
+
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('exposed_id', 'date', 'user', 'billing', 'promo_code',
                     'is_free')

@@ -77,16 +77,6 @@
       </div>
     </div> <!-- row fluid -->
 
-
-
-		<div class="validate">
-			<div class="group">
-				{% include "emarket/delivery-input.html" with field_name="Code promo" field=tos_form.promo_code %}
-			</div>
-		</div>
-
-
-
     <div class="validate">
       <label class="checkbox">
 	<input type="checkbox" name="{{tos_form.tos.html_name}}" {% if tos_form.tos.value %}checked {% endif %}/> J'ai lu et j'accepte les <a href="{% url 'sales-conditions' %}">conditions générales de vente</a>

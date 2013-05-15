@@ -35,6 +35,16 @@ class Sale(models.Model):
         help_text='text displayed in the shopping cart')
 
 
+class PromoCode(models.Model):
+    """ A promotion code gives a reduction for a given sale (if specified, else
+    every sale) and has an expiration date.
+    """
+    code = models.CharField(max_length=64, unique=True)
+    sale = models.ForeignKey(Sale, blank=True, null=True)
+    expire = models.DateTimeField(blank=True, null=True)
+    discount = models.DecimalField(max_digits=5, decimal_places=2)
+
+
 class Order(models.Model):
 
     def __unicode__(self):
