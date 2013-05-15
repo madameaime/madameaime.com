@@ -118,7 +118,7 @@ class PromoCodeForm(forms.Form):
             promo_code = PromoCode.objects.get(code=data)
         except PromoCode.DoesNotExist:
             raise forms.ValidationError("Ce code n'existe pas")
-        if datetime.now() >= promo_code.expire:
+        if promo_code.expire and datetime.now() >= promo_code.expire:
             raise forms.ValidationError("Ce code est expiré")
         if promo_code.sale and promo_code.sale not in self.shopping_cart:
             raise forms.ValidationError('Code invalide')
