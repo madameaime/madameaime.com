@@ -142,7 +142,7 @@ class ShoppingCartRemoveView(RedirectView):
         return super(ShoppingCartRemoveView, self).post(*args, **kwargs)
 
 
-class DeliveryView(TemplateView):
+class DeliveryView(PromoCodeMixin, TemplateView):
     template_name = 'emarket/delivery.html'
 
     class EmptyShoppingCart(Exception):
@@ -203,6 +203,7 @@ class DeliveryView(TemplateView):
             try:
                 order_id = self._generate_order_id()
                 order = Order(exposed_id=order_id,
+                              promo_code=self.get_from_session(),
                               user=request.user,
                               billing=billing_address)
                 order.save()
