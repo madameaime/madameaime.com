@@ -1,0 +1,137 @@
+{% extends "mmm/skeleton.html" %}
+{% block head_title %}Coffret MadameAime by Phymerma{% endblock %}
+{% block meta_description %}Découvrez tous les coffrets cadeaux confectionnés par Madame Aime{% endblock %}
+{% block mmm_content %}
+<section id="box">
+  <div class="description clearfix">
+    <div class="photo pull-left" style="width: 490px;">
+      <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
+	{% csrf_token %}
+	<input type="hidden" name="sale_id" value="14" />
+        <input type="image" src="{{ STATIC_URL }}img/boxes/2013-may/photo.png" alt="MadameAime by Vivolta"/>
+      </form>
+    </div>
+    <div class="text pull-right" style="width: 450px;">
+      <h1>Madame Aime by Vivolta</h1>
+      <p style="font-size: 90%; margin-top: 30px;">
+        À l’occasion de la fête des mères, MadameAime s’est associée
+        avec la chaîne de télévision Vivolta pour faire plaisir à chaque
+        maman :
+      </p>
+      <p style="font-size: 90%; font-weight: bold;">
+        - Soins pour les pieds - Jeanne M. - Valeur : 36€<br />
+        - Gelée gommante visage - Sothys Paris - Valeur : 20€<br />
+        - Savons fleur d’oranger/citron - Au Pays de la Fleur d’Oranger - Valeur : 5€<br />
+        - Lait corps ultra fondant - Oliv’ - Valeur : 4€<br />
+        - Thé à la menthe bio - Teatower - Valeur : 3.50€<br />
+        - Livre « Pâtisserie facile » - Valeur : 4,95€
+      </p>
+      <p style="font-size: 90%; font-weight: bold; margin-top: 30px; text-align: center" class="pink">
+        Soit un coffret dont la valeur totale dépasse les 70€ et vendu au tarif de
+        24.90€ !
+      </p>
+    </div>
+  </div>
+
+  <div class="products">
+    <div class="row-fluid">
+        <div class="span4 product row-fluid">
+          <div class="span6 image">
+            <img src="{{STATIC_URL}}img/brands/jeanne-m/soin-pour-les-pieds/image.png" alt="" />
+          </div>
+          <div class="span6 details">
+            <h2>Jeanne M.</h2>
+            <p>
+              Soin pour les pieds
+            </p>
+          </div>
+        </div>
+
+        <div class="span4 product row-fluid">
+          <div class="span5 image" style="padding: 10px 0 0 20px;">
+            <img src="{{STATIC_URL}}img/brands/sothys/gel-gommant-visage/image.png" alt="" />
+          </div>
+          <div class="span7 details">
+            <h2>Sothys</h2>
+            <p>
+              Gel gommant visage
+            </p>
+          </div>
+        </div>
+
+      <div class="span4 product row-fluid">
+        <div class="span5 image" style="padding-top: 30px;">
+          <img src="{{STATIC_URL}}img/brands/au-pays-de-la-fleur-d-oranger/savon-d-invites/image.png" alt="" />
+        </div>
+        <div class="span7 details">
+          <h2>Au pays de la fleur d’oranger</h2>
+          <p>
+            Savons d’invités aux frangrances de Fleur d’oranger et de citron
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span4 product row-fluid">
+        <div class="span6 image" style="padding-left: 20px;">
+          <img src="{{STATIC_URL}}img/brands/oliv/lait-corps-ultra-fondant/image.png" alt="" />
+        </div>
+        <div class="span6 details">
+          <h2>Oliv’</h2>
+          <p>
+            Lait corps ultra fondant
+          </p>
+        </div>
+      </div>
+
+      <div class="span4 product row-fluid">
+        <div class="span6 image">
+          <img src="{{STATIC_URL}}img/brands/teatower/the-a-la-menthe-bio/image.png" alt="" />
+        </div>
+        <div class="span6 details">
+          <h2>Teatower</h2>
+          <p>
+            Thé à la menthe bio
+          </p>
+        </div>
+      </div>
+
+      <div class="span4 product row-fluid">
+        <div class="span6 image">
+          <img src="{{STATIC_URL}}img/brands/marabout/livre-patisserie-facile/image.png" alt="" />
+        </div>
+        <div class="span6 details">
+          <h2>Marabout</h2>
+          <p>
+            Livre « Pâtisserie facile »
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row-fluid">
+      <div class="span4 what-next">
+        <p>
+          <small>Madame Aime est le premier coffret pour les femmes à partir de 40 ans.</small>
+        </p>
+        <p>
+          Coffret MadameAime by Vivolta
+        </p>
+        <p>
+          <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
+	    {% csrf_token %}
+	    <input type="hidden" name="sale_id" value="14" />
+            <input type="image" src="{{ STATIC_URL }}img/boxes/new_profit.png" alt="J’en profite" />
+          </form>
+        </p>
+        <a target="_blank" class="shiny" href="http://issuu.com/madameaime/docs/mag_madameaime_vivoltamai13?mode=window">
+          <img src="{{ STATIC_URL }}img/boxes/new_mag.png" alt="Consulter le mag" />
+        </a>
+      </div>
+    </div>
+  </div>
+  {% include 'boxes/previous.html' %}
+</section>
+{% endblock %}

@@ -1,8 +1,8 @@
 #box .description {
-    height: 392px;
     background-color: #ffffff;
     border: 1px solid #dddddd;
     margin-bottom: 15px;
+    padding-bottom: 10px;
 }
 
 #box .description .photo {
@@ -80,6 +80,16 @@
     position: absolute;
     bottom: 0;
     right: 0;
+}
+
+#box .products .what-next {
+    height: 215px;
+    text-align: center;
+    font-style: normal;
+    background-color: #4b4b4b;
+    border: 1px solid #dddddd;
+    color: #ffffff;
+    padding: 15px;
 }
 
 #box .products .next {
