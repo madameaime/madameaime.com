@@ -281,7 +281,7 @@ class PaymentView(PromoCodeMixin, TemplateView):
                         "DESCRIPTION": "Les coffrets de Madame Aime",
                         "CLIENTEMAIL": order.billing.email,
                         "ORDERID": order.exposed_id,
-                        "AMOUNT": price })
+                        "AMOUNT": int(price) })
         return ctx
 
 
