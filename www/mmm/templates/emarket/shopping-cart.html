@@ -81,26 +81,6 @@
   <h2>Nous vous proposons également :</h2>
   <div class="products clearfix">
     <div>
-      <img src="{{ STATIC_URL }}img/checkout/upsale/1.png" alt="" />
-      <h4>Coffret MadameAime Phyderma</h4>
-      <p class="hint">
-        Derniers coffrets<br />disponibles
-      </p>
-      <div class="bottom">
-        <p class="price">
-          14,90€
-        </p>
-        <p class="delivery">
-          livraison incluse
-        </p>
-        <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
-          {% csrf_token %}
-          <input type="hidden" name="sale_id" value="13" />
-          <input type="image" src="{{ STATIC_URL }}img/checkout/upsale/add.png" alt="Commander"/>
-        </form>
-      </div>
-    </div>
-    <div>
       <img src="{{ STATIC_URL }}img/checkout/upsale/2.png" alt="" />
       <h4>Coffret MadameAime by Vivolta</h4>
       <div class="bottom">
