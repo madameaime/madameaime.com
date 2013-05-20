@@ -5,11 +5,7 @@
 <section id="box">
   <div class="description clearfix">
     <div class="photo pull-left" style="width: 490px;">
-      <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
-	{% csrf_token %}
-	<input type="hidden" name="sale_id" value="13" />
-        <input type="image" src="{{ STATIC_URL }}img/boxes/2013-mar/photo.png" alt="Coffret Phyderma"/>
-      </form>
+        <img src="{{ STATIC_URL }}img/boxes/2013-mar/photo.png" alt="Coffret Phyderma"/>
     </div>
     <div class="text pull-right" style="width: 450px;">
       <h1>Madame Aime Phyderma</h1>
@@ -117,7 +113,9 @@
             Coffret MadameAime Phyderma
           </p>
           <div class="more">
-            <a class="shiny" href="{% url 'offer' %}">J'en profite</a>
+            <br />
+            <br />
+            <br />
           </div>
           <a id="open-mag" target="_blank" class="shiny" href="http://issuu.com/madameaime/docs/mag_madameaime_marsavril13?mode=window">Consulter le mag</a>
         </div>
