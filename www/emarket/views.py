@@ -81,8 +81,9 @@ class ShoppingCartAddView(View):
 
         sale = get_object_or_404(Sale, pk=sale_id)
 
-        request.session.setdefault('shopping_cart', []).append(sale.pk)
-        request.session.modified = True
+        if not sale.end or sale.end > datetime.now():
+            request.session.setdefault('shopping_cart', []).append(sale.pk)
+            request.session.modified = True
         return redirect(reverse('shopping-cart'), permanent=False)
 
 
