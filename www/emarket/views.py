@@ -54,6 +54,8 @@ class PromoCodeMixin(object):
             promo_code = self.request.session['promo_code']
         except KeyError:
             return None
+        except AttributeError:
+            return None
         if promo_code:
             obj = get_object_or_404(PromoCode, code=promo_code)
             return obj
