@@ -7,16 +7,16 @@
     <div class="carousel-inner">
       <div class="active item one">
         <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
-	  {% csrf_token %}
-	  <input type="hidden" name="sale_id" value="14" />
-	  <input type="image" src="{{ STATIC_URL }}img/slides/slide-coffret-vivolta.jpg?0" alt="" />
+          {% csrf_token %}
+          <input type="hidden" name="sale_id" value="14" />
+          <input type="image" src="{{ STATIC_URL }}img/slides/slide-coffret-vivolta.jpg?0" alt="" />
         </form>
       </div>
       <div class="item two">
         <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
-	  {% csrf_token %}
-	  <input type="hidden" name="sale_id" value="13" />
-	  <input type="image" src="{{ STATIC_URL }}img/slides/slide-coffret-promo-phyderma.jpg" alt="" />
+          {% csrf_token %}
+          <input type="hidden" name="sale_id" value="13" />
+          <input type="image" src="{{ STATIC_URL }}img/slides/slide-coffret-promo-phyderma.jpg" alt="" />
         </form>
       </div>
       <div class="item three">
