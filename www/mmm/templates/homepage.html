@@ -13,13 +13,6 @@
         </form>
       </div>
       <div class="item two">
-        <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
-          {% csrf_token %}
-          <input type="hidden" name="sale_id" value="13" />
-          <input type="image" src="{{ STATIC_URL }}img/slides/slide-coffret-promo-phyderma.jpg" alt="" />
-        </form>
-      </div>
-      <div class="item three">
         <a href="{% url "order" %}">
           <img src="{{ STATIC_URL }}img/slides/slide-madameaime-generique.jpg" alt="" />
         </a>
