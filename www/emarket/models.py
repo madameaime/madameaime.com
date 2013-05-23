@@ -1,7 +1,7 @@
+import csv
 from datetime import datetime
 
 from django.conf import settings
-from django.contrib.sessions.models import Session
 from django.db import models
 from django.db.models import Q
 from django.utils import timezone
@@ -88,6 +88,32 @@ class OrderSale(models.Model):
     sale      = models.ForeignKey(Sale)
     delivery  = models.ForeignKey('Address', null=True, blank=True)
     message   = models.TextField(blank=True)
+
+
+class DeliveryTracking(models.Model):
+    """ Store tracking information sent from ADS. """
+    def __unicode__(self):
+        return 'ordersale ' + self.order_sale
+
+    order_sale = models.ForeignKey(OrderSale, unique=True)
+    status = models.CharField(max_length=8)
+    transport_type = models.CharField(max_length=32)
+    tracking_number = models.CharField(max_length=32)
+    sent_date = models.DateField()
+
+    @staticmethod
+    def create_entries_from_file(filename):
+        for line in csv.reader(open(filename), delimiter=';'):
+            order_sale = OrderSale.objects.get(pk=int(line[0]))
+            try:
+                inst = DeliveryTracking.objects.get(order_sale=order_sale)
+            except DeliveryTracking.DoesNotExist:
+                inst = DeliveryTracking(order_sale=order_sale)
+            inst.status = line[1]
+            inst.transport_type = line[2]
+            inst.tracking_number = line[3]
+            inst.sent_date = datetime.strptime(line[4], '%Y%m%d')
+            inst.save()
 
 
 class DeliveredProduct(models.Model):

@@ -43,7 +43,8 @@ class TransactionListView(SuperuserRequiredMixin, TemplateView):
         for order_sale in OrderSale.objects.all() \
                                    .prefetch_related('order') \
                                    .prefetch_related('sale__product') \
-                                   .prefetch_related('delivery'):
+                                   .prefetch_related('delivery') \
+                                   .select_related('deliverytracking'):
             array = orders[order_sale.order.pk]['content']
             array.append(order_sale)
 
