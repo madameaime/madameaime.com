@@ -78,6 +78,19 @@ class Order(models.Model):
             pass
         return False
 
+    def get_total_price(self):
+        """ Return a dict that contains price info for this Order, formatted as follow:
+        {'price': xxx, 'promo_code': PromoCode instance, 'real_price': total - discount}
+        """
+        price = sum(osale.sale.price for osale in self.ordersale_set.all())
+        promo_code = self.promo_code
+        real_price = price - promo_code.discount
+        return {
+            'price': price,
+            'promo_code': promo_code,
+            'real_price': real_price
+        }
+
 
 class OrderSale(models.Model):
 

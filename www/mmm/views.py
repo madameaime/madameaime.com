@@ -237,6 +237,11 @@ class OrderView(LimitOrderViewMixin, DetailView):
     template_name = "account/order.hml"
     model = emarket.models.Order
 
+    def get_context_data(self, **kwargs):
+        ctx = super(OrderView, self).get_context_data(**kwargs)
+        ctx['total_price_info'] = self.object.get_total_price()
+        return ctx
+
 
 class OrderInvoicePdfView(LimitOrderViewMixin, DetailView):
     model = emarket.models.Order

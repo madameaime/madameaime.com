@@ -14,7 +14,6 @@
         <th style="width: 150px;">Produit</th>
         <th>Adresse</th>
         <th style="width: 50px;">Prix</th>
-        <th style="width: 200px;">Message</th>
       </tr>
     </thead>
     <tbody>
@@ -24,10 +23,23 @@
         <td>
           {% include "account/order-delivery-display.html" %}
         </td>
-        <td>{{ ordersale.sale.price }}</td>
-        <td>{{ordersale.message|linebreaks}}</td>
+        <td>{{ ordersale.sale.price }} €</td>
       </tr>
       {% endfor %}
+      <tr>
+        <th colspan="2">Total</th>
+        <td colspan="2">{{total_price_info.price}} €</td>
+      </tr>
+      {% if total_price_info.promo_code %}
+      <tr>
+        <th colspan="2">Code promo</th>
+        <td colspan="2">{{total_price_info.promo_code.discount}} €</td>
+      </tr>
+      <tr>
+        <th colspan="2">Total</th>
+        <td colspan="2">{{total_price_info.real_price}} €</td>
+      </tr>
+      {% endif %}
     </tbody>
     <tfoot>
       <tr>
