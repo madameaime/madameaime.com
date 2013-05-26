@@ -88,7 +88,10 @@ class Order(models.Model):
         total_tva = total_ttc * Decimal('0.196')
         total_ht = total_ttc - total_tva
         promo_code = self.promo_code
-        real_price = total_ttc - promo_code.discount
+        if promo_code:
+            real_price = total_ttc - promo_code.discount
+        else:
+            real_price = total_ttc
         return {
             'total_ht': total_ht,
             'total_tva': total_tva,

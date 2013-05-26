@@ -258,12 +258,7 @@ class OrderInvoicePdfView(LimitOrderViewMixin, DetailView):
             }
             for ordersale in ordersales
         ]
-        ctx['total_ttc'] = sum(ordersale.sale.price
-                                for ordersale in ordersales)
-        ctx['total_tva'] = sum(ordersale.sale.price
-                                for ordersale in ordersales) * Decimal('0.196')
-        ctx['total_ht'] = (ctx['total_ttc'] -
-                            ctx['total_ttc'] * Decimal('0.196'))
+        ctx['total_price_info'] = self.object.get_total_price()
         return ctx
 
     def render_to_response(self, context, **response_kwargs):
