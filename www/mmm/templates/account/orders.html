@@ -28,7 +28,7 @@
           {% if order.billing.additional %}
             {{ order.billing.additional }}<br />
           {% endif %}
-          {{ order.billing.zip_code }} {{ order.billing.city }} ({{ order.billing.country }})
+          {{ order.billing.zip_code }} {{ order.billing.city }}, {{ order.billing.country|default:"France" }}
         </td>
         <td>{{ order.date | date:"d M Y" }}</td>
         <td><a href="{% url 'account/order/pdf_invoice' pk=order.pk %}">Télécharger</a></td>
