@@ -32,7 +32,7 @@ class Sale(models.Model):
     price          = models.DecimalField(max_digits=5, decimal_places=2)
 
     shopping_cart_description = models.TextField(blank=True,
-        help_text='text displayed in the shopping cart')
+        help_text='text displayed in the shopping cart (HTML)')
 
 
 class PromoCode(models.Model):

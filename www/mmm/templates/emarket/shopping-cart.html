@@ -19,7 +19,7 @@
       <td class="info">
 	<b class="name">{{object.product.name}}</b><br />
         <span class="description">
-	  {{object.shopping_cart_description|linebreaks}}
+	  {{object.shopping_cart_description|safe|linebreaks}}
 	</span>
       </td>
       <td></td>
