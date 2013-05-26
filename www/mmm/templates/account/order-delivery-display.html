@@ -3,11 +3,11 @@
   {% if ordersale.delivery.additional %}
     {{ ordersale.delivery.additional }}<br />
   {% endif %}
-  {{ ordersale.delivery.zip_code }} {{ ordersale.delivery.city }} ({{ ordersale.delivery.country }})
+  {{ ordersale.delivery.zip_code }} {{ ordersale.delivery.city }}, {{ ordersale.delivery.country|default:"France" }}
 {% else %}
   {{ ordersale.order.billing.address }}<br />
   {% if ordersale.order.billing.additional %}
     {{ ordersale.order.billing.additional }}<br />
   {% endif %}
-  {{ ordersale.order.billing.zip_code }} {{ ordersale.order.billing.city }} ({{ ordersale.order.billing.country }})
+  {{ ordersale.order.billing.zip_code }} {{ ordersale.order.billing.city }}, {{ ordersale.order.billing.country|default:"France" }}
 {% endif %}
