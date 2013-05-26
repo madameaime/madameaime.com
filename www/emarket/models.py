@@ -1,5 +1,6 @@
 import csv
 from datetime import datetime
+from decimal import Decimal
 
 from django.conf import settings
 from django.db import models
@@ -79,14 +80,19 @@ class Order(models.Model):
         return False
 
     def get_total_price(self):
-        """ Return a dict that contains price info for this Order, formatted as follow:
-        {'price': xxx, 'promo_code': PromoCode instance, 'real_price': total - discount}
+        """ Return a dict that contains price info for this Order with the
+        following keys: total_ht, total_tva, total_ttc, promo_code (PromoCode
+        instance) and real_price (total_ttc - promo_code)
         """
-        price = sum(osale.sale.price for osale in self.ordersale_set.all())
+        total_ttc = sum(osale.sale.price for osale in self.ordersale_set.all())
+        total_tva = total_ttc * Decimal('0.196')
+        total_ht = total_ttc - total_tva
         promo_code = self.promo_code
-        real_price = price - promo_code.discount
+        real_price = total_ttc - promo_code.discount
         return {
-            'price': price,
+            'total_ht': total_ht,
+            'total_tva': total_tva,
+            'total_ttc': total_ttc,
             'promo_code': promo_code,
             'real_price': real_price
         }

@@ -270,6 +270,6 @@ class OrderInvoicePdfView(LimitOrderViewMixin, DetailView):
         response = render_to_pdf_response('account/pdf_invoice.html',
                                           context=context)
         # debug mode: replace False with True to disable force download
-        if False:
+        if settings.DEBUG:
             del(response._headers['content-disposition'])
         return response
