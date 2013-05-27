@@ -27,17 +27,17 @@
       </tr>
       {% endfor %}
       <tr>
-        <th colspan="2">Total TTC</th>
-        <td colspan="2">{{total_price_info.total_ttc}} €</td>
+        <th colspan="2">Total</th>
+        <td colspan="2">{{total_price_info.order_price}} €</td>
       </tr>
       {% if total_price_info.promo_code %}
       <tr>
         <th colspan="2">Code promo</th>
-        <td colspan="2">{{total_price_info.promo_code.discount}} €</td>
+        <td colspan="2">{{total_price_info.promo_code}} €</td>
       </tr>
       <tr>
-        <th colspan="2">Total</th>
-        <td colspan="2">{{total_price_info.real_price}} €</td>
+        <th colspan="2">Total TTC</th>
+        <td colspan="2">{{total_price_info.total_ttc}} €</td>
       </tr>
       {% endif %}
     </tbody>

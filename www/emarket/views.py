@@ -307,9 +307,7 @@ class CheckoutOKClient(TemplateView):
         order = get_object_or_404(Order, exposed_id=exposed_id)
         ctx['order'] = order
         ctx['order_sales'] = OrderSale.objects.filter(order=order)
-        total_price = sum(p.sale.price for p in ctx['order_sales'])
-        ctx['total_price'] = total_price
-        ctx['price_without_tax'] = total_price / Decimal(1.196)
+        ctx['total_price'] = order.get_total_price()
         return ctx
 
 

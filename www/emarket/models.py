@@ -80,24 +80,22 @@ class Order(models.Model):
         return False
 
     def get_total_price(self):
-        """ Return a dict that contains price info for this Order with the
-        following keys: total_ht, total_tva, total_ttc, promo_code (PromoCode
-        instance) and real_price (total_ttc - promo_code)
-        """
-        total_ttc = sum(osale.sale.price for osale in self.ordersale_set.all())
-        total_tva = total_ttc * Decimal('0.196')
-        total_ht = total_ttc - total_tva
+        """ Return a dict that contains price info for this Order """
+        order_price = sum(osale.sale.price
+                            for osale in self.ordersale_set.all())
         promo_code = self.promo_code
         if promo_code:
-            real_price = total_ttc - promo_code.discount
+            total_ttc = order_price - promo_code.discount
         else:
-            real_price = total_ttc
+            total_ttc = order_price
+        total_ht = total_ttc / Decimal('1.196')
+        total_tva = total_ht * Decimal('0.196')
         return {
-            'total_ht': total_ht,
-            'total_tva': total_tva,
-            'total_ttc': total_ttc,
-            'promo_code': promo_code,
-            'real_price': real_price
+            'order_price': order_price.quantize(Decimal('0.01')),
+            'total_ht': total_ht.quantize(Decimal('0.01')),
+            'total_tva': total_tva.quantize(Decimal('0.01')),
+            'total_ttc': total_ttc.quantize(Decimal('0.01')),
+            'promo_code': promo_code.discount.quantize(Decimal('0.01')),
         }
 
 
