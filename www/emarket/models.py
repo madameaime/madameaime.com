@@ -117,7 +117,8 @@ class DeliveryTracking(models.Model):
     def __unicode__(self):
         return 'ordersale ' + self.order_sale
 
-    order_sale = models.ForeignKey(OrderSale, unique=True)
+    order_sale = models.ForeignKey(OrderSale, unique=True,
+                                   related_name='delivery_tracking')
     status = models.CharField(max_length=8)
     transport_type = models.CharField(max_length=32)
     tracking_number = models.CharField(max_length=32)
