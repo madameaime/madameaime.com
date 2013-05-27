@@ -36,7 +36,11 @@
             </tr>
             <tr>
               <th>Code promo</th>
-              <td>{{order.info.promo_code}}</td>
+              <td>{{order.info.promo_code.code}}</td>
+            </tr>
+            <tr>
+              <th>Discount sur le panier</th>
+              <td>{{order.info.promo_code.discount}} €</td>
             </tr>
             <tr>
               <th>Commande gratuite ?</th>
