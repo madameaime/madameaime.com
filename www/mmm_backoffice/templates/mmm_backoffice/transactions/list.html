@@ -10,6 +10,7 @@
       <th>operation type</th>
       <th>date</th>
       <th>code promo</th>
+      <th>discount panier</th>
       <th>gratuit</th>
       <th>prix</th>
       <th>produit</th>
@@ -48,7 +49,8 @@
       <td>{{order_sale.deliverytracking_set.all.0.tracking_number}}</td>
       <td>{{order.be2bill_transactions.0.operationtype}}</td>
       <td>{{order.info.date}}</td>
-      <td>{{order.info.promo_code}}</td>
+      <td>{{order.info.promo_code.code}}</td>
+      <td>{{order.info.promo_code.discount}} €</td>
       <td>{{order.info.is_free}}</td>
       <td>{{order_sale.sale.price}}</td>
       <td>{{order_sale.sale.product.name}}</td>
