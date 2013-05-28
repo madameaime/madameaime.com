@@ -81,13 +81,11 @@ class Order(models.Model):
 
     def get_total_price(self):
         """ Return a dict that contains price info for this Order """
-        order_price = sum(osale.sale.price
-                            for osale in self.ordersale_set.all())
-        promo_code = self.promo_code
-        if promo_code:
-            total_ttc = order_price - promo_code.discount
-        else:
-            total_ttc = order_price
+        order_price = Decimal(sum(osale.sale.price
+                                    for osale in self.ordersale_set.all()))
+        promo_code = (self.promo_code.discount
+                        if self.promo_code else Decimal('0'))
+        total_ttc = order_price - promo_code
         total_ht = total_ttc / Decimal('1.196')
         total_tva = total_ht * Decimal('0.196')
         return {
@@ -95,7 +93,7 @@ class Order(models.Model):
             'total_ht': total_ht.quantize(Decimal('0.01')),
             'total_tva': total_tva.quantize(Decimal('0.01')),
             'total_ttc': total_ttc.quantize(Decimal('0.01')),
-            'promo_code': promo_code.discount.quantize(Decimal('0.01')),
+            'promo_code': promo_code.quantize(Decimal('0.01')),
         }
 
 
