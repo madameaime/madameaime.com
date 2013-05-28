@@ -264,77 +264,78 @@ def get_commands_file():
         else:
             transport_type = '1'
         
-        ret.append([
-            reformat(order.pk, 'A', 30),
-            reformat('', 'A', 30),
-            reformat('BtoC', 'A', 10),
-            reformat(order.user.pk, 'A', 20),
-            reformat(osale.pk, 'A', 20),
-            reformat(order.date.strftime('%Y%m%d'), 'A', 8),
-            reformat('', 'A', 20), # NUMIC
-            reformat('', 'A', 50), # SOCIETE FAC
-            reformat('', 'A', 20), # CIVILITE FAC
+        for product in products:
+            ret.append([
+                reformat(order.pk, 'A', 30),
+                reformat('', 'A', 30),
+                reformat('BtoC', 'A', 10),
+                reformat(order.user.pk, 'A', 20),
+                reformat(osale.get_delivery_identifier(product), 'A', 20),
+                reformat(order.date.strftime('%Y%m%d'), 'A', 8),
+                reformat('', 'A', 20), # NUMIC
+                reformat('', 'A', 50), # SOCIETE FAC
+                reformat('', 'A', 20), # CIVILITE FAC
 
-            reformat(order.billing.lastname, 'A', 50),
-            reformat(order.billing.firstname, 'A', 40),
-            reformat(order.billing.address[:38], 'A', 38),
-            reformat(order.billing.address[38:], 'A', 38),
-            reformat(order.billing.additional[:38], 'A', 38),
-            reformat(order.billing.additional[38:], 'A', 38),
-            reformat(order.billing.zip_code, 'A', 10),
-            reformat(order.billing.city, 'A', 10),
-            reformat('', 'A', 38), # ETAT_FAC
-            reformat(order.billing.country, 'A', 38),
-            reformat(billing_iso_country, 'A', 2),
+                reformat(order.billing.lastname, 'A', 50),
+                reformat(order.billing.firstname, 'A', 40),
+                reformat(order.billing.address[:38], 'A', 38),
+                reformat(order.billing.address[38:], 'A', 38),
+                reformat(order.billing.additional[:38], 'A', 38),
+                reformat(order.billing.additional[38:], 'A', 38),
+                reformat(order.billing.zip_code, 'A', 10),
+                reformat(order.billing.city, 'A', 10),
+                reformat('', 'A', 38), # ETAT_FAC
+                reformat(order.billing.country, 'A', 38),
+                reformat(billing_iso_country, 'A', 2),
 
-            reformat('', 'A', 50), # SOCIETE_LIV
-            reformat('', 'A', 20), # CIVILITE_LIV
-            reformat(delivery.lastname, 'A', 50),
-            reformat(delivery.firstname, 'A', 40),
-            reformat(delivery.address[:38], 'A', 38),
-            reformat(delivery.address[38:], 'A', 38),
-            reformat(delivery.additional[:38], 'A', 38),
-            reformat(delivery.additional[38:], 'A', 38),
-            reformat(delivery.zip_code, 'A', 10),
-            reformat(delivery.city, 'A', 10),
-            reformat('', 'A', 38), # ETAT_LIV
-            reformat(delivery.country, 'A', 38),
-            reformat(delivery_iso_country, 'A', 2),
-            reformat(delivery.phone, 'A', 20),
-            reformat(delivery.email, 'A', 50),
+                reformat('', 'A', 50), # SOCIETE_LIV
+                reformat('', 'A', 20), # CIVILITE_LIV
+                reformat(delivery.lastname, 'A', 50),
+                reformat(delivery.firstname, 'A', 40),
+                reformat(delivery.address[:38], 'A', 38),
+                reformat(delivery.address[38:], 'A', 38),
+                reformat(delivery.additional[:38], 'A', 38),
+                reformat(delivery.additional[38:], 'A', 38),
+                reformat(delivery.zip_code, 'A', 10),
+                reformat(delivery.city, 'A', 10),
+                reformat('', 'A', 38), # ETAT_LIV
+                reformat(delivery.country, 'A', 38),
+                reformat(delivery_iso_country, 'A', 2),
+                reformat(delivery.phone, 'A', 20),
+                reformat(delivery.email, 'A', 50),
 
-            reformat(transport_type, 'A', 2), # TYPE_ENVOI
-            reformat('', 'A', 30), # CODE_TRANSPORTEUR_DEDIE
-            reformat('', 'A', 10), # NUMERO_POINT_RELAIS
-            reformat('', 'A', 2), # CODE_ISO_POINT_RELAIS
+                reformat(transport_type, 'A', 2), # TYPE_ENVOI
+                reformat('', 'A', 30), # CODE_TRANSPORTEUR_DEDIE
+                reformat('', 'A', 10), # NUMERO_POINT_RELAIS
+                reformat('', 'A', 2), # CODE_ISO_POINT_RELAIS
 
-            reformat('', 'A', 10), # TAUX_TVA_1
-            reformat('', 'A', 15), # BASE_TVA_1
-            reformat('', 'A', 15), # MONTANT_TVA_1
-            reformat('', 'A', 10), # TAUX_TVA_2
-            reformat('', 'A', 15), # BASE_TVA_2
-            reformat('', 'A', 15), # MONTANT_TVA_2
-            reformat('', 'A', 10), # TAUX_TVA_3
-            reformat('', 'A', 15), # BASE_TVA_3
-            reformat('', 'A', 15), # MONTANT_TVA_3
-            reformat('', 'A', 15), # MONTANT_ESCOMPTE
-            reformat('', 'A', 15), # MONTANT_ACOMPTE
-            reformat('', 'A', 15), # MONTANT_FRAIS_ENVOI_HT
-            reformat('', 'A', 15), # MONTANT_FRAIS_ENVOI_TTC
-            reformat('', 'A', 15), # MONTANT_TOTAL_HT
-            reformat(osale.sale.price, 'A', 15), # MONTANT_TOTAL_TTC
-            reformat('', 'A', 8), # DATE_ECHEANCE
-            reformat('', 'A', 8), # MODE_PAIEMENT
-            reformat(order.date.strftime('%Y%m%d'), 'A', 8), # DATE_PAIEMENT
-            reformat(osale.sale.price, 'A', 15), # MONTANT_PAIEMENT
-            reformat('', 'A', 15), # RESTANT_DU
-            reformat('Euros', 'A', 20), # DEVISE
-            reformat('B', 'A', 1), # TYPE_FACTURE (Facture (F) ou BL (B))
-            reformat('', 'A', 50), # COMMENTAIRE 1
-            reformat('', 'A', 50), # COMMENTAIRE 2
-            reformat('', 'A', 50), # COMMENTAIRE 3
-            reformat(int(order.billing != delivery), 'A', 1), # CADEAU, true if delivery addr != billing addr
-        ])
+                reformat('', 'A', 10), # TAUX_TVA_1
+                reformat('', 'A', 15), # BASE_TVA_1
+                reformat('', 'A', 15), # MONTANT_TVA_1
+                reformat('', 'A', 10), # TAUX_TVA_2
+                reformat('', 'A', 15), # BASE_TVA_2
+                reformat('', 'A', 15), # MONTANT_TVA_2
+                reformat('', 'A', 10), # TAUX_TVA_3
+                reformat('', 'A', 15), # BASE_TVA_3
+                reformat('', 'A', 15), # MONTANT_TVA_3
+                reformat('', 'A', 15), # MONTANT_ESCOMPTE
+                reformat('', 'A', 15), # MONTANT_ACOMPTE
+                reformat('', 'A', 15), # MONTANT_FRAIS_ENVOI_HT
+                reformat('', 'A', 15), # MONTANT_FRAIS_ENVOI_TTC
+                reformat('', 'A', 15), # MONTANT_TOTAL_HT
+                reformat(osale.sale.price, 'A', 15), # MONTANT_TOTAL_TTC
+                reformat('', 'A', 8), # DATE_ECHEANCE
+                reformat('', 'A', 8), # MODE_PAIEMENT
+                reformat(order.date.strftime('%Y%m%d'), 'A', 8), # DATE_PAIEMENT
+                reformat(osale.sale.price, 'A', 15), # MONTANT_PAIEMENT
+                reformat('', 'A', 15), # RESTANT_DU
+                reformat('Euros', 'A', 20), # DEVISE
+                reformat('B', 'A', 1), # TYPE_FACTURE (Facture (F) ou BL (B))
+                reformat('', 'A', 50), # COMMENTAIRE 1
+                reformat('', 'A', 50), # COMMENTAIRE 2
+                reformat('', 'A', 50), # COMMENTAIRE 3
+                reformat(int(order.billing != delivery), 'A', 1), # CADEAU, true if delivery addr != billing addr
+            ])
 
     return ret
 
@@ -358,7 +359,7 @@ def get_detailed_commands_file():
             order = osale.order
             ret.append([osale, product,         
                 [
-                    reformat(osale.pk, 'A', 20),
+                    reformat(osale.get_delivery_identifier(product), 'A', 20),
                     reformat(product.pk, 'A', 18),
                     reformat(product.name, 'A', 50),
                     reformat(1, 'N'), # QTE

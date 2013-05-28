@@ -140,6 +140,21 @@ class OrderSale(models.Model):
     delivery  = models.ForeignKey('Address', null=True, blank=True)
     message   = models.TextField(blank=True)
 
+    def get_delivery_identifier(self, product=None):
+        """ Return the delivery number for this osale.
+        For instance, imagine:
+        - Order, id=150
+        - OrderSale, id=400
+        - The related Sale corresponds to a pack of three boxes
+        There gonna be three delivery identifiers for the order n. 150:
+        - BL400-1, BL400-2 and BL400-3 (in the case products ids are 1, 2 and
+          3).
+
+        If product is None, the part that specifies the product id is replaced
+        with a star.
+        """
+        return 'BL%s-%s' % (self.pk, product.pk if product else '*')
+
 
 class DeliveryTracking(models.Model):
     """ Store tracking information sent from ADS. """

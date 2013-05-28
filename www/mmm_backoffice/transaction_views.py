@@ -49,7 +49,10 @@ class TransactionListView(SuperuserRequiredMixin, TemplateView):
                                    .prefetch_related('delivery') \
                                    .prefetch_related('delivery_tracking'):
             array = orders[order_sale.order.pk]['content']
-            array.append(order_sale)
+            array.append({
+                'instance': order_sale,
+                'delivery_template': order_sale.get_delivery_identifier()
+            })
 
         # Add Be2billTransaction info
         # order by date insert (last insert is the last action). In case of

@@ -5,7 +5,7 @@
     <tr>
       <th>commande</th>
       <th>ADS num commande</th>
-      <th>Num facture / BL</th>
+      <th>Num BL</th>
       <th>Numéro de tracking</th>
       <th>operation type</th>
       <th>date</th>
@@ -45,15 +45,15 @@
     <tr class="{% if order.success %}success{% else %}error {% endif %}">
       <td>{{order.info.exposed_id}}</td>
       <td>{{order.info.pk}}</td>
-      <td>{{order_sale.pk}}</td>
-      <td>{{order_sale.deliverytracking_set.all.0.tracking_number}}</td>
+      <td>{{order_sale.delivery_template}}</td>
+      <td>{{order_sale.instance.deliverytracking_set.all.0.tracking_number}}</td>
       <td>{{order.be2bill_transactions.0.operationtype}}</td>
       <td>{{order.info.date}}</td>
       <td>{{order.info.promo_code.code}}</td>
       <td>{{order.info.promo_code.discount}} €</td>
       <td>{{order.info.is_free}}</td>
-      <td>{{order_sale.sale.price}}</td>
-      <td>{{order_sale.sale.product.name}}</td>
+      <td>{{order_sale.instance.sale.price}}</td>
+      <td>{{order_sale.instance.sale.product.name}}</td>
 
       <td>{{order.be2bill_transactions.0.execcode}}</td>
       <td>{{order.be2bill_transactions.0.message}}</td>
@@ -68,15 +68,15 @@
       <td>{{order.info.billing.phone}}</td>
       <td>{{order.info.billing.country}}</td>
 
-      <td>{{order_sale.delivery.firstname}}</td>
-      <td>{{order_sale.delivery.lastname}}</td>
-      <td>{{order_sale.delivery.email}}</td>
-      <td>{{order_sale.delivery.address}}</td>
-      <td>{{order_sale.delivery.additional}}</td>
-      <td>{{order_sale.delivery.zip_code}}</td>
-      <td>{{order_sale.delivery.city}}</td>
-      <td>{{order_sale.delivery.phone}}</td>
-      <td>{{order_sale.delivery.country}}</td>
+      <td>{{order_sale.instance.delivery.firstname}}</td>
+      <td>{{order_sale.instance.delivery.lastname}}</td>
+      <td>{{order_sale.instance.delivery.email}}</td>
+      <td>{{order_sale.instance.delivery.address}}</td>
+      <td>{{order_sale.instance.delivery.additional}}</td>
+      <td>{{order_sale.instance.delivery.zip_code}}</td>
+      <td>{{order_sale.instance.delivery.city}}</td>
+      <td>{{order_sale.instance.delivery.phone}}</td>
+      <td>{{order_sale.instance.delivery.country}}</td>
     </tr>
     {% endfor %}
     {% endfor %}

@@ -98,7 +98,7 @@
       <caption>Contenu de la commande &amp; livraison</caption>
       <thead>
         <th>Livré ?</th>
-        <th>ADS num BL/Commande</th>
+        <th>ADS num BL</th>
         <th>Produit</th>
         <th>Prix du produit</th>
         <th>Prénom</th>
@@ -113,20 +113,20 @@
       </thead>
       <tbody>
         {% for order_sale in order.content %}
-          <tr class="{% if order_sale.delivered %}success{% else %}error{% endif %}">
-            <td>{{order_sale.delivered}}</td>
-            <td>{{order_sale.pk}}</td>
-            <td>{{order_sale.sale.product.name}}</td>
-            <td>{{order_sale.sale.price}}</td>
-            <td>{% if order_sale.delivery %}{{order_sale.delivery.firstname}}{% else %}{{order.info.billing.firstname}}{% endif %}</td>
-            <td>{% if order_sale.delivery %}{{order_sale.delivery.lastname}}{% else %}{{order.info.billing.lastname}}{% endif %}</td>
-            <td>{% if order_sale.delivery %}{{order_sale.delivery.email}}{% else %}{{order.info.billing.email}}{% endif %}</td>
-            <td>{% if order_sale.delivery %}{{order_sale.delivery.address}}{% else %}{{order.info.billing.address}}{% endif %}</td>
-            <td>{% if order_sale.delivery %}{{order_sale.delivery.additional}}{% else %}{{order.info.billing.additional}}{% endif %}</td>
-            <td>{% if order_sale.delivery %}{{order_sale.delivery.zip_code}}{% else %}{{order.info.billing.zip_code}}{% endif %}</td>
-            <td>{% if order_sale.delivery %}{{order_sale.delivery.city}}{% else %}{{order.info.billing.city}}{% endif %}</td>
-            <td>{% if order_sale.delivery %}{{order_sale.delivery.phone}}{% else %}{{order.info.billing.phone}}{% endif %}</td>
-            <td>{% if order_sale.delivery %}{{order_sale.delivery.country}}{% else %}{{order.info.billing.country}}{% endif %}</td>
+          <tr class="{% if order_sale.instance.delivered %}success{% else %}error{% endif %}">
+            <td>{{order_sale.instance.delivered}}</td>
+            <td>{{order_sale.instance.pk}}</td>
+            <td>{{order_sale.instance.sale.product.name}}</td>
+            <td>{{order_sale.instance.sale.price}}</td>
+            <td>{% if order_sale.instance.delivery %}{{order_sale.instance.delivery.firstname}}{% else %}{{order.info.billing.firstname}}{% endif %}</td>
+            <td>{% if order_sale.instance.delivery %}{{order_sale.instance.delivery.lastname}}{% else %}{{order.info.billing.lastname}}{% endif %}</td>
+            <td>{% if order_sale.instance.delivery %}{{order_sale.instance.delivery.email}}{% else %}{{order.info.billing.email}}{% endif %}</td>
+            <td>{% if order_sale.instance.delivery %}{{order_sale.instance.delivery.address}}{% else %}{{order.info.billing.address}}{% endif %}</td>
+            <td>{% if order_sale.instance.delivery %}{{order_sale.instance.delivery.additional}}{% else %}{{order.info.billing.additional}}{% endif %}</td>
+            <td>{% if order_sale.instance.delivery %}{{order_sale.instance.delivery.zip_code}}{% else %}{{order.info.billing.zip_code}}{% endif %}</td>
+            <td>{% if order_sale.instance.delivery %}{{order_sale.instance.delivery.city}}{% else %}{{order.info.billing.city}}{% endif %}</td>
+            <td>{% if order_sale.instance.delivery %}{{order_sale.instance.delivery.phone}}{% else %}{{order.info.billing.phone}}{% endif %}</td>
+            <td>{% if order_sale.instance.delivery %}{{order_sale.instance.delivery.country}}{% else %}{{order.info.billing.country}}{% endif %}</td>
           </tr>
         {% endfor %}
       </tbody>
