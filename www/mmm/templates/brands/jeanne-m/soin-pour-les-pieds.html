@@ -1,0 +1,100 @@
+{% extends "mmm/skeleton.html" %}
+{% block head_title %}Soin pour les pieds par Jeanne M.{% endblock %}
+{% block meta_description %}Découvrez Jeanne M. marque partenaire de MadameAime{% endblock %}
+{% block mmm_content %}
+<section id="brand">
+  <header><img src="{{ STATIC_URL }}img/brands/jeanne-m/soin-pour-les-pieds/header.png" alt="" /></header>
+  <div class="row-fluid">
+    <div class="span8 left">
+      <div class="description">
+        <h1>Jeanne M.</h1>
+        <p>
+          A l’origine de Jeanne M, Emmanuelle Taulet a voulu dessiner
+          une marque qui ressemblerait aux femmes matures. Une
+          adéquation entre une gamme de soin qui apporterait une
+          hydratation intense journalière, sans fausse promesse et une
+          philosophie qui respecterait vos valeurs. Retrouvez
+          l’interview d'Emmanuelle Taulet, la créatrice de Jeanne M. sur
+          le mini mag de décembre 2012.
+        </p>
+        <p>
+          <b>MadameAime by Vivolta : Soin pour les pieds 50 ml
+          hiver</b>
+        </p>
+        <p>
+          L’été commence à reprendre ses quartiers, les sandales sortent
+          du placard et vos pieds vont se découvrir de nouveau. Au
+          retour de la plage ou après une soirée en escarpins, le soin
+          pour les pieds Helixir permettra d’apaiser et d’hydrater votre
+          voûte plantaire. Votre peau retrouvera toute sa souplesse et
+          sa douceur en faisant disparaître callosités et petites
+          crevasses.
+        </p>
+        <p>
+          <span class="pink">Le + Jeanne M. :</span><br />
+          - Une marque made in France (Charente)<br />
+          - Certification Ecocert<br />
+          - Des produits locaux et à 98% naturels<br />
+          - 10 % Helix aspera saliva dans chaque produit
+        </p>
+        <p>
+          Pour en savoir plus sur Jeanne M. :
+          <a href="http://www.jeanne-m.com" target="_blank">www.jeanne-m.com</a>
+        </p>
+      </div>
+      <div class="comments">
+        <h2>Donnez-nous votre avis !</h2>
+        <div id="disqus_thread"></div>
+      </div>
+    </div>
+    <div class="span4 right">
+      <div class="visual">
+        <h2>Soin pour les pieds</h2>
+        <p>
+          <img src="{{ STATIC_URL }}img/brands/jeanne-m/soin-pour-les-pieds/image.png" alt="" /><br />
+          <small>Contenance : 50 ml</small>
+        </p>
+        <div class="order row-fluid">
+          <div class="span5">
+            <span class="price">30€</span> <s>36€</s>
+          </div>
+          <div class="span7">
+            <a target="_blank" href="http://www.jeanne-m.com/fr/">
+              <img src="{{ STATIC_URL }}img/brands/new_order.png" alt="Commander" />
+            </a>
+          </div>
+        </div>
+        <p class="clearfix">
+          sur <a href="http://www.jeanne-m.com" target="_blank">www.jeanne-m.com</a>
+        </p>
+      </div>
+      <div class="facebook">
+        <div class="fb-container">
+          <div class="fb-like-box"
+               data-href="https://www.facebook.com/helixir.Jeanne.M"
+               data-width="280"
+               data-height="320"
+               data-show-faces="true"
+               data-border-color="red"
+               data-stream="false"
+               data-header="false">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+  var disqus_shortname = 'madameaime';
+  var disqus_url = 'http://www.madameaime.com/marques/jeanne-m/soin-pour-les-pieds';
+  var disqus_config = function () {
+     this.language = "fr";
+  };
+
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+{% endblock %}

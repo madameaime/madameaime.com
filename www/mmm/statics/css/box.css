@@ -55,7 +55,7 @@
     text-align: center;
     line-height: 26px;
     color: #e2507f;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 #box .products .product .image,
@@ -65,13 +65,21 @@
 
 #box .products .product .details,
 #brand .products .product .details {
-    padding: 10px 10px 0 0;
+    text-align: center;
+    padding: 0 10px 0 0;
     font-style: normal;
     font-size: 15px;
 }
 
-#box .products .product a,
-#brand .products .product a {
+#box .products .product a {
+    position: absolute;
+    display: block;
+    bottom: 5px;
+    right: 7px;
+}
+
+#box .products .product a.shiny,
+#brand .products .product a.shiny {
     display: block;
     background: url('../img/boxes/discover.png') 0 0 no-repeat;
     width: 153px;

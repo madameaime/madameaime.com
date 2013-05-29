@@ -1,0 +1,94 @@
+{% extends "mmm/skeleton.html" %}
+{% block head_title %}Gelée gommante visage par Sothys{% endblock %}
+{% block meta_description %}Découvrez Sothys, marque partenaire de MadameAime{% endblock %}
+{% block mmm_content %}
+<section id="brand">
+  <header><img src="{{ STATIC_URL }}img/brands/sothys/gelee-gommante-visage/header.png" alt="" /></header>
+  <div class="row-fluid">
+    <div class="span8 left">
+      <div class="description">
+        <h1>Sothys</h1>
+        <p>
+          Sothys est depuis 60 ans le partenaire privilégié des
+          instituts de beauté et spas partout dans le monde.  Sothys :
+          une marque pleine de sensualité, d’émotions et de
+          raffinement. Des produits d’excellence  synonymes de détente
+          et de beauté.
+        </p>
+        <p>
+          <b>MadameAime by Vivolta : Gelée gommante visage</b>
+        </p>
+        <p>
+          Préparez votre visage avant l’été avec la gelée gommante
+          Sothys. Une texture magique à l’extrait de thé blanc et aux
+          particules exfoliantes pour un gommage tout en douceur. La
+          gelée fond pour ne faire qu'un avec votre peau, se transforme
+          en huile lors du gommage puis en lait au contact de l’eau.
+        </p>
+        <p>
+          <span class="pink">Les conseils d’utilisation d’Anne :</span><br />
+          <span class="pink">1-</span> Répartir en couche fine sur peau propre et sèche. Effectuer délicatement des mouvements circulaires en évitant le contour des yeux, la gelée se transforme en huile.<br />
+          <span class="pink">2-</span> Puis émulsionner à l’eau tout en continuant le gommage, l’huile se métamorphose en lait.<br />
+          <span class="pink">3-</span> Rincer abondamment à l’eau tiède.
+        </p>
+        <p>
+          Pour en savoir plus sur Sothys :
+          <a href="http://www.sothys.com" target="_blank">www.sothys.com</a>
+        </p>
+      </div>
+      <div class="comments">
+        <h2>Donnez-nous votre avis !</h2>
+        <div id="disqus_thread"></div>
+      </div>
+    </div>
+    <div class="span4 right">
+      <div class="visual">
+        <h2>Soin pour les pieds</h2>
+        <p>
+          <img src="{{ STATIC_URL }}img/brands/sothys/gelee-gommante-visage/image.png" alt="" /><br />
+          <small>Contenance : 50 ml</small>
+        </p>
+        <div class="order row-fluid">
+          <div class="span5">
+            <span class="price">31€</span>
+          </div>
+          <div class="span7">
+            <a target="_blank" href="http://www.sothys.com">
+              <img src="{{ STATIC_URL }}img/brands/new_order.png" alt="Commander" />
+            </a>
+          </div>
+        </div>
+        <p class="clearfix">
+          sur <a href="http://www.sothys.com" target="_blank">www.sothys.com</a>
+        </p>
+      </div>
+      <div class="facebook">
+        <div class="fb-container">
+          <div class="fb-like-box"
+               data-href="https://www.facebook.com/sothysparis"
+               data-width="280"
+               data-height="320"
+               data-show-faces="true"
+               data-border-color="red"
+               data-stream="false"
+               data-header="false">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+  var disqus_shortname = 'madameaime';
+  var disqus_url = 'http://www.madameaime.com/marques/sothys/gelee-gommante-visage';
+  var disqus_config = function () {
+     this.language = "fr";
+  };
+
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+{% endblock %}

@@ -106,6 +106,11 @@ urlpatterns = patterns('',
         name='brands/jeanne-m'
     ),
 
+    url(r'^marques/jeanne-m/soin-pour-les-pieds/$',
+        TemplateView.as_view(template_name='brands/jeanne-m/soin-pour-les-pieds.html'),
+        name='brands/jeanne-m/soin-pour-les-pieds'
+    ),
+
     url(r'^marques/au-pays-de-la-fleur-d-oranger/$',
         TemplateView.as_view(template_name='brands/au-pays-de-la-fleur-d-oranger.html'),
         name='brands/au-pays-de-la-fleur-d-oranger'
@@ -159,6 +164,11 @@ urlpatterns = patterns('',
     url(r'^marques/le-coin-des-delices/nougat-de-montelimar/$',
         TemplateView.as_view(template_name='brands/le-coin-des-delices/nougat-de-montelimar.html'),
         name='brands/le-coin-des-delices/nougat-de-montelimar'
+    ),
+
+    url(r'^marques/sothys/gelee-gommante-visage/$',
+        TemplateView.as_view(template_name='brands/sothys/gelee-gommante-visage.html'),
+        name='brands/sothys/gelee-gommante-visage'
     ),
 
 
