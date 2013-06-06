@@ -126,6 +126,11 @@ urlpatterns = patterns('',
         name='brands/newtree'
     ),
 
+    url(r'^marques/oliv/lait-corps-ultra-fondant/$',
+        TemplateView.as_view(template_name='brands/oliv/lait-corps-ultra-fondant.html'),
+        name='brands/oliv/lait-corps-ultra-fondant'
+    ),
+
     url(r'^marques/secrets-de-miel/$',
         TemplateView.as_view(template_name='brands/secrets-de-miel.html'),
         name='brands/secrets-de-miel'
