@@ -116,6 +116,11 @@ urlpatterns = patterns('',
         name='brands/au-pays-de-la-fleur-d-oranger'
     ),
 
+    url(r'^marques/au-pays-de-la-fleur-d-oranger/savon-d-invites/$',
+        TemplateView.as_view(template_name='brands/au-pays-de-la-fleur-d-oranger/savon-d-invites.html'),
+        name='brands/au-pays-de-la-fleur-d-oranger/savon-d-invites'
+    ),
+
     url(r'^marques/newtree/$',
         TemplateView.as_view(template_name='brands/newtree.html'),
         name='brands/newtree'

@@ -1,0 +1,91 @@
+{% extends "mmm/skeleton.html" %}
+{% block head_title %}Savons d’invités par Au Pays de la Fleur d’Oranger{% endblock %}
+{% block meta_description %}Découvrez Au Pays de la Fleur d’Oranger, marque partenaire de MadameAime{% endblock %}
+{% block mmm_content %}
+<section id="brand">
+  <header><img src="{{ STATIC_URL }}img/brands/au-pays-de-la-fleur-d-oranger/savon-d-invites/header.png" alt="" /></header>
+  <div class="row-fluid">
+    <div class="span8 left">
+      <div class="description">
+        <h1>Au Pays de la Fleur d’Oranger</h1>
+        <p>
+          Au Pays de la Fleur d’Oranger c’est d’abord l’histoire d’un
+          village, d’une famille, et enfin celle d’une fleur de la
+          région Provence-Alpes-Côte d’Azur.
+          </p>
+        <p>
+          Une entreprise familiale qui, au fil des années s’est
+          développée pour proposer une large gamme de produits dédiés à
+          votre bien être, et depuis quelques mois un parfum raffiné au
+          Néroli, idéal pour Madame.
+        </p>
+        <p>
+          <b>MadameAime by Vivolta : Savons d’invités fleur d’oranger, citron</b>
+        </p>
+        <p>
+          Découvrez deux savons qui respecteront votre peau et la
+          laisseront d’une douceur incomparable. La fleur d’oranger et
+          le citron vont envouter vos invités.
+        </p>
+        <p>
+          <span class="pink">Le + Au Pays de la Fleur d’Oranger :</span><br />
+          - Un marque respectueuse de son environnement et sa région<br />
+          - Une gamme d’huile d’argan biologique<br />
+          - Des produits Made in France (Provence)
+        </p>
+        <p>
+          Pour en savoir plus sur Au Pays de la Fleur d’Oranger :
+          <a href="http://www.lafleuroranger.com" target="_blank">www.lafleuroranger.com</a>
+        </p>
+      </div>
+      <div class="comments">
+        <h2>Donnez-nous votre avis !</h2>
+        <div id="disqus_thread"></div>
+      </div>
+    </div>
+    <div class="span4 right">
+      <div class="visual">
+        <h2>Savons d’invités aux frangrances de Fleur d’oranger et de citron</h2>
+        <p>
+          <img src="{{ STATIC_URL }}img/brands/au-pays-de-la-fleur-d-oranger/savon-d-invites/image.png" alt="" /><br />
+        </p>
+        <p>
+          <a target="_blank" href="http://www.lafleuroranger.com">
+            <img src="{{ STATIC_URL }}img/brands/new_order.png" alt="Commander" />
+          </a>
+        </p>
+        <p class="clearfix">
+          Retrouvez la gamme de savons Au Pays de la Fleur d’Oranger sur :
+          <a href="http://www.lafleuroranger.com" target="_blank">www.lafleuroranger.com</a>
+        </p>
+      </div>
+      <div class="facebook">
+        <div class="fb-container">
+          <div class="fb-like-box"
+               data-href="https://www.facebook.com/pages/Au-Pays-de-la-Fleur-dOranger/122642484438646"
+               data-width="280"
+               data-height="320"
+               data-show-faces="true"
+               data-border-color="red"
+               data-stream="false"
+               data-header="false">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+  var disqus_shortname = 'madameaime';
+  var disqus_url = 'http://www.madameaime.com/marques/au-pays-de-la-fleur-d-oranger/savon-d-invites';
+  var disqus_config = function () {
+     this.language = "fr";
+  };
+
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+{% endblock %}
