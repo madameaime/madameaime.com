@@ -146,6 +146,11 @@ urlpatterns = patterns('',
         name='brands/comptoir-colonial'
     ),
 
+    url(r'^marques/teatower/the-a-la-menthe-bio/$',
+        TemplateView.as_view(template_name='brands/teatower/the-a-la-menthe-bio.html'),
+        name='brands/teatower/the-a-la-menthe-bio'
+    ),
+
     url(r'^marques/phyderma/$',
         TemplateView.as_view(template_name='brands/phyderma.html'),
         name='brands/phyderma'
