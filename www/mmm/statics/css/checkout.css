@@ -99,13 +99,16 @@
 }
 
 #cart-upsale h2 {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
     font-family: 'bebas';
     font-weight: normal;
     font-style: normal;
     font-size: 25px;
     line-height: 32px;
 
-    margin: 0 0 0 2px;
+    margin: 0 0 10px 0;
+    padding: 2px 10px;
     color: #e2507f;
 }
 

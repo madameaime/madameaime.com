@@ -14,7 +14,8 @@
 }
 
 body {
-    background-color: #eeeeee;
+    background: url('../img/background.jpg') center top no-repeat;
+    background-color: #ecd891;
     font-family: 'Georgia', 'times';
     font-style: normal;
     font-size: 18px;
@@ -181,21 +182,16 @@ a:hover { color: #e2507f; text-decoration: none; }
     position: relative;
 }
 
-#header-logo {
-    position: relative;
-    left: -3px;
-}
-
 #header-logo a {
     border: 0;
     font: 0/0 a;
     text-shadow: none;
     color: transparent;
     background-color: transparent;
-    background: url('../img/logo.png') 0 0 no-repeat;
+    background: url('../img/logo.png?0') 0 0 no-repeat;
     display: block;
-    height: 112px;
-    width: 387px;
+    height: 109px;
+    width: 379px;
 }
 
 #header-login {
@@ -282,11 +278,17 @@ a:hover { color: #e2507f; text-decoration: none; }
     font-size: 20px;
     text-align: right;
     right: 0;
-    top: 89px;
+    top: 78px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 7px;
 }
 
 #header-nav a {
-    margin-left: 28px;
+    margin-left: 23px;
 }
 
 #header-nav a:first-child {

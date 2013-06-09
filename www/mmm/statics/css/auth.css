@@ -1,4 +1,7 @@
-#auth { margin-bottom: 30px; }
+#auth {
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
 
 #auth .login, #auth .register {
     background-color: #ffffff;

@@ -1,3 +1,7 @@
+#box {
+    margin-top: 10px;
+}
+
 #box .description {
     background-color: #ffffff;
     border: 1px solid #dddddd;
