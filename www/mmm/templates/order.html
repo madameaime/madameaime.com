@@ -20,21 +20,17 @@
   </div>
 
   <p>
-    <a href="{% url "boxes" %}">Voir le contenu de nos coffrets</a>
+    <!-- <a href="{% url "boxes" %}">Voir le contenu de nos coffrets</a> -->
   </p>
 </section>
 
 <section id="order-products" class="row-fluid">
   <div class="span6">
     <div class="what">
-      <div class="am">Je m’abonne</div>
-      <div class="stram">{{ offers.sale_1.sale.price }}€</div>
-      <div class="gram">par coffret</div>
-
-      <p>
-        Résiliable à tout moment,<br />
-        sans engagement de durée.
-      </p>
+      <div class="am">Économisez</div>
+      <div class="stram">5€</div>
+      <div class="gram">avec notre pack</div>
+      <div class="pic">2 coffrets Mon Jardin !</div>
 
       <a href="{% url "boxes" %}">Voir nos coffrets</a>
     </div>
@@ -43,13 +39,14 @@
       <div class="content">
 	{{ offers.sale_1.content | linebreaksbr }}
       </div>
+      <div> </div>
       <div class="price">{{ offers.sale_1.sale.price }}€</div>
-      <div class="insteadof">Au lieu de <s>24,90€</s></div>
+      <img src="{{ STATIC_URL }}img/order/badge1.png" alt="5€ offerts" />
       <div class="delivery">{{ offers.sale_1.price_comment }}</div>
       <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
 	{% csrf_token %}
 	<input type="hidden" name="sale_id" value="{{ offers.sale_1.sale.pk }}" />
-	<input type="image" src="{{ STATIC_URL }}img/order/subscribe.png" alt="S’abonner"/>
+	<input type="image" src="{{ STATIC_URL }}img/order/order.png" alt="Commander"/>
       </form>
     </div>
   </div>
@@ -58,7 +55,7 @@
       <div class="am">Économisez</div>
       <div class="stram">10€</div>
       <div class="gram">avec notre pack</div>
-      <div class="pic">3 coffrets !</div>
+      <div class="pic">2 coffrets Beauté & Jardin !</div>
 
       <a href="{% url "boxes" %}">Voir nos coffrets</a>
     </div>
@@ -67,9 +64,9 @@
       <div class="content">
 	{{ offers.sale_2.content | linebreaksbr }}
       </div>
+      <div> </div>
       <div class="price">{{ offers.sale_2.sale.price }}€</div>
-      <img src="{{ STATIC_URL }}img/order/badge.png" alt="10€ offerts" />
-      <div class="insteadof">Au lieu de <s>74,70€</s></div>
+      <img src="{{ STATIC_URL }}img/order/badge2.png" alt="10€ offerts" />
       <div class="delivery">{{ offers.sale_2.price_comment }}</div>
       <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
 	{% csrf_token %}
