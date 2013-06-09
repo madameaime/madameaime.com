@@ -36,7 +36,11 @@
 /* Shopping cart */
 /*****************/
 
-#checkout-cart { width: 100%; background-color: #ffffff;  margin: 0 0 30px 0; }
+#checkout-cart {
+    width: 100%;
+    background-color: #ffffff;
+    margin: 10px 0 30px 0;
+}
 
 #checkout-cart thead { background-color: #4b4b4b; border: 1px solid #dddddd; }
 #checkout-cart thead th {
