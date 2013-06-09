@@ -98,47 +98,63 @@
       </div>
     </div>
 
-    <div><!-- empty, but it looks better this way --></div>
-
     <div>
-      <img src="{{ STATIC_URL }}img/checkout/upsale/3.png" alt="" />
-      <h4>Abonnement MadameAime</h4>
-      <p class="details">
-        1er coffret :<br />
-        MadameAime by Vivolta
-      </p>
+      <img src="{{ STATIC_URL }}img/checkout/upsale/2.png?0" alt="" />
+      <h4>Coffret Mon Jardin été</h4>
       <div class="bottom">
         <p class="price">
-          22,90€ / coffret
+          24,90€
         </p>
         <p class="delivery">
           livraison incluse
         </p>
         <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
           {% csrf_token %}
-          <input type="hidden" name="sale_id" value="11" />
+          <input type="hidden" name="sale_id" value="CHANGE ME" />
           <input type="image" src="{{ STATIC_URL }}img/checkout/upsale/add.png" alt="Commander"/>
         </form>
       </div>
     </div>
+
     <div>
-      <img src="{{ STATIC_URL }}img/checkout/upsale/4.png" alt="" />
-      <h4>Pack 3 coffrets</h4>
+      <img src="{{ STATIC_URL }}img/checkout/upsale/3.png?0" alt="" />
+      <h4>PACK 2 COFFRETS MON JARDIN</h4>
       <p class="details">
-        MadameAime by Vivolta<br />
-        + MadameAime l’été<br />
-        + MadameAime la rentrée
+        Coffret Mon Jardin Été<br />
+        + Coffret Mon Jardin Rentrée
       </p>
       <div class="bottom">
         <p class="price">
-          64,70€ les 3 coffrets
+          44,80€ les 2 coffrets
         </p>
         <p class="delivery">
           livraison incluse
         </p>
         <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
           {% csrf_token %}
-          <input type="hidden" name="sale_id" value="12" />
+          <input type="hidden" name="sale_id" value="CHANGE ME" />
+          <input type="image" src="{{ STATIC_URL }}img/checkout/upsale/add.png" alt="Commander"/>
+        </form>
+      </div>
+    </div>
+
+    <div>
+      <img src="{{ STATIC_URL }}img/checkout/upsale/4.png?0" alt="" />
+      <h4>PACK 2 COFFRETS BEAUTÉ & JARDIN</h4>
+      <p class="details">
+        Coffret Mon Jardin Été<br />
+        + MadameAime by Vivolta
+      </p>
+      <div class="bottom">
+        <p class="price">
+          39,80€ les 2 coffrets
+        </p>
+        <p class="delivery">
+          livraison incluse
+        </p>
+        <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
+          {% csrf_token %}
+          <input type="hidden" name="sale_id" value="CHANGE ME" />
           <input type="image" src="{{ STATIC_URL }}img/checkout/upsale/add.png" alt="Commander"/>
         </form>
       </div>
