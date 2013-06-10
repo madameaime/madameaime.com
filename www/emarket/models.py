@@ -87,10 +87,13 @@ class Order(models.Model):
                         if self.promo_code else Decimal('0'))
         total_ttc = order_price - promo_code
         total_ht = total_ttc / Decimal('1.196')
+        # cheat with affiliation: remove 5 euros from the transaction
+        total_ht_cheated = total_ht - 5
         total_tva = total_ht * Decimal('0.196')
         return {
             'order_price': order_price.quantize(Decimal('0.01')),
             'total_ht': total_ht.quantize(Decimal('0.01')),
+            'total_ht_cheated': total_ht_cheated.quantize(Decimal('0.01')),
             'total_tva': total_tva.quantize(Decimal('0.01')),
             'total_ttc': total_ttc.quantize(Decimal('0.01')),
             'promo_code': promo_code.quantize(Decimal('0.01')),
