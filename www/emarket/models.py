@@ -9,6 +9,8 @@ from django.utils import timezone
 
 import stockmgmt.models
 
+from .managers import ValidPartnersSubscriptionManager
+
 
 class TransportType(models.Model):
     """ Specify the type of transport to use to deliver the product to the
@@ -215,3 +217,6 @@ class PartnersSubscription(models.Model):
     date = models.DateTimeField(default=timezone.now)
     order = models.ForeignKey(Order, primary_key=True)
     register = models.BooleanField()
+
+    objects = models.Manager()
+    valid_subscriptions = ValidPartnersSubscriptionManager()

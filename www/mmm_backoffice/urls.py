@@ -21,6 +21,11 @@ urlpatterns += patterns('',
         admin_views.NewsletterListView.as_view(),
         name='mmm_backoffice.newsletter.list'
     ),
+
+    # people who accepted to get info about our partners
+    url(r'^partners/$',
+        admin_views.PartnersOK.as_view(),
+        name='mmm_backoffice.partners_ok'),
 )
 
 # Transactions

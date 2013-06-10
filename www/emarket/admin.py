@@ -72,4 +72,10 @@ class Be2billTransactionAdmin(admin.ModelAdmin):
     list_filter = ['execcode', 'currency', 'order__date']
 
 admin.site.register(Be2billTransaction, Be2billTransactionAdmin)
-admin.site.register(PartnersSubscription)
+
+
+class PartnersSubscriptionAdmin(admin.ModelAdmin):
+    list_display = ('order', 'date', 'register')
+    list_filter = ('register', 'date')
+
+admin.site.register(PartnersSubscription, PartnersSubscriptionAdmin)
