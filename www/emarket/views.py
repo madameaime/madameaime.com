@@ -1,3 +1,5 @@
+# -*- coding: utf8 -*-
+
 from datetime import datetime, timedelta
 from decimal import Decimal
 import json
@@ -84,6 +86,8 @@ class ShoppingCartAddView(View):
         if not sale.end or sale.end > datetime.now():
             request.session.setdefault('shopping_cart', []).append(sale.pk)
             request.session.modified = True
+        else:
+            raise Http404('Cette vente est terminée')
         return redirect(reverse('shopping-cart'), permanent=False)
 
 
