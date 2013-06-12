@@ -7,7 +7,7 @@ from django.forms.formsets import BaseFormSet
 
 from be2bill import PaymentForm
 
-from .models import Address, PromoCode
+from .models import Address, Order, PromoCode
 
 
 class AddressModelForm(forms.ModelForm):
@@ -98,8 +98,9 @@ class Be2billForm(forms.Form, PaymentForm):
 class PromoCodeForm(forms.Form):
     code = forms.CharField(required=False)
 
-    def __init__(self, shopping_cart, **kwargs):
+    def __init__(self, user, shopping_cart, **kwargs):
         super(PromoCodeForm, self).__init__(**kwargs)
+        self.user = user
         self.shopping_cart = shopping_cart
         # the code is not mandatory
         self.fields['code'].required = False
@@ -109,6 +110,7 @@ class PromoCodeForm(forms.Form):
         - the code exists
         - it is valid (not expired)
         - if it is related to a sale, the client ordered this sale 
+        - the client has not an order for this code
         """
         data = self.cleaned_data['code']
         if not data:
@@ -118,6 +120,9 @@ class PromoCodeForm(forms.Form):
             promo_code = PromoCode.objects.get(code=data)
         except PromoCode.DoesNotExist:
             raise forms.ValidationError("Ce code n'existe pas")
+        if Order.objects.filter(user=self.user, promo_code=promo_code) \
+                        .count():
+            raise forms.ValidationError('Code déjà utilisé')
         if promo_code.expire and datetime.now() >= promo_code.expire:
             raise forms.ValidationError("Ce code est expiré")
         if promo_code.sale and promo_code.sale not in self.shopping_cart:

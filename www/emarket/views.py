@@ -109,6 +109,7 @@ class ShoppingCartView(PromoCodeMixin, FormView):
 
     def get_form_kwargs(self):
         kwargs = super(ShoppingCartView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
         objects = self.request.session.get('shopping_cart', [])
         kwargs['shopping_cart'] = [get_object_or_404(Sale, pk=pk)
                                     for pk in objects]
