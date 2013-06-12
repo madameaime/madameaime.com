@@ -35,6 +35,7 @@ class PromoCodeMixin(object):
         the code before it was expired, I don't see a reason why I should
         cancel it. Maybe should I).
         """
+        # no code duplication (return super(...) + don't call super method now
         view = lambda: super(PromoCodeMixin, self).dispatch(request, *args,
                                                             **kwargs)
         promo_code = self.get_from_session()
