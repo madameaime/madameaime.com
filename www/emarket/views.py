@@ -102,7 +102,9 @@ class ShoppingCartView(PromoCodeMixin, FormView):
 
     def get_initial(self):
         initial = super(ShoppingCartView, self).get_initial()
-        initial['code'] = self.get_from_session().code
+        promo_code = self.get_from_session()
+        if promo_code is not None:
+            initial['code'] = promo_code.code
         return initial
 
     def get_form_kwargs(self):
@@ -217,6 +219,9 @@ class DeliveryView(PromoCodeMixin, TemplateView):
                 inserted = True
             except IntegrityError:
                 pass
+
+        # Remove the promo code from session
+        self.remove_from_session()
 
         # Save partnership info
         PartnersSubscription(
