@@ -44,11 +44,12 @@
         <form method="post" action="{% url 'shopping-cart' %}">
           {% csrf_token %}
           <div class="control-group{% if form.code.errors %} error{% endif %}">
+            <br />
             {% if form.code.errors %}
             <span class="help-block">{{form.code.errors.as_text}}</span>
             {% endif %}
             <input type="text" class="input-xlarge" name="{{form.code.html_name}}" id="{{form.code.id_for_label}}" value="{{form.code.value|default_if_none:""}}" />
-            <input type="submit" value="Utiliser ce code promo" />
+            <button style="display:inline; border:none; background-color:#fff;" type="submit"><img src="{{STATIC_URL}}/img/ok_btn.png" /></button>
           </div>
         </form>
       </td>
