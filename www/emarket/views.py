@@ -43,8 +43,11 @@ class PromoCodeMixin(object):
             return view()
         objects = self.request.session.get('shopping_cart', [])
         if promo_code.sale and promo_code.sale.pk not in objects:
-            del(self.request.session['promo_code'])
+            self.remove_from_session()
         return view()
+
+    def remove_from_session(self):
+        del(self.request.session['promo_code'])
         
     def set_in_session(self, promo_code):
         """ Set promo_code in session. No check is done to ensure that it is
@@ -57,6 +60,7 @@ class PromoCodeMixin(object):
             promo_code = self.request.session['promo_code']
         except KeyError:
             return None
+        # no session set yet
         except AttributeError:
             return None
         if promo_code:
@@ -98,7 +102,7 @@ class ShoppingCartView(PromoCodeMixin, FormView):
 
     def get_initial(self):
         initial = super(ShoppingCartView, self).get_initial()
-        initial['code'] = self.request.session.get('promo_code')
+        initial['code'] = self.get_from_session().code
         return initial
 
     def get_form_kwargs(self):
@@ -122,20 +126,15 @@ class ShoppingCartView(PromoCodeMixin, FormView):
         ctx = super(ShoppingCartView, self).get_context_data(**kwargs)
         objects = self.request.session.get('shopping_cart', [])
         ctx['objects'] = [get_object_or_404(Sale, pk=pk) for pk in objects]
-
         ctx['total_price'] = sum(sale.price for sale in ctx['objects'])
-
         promo_code = self.get_from_session()
         if promo_code:
             ctx['total_price'] -= promo_code.discount
-
-
         ctx['charges'] = ctx['total_price'] * Decimal('0.196')
         return ctx
 
 
 class ShoppingCartRemoveView(RedirectView):
-
     permanent = False
     url = reverse_lazy('shopping-cart')
 
@@ -338,19 +337,16 @@ class Be2billNotifTransaction(View):
             value = params.get(key)
             if value:
                 log_values[field_name] = value
-
         log_values['blob'] = json.dumps(params)
         try:
             log_values['order'] = \
                     Order.objects.get(exposed_id=params.get('ORDERID'))
         except Order.DoesNotExist:
             return HttpResponse('no such order')
-
         try:
             Be2billTransaction(**log_values).save()
         except IntegrityError:
             return HttpResponse('order already processed')
-
         # In case of success, send a mail to inform the transaction is a
         # success
         if params.get('EXECCODE') in ('0000', '0001'):
@@ -363,7 +359,6 @@ class Be2billNotifTransaction(View):
                             'emarket/transaction_confirm.txt',
                             'emarket/transaction_confirm.html',
                             params={'order': order})
-
         return HttpResponse('OK')
 
     def get(self, request, *args, **kwargs):
