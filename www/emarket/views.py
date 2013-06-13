@@ -47,7 +47,8 @@ class PromoCodeMixin(object):
         return view()
 
     def remove_from_session(self):
-        del(self.request.session['promo_code'])
+        if 'promo_code' in self.request.session:
+            del(self.request.session['promo_code'])
         
     def set_in_session(self, promo_code):
         """ Set promo_code in session. No check is done to ensure that it is
