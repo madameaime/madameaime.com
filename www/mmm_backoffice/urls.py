@@ -22,6 +22,10 @@ urlpatterns += patterns('',
         name='mmm_backoffice.newsletter.list'
     ),
 
+    url(r'^users/list/$',
+        admin_views.UserList.as_view(),
+        name='mmm_backoffice.user.list'),
+
     # people who accepted to get info about our partners
     url(r'^partners/$',
         admin_views.PartnersOK.as_view(),
