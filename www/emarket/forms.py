@@ -120,7 +120,7 @@ class PromoCodeForm(forms.Form):
             promo_code = PromoCode.objects.get(code=data)
         except PromoCode.DoesNotExist:
             raise forms.ValidationError("Ce code n'existe pas")
-        if Order.objects.filter(user=self.user, promo_code=promo_code) \
+        if Order.objects.filter(user=self.user.pk, promo_code=promo_code) \
                         .count():
             raise forms.ValidationError('Code déjà utilisé')
         if promo_code.expire and datetime.now() >= promo_code.expire:
