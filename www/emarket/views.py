@@ -47,9 +47,14 @@ class PromoCodeMixin(object):
         return view()
 
     def remove_from_session(self):
-        if 'promo_code' in self.request.session:
-            del(self.request.session['promo_code'])
-        
+        # AttributeError is raised because there's no request in "self" when
+        # the class is used with import_commands.py.
+        try:
+            if 'promo_code' in self.request.session:
+                del(self.request.session['promo_code'])
+        except AttributeError:
+            pass
+
     def set_in_session(self, promo_code):
         """ Set promo_code in session. No check is done to ensure that it is
         valid.
