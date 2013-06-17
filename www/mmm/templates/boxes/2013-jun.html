@@ -1,0 +1,154 @@
+{% extends "mmm/skeleton.html" %}
+{% block head_title %}Coffret Mon Jardin & Ma Maison – Eté{% endblock %}
+{% block meta_description %}Découvrez tous les coffrets cadeaux confectionnés par Madame Aime{% endblock %}
+{% block mmm_content %}
+<section id="box">
+  <div class="description clearfix">
+    <div class="photo pull-left" style="width: 490px;">
+      <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
+	{% csrf_token %}
+	<input type="hidden" name="sale_id" value="18" />
+        <input type="image" src="{{ STATIC_URL }}img/boxes/2013-jun/photo.png" alt="Coffret Mon Jardin & Ma Maison - Eté"/>
+      </form>
+    </div>
+    <div class="text pull-right" style="width: 450px;">
+      <h1 style="font-size: 28px;">Coffret Mon Jardin & Ma Maison - Eté</h1>
+      <p style="font-size: 85%; font-weight: bold; margin-top: 40px;">
+        - Sécateur à coupe franche - Gamm vert<br />
+        - Lance arrosage multijet - Gardena<br />
+        - Bâtonnets d‘Engrais pour plantes vertes - Neudorff<br />
+        - Engrais liquide pour Orchidées - Algoflash<br />
+        - Sachet de graines de radis - Ferme de Sainte Marthe<br />
+        - 2 sachets de graines à germer bio - Radis et Capucine<br />
+        - Baumes pour les mains, lèvres et pieds - Le Couvent des Minimes<br />
+        - Livre nos conseils “Spécial Eté” - Mon Jardin & Ma Maison
+      </p>
+      <p style="font-size: 90%; font-weight: bold; margin-top: 30px; text-align: center" class="pink">
+        Un coffret dont la valeur totale dépasse les 60€ et vendu au tarif de 24,90€ !
+      </p>
+    </div>
+  </div>
+
+  <div class="products">
+    <div class="row-fluid">
+      <div class="span4 product row-fluid">
+        <div class="span6 image">
+          <img src="{{ STATIC_URL }}img/brands/gamm-vert/secateur-coupe-franche/image.png" alt="" />
+        </div>
+        <div class="span6 details">
+          <h2>Gamm Vert</h2>
+          <p>
+            Sécateur à coupe franche
+          </p>
+        </div>
+      </div>
+
+      <div class="span4 product row-fluid">
+        <div class="span6 image">
+          <img src="{{ STATIC_URL }}img/brands/gardena/lance-arrosage-multijet/image.png" alt="" />
+        </div>
+        <div class="span6 details">
+          <h2>Gardena</h2>
+          <p>
+            Lance arrosage multijet
+          </p>
+        </div>
+      </div>
+
+      <div class="span4 product row-fluid">
+        <div class="span6 image">
+          <img src="{{ STATIC_URL }}img/brands/neudorff/batonnets-engrais-plantes-vertes-azet/image.png" alt="" />
+        </div>
+        <div class="span6 details">
+          <h2>Neudorff</h2>
+          <p>
+            Bâtonnets d'Engrais pour Plantes vertes Azet
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span4 product row-fluid">
+        <div class="span6 image">
+          <img src="{{ STATIC_URL }}img/brands/algoflash/engrais-liquide-orchidees/image.png" alt="" />
+        </div>
+        <div class="span6 details">
+          <h2>Algoflash</h2>
+          <p>
+            Engrais liquide pour Orchidées
+          </p>
+        </div>
+      </div>
+
+      <div class="span4 product row-fluid">
+        <div class="span6 image">
+          <img src="{{ STATIC_URL }}img/brands/ferme-de-sainte-marthe/sachet-graines-radis-18-jours/image.png" alt="" />
+        </div>
+        <div class="span6 details">
+          <h2>Ferme de Sainte Marthe</h2>
+          <p>
+            Sachet de graines de radis 18 jours
+          </p>
+        </div>
+      </div>
+
+      <div class="span4 product row-fluid">
+        <div class="span6 image">
+          <img src="{{ STATIC_URL }}img/brands/radis-et-capucine/2-sachets-graines-a-germer-bio/image.png" alt="" />
+        </div>
+        <div class="span6 details">
+          <h2>Radis et Capucine</h2>
+          <p>
+            2 sachets de graines à germer bio
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span4 what-next">
+        <p>
+          <small>&nbsp;</small>
+        </p>
+        <p>
+          Coffret<br />
+          Mon Jardin & Ma Maison - Eté
+        </p>
+        <p>
+          <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
+	    {% csrf_token %}
+	    <input type="hidden" name="sale_id" value="18" />
+            <input type="image" src="{{ STATIC_URL }}img/boxes/new_profit.png" alt="J’en profite" />
+          </form>
+        </p>
+      </div>
+
+      <div class="span4 product row-fluid">
+        <div class="span6 image">
+          <img src="{{ STATIC_URL }}img/brands/le-couvent-des-minimes/baumes-mains-levres-pieds/image.png" alt="" />
+        </div>
+        <div class="span6 details">
+          <h2>Le Couvent des Minimes</h2>
+          <p>
+            Baumes pour les mains, lèvres et pieds
+          </p>
+        </div>
+      </div>
+
+      <div class="span4 product row-fluid">
+        <div class="span6 image">
+          <img src="{{ STATIC_URL }}img/brands/mon-jardin-ma-maison/livre-nos-conseils-special-ete/image.png" alt="" />
+        </div>
+        <div class="span6 details">
+          <h2>Mon Jardin & Ma Maison</h2>
+          <p>
+            Livre nos conseils "Spécial Eté"
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include 'boxes/previous.html' %}
+</section>
+{% endblock %}
