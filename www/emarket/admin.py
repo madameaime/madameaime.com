@@ -36,7 +36,8 @@ admin.site.register(Order, OrderAdmin)
 class OrderSaleAdmin(admin.ModelAdmin):
     list_display = ('order', 'sale', 'delivery', 'message')
     ordering = ['-order__date']
-    search_fields = ('order', 'sale', 'delivery')
+    search_fields = ('order__pk', 'order__exposed_id', 'delivery__firstname',
+                     'delivery__lastname')
     list_filter = ('sale',)
 
 admin.site.register(OrderSale, OrderSaleAdmin)
