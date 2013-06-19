@@ -26,7 +26,7 @@ class TransportType(models.Model):
 class Sale(models.Model):
 
     def __unicode__(self):
-        return self.product.name
+        return '[sale %d] %s' % (self.pk, self.product.name)
 
     begin          = models.DateTimeField(null=True, default=None, blank=True)
     end            = models.DateTimeField(null=True, default=None, blank=True)
