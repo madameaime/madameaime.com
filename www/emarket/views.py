@@ -227,9 +227,6 @@ class DeliveryView(PromoCodeMixin, TemplateView):
             except IntegrityError:
                 pass
 
-        # Remove the promo code from session
-        self.remove_from_session()
-
         # Save partnership info
         PartnersSubscription(
             order=order,
@@ -304,7 +301,12 @@ class PaymentView(PromoCodeMixin, TemplateView):
         return ctx
 
 
-class CheckoutOKClient(TemplateView):
+class CheckoutOKClient(PromoCodeMixin, TemplateView):
+    def dispatch(self, *args, **kwargs):
+        ret = super(CheckoutOKClient, self).dispatch(*args, **kwargs)
+        # Remove the promo code from session
+        self.remove_from_session()
+        return ret
 
     def get_template_names(self):
         PaymentForm.verify_hash(settings.BE2BILL_PASSWORD,
