@@ -18,6 +18,16 @@ class AddressModelForm(forms.ModelForm):
         model = Address
         exclude = ('country',)
 
+    def clean_zip_code(self):
+        code = self.cleaned_data.get('zip_code')
+        try:
+            int(code)
+        except ValueError:
+            raise forms.ValidationError('Code invalide')
+        if len(code) != 5:
+            raise forms.ValidationError('Code invalide')
+        return code
+
 
 class BillingForm(AddressModelForm):
     def __init__(self, *args, **kwargs):
