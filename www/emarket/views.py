@@ -202,22 +202,8 @@ class DeliveryView(PromoCodeMixin, TemplateView):
         the order_id. """
 
         billing_address = billing_form.save()
-
-        # Try to find a unique exposed_id
-        # And save the billing info form
-        inserted = False
-        while not inserted:
-            try:
-                order_id = Order.generate_readable_id()
-                order = Order(exposed_id=order_id,
-                              promo_code=self.get_from_session(),
-                              user=request.user,
-                              billing=billing_address)
-                order.save()
-                inserted = True
-            except IntegrityError:
-                pass
-
+        order = Order.helper_create_order(request.user, billing_address,
+                                          promo_code=self.get_from_session())
         # Save partnership info
         PartnersSubscription(
             order=order,

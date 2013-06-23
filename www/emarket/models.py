@@ -5,6 +5,7 @@ import random
 import string
 
 from django.conf import settings
+from django.db import IntegrityError
 from django.db import models
 from django.db.models import Q
 from django.utils import timezone
@@ -72,6 +73,23 @@ class Order(models.Model):
         """
         return ''.join(random.choice(string.ascii_uppercase + string.digits)
                        for x in range(8))
+
+    @staticmethod
+    def helper_create_order(user, billing, **kwargs):
+        """ Helper to create an Order instance. the exposed_id is generated
+        randomly using generate_readable_id. Try forever until there's no id
+        conflict.
+        The instance created is returned.
+        """
+        while True:
+            try:
+                exposed_id = Order.generate_readable_id()
+                order = Order(exposed_id=exposed_id, user=user,
+                              billing=billing, **kwargs)
+                order.save()
+                return order
+            except IntegrityError:
+                pass
 
     def is_paid(self):
         """ 
