@@ -50,7 +50,7 @@ def insert_info(sale_id, firstname, lastname, email, address, additional,
         raise ValueError('ERROR! INVALID FORMS!111!')
 
     class Request(object):
-        """ Simulate a HttpRequest object. Worst hack ever (it's 00.30pm here).
+        """ Simulate a HttpRequest object. Worst hack ever (it's 00.30am here).
         """
         user = get_default_user()
 
