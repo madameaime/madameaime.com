@@ -2,16 +2,19 @@ from collections import defaultdict
 import csv
 import datetime
 
+from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
-from django.views.generic import ListView, RedirectView, TemplateView
+from django.views.generic import (FormView, ListView, RedirectView,
+                                  TemplateView)
 
 from braces.views import SuperuserRequiredMixin
 
 from . import ads
-from emarket.models import (Be2billTransaction, DeliveredProduct, Order,
-                            OrderSale)
+from .transaction_forms import TransactionCreationForm
+from emarket.models import (Address, Be2billTransaction, DeliveredProduct,
+                            Order, OrderSale, Sale)
 from stockmgmt.models import Product
 
 
@@ -170,3 +173,29 @@ class ADSDetailedCommandSetDeliveredView(SuperuserRequiredMixin,
 
         return super(ADSDetailedCommandSetDeliveredView, self) \
                     .post(request, *args, **kwargs)
+
+
+class TransactionCreate(SuperuserRequiredMixin, FormView):
+    form_class = TransactionCreationForm
+    template_name = 'mmm_backoffice/transactions/create.html'
+
+    def get_success_url(self):
+        return reverse('mmm_backoffice.ads.commands')
+
+    def get_user(self):
+        """ Return the account associated to the order. """
+        user, created = get_user_model().objects.get_or_create(
+                                email='team@madameaime.com')
+        return user
+
+    def form_valid(self, form):
+        billing_addr = form.save()
+        # free
+        if form.cleaned_data['transaction_type'] == '0':
+            order = Order.helper_create_order(self.get_user(), billing_addr,
+                                              is_free=True)
+        else:
+            order = Order.helper_create_order(self.get_user(), billing_addr)
+        sale = form.cleaned_data['sale']
+        OrderSale.objects.create(order=order, sale=sale, delivery=billing_addr)
+        return super(TransactionCreate, self).form_valid(form)

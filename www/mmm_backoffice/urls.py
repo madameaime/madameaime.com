@@ -42,6 +42,13 @@ urlpatterns += patterns('',
         transaction_views.TransactionDetailedListView.as_view(),
         name='mmm_backoffice.transactions.detailedlist'
     ),
+
+    # create a new transaction
+    url(r'^transactions/create/',
+        transaction_views.TransactionCreate.as_view(),
+        name='mmm_backoffice.transactions.create'
+    ),
+
     ### ADS ###
     url(r'^ads/products/$',
         transaction_views.ADSProductListView.as_view(),
