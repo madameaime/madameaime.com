@@ -1,6 +1,8 @@
-import csv
 from datetime import datetime
 from decimal import Decimal
+import csv
+import random
+import string
 
 from django.conf import settings
 from django.db import models
@@ -56,12 +58,20 @@ class Order(models.Model):
     def __unicode__(self):
         return self.exposed_id
 
-    exposed_id = models.CharField(max_length=32)
+    exposed_id = models.CharField(max_length=32, unique=True)
     date       = models.DateTimeField(auto_now_add=True)
     user       = models.ForeignKey(settings.AUTH_USER_MODEL)
     billing    = models.ForeignKey('Address')
     promo_code = models.ForeignKey(PromoCode, null=True, blank=True)
     is_free    = models.BooleanField(default=False)
+
+    @staticmethod
+    def generate_readable_id():
+        """ Generate a human readable order identifier stored in
+        Order.exposed_id.
+        """
+        return ''.join(random.choice(string.ascii_uppercase + string.digits)
+                       for x in range(8))
 
     def is_paid(self):
         """ 

@@ -3,8 +3,6 @@
 from datetime import datetime, timedelta
 from decimal import Decimal
 import json
-import random
-import string
 
 from be2bill import PaymentForm
 from django.conf import settings
@@ -199,13 +197,6 @@ class DeliveryView(PromoCodeMixin, TemplateView):
         ctx['tos_form'] = forms.ToSForm(post_data)
         return ctx
 
-    @staticmethod
-    def _generate_order_id():
-        """ Generate a random order id exposed to the user of length 16
-        """
-        return ''.join(random.choice(string.ascii_uppercase + string.digits)
-                       for x in range(8))
-
     def _create_order(self, request, tos_form, billing_form, delivery_formset):
         """ Insert a new Order, and correspondings OrderSale entries. Return
         the order_id. """
@@ -217,7 +208,7 @@ class DeliveryView(PromoCodeMixin, TemplateView):
         inserted = False
         while not inserted:
             try:
-                order_id = self._generate_order_id()
+                order_id = Order.generate_readable_id()
                 order = Order(exposed_id=order_id,
                               promo_code=self.get_from_session(),
                               user=request.user,
