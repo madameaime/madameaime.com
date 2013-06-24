@@ -223,7 +223,7 @@ class DeliveryView(PromoCodeMixin, TemplateView):
             osale = OrderSale(order=order, sale=sale, delivery=delivery,
                               message=form.cleaned_data['message'])
             osale.save()
-        return order_id
+        return order.exposed_id
 
     def post(self, request):
         ctx = self.get_context_data()
