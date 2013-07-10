@@ -147,6 +147,7 @@
     font-size: 48px;
     line-height: 48px;
     color: #e2507f;
+    margin-top:-40px;
 }
 
 #order-products .info img {
@@ -154,7 +155,7 @@
     height: 74px;
     position: absolute;
     right: -10px;
-    top: 155px;
+    top: 140px;
 }
 
 #order-products .info .insteadof {
