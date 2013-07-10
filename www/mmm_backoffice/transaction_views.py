@@ -110,7 +110,10 @@ class ADSMixin(SuperuserRequiredMixin):
         # (as it won't be used in fields, at least I hope)
         writer = csv.writer(response, delimiter='|')
         for line in rows:
-            writer.writerow([value.encode('utf8') for value in line])
+            # replaces \n with commas
+            writer.writerow(
+                    [', '.join(value.encode('utf8').split('\n'))
+                            for value in line])
         return response
 
     def get_filename(self):
