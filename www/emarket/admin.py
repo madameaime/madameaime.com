@@ -45,6 +45,8 @@ admin.site.register(OrderSale, OrderSaleAdmin)
 
 class DeliveredProductAdmin(admin.ModelAdmin):
     list_display = ('order_sale', 'product')
+    search_fields = ('order_sale__order__pk', 'order_sale__order__exposed_id')
+    list_filter = ('product',)
 
 
 admin.site.register(DeliveredProduct, DeliveredProductAdmin)
