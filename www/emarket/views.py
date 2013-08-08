@@ -286,8 +286,11 @@ class CheckoutOKClient(PromoCodeMixin, TemplateView):
         return ret
 
     def get_template_names(self):
-        PaymentForm.verify_hash(settings.BE2BILL_PASSWORD,
-                                self.request.GET)
+        try:
+            PaymentForm.verify_hash(settings.BE2BILL_PASSWORD,
+                                    self.request.GET)
+        except:
+            return HttpResponse('bad hash')
         if self.request.GET.get('EXECCODE') in ('0000', '0001'):
             # empty shopping card
             self.request.session['shopping_cart'] = []
