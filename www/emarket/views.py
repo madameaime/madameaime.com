@@ -290,7 +290,7 @@ class CheckoutOKClient(PromoCodeMixin, TemplateView):
             PaymentForm.verify_hash(settings.BE2BILL_PASSWORD,
                                     self.request.GET)
         except:
-            return HttpResponse('bad hash')
+            pass
         if self.request.GET.get('EXECCODE') in ('0000', '0001'):
             # empty shopping card
             self.request.session['shopping_cart'] = []
