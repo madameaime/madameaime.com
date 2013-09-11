@@ -6,9 +6,9 @@
   <div class="description clearfix">
     <div class="photo pull-left" style="width: 490px;">
       <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
-	{% csrf_token %}
-	<input type="hidden" name="sale_id" value="18" />
-        <input type="image" src="{{ STATIC_URL }}img/boxes/2013-jun/photo.png" alt="Coffret Mon Jardin & Ma Maison - Eté"/>
+          {% csrf_token %}
+          <input type="hidden" name="sale_id" value="19" />
+          <input type="image" src="{{ STATIC_URL }}img/boxes/2013-jun/photo.png" alt="Coffret Mon Jardin & Ma Maison - Eté"/>
       </form>
     </div>
     <div class="text pull-right" style="width: 450px;">
@@ -21,10 +21,11 @@
         - Sachet de graines de radis - Ferme de Sainte Marthe<br />
         - 2 sachets de graines à germer bio - Radis et Capucine<br />
         - Baumes pour les mains, lèvres et pieds - Le Couvent des Minimes<br />
-        - Livre nos conseils “Spécial Eté” - Mon Jardin & Ma Maison
+        - Livre nos conseils “Spécial Eté” - Mon Jardin &amp; Ma Maison
       </p>
       <p style="font-size: 90%; font-weight: bold; margin-top: 30px; text-align: center" class="pink">
-        Un coffret dont la valeur totale dépasse les 60€ et vendu au tarif de 24,90€ !
+        Un coffret dont la valeur totale dépasse les 60€ et vendu au tarif de
+        19,90€ !
       </p>
     </div>
   </div>
@@ -117,9 +118,9 @@
         </p>
         <p>
           <form method="post" action="{% url 'emarket:shopping-cart.add' %}">
-	    {% csrf_token %}
-	    <input type="hidden" name="sale_id" value="18" />
-            <input type="image" src="{{ STATIC_URL }}img/boxes/new_profit.png" alt="J’en profite" />
+              {% csrf_token %}
+              <input type="hidden" name="sale_id" value="19" />
+              <input type="image" src="{{ STATIC_URL }}img/boxes/new_profit.png" alt="J’en profite" />
           </form>
         </p>
       </div>
