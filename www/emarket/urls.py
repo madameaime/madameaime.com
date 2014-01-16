@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, include, url
+from django.views.generic import TemplateView
 
 from views import *
 
@@ -13,8 +14,12 @@ urlpatterns = patterns('',
         ShoppingCartRemoveView.as_view(),
         name='shopping-cart.remove'),
 
+#    url(r'^vos-adresses-de-livraison/$',
+#        DeliveryView.as_view(),
+#        name='delivery'),
+
     url(r'^vos-adresses-de-livraison/$',
-        DeliveryView.as_view(),
+        TemplateView.as_view(template_name='mmm-over.html'),
         name='delivery'),
 
     # Confirm the client everything went fine
